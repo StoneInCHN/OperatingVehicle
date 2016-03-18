@@ -57,7 +57,7 @@
 		appenders -->
 	<!-- ===================================================================================== -->
 
-	<logger name="com.lb" level="debug">
+	<logger name="com.ov" level="debug">
 		<appender-ref ref="stdout" />
 		<appender-ref ref="rolling_file_appender" />
 	</logger>
@@ -65,11 +65,11 @@
 	<!-- ================================================================================= -->
 	<!-- Below are the overrides to the default values specified above for com.cienet.* -->
 	<!-- ================================================================================= -->
-	<logger name="org.csh.service.impl" level="off" />
+	<logger name="com.ov..service.impl" level="off" />
 
-	<logger name="org.csh.dao.impl" level="off" />
+	<logger name="com.ov.dao.impl" level="off" />
 
-	<logger name="org.csh.framework" level="off" />
+	<logger name="com.ov.framework" level="off" />
 
 	<!-- ================================================================================= -->
 	<!-- 3p settings -->
