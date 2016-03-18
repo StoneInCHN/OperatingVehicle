@@ -46,7 +46,7 @@
 			</li>
 		[/#if]
 		<li class="pageSkip" style="display:none">
-			${message("csh.page.totalPages", totalPages)} ${message("csh.page.pageNumber", '<input id="pageNumber" name="pageNumber" value="' + pageNumber + '" maxlength="9" onpaste="return false;" />')}<button type="submit" style="display:none">GO</button>
+			${message("ov.page.totalPages", totalPages)} ${message("ov.page.pageNumber", '<input id="pageNumber" name="pageNumber" value="' + pageNumber + '" maxlength="9" onpaste="return false;" />')}<button type="submit" style="display:none">GO</button>
 		</li>
 	</ul>
  	<div class="clearfix"></div>

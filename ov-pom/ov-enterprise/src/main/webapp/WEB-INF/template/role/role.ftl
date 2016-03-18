@@ -35,13 +35,13 @@
 	<form id="addrole_form" method="post" class="form-table">  
 	   <table class="table table-striped">
 	    	<tr>
-	    		<th>${message("csh.role.name")}:</th>
+	    		<th>${message("ov.role.name")}:</th>
 	    		<td>
 	    			  <input class="easyui-textbox" type="text" name="name" validtype="length[0,150]" data-options="required:true,multiline:true,height:90,width:260"/> 
 	    		</td>
 	    	</tr>
 	    	<tr>
-	    		<th>${message("csh.role.description")}:</th>
+	    		<th>${message("ov.role.description")}:</th>
 	    		<td>
 	    			  <input type="text" class="easyui-textbox" name="description" validtype="length[0,150]" data-options="multiline:true,height:90,width:260" />
 	    		</td>

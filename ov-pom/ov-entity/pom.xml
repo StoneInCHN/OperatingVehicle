@@ -74,7 +74,7 @@
 	</dependencies>
 	
 	<build>
-		<finalName>csh-entity</finalName>
+		<finalName>ov-entity</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>

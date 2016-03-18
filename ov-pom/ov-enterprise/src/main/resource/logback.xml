@@ -24,7 +24,7 @@
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<!-- **** File name must match SAPILOGNAME value in Install.properties 
 			**** -->
-		<File>${LOG_PATH}/csh-operation.log</File>
+		<File>${LOG_PATH}/ov-operation.log</File>
 		<Append>true</Append>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<!-- <pattern>%d | [%.-1level] | %c | %X{DisplayUserName} | %X{userName} 
@@ -34,7 +34,7 @@
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<maxHistory>30</maxHistory>    
-			<FileNamePattern>${LOG_PATH}/csh-operation-%d{yyyy-MM-dd}.log.%i</FileNamePattern>
+			<FileNamePattern>${LOG_PATH}/ov-operation-%d{yyyy-MM-dd}.log.%i</FileNamePattern>
 			<TimeBasedFileNamingAndTriggeringPolicy class= "ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<MaxFileSize>10MB</MaxFileSize>
 			</TimeBasedFileNamingAndTriggeringPolicy >
@@ -65,7 +65,7 @@
 	<!-- ================================================================================= -->
 	<!-- Below are the overrides to the default values specified above for com.cienet.* -->
 	<!-- ================================================================================= -->
-	<logger name="com.ov..service.impl" level="off" />
+	<logger name="com.ov.service.impl" level="off" />
 
 	<logger name="com.ov.dao.impl" level="off" />
 

@@ -34,19 +34,19 @@
 				<li><a href="#system"><i class="fa fa-users fa-1x"></i>系统管理</a></li>
 				[/@shiro.hasPermission]
 				[@shiro.hasPermission name="personnelManage"]
-				<li><a href="#personnel"><i class="fa fa-users fa-1x"></i>${message("csh.personnel.config")}</a></li>
+				<li><a href="#personnel"><i class="fa fa-users fa-1x"></i>${message("ov.personnel.config")}</a></li>
 				[/@shiro.hasPermission]
 				[@shiro.hasPermission name="vehicleManage"]
-				<li><a href="#vehicle"><i class="fa fa-users fa-1x"></i>${message("csh.vehicle.config")}</a></li>
+				<li><a href="#vehicle"><i class="fa fa-users fa-1x"></i>${message("ov.vehicle.config")}</a></li>
 				[/@shiro.hasPermission]
 				[@shiro.hasPermission name="deviceManage"]
-				<li><a href="#device"><i class="fa fa-users fa-1x"></i>${message("csh.device.config")}</a></li>
+				<li><a href="#device"><i class="fa fa-users fa-1x"></i>${message("ov.device.config")}</a></li>
 				[/@shiro.hasPermission]
 				[@shiro.hasPermission name="endUserManage"]
-				<li><a href="#endUser"><i class="fa fa-users fa-1x"></i>${message("csh.endUser.config")}</a></li>
+				<li><a href="#endUser"><i class="fa fa-users fa-1x"></i>${message("ov.endUser.config")}</a></li>
 				[/@shiro.hasPermission]
 				[@shiro.hasPermission name="reservationMange"]
-				<li><a href="#reservationMange"><i class="fa fa-users fa-1x"></i>${message("csh.reservationMange.config")}</a></li>
+				<li><a href="#reservationMange"><i class="fa fa-users fa-1x"></i>${message("ov.reservationMange.config")}</a></li>
 				[/@shiro.hasPermission]
 				<a href="#" id="nav-switcher" class="nav-switcher">更多<i class="fa fa-angle-down fa-1x"></i></a>
 				<a id="nav-switcherset" href="#" class="router nav-switcherset off"><span class="middlehelper">设置</span><span><i class="fa fa-cog"></i></span></a>
@@ -70,55 +70,55 @@
 	</div>   
     <div class="footer" data-options="region:'south',split:true,noheader:true" ></div>   
     <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:115" >
-    	<ul title="${message("csh.system.config")}" id="system">
+    	<ul title="${message("ov.system.config")}" id="system">
     		[@shiro.hasPermission name="tenantAccount"]
-    		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">${message("csh.system.tenantAccount")}</a></li>
+    		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">${message("ov.system.tenantAccount")}</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="role"]
-    		<li><a href="#" data-url="${base}/console/role/role.jhtml">${message("csh.system.tenantAccount.role")}</a></li>
+    		<li><a href="#" data-url="${base}/console/role/role.jhtml">${message("ov.system.tenantAccount.role")}</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="operationLog"]
-    		<li><a href="#" data-url="${base}/console/operationLog/operationLog.jhtml">${message("csh.system.tenantAccount.operationLog")}</a></li>
+    		<li><a href="#" data-url="${base}/console/operationLog/operationLog.jhtml">${message("ov.system.tenantAccount.operationLog")}</a></li>
     		[/@shiro.hasPermission]
     	</ul>
-    	<ul title="${message("csh.personnel.config")}" id="personnel">
+    	<ul title="${message("ov.personnel.config")}" id="personnel">
     		[@shiro.hasPermission name="department"]
-    		<li><a href="#" data-url="${base}/console/department/department.jhtml">${message("csh.personnel.department")}</a></li>
+    		<li><a href="#" data-url="${base}/console/department/department.jhtml">${message("ov.personnel.department")}</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="position"]
-    		<li><a href="#" data-url="${base}/console/position/position.jhtml">${message("csh.personnel.position")}</a></li>
+    		<li><a href="#" data-url="${base}/console/position/position.jhtml">${message("ov.personnel.position")}</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="tenantUser"]
-    		<li><a href="#" data-url="${base}/console/tenantUser/tenantUser.jhtml">${message("csh.personnel.tenantuser")}</a></li>
+    		<li><a href="#" data-url="${base}/console/tenantUser/tenantUser.jhtml">${message("ov.personnel.tenantuser")}</a></li>
     		[/@shiro.hasPermission]
     	</ul>
-    	<ul title="${message("csh.vehicle.config")}" id="vehicle">
+    	<ul title="${message("ov.vehicle.config")}" id="vehicle">
     		[@shiro.hasPermission name="vehicle"]
-    		<li><a href="#" data-url="${base}/console/vehicle/vehicle.jhtml">${message("csh.vehicle.vehicle")}</a></li>
+    		<li><a href="#" data-url="${base}/console/vehicle/vehicle.jhtml">${message("ov.vehicle.vehicle")}</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="vehicleDetail"]
-    		<li><a href="#" data-url="${base}/console/vehicleDetail/vehicleDetail.jhtml">${message("csh.vehicle.vehicleLine")}</a></li>
+    		<li><a href="#" data-url="${base}/console/vehicleDetail/vehicleDetail.jhtml">${message("ov.vehicle.vehicleLine")}</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="vehicleMaintain"]
-    		<li><a href="#" data-url="${base}/console/vehicleMaintain/vehicleMaintain.jhtml">${message("csh.vehicle.vehicleMaintain")}</a></li>
+    		<li><a href="#" data-url="${base}/console/vehicleMaintain/vehicleMaintain.jhtml">${message("ov.vehicle.vehicleMaintain")}</a></li>
     		[/@shiro.hasPermission]
     	</ul>
-    	<ul title="${message("csh.device.config")}" id="device">
+    	<ul title="${message("ov.device.config")}" id="device">
     		[@shiro.hasPermission name="device"]
-    		<li><a href="#" data-url="${base}/console/deviceInfo/deviceInfo.jhtml">${message("csh.device.device")}</a></li>
+    		<li><a href="#" data-url="${base}/console/deviceInfo/deviceInfo.jhtml">${message("ov.device.device")}</a></li>
     		[/@shiro.hasPermission]
     	</ul>
-    	<ul title="${message("csh.endUser.config")}" id="endUser">
+    	<ul title="${message("ov.endUser.config")}" id="endUser">
     		[@shiro.hasPermission name="endUser"]
-    		<li><a href="#" data-url="${base}/console/endUser/endUser.jhtml">${message("csh.endUser.endUser")}</a></li>
+    		<li><a href="#" data-url="${base}/console/endUser/endUser.jhtml">${message("ov.endUser.endUser")}</a></li>
     		[/@shiro.hasPermission]
     	</ul>
-    	<ul title="${message("csh.reservationManage.config")}" id="reservationMange">
+    	<ul title="${message("ov.reservationManage.config")}" id="reservationMange">
     		[@shiro.hasPermission name="repareReservation"]
-    		<li><a href="#" data-url="${base}/console/repareReservation/repareReservation.jhtml">${message("csh.repareReservation.repareReservation")}</a></li>
+    		<li><a href="#" data-url="${base}/console/repareReservation/repareReservation.jhtml">${message("ov.repareReservation.repareReservation")}</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="maintainReservation"]
-    		<li><a href="#" data-url="${base}/console/maintainReservation/maintainReservation.jhtml">${message("csh.maintainReservation.maintainReservation")}</a></li>
+    		<li><a href="#" data-url="${base}/console/maintainReservation/maintainReservation.jhtml">${message("ov.maintainReservation.maintainReservation")}</a></li>
     		[/@shiro.hasPermission]
     	</ul>          
     </div>

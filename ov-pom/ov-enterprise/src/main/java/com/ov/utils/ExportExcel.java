@@ -79,7 +79,7 @@ public class ExportExcel extends Thread {
       HSSFPatriarch patriarch = sheet.createDrawingPatriarch();
       HSSFComment comment = patriarch.createComment(new HSSFClientAnchor(0, 0, 0, 0, (short) 4, 2, (short) 6, 5));
       comment.setString(new HSSFRichTextString("数据列表"));
-      comment.setAuthor("csh");
+      comment.setAuthor("ov");
       
       //填充标题,就是第一行啦
       HSSFRow row = sheet.createRow(0);

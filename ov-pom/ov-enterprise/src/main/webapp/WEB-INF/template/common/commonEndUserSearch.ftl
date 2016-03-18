@@ -1,23 +1,23 @@
  <fieldset>
-	    <legend>${message("csh.endUser.search")}</legend>
+	    <legend>${message("ov.endUser.search")}</legend>
 	    <form id="endUser-search-form" class="search-form">
 	    	<div class="search-item">
-			    <label> ${message("csh.endUser.userName")}:</label>
+			    <label> ${message("ov.endUser.userName")}:</label>
 			    <input type="text" class="easyui-textbox" id="userNameSearch" name="userNameSearch" validtype="length[0,20]"/>
 			</div>
 			<div class="search-item">
-			    <label> ${message("csh.endUser.staffStatus")}:</label>
+			    <label> ${message("ov.endUser.staffStatus")}:</label>
 			    <input class="easyui-combobox" data-options="
 				     valueField: 'label',
 				     textField: 'value',
 				     data: [{
 				      label: 'ACTIVED',
-				      value: '${message("csh.endUser.accoutStatus.active")}'
+				      value: '${message("ov.endUser.accoutStatus.active")}'
 				     },{
 				      label: 'LOCKED',
-				      value: '${message("csh.endUser.accoutStatus.locked")}'
+				      value: '${message("ov.endUser.accoutStatus.locked")}'
 				     }],
-				     prompt:'${message("csh.common.please.select")}',panelMaxHeight:100"  name="accountStatusSearch" id="accountStatusSearch" style="width:110px;"/>
+				     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100"  name="accountStatusSearch" id="accountStatusSearch" style="width:110px;"/>
 			</div>
 			
 		</form>

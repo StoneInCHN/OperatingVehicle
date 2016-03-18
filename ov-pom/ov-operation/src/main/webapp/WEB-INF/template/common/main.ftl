@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>${message("csh.main.title")}</title>
+<title>${message("ov.main.title")}</title>
 <link rel="shortcut icon" type="image/x-icon" href="${base}/resources/images/carlife.ico" media="screen" /> 
 <link href="${base}/resources/style/bootstrap.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/style/bootstrap-theme.css" rel="stylesheet" type="text/css" />
@@ -23,7 +23,7 @@
 	      <div class="row">
 	        <div class="col-xs-4 col-md-4 col-lg-4">
 	          <div class="logo">
-	            <h1><a href="#">csh<span class="bold"></span></a></h1>
+	            <h1><a href="#">ov<span class="bold"></span></a></h1>
 	            <p class="meta">后台管理系统</p>
 	          </div>
 	        </div>
@@ -35,7 +35,7 @@
 			              <i class="fa fa-user"></i> [@shiro.principal /] <b class="caret"></b>              
 			            </a>
 			            <ul class="dropdown-menu">
-		             	 	<li><a href="../common/logout.jhtml" target="_top"><i class="fa fa-power-off"></i>&nbsp;&nbsp;${message("csh.main.logout")}</a></li>
+		             	 	<li><a href="../common/logout.jhtml" target="_top"><i class="fa fa-power-off"></i>&nbsp;&nbsp;${message("ov.main.logout")}</a></li>
 			            </ul>
 			          </li>
 			        </ul>
@@ -50,26 +50,26 @@
            [#list ["admin:admin", "admin:role","admin:account"] as permission]
 					[@shiro.hasPermission name = permission]
 						<li class="has_sub" >
-							<a href="#admin" ><i class="fa fa-cog"></i>&nbsp;&nbsp;${message("csh.main.systemNav")}<span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
+							<a href="#admin" ><i class="fa fa-cog"></i>&nbsp;&nbsp;${message("ov.main.systemNav")}<span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
 							<ul class="sub_ul">
 				              [@shiro.hasPermission name="admin:admin"]
 								<li >
-									<a href="../admin/list.jhtml"  target="iframe"> <i class="fa fa-user"></i>${message("csh.main.admin")}</a>
+									<a href="../admin/list.jhtml"  target="iframe"> <i class="fa fa-user"></i>${message("ov.main.admin")}</a>
 								</li>
 						 	 	[/@shiro.hasPermission]
 				                [@shiro.hasPermission name="admin:role"]
 								<li>
-									<a href="../role/list.jhtml" target="iframe"><i class="fa fa-male"></i>${message("csh.main.role")}</a>
+									<a href="../role/list.jhtml" target="iframe"><i class="fa fa-male"></i>${message("ov.main.role")}</a>
 								</li>
 							   [/@shiro.hasPermission]
 							   [@shiro.hasPermission name="admin:apply"]
 								<li>
-									<a href="../apply/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("csh.main.apply")}</a>
+									<a href="../apply/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.apply")}</a>
 								</li>
 							 	[/@shiro.hasPermission]
 							   [@shiro.hasPermission name="admin:account"]
 								<li>
-									<a href="../account/accountInfo.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("csh.account.settingGroup")}</a>
+									<a href="../account/accountInfo.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.account.settingGroup")}</a>
 								</li>
 							 	[/@shiro.hasPermission]
 				            </ul>

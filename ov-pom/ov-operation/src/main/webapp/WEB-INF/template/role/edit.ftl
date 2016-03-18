@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>${message("csh.role.edit")}</title>
+<title>${message("ov.role.edit")}</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="${base}/resources/style/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -78,11 +78,11 @@ $().ready(function() {
 	<div class="mainbar">
 		<div class="page-head">
 			<div class="bread-crumb">
-				<a><i class="fa fa-user"></i> ${message("csh.main.role")}</a> 
+				<a><i class="fa fa-user"></i> ${message("ov.main.role")}</a> 
 				<span class="divider">/</span> 
-				<a href="list.jhtml" ><i class="fa fa-list"></i>${message("csh.role.list")}</a>
+				<a href="list.jhtml" ><i class="fa fa-list"></i>${message("ov.role.list")}</a>
 				<span class="divider">/</span> 
-				<a class="bread-current"><i class="fa fa-pencil-square-o"></i>${message("csh.role.edit")}</a>
+				<a class="bread-current"><i class="fa fa-pencil-square-o"></i>${message("ov.role.edit")}</a>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -92,7 +92,7 @@ $().ready(function() {
             <div class="col-md-12">
               <div class="widget wgreen">
                 <div class="widget-head">
-                  <div class="pull-left">${message("csh.role.edit")}</div>
+                  <div class="pull-left">${message("ov.role.edit")}</div>
                   <div class="widget-icons pull-right">
                     <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
                     <a href="#" class="wclose"><i class="fa fa-times"></i></a>
@@ -106,7 +106,7 @@ $().ready(function() {
 							<table class="input">
 								<tr>
 									<th>
-										<span class="requiredField">*</span>${message("csh.role.name")}:
+										<span class="requiredField">*</span>${message("ov.role.name")}:
 									</th>
 									<td>
 										<input type="text" name="name" class="text" value="${role.name}" maxlength="200" />
@@ -114,7 +114,7 @@ $().ready(function() {
 								</tr>
 								<tr>
 									<th>
-										${message("csh.role.description")}:
+										${message("ov.role.description")}:
 									</th>
 									<td>
 										<textarea  name="description" class="text" maxlength="200">${role.description}</textarea>
@@ -127,18 +127,18 @@ $().ready(function() {
 								</tr>
 								<tr class="authorities">
 									<th>
-										<a href="javascript:;" class="selectAll" title="${message("csh.role.selectAll")}">${message("csh.role.systemGroup")}</a>
+										<a href="javascript:;" class="selectAll" title="${message("ov.role.selectAll")}">${message("ov.role.systemGroup")}</a>
 									</th>
 									<td>
 										<span class="fieldSet">
 											<label>
-												<input type="checkbox" name="authorities" value="admin:admin"[#if role.authorities?seq_contains("admin:admin")] checked="checked"[/#if] /><span>${message("csh.role.admin")}</span>
+												<input type="checkbox" name="authorities" value="admin:admin"[#if role.authorities?seq_contains("admin:admin")] checked="checked"[/#if] /><span>${message("ov.role.admin")}</span>
 											</label>
 											<label>
-												<input type="checkbox" name="authorities" value="admin:role"[#if role.authorities?seq_contains("admin:role")] checked="checked"[/#if] /><span>${message("csh.role.role")}</span>
+												<input type="checkbox" name="authorities" value="admin:role"[#if role.authorities?seq_contains("admin:role")] checked="checked"[/#if] /><span>${message("ov.role.role")}</span>
 											</label>
 											<label>
-												<input type="checkbox" name="authorities" value="admin:account" [#if role.authorities?seq_contains("admin:account")] checked="checked"[/#if]/><span>${message("csh.account.settingGroup")}</span>
+												<input type="checkbox" name="authorities" value="admin:account" [#if role.authorities?seq_contains("admin:account")] checked="checked"[/#if]/><span>${message("ov.account.settingGroup")}</span>
 											</label>
 											
 										</span>
@@ -150,7 +150,7 @@ $().ready(function() {
 											&nbsp;
 										</th>
 										<td>
-											<span class="tips">${message("csh.role.editSystemNotAllowed")}</span>
+											<span class="tips">${message("ov.role.editSystemNotAllowed")}</span>
 										</td>
 									</tr>
 								[/#if]
@@ -159,8 +159,8 @@ $().ready(function() {
 										&nbsp;
 									</th>
 									<td>
-										<input type="submit" class="button" value="${message("csh.common.submit")}"[#if role.isSystem] disabled="disabled"[/#if] />
-										<input type="button" class="button" value="${message("csh.common.back")}" onclick="location.href='list.jhtml'" />
+										<input type="submit" class="button" value="${message("ov.common.submit")}"[#if role.isSystem] disabled="disabled"[/#if] />
+										<input type="button" class="button" value="${message("ov.common.back")}" onclick="location.href='list.jhtml'" />
 									</td>
 								</tr>
 							</table>

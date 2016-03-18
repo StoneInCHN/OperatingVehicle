@@ -130,7 +130,7 @@
 	<bean id="imageCaptchaService"
 		class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService">
 		<property name="captchaEngine">
-			<bean class="com.csh.beans.CaptchaEngine" />
+			<bean class="com.ov.beans.CaptchaEngine" />
 		</property>
 		<property name="minGuarantedStorageDelayInSeconds" value="3600" />
 	</bean>

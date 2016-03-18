@@ -41,7 +41,7 @@ var setting = {
  */
 function showSuccessMsg(msgStr) {
 	$.messager.show({
-		title : message("csh.common.prompt"),
+		title : message("ov.common.prompt"),
 		msg : msgStr,
 		timeout : 3000,
 		showType : 'slide'
@@ -52,8 +52,8 @@ function showSuccessMsg(msgStr) {
  * 公共提示信息 error
  */
 function alertErrorMsg() {
-	$.messager.alert(message("csh.common.fail"),
-			message("csh.common.unknow.error"), 'error');
+	$.messager.alert(message("ov.common.fail"),
+			message("ov.common.unknow.error"), 'error');
 }
 
 // 添加Cookie
@@ -232,16 +232,16 @@ function listRemove(id, url) {
 	var _url = url
 	var _rows = $("#" + _id).datagrid('getSelections');
 	if (_rows.length == 0) {
-		$.messager.alert(message("csh.common.prompt"),
-				message("csh.common.select.deleteRow"), 'warning');
+		$.messager.alert(message("ov.common.prompt"),
+				message("ov.common.select.deleteRow"), 'warning');
 	} else {
 		var _ids = [];
 		for (var i = 0; i < _rows.length; i++) {
 			_ids.push(_rows[i].id);
 		}
 		if (_ids.length > 0) {
-			$.messager.confirm(message("csh.common.confirm"),
-					message("csh.common.delete.confirm"), function(r) {
+			$.messager.confirm(message("ov.common.confirm"),
+					message("ov.common.delete.confirm"), function(r) {
 						if (r) {
 							$.ajax({
 								url : _url,
@@ -252,7 +252,7 @@ function listRemove(id, url) {
 								},
 								beforeSend : function() {
 									$.messager.progress({
-										text : message("csh.common.progress")
+										text : message("ov.common.progress")
 									});
 								},
 								success : function(result, response, status) {
@@ -279,14 +279,14 @@ function searchTenantUser(id) {
 	$('#searchTenantUser')
 			.dialog(
 					{
-						title : message("csh.tenantUser.search"),
+						title : message("ov.tenantUser.search"),
 						width : 1000,
 						height : 500,
 						modal : true,
 						cache : false,
 						href : '../tenantUser/commonTenantUserSearch.jhtml',
 						buttons : [ {
-							text : message("csh.common.cancel"),
+							text : message("ov.common.cancel"),
 							iconCls : 'icon-cancel',
 							handler : function() {
 								$('#searchTenantUser').dialog("close");
@@ -299,11 +299,11 @@ function searchTenantUser(id) {
 							$("#common-tenantUser-table-list")
 									.datagrid(
 											{
-												title : message("csh.elderlyinfo"),
+												title : message("ov.elderlyinfo"),
 												fitColumns : true,
 												url : '../tenantUser/list.jhtml',
 												pagination : true,
-												loadMsg : message("csh.common.loading"),
+												loadMsg : message("ov.common.loading"),
 												striped : true,
 												onDblClickRow : function(
 														rowIndex, rowData) {
@@ -334,25 +334,25 @@ function searchTenantUser(id) {
 												},
 												columns : [ [
 														{
-															title : message("csh.common.name"),
+															title : message("ov.common.name"),
 															field : "realName",
 															width : 100,
 															sortable : true
 														},
 														{
-															title : message("csh.common.age"),
+															title : message("ov.common.age"),
 															field : "age",
 															width : 100,
 															sortable : true
 														},
 														{
-															title : message("csh.tenantUser.staffID"),
+															title : message("ov.tenantUser.staffID"),
 															field : "staffID",
 															width : 100,
 															sortable : true
 														},
 														{
-															title : message("csh.tenantUser.staffStatus"),
+															title : message("ov.tenantUser.staffStatus"),
 															field : "staffStatus",
 															width : 100,
 															sortable : true,
@@ -360,15 +360,15 @@ function searchTenantUser(id) {
 																	value, row,
 																	index) {
 																if (value == "INSERVICE") {
-																	return message("csh.tenantUser.staffStatus.inService");
+																	return message("ov.tenantUser.staffStatus.inService");
 																} else if (value = "OUTSERVICE") {
-																	return message("csh.tenantUser.staffStatus.outService");
+																	return message("ov.tenantUser.staffStatus.outService");
 																}
 															}
 														},
 
 														{
-															title : message("csh.tenantUser.department"),
+															title : message("ov.tenantUser.department"),
 															field : "department",
 															width : 100,
 															sortable : true,
@@ -383,7 +383,7 @@ function searchTenantUser(id) {
 															}
 														},
 														{
-															title : message("csh.tenantUser.position"),
+															title : message("ov.tenantUser.position"),
 															field : "position",
 															width : 100,
 															sortable : true,
@@ -398,7 +398,7 @@ function searchTenantUser(id) {
 															}
 														},
 														{
-															title : message("csh.tenantUser.hireDate"),
+															title : message("ov.tenantUser.hireDate"),
 															field : "hireDate",
 															width : 100,
 															sortable : true,
@@ -434,14 +434,14 @@ function searchRoles(id) {
 	$('#searchRoles')
 			.dialog(
 					{
-						title : message("csh.role.search"),
+						title : message("ov.role.search"),
 						width : 1000,
 						height : 500,
 						modal : true,
 						cache : false,
 						href : '../role/commonRolesSearch.jhtml',
 						buttons : [ {
-							text : message("csh.common.cancel"),
+							text : message("ov.common.cancel"),
 							iconCls : 'icon-cancel',
 							handler : function() {
 								$('#searchRoles').dialog("close");
@@ -454,11 +454,11 @@ function searchRoles(id) {
 							$("#common-roles-table-list")
 									.datagrid(
 											{
-												title : message("csh.elderlyinfo"),
+												title : message("ov.elderlyinfo"),
 												fitColumns : true,
 												url : '../role/list.jhtml',
 												pagination : true,
-												loadMsg : message("csh.common.loading"),
+												loadMsg : message("ov.common.loading"),
 												striped : true,
 												onDblClickRow : function(
 														rowIndex, rowData) {
@@ -477,7 +477,7 @@ function searchRoles(id) {
 												},
 												columns : [ [
 														{
-															title : message("csh.role.name"),
+															title : message("ov.role.name"),
 															field : "name",
 															width : 20,
 															align : 'center',
@@ -488,7 +488,7 @@ function searchRoles(id) {
 															}
 														},
 														{
-															title : message("csh.role.description"),
+															title : message("ov.role.description"),
 															field : "description",
 															width : 80,
 															align : 'center',
@@ -523,7 +523,7 @@ function searchEndUser(id) {
 	$('#commonMainDialog')
 			.dialog(
 					{
-						title : message("csh.endUser.search"),
+						title : message("ov.endUser.search"),
 						width : 1000,
 						height : 500,
 						modal : true,
@@ -540,11 +540,11 @@ function searchEndUser(id) {
 							$("#common-endUser-table-list")
 									.datagrid(
 											{
-												title : message("csh.endUser.list"),
+												title : message("ov.endUser.list"),
 												fitColumns : true,
 												url : '../endUser/list.jhtml',
 												pagination : true,
-												loadMsg : message("csh.common.loading"),
+												loadMsg : message("ov.common.loading"),
 												striped : true,
 												onDblClickRow : function(
 														rowIndex, rowData) {
@@ -565,7 +565,7 @@ function searchEndUser(id) {
 														    textField:'plate',
 														    editable : false,
 														    required:true,
-														    prompt:message("csh.common.please.select"),
+														    prompt:message("ov.common.please.select"),
 														    onSelect:function(record){
 														    	$("#dashboardMileage").textbox('setValue',record.dashboardMileage);
 														    	$("#lastMaintainMileage").textbox('setValue',record.dashboardMileage);
@@ -577,20 +577,20 @@ function searchEndUser(id) {
 												},
 												columns : [ [
 														      {field:'ck',checkbox:true},
-														      {title:message("csh.endUser.userName"),field:"userName",width:100,sortable:true},
-														      {title:message("csh.endUser.realName"),field:"realName",width:100,sortable:true   },
-														      {title:message("csh.endUser.mobileNum"),field:"mobileNum",width:100,sortable:true},
-														      {title:message("csh.endUser.qq"),field:"qq",width:100,sortable:true},
-														      {title:message("csh.endUser.accoutStatus"),field:"accoutStatus",width:100,sortable:true,
+														      {title:message("ov.endUser.userName"),field:"userName",width:100,sortable:true},
+														      {title:message("ov.endUser.realName"),field:"realName",width:100,sortable:true   },
+														      {title:message("ov.endUser.mobileNum"),field:"mobileNum",width:100,sortable:true},
+														      {title:message("ov.endUser.qq"),field:"qq",width:100,sortable:true},
+														      {title:message("ov.endUser.accoutStatus"),field:"accoutStatus",width:100,sortable:true,
 														    	  formatter: function(value,row,index){
 															    	  if(value == "ACTIVED"){
-															    		  return  message("csh.endUser.active");
+															    		  return  message("ov.endUser.active");
 															    	  }else if (value == "LOCKED"){
-															    		  return  message("csh.endUser.locked");
+															    		  return  message("ov.endUser.locked");
 															    	  }
 														      	  }  
 														      },
-														      {title:message("csh.endUser.loginDate"),field:"loginDate",width:100,sortable:true,formatter: function(value,row,index){
+														      {title:message("ov.endUser.loginDate"),field:"loginDate",width:100,sortable:true,formatter: function(value,row,index){
 																	return new Date(value).Format("yyyy-MM-dd:hh:mm:ss");
 																}
 														      },
@@ -662,29 +662,29 @@ function searchDevice(id) {
 												},
 												columns : [ [
 														      {field:'ck',checkbox:true},
-														      {title:message("csh.deviceInfo.deviceNO"),field:"deviceNo",width:100,sortable:true},
-														      {title:message("csh.deviceInfo.deviceType"),field:"type",width:100,sortable:true,
+														      {title:message("ov.deviceInfo.deviceNO"),field:"deviceNo",width:100,sortable:true},
+														      {title:message("ov.deviceInfo.deviceType"),field:"type",width:100,sortable:true,
 														    	  formatter: function(value,row,index){
 															    	  if(value != null){
 															    		  return  value.name;
 															    	  }
 														      	  }},
-														      {title:message("csh.deviceInfo.deviceStatus"),field:"deviceStatus",width:100,sortable:true,
+														      {title:message("ov.deviceInfo.deviceStatus"),field:"deviceStatus",width:100,sortable:true,
 														    	  formatter: function(value,row,index){
 															    	  if(value == "INITED"){
-															    		  return  message("csh.deviceInfo.deviceStatus.INITED");
+															    		  return  message("ov.deviceInfo.deviceStatus.INITED");
 															    	  }else if (value = "SENDOUT"){
-															    		  return  message("csh.deviceInfo.deviceStatus.SENDOUT");
+															    		  return  message("ov.deviceInfo.deviceStatus.SENDOUT");
 															    	  }else if (value = "STORAGEOUT"){
-															    		  return  message("csh.deviceInfo.deviceStatus.STORAGEOUT");
+															    		  return  message("ov.deviceInfo.deviceStatus.STORAGEOUT");
 															    	  }else if (value = "BINDED"){
-															    		  return  message("csh.deviceInfo.deviceStatus.BINDED");
+															    		  return  message("ov.deviceInfo.deviceStatus.BINDED");
 															    	  }else if (value = "REFUNDED"){
-															    		  return  message("csh.deviceInfo.deviceStatus.REFUNDED");
+															    		  return  message("ov.deviceInfo.deviceStatus.REFUNDED");
 															    	  }
 														      	  }  
 														      },
-														      {title:message("csh.deviceInfo.bindTime"),field:"bindTime",width:100,sortable:true,formatter: function(value,row,index){
+														      {title:message("ov.deviceInfo.bindTime"),field:"bindTime",width:100,sortable:true,formatter: function(value,row,index){
 																	return new Date(value).Format("yyyy-MM-dd:hh:mm:ss");
 																}
 														      },
@@ -742,17 +742,17 @@ function exportData(control, form) {
 						var text = "";
 						if (result.count == 0) {
 							// "当前条件无可导出的数据。"
-							text = message("csh.common.notice.current_condition_no_export_data");
-							$.messager.alert(message("csh.common.notice"),
+							text = message("ov.common.notice.current_condition_no_export_data");
+							$.messager.alert(message("ov.common.notice"),
 									text, 'warning');
 						} else if (result.count <= maxSize) {
 							// "确定导出 {0}条记录？"
 							text = message(
-									"csh.common.notice.comfirm_export_data",
+									"ov.common.notice.comfirm_export_data",
 									result.count);
 							$.messager
 									.confirm(
-											message("csh.common.confirm"),
+											message("ov.common.confirm"),
 											text,
 											function(r) {
 												if (r) {
@@ -771,11 +771,11 @@ function exportData(control, form) {
 						} else {
 							// "导出数据超过 "+maxSize+" 条数据，建议搜索查询条件以缩小查询范围，再导出。";
 							text = message(
-									"csh.common.notice.export_data_too_much_advice_use_filter",
+									"ov.common.notice.export_data_too_much_advice_use_filter",
 									maxSize);
 							$.messager
 									.confirm(
-											message("csh.common.notice"),
+											message("ov.common.notice"),
 											text,
 											function(r) {
 												if (!r) {
@@ -783,12 +783,12 @@ function exportData(control, form) {
 													// +"条数据，导出超过 "+maxSize+"
 													// 条数据可能需要您耐心等待，仍需操作请确定继续。";
 													text = message(
-															"csh.common.notice.need_wait_export_too_much_data",
+															"ov.common.notice.need_wait_export_too_much_data",
 															result.count,
 															maxSize);
 													$.messager
 															.confirm(
-																	message("csh.common.confirm"),
+																	message("ov.common.confirm"),
 																	text,
 																	function(
 																			yes) {

@@ -65,9 +65,9 @@ $().ready(function() {
 	<div class="mainbar">
 		<div class="page-head">
 			<div class="bread-crumb">
-				<a ><i class="fa fa-user"></i> ${message("csh.main.admin")}</a> 
+				<a ><i class="fa fa-user"></i> ${message("ov.main.admin")}</a> 
 				<span class="divider">/</span> 
-				<a href="list.jhtml" class="bread-current"><i class="fa fa-list"></i>${message("csh.admin.list")}</a>
+				<a href="list.jhtml" class="bread-current"><i class="fa fa-list"></i>${message("ov.admin.list")}</a>
 				<span class="divider">/</span> 
 				<span  class="bread-current"><i class="fa fa-plus"></i>${message("admin.admin.add")}</span>
 			</div>
@@ -92,7 +92,7 @@ $().ready(function() {
                      	<table class="input tabContent">
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.username")}:
+									<span class="requiredField">*</span>${message("ov.admin.username")}:
 								</th>
 								<td>
 									<input type="text" name="username" class="text" maxlength="20" />
@@ -100,7 +100,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.password")}:
+									<span class="requiredField">*</span>${message("ov.admin.password")}:
 								</th>
 								<td>
 									<input type="password" id="password" name="password" class="text" maxlength="20" />
@@ -108,7 +108,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.rePassword")}:
+									<span class="requiredField">*</span>${message("ov.admin.rePassword")}:
 								</th>
 								<td>
 									<input type="password" name="rePassword" class="text" maxlength="20" />
@@ -116,7 +116,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.name")}:
+									<span class="requiredField">*</span>${message("ov.admin.name")}:
 								</th>
 								<td>
 									<input type="text" name="name" class="text" maxlength="200" />
@@ -124,7 +124,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.email")}:
+									<span class="requiredField">*</span>${message("ov.admin.email")}:
 								</th>
 								<td>
 									<input type="text" name="email" class="text" maxlength="200" />
@@ -132,7 +132,7 @@ $().ready(function() {
 							</tr>
 							<tr class="roles">
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.roles")}:
+									<span class="requiredField">*</span>${message("ov.admin.roles")}:
 								</th>
 								<td>
 									<span class="fieldSet">
@@ -146,11 +146,11 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.adminStatus")}:
+									<span class="requiredField">*</span>${message("ov.admin.adminStatus")}:
 								</th>
 								<td>
-									<input type="radio" value="actived" name="adminStatus" checked="checked" />${message("csh.admin.adminStatus.actived")}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="radio" value="locked" name="adminStatus" />${message("csh.admin.adminStatus.locked")}
+									<input type="radio" value="actived" name="adminStatus" checked="checked" />${message("ov.admin.adminStatus.actived")}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" value="locked" name="adminStatus" />${message("ov.admin.adminStatus.locked")}
 								</td>
 							</tr>
 						</table>
@@ -160,8 +160,8 @@ $().ready(function() {
 									&nbsp;
 								</th>
 								<td>
-									<input type="submit" class="button" value="${message("csh.common.submit")}" />
-									<input type="button" class="button" value="${message("csh.common.back")}" onclick="location.href='list.jhtml'" />
+									<input type="submit" class="button" value="${message("ov.common.submit")}" />
+									<input type="button" class="button" value="${message("ov.common.back")}" onclick="location.href='list.jhtml'" />
 								</td>
 							</tr>
 						</table>                                     

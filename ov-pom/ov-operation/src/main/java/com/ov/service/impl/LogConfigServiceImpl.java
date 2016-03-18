@@ -28,7 +28,7 @@ public class LogConfigServiceImpl implements LogConfigService {
     try {
       File commonXmlFile = new ClassPathResource(CommonAttributes.COMMON_CONFIG_XML_PATH).getFile();
       Document document = new SAXReader().read(commonXmlFile);
-      List<org.dom4j.Element> elements = document.selectNodes("/csh/logConfig");
+      List<org.dom4j.Element> elements = document.selectNodes("/ov/logConfig");
       List<LogConfig> logConfigs = new ArrayList<LogConfig>();
       for (org.dom4j.Element element : elements) {
         String operation = element.attributeValue("operation");

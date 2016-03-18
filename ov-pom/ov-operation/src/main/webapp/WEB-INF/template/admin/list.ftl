@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>${message("csh.admin.list")}</title>
+<title>${message("ov.admin.list")}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link href="${base}/resources/style/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -19,9 +19,9 @@
 <div class="mainbar">
 				<div class="page-head">
 					<div class="bread-crumb">
-						<a ><i class="fa fa-user"></i> ${message("csh.main.admin")}</a> 
+						<a ><i class="fa fa-user"></i> ${message("ov.main.admin")}</a> 
 						<span class="divider">/</span> 
-						<span  class="bread-current"><i class="fa fa-list"></i>${message("csh.admin.list")}(${message("csh.page.total", page.total)})</span>
+						<span  class="bread-current"><i class="fa fa-list"></i>${message("ov.admin.list")}(${message("ov.page.total", page.total)})</span>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -33,18 +33,18 @@
 						  		<ul class="nav">
 									 <li class="pull-left">
 										<div class="btn-group operationButton">
-										  <button type="button" id="addButton" class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;${message("csh.common.add")}</button>
+										  <button type="button" id="addButton" class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;${message("ov.common.add")}</button>
 										</div>
 										<div class="btn-group operationButton">
-										  <button type="button" id="deleteButton" class="btn btn-default disabled"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;${message("csh.common.delete")}</button>
+										  <button type="button" id="deleteButton" class="btn btn-default disabled"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;${message("ov.common.delete")}</button>
 										</div>
 										<div class="btn-group operationButton">
-										  <button type="button" id="refreshButton" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;&nbsp;${message("csh.common.refresh")}</button>
+										  <button type="button" id="refreshButton" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;&nbsp;${message("ov.common.refresh")}</button>
 										</div>
 									</li>
 									  <li role="presentation" class="dropdown pull-right">
 										    <a id="pageSizeSelect" aria-expanded="false" role="button" aria-haspopup="true" data-toggle="dropdown" class="dropdown-toggle" href="#">
-										      ${message("csh.page.pageSize")} <span class="caret"></span>
+										      ${message("ov.page.pageSize")} <span class="caret"></span>
 										    </a>
 										    <ul id="pageSizeOption" class="dropdown-menu" role="menu" aria-labelledby="pageSizeSelect">
 										     	<li>
@@ -66,11 +66,11 @@
 						  <div class="col-xs-3 col-md-3 col-lg-3">
 						  		<div class="input-group">
 								      <div class="input-group-btn">
-								        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">${message("csh.common.choose")} <span class="caret"></span></button>
+								        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">${message("ov.common.choose")} <span class="caret"></span></button>
 								        <ul class="dropdown-menu menuWrap" id="searchPropertyOption" role="menu">
-								          <li [#if page.searchProperty == "username" || page.searchProperty ==null] selected="selected" class="active" [/#if] title="username"><a href="#">${message("csh.admin.username")}</a></li>
-								          <li [#if page.searchProperty == "email"] selected="selected" class="active" [/#if] title="email"><a href="#">${message("csh.admin.email")}</a></li>
-								          <li [#if page.searchProperty == "name"] selected="selected" class="active" [/#if] title="name"><a href="#">${message("csh.admin.name")}</a></li>
+								          <li [#if page.searchProperty == "username" || page.searchProperty ==null] selected="selected" class="active" [/#if] title="username"><a href="#">${message("ov.admin.username")}</a></li>
+								          <li [#if page.searchProperty == "email"] selected="selected" class="active" [/#if] title="email"><a href="#">${message("ov.admin.email")}</a></li>
+								          <li [#if page.searchProperty == "name"] selected="selected" class="active" [/#if] title="name"><a href="#">${message("ov.admin.name")}</a></li>
 								        </ul>
 								      </div>
 								      <input type="text" class="form-control" id="searchValue" name="searchValue" value="${page.searchValue}" maxlength="200" />
@@ -85,7 +85,7 @@
 			              <div class="col-md-12">
 			                <div class="widget">
 									 <div class="widget-head">
-						                  <div class="pull-left"><i class="fa fa-list"></i>${message("csh.main.admin")}</div>
+						                  <div class="pull-left"><i class="fa fa-list"></i>${message("ov.main.admin")}</div>
 						                  <div class="widget-icons pull-right">
 						                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
 						                    <a href="#" class="wclose"><i class="fa fa-times"></i></a>
@@ -100,28 +100,28 @@
 														<input type="checkbox" id="selectAll" />
 													</th>
 													<th>
-														<a href="javascript:;" class="sort" name="username">${message("csh.admin.username")}</a>
+														<a href="javascript:;" class="sort" name="username">${message("ov.admin.username")}</a>
 													</th>
 													<th>
-														<a href="javascript:;" class="sort" name="email">${message("csh.admin.email")}</a>
+														<a href="javascript:;" class="sort" name="email">${message("ov.admin.email")}</a>
 													</th>
 													<th>
-														<a href="javascript:;" class="sort" name="name">${message("csh.admin.name")}</a>
+														<a href="javascript:;" class="sort" name="name">${message("ov.admin.name")}</a>
 													</th>
 													<th>
-														<a href="javascript:;" class="sort" name="loginDate">${message("csh.admin.loginDate")}</a>
+														<a href="javascript:;" class="sort" name="loginDate">${message("ov.admin.loginDate")}</a>
 													</th>
 													<th>
-														<a href="javascript:;" class="sort" name="loginIp">${message("csh.admin.loginIp")}</a>
+														<a href="javascript:;" class="sort" name="loginIp">${message("ov.admin.loginIp")}</a>
 													</th>
 													<th>
-														<a href="javascript:;" class="sort" name="createDate">${message("csh.common.createDate")}</a>
+														<a href="javascript:;" class="sort" name="createDate">${message("ov.common.createDate")}</a>
 													</th>
 													<th>
-														<a href="javascript:;" class="sort" name="adminStatus">${message("csh.admin.adminStatus")}</a>
+														<a href="javascript:;" class="sort" name="adminStatus">${message("ov.admin.adminStatus")}</a>
 													</th>
 													<th>
-														<span>${message("csh.common.handle")}</span>
+														<span>${message("ov.common.handle")}</span>
 													</th>
 												</tr>
 											</thead>
@@ -154,10 +154,10 @@
 														<span title="${admin.createDate?string("yyyy-MM-dd HH:mm:ss")}">${admin.createDate}</span>
 													</td>
 													<td>
-														${message("csh.admin.adminStatus."+admin.adminStatus)}
+														${message("ov.admin.adminStatus."+admin.adminStatus)}
 													</td>
 													<td>
-														<a href="edit.jhtml?id=${admin.id}" title="${message("csh.common.edit")}"><i class="fa fa-pencil-square-o"></i></a>
+														<a href="edit.jhtml?id=${admin.id}" title="${message("ov.common.edit")}"><i class="fa fa-pencil-square-o"></i></a>
 													</td>
 												</tr>
 											</tbody>

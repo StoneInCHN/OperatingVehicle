@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>${message("csh.account.edit")}</title>
+<title>${message("ov.account.edit")}</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="${base}/resources/style/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -39,14 +39,14 @@ $().ready(function() {
 		},
 		messages: {
 			password: {
-				pattern: "${message("csh.reg.passwordIllegal")}",
-				minlength: "${message("csh.password.minlength",6)}"
+				pattern: "${message("ov.reg.passwordIllegal")}",
+				minlength: "${message("ov.password.minlength",6)}"
 			},
 			repassword:{
-					 equalTo:"${message("csh.reg.passwordIllegal")}"
+					 equalTo:"${message("ov.reg.passwordIllegal")}"
 			},
 			name:{
-				required:"${message("csh.reg.nameRequired")}"
+				required:"${message("ov.reg.nameRequired")}"
 			}
 		},
 		
@@ -76,9 +76,9 @@ $().ready(function() {
 	<div class="mainbar">
 		<div class="page-head">
 			<div class="bread-crumb">
-				<a ><i class="fa fa-user"></i> ${message("csh.account.settingGroup")}</a> 
+				<a ><i class="fa fa-user"></i> ${message("ov.account.settingGroup")}</a> 
 				<span class="divider">/</span> 
-				<span class="bread-current">${message("csh.account.setting")}</span>
+				<span class="bread-current">${message("ov.account.setting")}</span>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -88,7 +88,7 @@ $().ready(function() {
             <div class="col-md-12">
               <div class="widget wgreen">
                 <div class="widget-head">
-                  <div class="pull-left">${message("csh.account.edit")}</div>
+                  <div class="pull-left">${message("ov.account.edit")}</div>
                   <div class="widget-icons pull-right">
                     <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
                     <a href="#" class="wclose"><i class="fa fa-times"></i></a>
@@ -103,7 +103,7 @@ $().ready(function() {
 						<table class="input tabContent">
 							<tr>
 								<th>
-									${message("csh.admin.username")}:
+									${message("ov.admin.username")}:
 								</th>
 								<td>
 									${admin.username}
@@ -111,7 +111,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									${message("csh.admin.password")}:
+									${message("ov.admin.password")}:
 								</th>
 								<td>
 									<input type="password" id="password" name="password" class="text" maxlength="20" />
@@ -119,7 +119,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									${message("csh.admin.rePassword")}:
+									${message("ov.admin.rePassword")}:
 								</th>
 								<td>
 									<input type="password" name="rePassword" id="rePassword" class="text" maxlength="20" />
@@ -127,7 +127,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.name")}:
+									<span class="requiredField">*</span>${message("ov.admin.name")}:
 								</th>
 								<td>
 									<input type="text" id="name" name="name" class="text" value="${admin.name}" maxlength="200" />
@@ -138,7 +138,7 @@ $().ready(function() {
 									&nbsp;
 								</th>
 								<td>
-									<input type="submit" class="button" value="${message("csh.common.submit")}" />
+									<input type="submit" class="button" value="${message("ov.common.submit")}" />
 								</td>
 							</tr>
 						</table>

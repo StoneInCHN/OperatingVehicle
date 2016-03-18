@@ -108,7 +108,7 @@ $(function(){
 			    href:'../common/changePassword.jhtml',
 			    cache: false, 
 			    buttons:[{
-			    	text:message("csh.common.save"),
+			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
 						debugger;
@@ -120,7 +120,7 @@ $(function(){
 								data:$("#changePassword_form").serialize(),
 								beforeSend:function(){
 									$.messager.progress({
-										text:message("csh.common.saving")
+										text:message("ov.common.saving")
 									});
 								},
 								success:function(result,response,status){
@@ -136,7 +136,7 @@ $(function(){
 						};
 					}
 				},{
-					text:message("csh.common.cancel"),
+					text:message("ov.common.cancel"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#changePassword').dialog("close");

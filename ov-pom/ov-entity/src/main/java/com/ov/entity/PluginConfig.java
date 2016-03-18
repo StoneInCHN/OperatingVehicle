@@ -19,8 +19,8 @@ import com.ov.entity.base.OrderEntity;
  * 插件配置
  */
 @Entity
-@Table(name = "csh_plugin_config")
-@SequenceGenerator(name = "sequenceGenerator", sequenceName = "csh_plugin_config_sequence")
+@Table(name = "ov_plugin_config")
+@SequenceGenerator(name = "sequenceGenerator", sequenceName = "ov_plugin_config_sequence")
 public class PluginConfig extends OrderEntity {
 
   private static final long serialVersionUID = -4659991911011721380L;
@@ -78,7 +78,7 @@ public class PluginConfig extends OrderEntity {
    * @return 属性
    */
   @ElementCollection(fetch = FetchType.EAGER)
-  @CollectionTable(name = "csh_plugin_config_attribute")
+  @CollectionTable(name = "ov_plugin_config_attribute")
   @MapKeyColumn(name = "name", length = 100)
   public Map<String, String> getAttributes() {
     return attributes;

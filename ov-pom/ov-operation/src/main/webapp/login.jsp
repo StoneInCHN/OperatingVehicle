@@ -50,24 +50,24 @@ if (applicationContext != null) {
 	String loginFailure = (String) request.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
 	if (loginFailure != null) {
 		if (loginFailure.equals("org.apache.shiro.authc.pam.UnsupportedTokenException")) {
-			message = "csh.captcha.invalid";
+			message = "ov.captcha.invalid";
 		} else if (loginFailure.equals("org.apache.shiro.authc.UnknownAccountException")) {
-			message = "csh.login.unknownAccount";
+			message = "ov.login.unknownAccount";
 		} else if (loginFailure.equals("org.apache.shiro.authc.DisabledAccountException")) {
-			message = "csh.login.disabledAccount";
+			message = "ov.login.disabledAccount";
 		} else if (loginFailure.equals("org.apache.shiro.authc.LockedAccountException")) {
-			message = "csh.login.lockedAccount";
+			message = "ov.login.lockedAccount";
 		} else if (loginFailure.equals("org.apache.shiro.authc.IncorrectCredentialsException")) {
-				message = "csh.login.incorrectCredentials";
+				message = "ov.login.incorrectCredentials";
 		} else if (loginFailure.equals("org.apache.shiro.authc.AuthenticationException")) {
-			message = "csh.login.authentication";
+			message = "ov.login.authentication";
 		}else{
-			message = "csh.login.incorrectCredentials";
+			message = "ov.login.incorrectCredentials";
 		}
 	}
 %>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title><%=SpringUtils.getMessage("csh.login.title")%> </title>
+	<title><%=SpringUtils.getMessage("ov.login.title")%> </title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -122,7 +122,7 @@ if (applicationContext != null) {
 		$loginForm.submit( function() {
 			if ($username.val() == "") {
 				$alertError.removeClass("hide");
-				$alertError.find("span").text("<%=SpringUtils.getMessage("csh.login.usernameRequired")%>");
+				$alertError.find("span").text("<%=SpringUtils.getMessage("ov.login.usernameRequired")%>");
 				$username.addClass("error");
 				$password.removeClass("error");
 				$captcha.removeClass("error");
@@ -130,7 +130,7 @@ if (applicationContext != null) {
 			}
 			if ($password.val() == "") {
 				$alertError.removeClass("hide");
-				$alertError.find("span").text("<%=SpringUtils.getMessage("csh.login.passwordRequired")%>");
+				$alertError.find("span").text("<%=SpringUtils.getMessage("ov.login.passwordRequired")%>");
 				$password.addClass("error");
 				$username.removeClass("error");
 				$captcha.removeClass("error");
@@ -138,7 +138,7 @@ if (applicationContext != null) {
 			}
 			if ($captcha.val() == "") {
 				$alertError.removeClass("hide");
-				$alertError.find("span").text("<%=SpringUtils.getMessage("csh.login.captchaRequired")%>");
+				$alertError.find("span").text("<%=SpringUtils.getMessage("ov.login.captchaRequired")%>");
 				$captcha.addClass("error");
 				$username.removeClass("error");
 				$password.removeClass("error");
@@ -174,7 +174,7 @@ if (applicationContext != null) {
 </head>
 <body class="login" onload="loadTopWindow()">
 	<div class="logo">
-		<img src="<%=base%>/resources/images/logo.png" alt="<%=SpringUtils.getMessage("csh.apply.logo")%>" /> 
+		<img src="<%=base%>/resources/images/logo.png" alt="<%=SpringUtils.getMessage("ov.apply.logo")%>" /> 
 	</div>
 	<div class="content">
 		<form class="form-vertical login-form" id="loginForm" action="login.jsp" method="post">
@@ -190,20 +190,20 @@ if (applicationContext != null) {
 			</div>
 			<div  class="control-group">
 				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-				<label class="control-label visible-ie8 visible-ie9"><%=SpringUtils.getMessage("csh.login.username")%></label>
+				<label class="control-label visible-ie8 visible-ie9"><%=SpringUtils.getMessage("ov.login.username")%></label>
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="fa fa-user"></i>
-						<input type="text" id="username" name="username" class="m-wrap placeholder-no-fix" maxlength="30"  placeholder ="<%=SpringUtils.getMessage("csh.login.username")%>"/>
+						<input type="text" id="username" name="username" class="m-wrap placeholder-no-fix" maxlength="30"  placeholder ="<%=SpringUtils.getMessage("ov.login.username")%>"/>
 					</div>
 				</div>
 			</div>
 			<div  class="control-group">
-				<label class="control-label visible-ie8 visible-ie9"><%=SpringUtils.getMessage("csh.login.password")%></label>
+				<label class="control-label visible-ie8 visible-ie9"><%=SpringUtils.getMessage("ov.login.password")%></label>
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="fa fa-lock"></i>
-						<input type="password" id="password" name="password" class="m-wrap placeholder-no-fix" maxlength="20" autocomplete="off" placeholder="<%=SpringUtils.getMessage("csh.login.password")%>"/>
+						<input type="password" id="password" name="password" class="m-wrap placeholder-no-fix" maxlength="20" autocomplete="off" placeholder="<%=SpringUtils.getMessage("ov.login.password")%>"/>
 					</div>
 				</div>
 			</div>
@@ -213,15 +213,15 @@ if (applicationContext != null) {
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="fa fa-lock"></i>
-						<input type="text" id="captcha" name="captcha" class="m-wrap placeholder-no-fix captcha" maxlength="4" autocomplete="off" placeholder="<%=SpringUtils.getMessage("csh.captcha.imageTitle")%>"/>
-						<img id="captchaImage" src="<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>" title="<%=SpringUtils.getMessage("csh.captcha.imageTitle")%>" />
+						<input type="text" id="captcha" name="captcha" class="m-wrap placeholder-no-fix captcha" maxlength="4" autocomplete="off" placeholder="<%=SpringUtils.getMessage("ov.captcha.imageTitle")%>"/>
+						<img id="captchaImage" src="<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>" title="<%=SpringUtils.getMessage("ov.captcha.imageTitle")%>" />
 					</div>
 				</div>
 			</div>	
 			<%}%>
 			<div class="form-actions">
-					<input type="checkbox" class="checkbox" id="isRememberUsername" value="true" /><%=SpringUtils.getMessage("csh.login.rememberUsername")%>
-				<input type="submit" class="btn blue pull-right" value="<%=SpringUtils.getMessage("csh.login.login")%>"/>        
+					<input type="checkbox" class="checkbox" id="isRememberUsername" value="true" /><%=SpringUtils.getMessage("ov.login.rememberUsername")%>
+				<input type="submit" class="btn blue pull-right" value="<%=SpringUtils.getMessage("ov.login.login")%>"/>        
 			</div>
 		</form>
 	</div>

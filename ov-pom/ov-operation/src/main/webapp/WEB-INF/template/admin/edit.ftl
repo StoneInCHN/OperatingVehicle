@@ -39,9 +39,9 @@ $().ready(function() {
 	<div class="mainbar">
 		<div class="page-head">
 			<div class="bread-crumb">
-				<a ><i class="fa fa-user"></i> ${message("csh.main.admin")}</a> 
+				<a ><i class="fa fa-user"></i> ${message("ov.main.admin")}</a> 
 				<span class="divider">/</span> 
-				<a href="list.jhtml" ><i class="fa fa-list"></i>${message("csh.admin.list")}</a>
+				<a href="list.jhtml" ><i class="fa fa-list"></i>${message("ov.admin.list")}</a>
 				<span class="divider">/</span>
 				<a  class="bread-current"><i class="fa fa-pencil-square-o"></i>${message("admin.admin.edit")}</a>
 			</div>
@@ -68,7 +68,7 @@ $().ready(function() {
 						<table class="input tabContent">
 							<tr>
 								<th>
-									${message("csh.admin.username")}:
+									${message("ov.admin.username")}:
 								</th>
 								<td>
 									${admin.username}
@@ -76,7 +76,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.name")}:
+									<span class="requiredField">*</span>${message("ov.admin.name")}:
 								</th>
 								<td>
 									<input type="text" name="name" class="text" value="${admin.name}" />
@@ -84,7 +84,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.email")}:
+									<span class="requiredField">*</span>${message("ov.admin.email")}:
 								</th>
 								<td>
 									<input type="text" name="email" class="text" maxlength="200" value="${admin.email}" />
@@ -92,7 +92,7 @@ $().ready(function() {
 							</tr>
 							<tr class="roles">
 								<th>
-									<span class="requiredField">*</span>${message("csh.admin.roles")}:
+									<span class="requiredField">*</span>${message("ov.admin.roles")}:
 								</th>
 								<td>
 									<span class="fieldSet">
@@ -106,11 +106,11 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									${message("csh.admin.adminStatus")}:
+									${message("ov.admin.adminStatus")}:
 								</th>
 								<td>
-									<input type="radio" value="actived" name="adminStatus" [#if admin.adminStatus== "actived" ]checked="checked"[/#if] />${message("csh.admin.adminStatus.actived")}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<input type="radio" value="locked" name="adminStatus" [#if admin.adminStatus== "locked" ]checked="checked"[/#if] />${message("csh.admin.adminStatus.locked")}
+									<input type="radio" value="actived" name="adminStatus" [#if admin.adminStatus== "actived" ]checked="checked"[/#if] />${message("ov.admin.adminStatus.actived")}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="radio" value="locked" name="adminStatus" [#if admin.adminStatus== "locked" ]checked="checked"[/#if] />${message("ov.admin.adminStatus.locked")}
 								</td>
 							</tr>
 						</table>
@@ -120,8 +120,8 @@ $().ready(function() {
 									&nbsp;
 								</th>
 								<td>
-									<input type="submit" class="button" value="${message("csh.common.submit")}" />
-									<input type="button" class="button" value="${message("csh.common.back")}" onclick="location.href='list.jhtml'" />
+									<input type="submit" class="button" value="${message("ov.common.submit")}" />
+									<input type="button" class="button" value="${message("ov.common.back")}" onclick="location.href='list.jhtml'" />
 								</td>
 							</tr>
 						</table>

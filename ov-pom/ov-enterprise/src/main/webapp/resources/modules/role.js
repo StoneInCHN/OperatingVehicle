@@ -3,11 +3,11 @@ var role_manager_tool = {
 			//授权树形列表
 			var _edit_row = $('#role-table-list').datagrid('getSelected');
 			if( _edit_row == null ){
-				$.messager.alert(message("csh.common.notice"),message("csh.common.select.editRow"));  
+				$.messager.alert(message("ov.common.notice"),message("ov.common.select.editRow"));  
 				return false;
 			}
 			$('#role-dialog-auth').dialog({    
-			    title: message("csh.role.auth.manange"),    
+			    title: message("ov.role.auth.manange"),    
 			    width: 450,    
 			    height: 500,    
 			    closed: false,    
@@ -24,7 +24,7 @@ var role_manager_tool = {
 
 			    },
 				buttons:[{
-			    	text:message("csh.common.save"),
+			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
 							var selectedList = $('#roleTreeAuth').tree('getChecked', ['checked','indeterminate']);
@@ -42,7 +42,7 @@ var role_manager_tool = {
 								},
 								beforeSend:function(){
 									$.messager.progress({
-										text:message("csh.common.saving")
+										text:message("ov.common.saving")
 									});
 								},
 								success:function(result,response,status){
@@ -58,7 +58,7 @@ var role_manager_tool = {
 							});
 					}
 				},{
-					text:message("csh.common.cancel"),
+					text:message("ov.common.cancel"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#role-dialog-auth').dialog("close");
@@ -69,13 +69,13 @@ var role_manager_tool = {
 		},
 		add:function(){		
 			$('#addrole').dialog({    
-			    title: message("csh.role.add"),    
+			    title: message("ov.role.add"),    
 			    width: 370,    
 			    height: 370,
 			    iconCls:'icon-mini-add',
 			    cache: false, 
 			    buttons:[{
-			    	text:message("csh.common.save"),
+			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
 						var validate = $('#addrole_form').form('validate');
@@ -86,7 +86,7 @@ var role_manager_tool = {
 								data:$("#addrole_form").serialize(),
 								beforeSend:function(){
 									$.messager.progress({
-										text:message("csh.common.saving")
+										text:message("ov.common.saving")
 									});
 								},
 								success:function(result,response,status){
@@ -108,7 +108,7 @@ var role_manager_tool = {
 						};
 					}
 				},{
-					text:message("csh.common.cancel"),
+					text:message("ov.common.cancel"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#addrole').dialog("close");
@@ -120,18 +120,18 @@ var role_manager_tool = {
 		edit:function(){
 			var _edit_row = $('#role-table-list').datagrid('getSelected');
 			if( _edit_row == null ){
-				$.messager.alert(message("csh.common.notice"),message("csh.common.select.editRow"));  
+				$.messager.alert(message("ov.common.notice"),message("ov.common.select.editRow"));  
 				return false;
 			}
 			var _dialog = $('#editRole').dialog({
-			    title: message("csh.common.edit"),     
+			    title: message("ov.common.edit"),     
 			    width: 370,    
 			    height: 370,    
 			    modal: true,
 			    iconCls:'icon-mini-edit',
 			    href:'../role/edit.jhtml?id='+_edit_row.id,
 			    buttons:[{
-			    	text:message("csh.common.save"),
+			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
 						var validate = $('#editRole_form').form('validate');
@@ -142,7 +142,7 @@ var role_manager_tool = {
 								data:$("#editRole_form").serialize(),
 								beforeSend:function(){
 									$.messager.progress({
-										text:message("csh.common.saving")
+										text:message("ov.common.saving")
 									});
 								},
 								success:function(result,response,status){
@@ -155,7 +155,7 @@ var role_manager_tool = {
 						};
 					}
 				},{
-					text:message("csh.common.cancel"),
+					text:message("ov.common.cancel"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#editRole').dialog("close");
@@ -167,7 +167,7 @@ var role_manager_tool = {
 		remove:function(){
 			var _edit_row = $('#role-table-list').datagrid('getSelected');
 			if( _edit_row == null ){
-				$.messager.alert(message("csh.common.notice"),message("csh.common.select.deleteRow"));  
+				$.messager.alert(message("ov.common.notice"),message("ov.common.select.deleteRow"));  
 				return false;
 			}
 			listRemove('role-table-list','../role/delete.jhtml');
@@ -177,22 +177,22 @@ var role_manager_tool = {
 $(function(){
 	
 	$("#role-table-list").datagrid({
-		title:message("csh.role.record"),
+		title:message("ov.role.record"),
 		fitColumns:true,
 		toolbar:"#role_manager_tool",
 		url:'../role/list.jhtml',  
 		pagination:true,
-		loadMsg:message("csh.common.loading"),
+		loadMsg:message("ov.common.loading"),
 		striped:true,
 		onDblClickRow : function (rowIndex, rowData){
 			$('#roleDetail').dialog({    
-			    title: message("csh.common.detail"),    
+			    title: message("ov.common.detail"),    
 			    width: 500,    
 			    height: 510, 
 			    cache: false,   
 			    href:'../role/details.jhtml?id='+rowData.id,
 			    buttons:[{
-					text:message("csh.common.cancel"),
+					text:message("ov.common.cancel"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#roleDetail').dialog("close");
@@ -203,13 +203,13 @@ $(function(){
 		columns:[
 		   [
 		      {field:'ck',checkbox:true},
-		      {title:message("csh.role.name"),field:"name",width:20,align:'center',formatter:function(value,row,index){
+		      {title:message("ov.role.name"),field:"name",width:20,align:'center',formatter:function(value,row,index){
 		    	  return row.name;
 		      }},
-		      {title:message("csh.role.description"),field:"description",width:80,align:'center',formatter:function(value,row,index){
+		      {title:message("ov.role.description"),field:"description",width:80,align:'center',formatter:function(value,row,index){
 		    	  return row.description;
 		      }},
-		      {title:message("csh.role.createDate"),field:"createDate",width:100,sortable:true,formatter: function(value,row,index){
+		      {title:message("ov.role.createDate"),field:"createDate",width:100,sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format("yyyy-MM-dd");
 				}
 		      }

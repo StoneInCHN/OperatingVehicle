@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	<csh>
+	<ov>
 		<setting name="siteUrl" value="http://localhost:8082/csh-enterprise" />
 		<setting name="emailPattern" value="^[a-z0-9A-Z]+([-_.][a-z0-9A-Z]+)*@([a-z0-9A-Z]+[-.])+[a-zA-Z]{2,5}$" />
 		<setting name="captchaTypes" value="LOGIN,OTHER" />
@@ -27,5 +27,5 @@
 		<!-- cookie相关配置 -->
 		<setting name="cookiePath" value="/" />
 		<setting name="cookieDomain" value="" />
-	</csh>	
+	</ov>	
 	
