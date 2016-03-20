@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,9 +32,9 @@ import com.ov.entity.commonenum.CommonEnum.AccountStatus;
  *
  */
 @Entity
-@Table(name = "ov_tenant_account")
-@SequenceGenerator(name = "sequenceGenerator", sequenceName = "ov_tenant_account_sequence")
-@Indexed(index = "tenantAccount")
+@Table(name = "yly_tenant_account")
+@SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_tenant_account_sequence")
+@Indexed(index="tenantAccount")
 public class TenantAccount extends BaseEntity {
 
   private static final long serialVersionUID = -665961639617388534L;
@@ -52,34 +53,48 @@ public class TenantAccount extends BaseEntity {
    * 密码
    */
   private String password;
-
+  
   /** 角色 */
-  private Set<Role> roles = new HashSet<Role>();
-
+  private Set<Role> roles = new HashSet <Role>();
+  
   /**
    * 账号状态
    */
   private AccountStatus accoutStatus;
-
+  
   /** 姓名 */
   private String realName;
-
+  
   /** 最后登录日期 */
   private Date loginDate;
 
   /** 最后登录IP */
   private String loginIp;
-
-  /** 员工编号 */
+  
+  /**员工编号*/
   private String staffID;
-
+  
   /**
    * 是否为内置账户
    */
   private Boolean isSystem;
+  
+  /**
+   *  租户用户
+   */
+  private TenantUser tenantUser;
+  
+  @ManyToOne
+  @JsonProperty
+  public TenantUser getTenantUser() {
+    return tenantUser;
+  }
 
+  public void setTenantUser(TenantUser tenantUser) {
+    this.tenantUser = tenantUser;
+  }
 
-  @Column(length = 30)
+  @Column(length=30)
   public String getStaffID() {
     return staffID;
   }
@@ -89,8 +104,7 @@ public class TenantAccount extends BaseEntity {
   }
 
   @JsonProperty
-  @Field(store = Store.NO, index = org.hibernate.search.annotations.Index.UN_TOKENIZED,
-      analyzer = @Analyzer(impl = IKAnalyzer.class))
+  @Field(store = Store.NO, index = org.hibernate.search.annotations.Index.UN_TOKENIZED, analyzer = @Analyzer(impl = IKAnalyzer.class))
   public AccountStatus getAccoutStatus() {
     return accoutStatus;
   }
@@ -99,7 +113,7 @@ public class TenantAccount extends BaseEntity {
     this.accoutStatus = accoutStatus;
   }
 
-  @Column(length = 20)
+  @Column(length=20)
   @JsonProperty
   public String getRealName() {
     return realName;
@@ -118,7 +132,7 @@ public class TenantAccount extends BaseEntity {
     this.loginDate = loginDate;
   }
 
-  @Column(length = 20)
+  @Column(length=20)
   @JsonProperty
   public String getLoginIp() {
     return loginIp;
@@ -127,7 +141,6 @@ public class TenantAccount extends BaseEntity {
   public void setLoginIp(String loginIp) {
     this.loginIp = loginIp;
   }
-
   @JsonProperty
   public Boolean getIsSystem() {
     return isSystem;
@@ -144,22 +157,23 @@ public class TenantAccount extends BaseEntity {
    */
   @NotEmpty
   @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "ov_tenant_account_role")
+  @JoinTable(name = "yly_tenant_account_role")
   @JsonProperty
   public Set<Role> getRoles() {
-    return roles;
+      return roles;
   }
 
   /**
    * 设置角色
    * 
-   * @param roles 角色
+   * @param roles
+   *            角色
    */
   public void setRoles(Set<Role> roles) {
-    this.roles = roles;
+      this.roles = roles;
   }
 
-  @Index(name = "tenant_account_tenantid")
+  @Index(name="tenant_account_tenantid")
   @Field(index = org.hibernate.search.annotations.Index.UN_TOKENIZED, store = Store.NO)
   public Long getTenantID() {
     return tenantID;
@@ -171,8 +185,7 @@ public class TenantAccount extends BaseEntity {
 
   @Column(length = 20)
   @JsonProperty
-  @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
-      impl = IKAnalyzer.class))
+  @Field(index=org.hibernate.search.annotations.Index.TOKENIZED,analyzer = @Analyzer(impl = IKAnalyzer.class))
   public String getUserName() {
     return userName;
   }
