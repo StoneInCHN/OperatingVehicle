@@ -41,6 +41,7 @@ if (applicationContext != null) {
 <head>
 	<%
 if (applicationContext != null) {
+	%>123<%
 	RSAService rsaService = SpringUtils.getBean("rsaServiceImpl", RSAService.class);
 	RSAPublicKey publicKey = rsaService.generateKey(request);
 	String modulus = Base64.encodeBase64String(publicKey.getModulus().toByteArray());
