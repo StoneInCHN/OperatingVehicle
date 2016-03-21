@@ -33,7 +33,7 @@ import com.ov.entity.base.BaseEntity;
  *
  */
 @Entity
-@Table(name = "yly_department")
+@Table(name = "ov_department")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_department_sequence")
 public class Department extends BaseEntity {
 

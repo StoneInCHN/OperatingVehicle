@@ -18,7 +18,6 @@
  	<link rel="stylesheet" type="text/css"href="${base}/resources/css/webuploader.css" >
  	<link rel="stylesheet" type="text/css"href="${base}/resources/css/upload-style.css" >
  	<link rel="stylesheet" type="text/css"href="${base}/resources/css/uploadPhotos_style.css" >
-    <link rel="stylesheet" type="text/css" href="${base}/resources/css/evaluting.css">
 	<!--[if lt IE 9]>
     <script type="text/javascript" src="${base}/resources/js/respond.1.4.2.min.js"></script>
     <![endif]-->
@@ -32,7 +31,7 @@
 			<ul class="nav nav-pills">
 				<li><a href="#main"><i class="fa fa-home fa-1x"></i>首页</a></li>
 				[@shiro.hasPermission name="systemManage"]
-				<li><a href="#system"><i class="fa fa-users fa-1x"></i>系统管理</a></li>
+				<li><a href="#systemManage"><i class="fa fa-users fa-1x"></i>系统管理</a></li>
 				[/@shiro.hasPermission]
 				[@shiro.hasPermission name="vehicleManagement"]
 				<li><a href="#vehicle"><i class="fa fa-users fa-1x"></i>车辆管理</a></li>
@@ -49,28 +48,28 @@
 				[@shiro.hasPermission name="settleCenter"]
 				<li><a href="#settleCenter"><i class="fa fa-users fa-1x"></i>结算中心</a></li>
 				[/@shiro.hasPermission]
-				<a href="#" id="nav-switcher" title="更多" class="nav-switcher"><i class="fa fa-angle-down fa-1x"></i></a>
+				<a href="#" id="nav-switcher" title="更多" class="nav-switcher"><i class="fa fa-angle-down fa-1x">  </i></a>
 			</ul>
 		</div>
 		<div class="welcome pull-right">
-		<marquee scrollamount='2'>欢迎 ${tenantAccount.userName}登录！</marquee></div>
+			<marquee scrollamount='2'>欢迎 ${tenantAccount.userName}登录！</marquee>
+		</div>
 		<ul class="user-profile">
 		    <li  class="dropdown" >
 				  <a class="btn  dropdiown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-				    <i class="fa fa-cog"></i>
+				  		<i class="fa fa-cog"></i>
 				  </a>
 				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				     <li><a href="#" id="changePasswordHref">修改密码</a></li>
-				    <li role="separator" class="divider"></li>
-				    <li><a href="${base}/console/common/logout.jhtml">退出</a></li>
+				     	<li><a href="#" id="changePasswordHref">修改密码</a></li>
+				    	<li role="separator" class="divider"></li>
+				    	<li><a href="${base}/console/common/logout.jhtml">退出</a></li>
 				  </ul>
 		    </li>
 		</ul>
 	</div>   
-    <div class="footer" data-options="region:'south',split:true,noheader:true" ></div>   
     <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:115" >
-    	<ul title="${message("ov.system.config")}" id="system">
-    		[@shiro.hasPermission name="userManage"]
+    	<ul title="${message("ov.system.config")}" id="systemManage">
+    		[@shiro.hasPermission name="accountManage"]
     		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">用户管理</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="departmentManage"]
@@ -91,9 +90,13 @@
 		    </div>    
 		</div>  
     </div>    
-    
-    
-    <div id = "commonMainDialog"></div>
+    <div class="footer" data-options="region:'south',split:true,noheader:true" ></div> 
+    <div id = "commonMainDialog">
+	    <div id = "searchRoles"></div>
+	    <div id = "searchTenantUser"></div>
+	    <div id = "changePassword">
+    </div>
+   
     <!-- JavaScript-->
     <!-- Placed at the end of the document so the pages load faster -->
     <script type="text/javascript" src="${base}/resources/js/jquery.min.js"></script>
@@ -115,5 +118,6 @@
 	<script>
 		var BASE_URL = '${base}/resources' ;
 	</script>
+	
   </body>
 </html>

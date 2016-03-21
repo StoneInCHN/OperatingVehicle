@@ -15,7 +15,7 @@ import com.ov.entity.base.BaseEntity;
  *
  */
 @Entity
-@Table(name = "yly_tenant_extend_column")
+@Table(name = "ov_tenant_extend_column")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_tenant_extend_column_sequence")
 public class TenantExtendColumn extends BaseEntity {
 

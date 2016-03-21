@@ -24,7 +24,7 @@ import com.ov.entity.base.BaseEntity;
  * 
  */
 @Entity
-@Table(name = "yly_role")
+@Table(name = "ov_role")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_role_sequence")
 public class Role extends BaseEntity {
 

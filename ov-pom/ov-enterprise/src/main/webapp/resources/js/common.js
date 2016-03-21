@@ -274,11 +274,9 @@ function listRemove(id, url) {
 }
 
 
-// 查询用户
+// 查询用户(TenantUser)
 function searchTenantUser(id) {
-	$('#searchTenantUser')
-			.dialog(
-					{
+	$('#searchTenantUser').dialog({
 						title : message("ov.tenantUser.search"),
 						width : 1000,
 						height : 500,
@@ -294,138 +292,56 @@ function searchTenantUser(id) {
 						} ],
 						onLoad : function() {
 							/**
-							 * 此datagrid 用户展示老人数据,并且提供查询功能
+							 * 此datagrid 用户展示用户(TenantUser)数据,并且提供查询功能
 							 */
-							$("#common-tenantUser-table-list")
-									.datagrid(
-											{
-												title : message("ov.elderlyinfo"),
+							$("#common-tenantUser-table-list").datagrid({
+												title : message("ov.tenantAccount.list"),
 												fitColumns : true,
 												url : '../tenantUser/list.jhtml',
 												pagination : true,
 												loadMsg : message("ov.common.loading"),
 												striped : true,
-												onDblClickRow : function(
-														rowIndex, rowData) {
-													if(id.indexOf("NurseArrangement") != -1){//护理员安排
-														if(id.indexOf("add")==0){//以add开头
-															$("#addNurseArrangement_nurseAssistantID").val(rowData.id); // 隐藏域 护理员id
-															$("#addNurseArrangement_nurseAssistantName").textbox('setValue',rowData.realName); 
-														}
-														if(id.indexOf("edit")==0){//以edit开头
-															$("#editNurseArrangement_nurseAssistantID").val(rowData.id); // 隐藏域 护理员id
-															$("#editNurseArrangement_nurseAssistantName").textbox('setValue',rowData.realName); 
-														}
-														$('#searchTenantUser').dialog("close");
-														return false;
-													}
-													$("#" + id + "ID").val(
-															rowData.id);
-													$("#" + id).textbox(
-															'setValue',
-															rowData.realName);
-													if ($("#identifier").length >0) {
-														$("#identifier")
-																.val(
-																		rowData.identifier);
-													}
-													$('#searchTenantUser')
-															.dialog("close");
+												onDblClickRow : function(rowIndex, rowData) {
+													$("#" + id + "ID").val(rowData.id);
+													$("#" + id).textbox('setValue',rowData.realName);
+													$('#searchTenantUser').dialog("close");
 												},
 												columns : [ [
-														{
-															title : message("ov.common.name"),
-															field : "realName",
-															width : 100,
-															sortable : true
-														},
-														{
-															title : message("ov.common.age"),
-															field : "age",
-															width : 100,
-															sortable : true
-														},
-														{
-															title : message("ov.tenantUser.staffID"),
-															field : "staffID",
-															width : 100,
-															sortable : true
-														},
-														{
-															title : message("ov.tenantUser.staffStatus"),
-															field : "staffStatus",
-															width : 100,
-															sortable : true,
-															formatter : function(
-																	value, row,
-																	index) {
-																if (value == "INSERVICE") {
-																	return message("ov.tenantUser.staffStatus.inService");
-																} else if (value = "OUTSERVICE") {
-																	return message("ov.tenantUser.staffStatus.outService");
-																}
-															}
-														},
+												             {title : message("ov.common.name"),field : "realName",width : 100,sortable : true},
+												             {title : message("ov.common.age"),field : "age",width : 100,sortable : true},
+												             {title : message("ov.tenantUser.staffID"),field : "staffID",width : 100,sortable : true},
+												             {title : message("ov.tenantUser.staffStatus"),field : "staffStatus",width : 100,sortable : true,formatter : function(value, row,index) {
+																	if (value == "INSERVICE") {
+																		return message("ov.tenantUser.staffStatus.inService");
+																	} else if (value = "OUTSERVICE") {
+																		return message("ov.tenantUser.staffStatus.outService");
+																	}
+															}},
+															{title : message("ov.tenantUser.department"),field : "department",width : 100,sortable : true,formatter : function(value, row,index) {
+																	if (value) {
+																		return value.name;
+																	} else {
+																		return value;
+																	}
+															}},
+															{title : message("ov.tenantUser.position"),field : "position",width : 100,sortable : true,formatter : function(value, row,index) {
+																	if (value) {
+																		return value.name;
+																	} else {
+																		return value;
+																	}
+															}},
+															{title : message("ov.tenantUser.hireDate"),field : "hireDate",width : 100,sortable : true,formatter : function(value, row,index) {
+																	return new Date(value).Format("yyyy-MM-dd");
+															}}, 
+											 ] ]
+							});
 
-														{
-															title : message("ov.tenantUser.department"),
-															field : "department",
-															width : 100,
-															sortable : true,
-															formatter : function(
-																	value, row,
-																	index) {
-																if (value) {
-																	return value.name;
-																} else {
-																	return value;
-																}
-															}
-														},
-														{
-															title : message("ov.tenantUser.position"),
-															field : "position",
-															width : 100,
-															sortable : true,
-															formatter : function(
-																	value, row,
-																	index) {
-																if (value) {
-																	return value.name;
-																} else {
-																	return value;
-																}
-															}
-														},
-														{
-															title : message("ov.tenantUser.hireDate"),
-															field : "hireDate",
-															width : 100,
-															sortable : true,
-															formatter : function(
-																	value, row,
-																	index) {
-																return new Date(
-																		value)
-																		.Format("yyyy-MM-dd");
-															}
-														}, ] ]
-
-											});
-
-							$("#common_elderlyinfo_search_btn")
-									.click(
-											function() {
-												var _queryParams = $(
-														"#common_elderlyinfo_search_form")
-														.serializeJSON();
-												$(
-														'#common_elderlyInfoSearch-table-list')
-														.datagrid('options').queryParams = _queryParams;
-												$(
-														"#common_elderlyInfoSearch-table-list")
-														.datagrid('reload');
-											})
+							$("#common-tenantUser-search-btn").click(function() {
+												var _queryParams = $("#common-tenantUser-search-form").serializeJSON();
+												$('#common-tenantUser-table-list').datagrid('options').queryParams = _queryParams;
+												$("#common-tenantUser-table-list").datagrid('reload');
+							});
 						}
 					});
 

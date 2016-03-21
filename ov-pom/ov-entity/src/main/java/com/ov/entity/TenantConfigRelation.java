@@ -14,7 +14,7 @@ import com.ov.entity.commonenum.CommonEnum.MetaRelation;
  *
  */
 @Entity
-@Table(name = "yly_tenant_config_relation")
+@Table(name = "ov_tenant_config_relation")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_tenant_config_relation_sequence")
 public class TenantConfigRelation extends BaseEntity {
 

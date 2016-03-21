@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import com.ov.entity.base.BaseEntity;
 
 @Entity
-@Table(name = "yly_tenant_meta_property")
+@Table(name = "ov_tenant_meta_property")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_tenant_meta_property_sequence")
 public class TenantMetaProperty extends BaseEntity {
 

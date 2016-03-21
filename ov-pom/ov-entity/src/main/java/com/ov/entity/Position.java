@@ -23,7 +23,7 @@ import com.ov.entity.base.BaseEntity;
  *
  */
 @Entity
-@Table(name = "yly_position")
+@Table(name = "ov_position")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_position")
 public class Position extends BaseEntity {
 

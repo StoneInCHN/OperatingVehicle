@@ -32,7 +32,7 @@ import com.ov.entity.commonenum.CommonEnum.AccountStatus;
  *
  */
 @Entity
-@Table(name = "yly_tenant_account")
+@Table(name = "ov_tenant_account")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_tenant_account_sequence")
 @Indexed(index="tenantAccount")
 public class TenantAccount extends BaseEntity {

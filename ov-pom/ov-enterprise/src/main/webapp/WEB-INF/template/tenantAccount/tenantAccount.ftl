@@ -1,7 +1,4 @@
-<script src="${base}/resources/js/common.js"></script>
 <script src="${base}/resources/modules/tenantAccount.js"></script>
-<script type="text/javascript" src="${base}/resources/js/datePicker/WdatePicker.js"></script>
-
 <div>
 	  <fieldset>
 	    <legend>${message("ov.tenantAccount.search")}</legend>
@@ -24,19 +21,18 @@
 				     }],
 				     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100"  name="accountStatusSearch" id="accountStatusSearch" style="width:110px;"/>
 			</div>
-			
 		</form>
 		<div class="search-item">
-	  	  <button id="tenantAccount-search-btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">搜索</button>
+	  	  <button id="tenantAccount-search-btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
 	    </div>
 	  </fieldset>
 </div>
 <table id="tenantAccount-table-list"></table>
 <div id="tenantAccount_manager_tool">
 	<div class="tool-button">
-		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain=true onclick="tenantAccount_manager_tool.add();">添加</a>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain=true onclick="tenantAccount_manager_tool.edit();">修改</a>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain=true onclick="tenantAccount_manager_tool.remove();">删除</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain=true onclick="tenantAccount_manager_tool.add();">${message("ov.button.add")}</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain=true onclick="tenantAccount_manager_tool.edit();">${message("ov.button.update")}</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain=true onclick="tenantAccount_manager_tool.remove();">${message("ov.button.delete")}</a>
 	</div>
 	<div class="tool-filter"></div>
 </div>
@@ -78,7 +74,7 @@
 				     }],
 				     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100"  name="accoutStatus" style="width:110px;"/>
 	    		</td>
-	    		</tr>
+	    	</tr>
 	    	<tr>
 	    		<th>${message("ov.tenantAccount.tenantUser")}:</th>
 	    		<td>

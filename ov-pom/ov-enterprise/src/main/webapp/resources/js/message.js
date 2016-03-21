@@ -68,6 +68,18 @@ var messages = {
 		"ov.tenantUser.position":"担任职务",
 		"ov.tenantUser.hireDate":"入职时间",
 		
+		//租户账号
+		"ov.tenantAccount.add":"添加用户",
+		"ov.tenantAccount.userName":"用户名",
+		"ov.tenantAccount.realName":"真实姓名",
+		"ov.tenantAccount.isSystem":"是否内置",
+		"ov.tenantAccount.accoutStatus":"账号状态",
+		"ov.tenantAccount.loginDate":"最后登录时间",
+		"ov.tenantAccount.loginIp":"最后登录IP",
+		"ov.tenantAccount.active":"账号正常",
+		"ov.tenantAccount.list":"用户账号列表",
+		"ov.tenantAccount.locked":"账号锁定",
+		
 		//department
 		"ov.department.name":"部门名称",
 		"ov.department.grade":"部门层级",
@@ -88,17 +100,7 @@ var messages = {
 		"ov.role.auth.manange":"权限分配",
 		"ov.role.auth.name":"菜单名称",
 		"ov.role.auth.status":"权限状态",
-		// 租户用户
-		"ov.tenantAccount.add":"添加用户",
-		"ov.tenantAccount.userName":"用户名",
-		"ov.tenantAccount.realName":"真实姓名",
-		"ov.tenantAccount.isSystem":"是否内置",
-		"ov.tenantAccount.accoutStatus":"账号状态",
-		"ov.tenantAccount.loginDate":"最后登录时间",
-		"ov.tenantAccount.loginIp":"最后登录IP",
-		"ov.tenantAccount.active":"账号正常",
-		"ov.tenantAccount.list":"用户列表",
-		"ov.tenantAccount.locked":"账号锁定",
+
 		
 		//数据字典
 		"ov.systemConfig.list":"数据字典",

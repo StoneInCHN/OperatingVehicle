@@ -9,7 +9,7 @@
 		<property name="loginUrl" value="/login.jsp" />
 		<property name="successUrl" value="/console/common/main.jhtml" />
 		<property name="unauthorizedUrl" value="/console/common/unauthorized.jhtml" />
-			<property name="filterChainDefinitions">
+		<property name="filterChainDefinitions">
 			<value>
 				/ = anon
 				/index.jsp = anon
@@ -20,12 +20,11 @@
 				/console/common/captcha.jhtml = anon
 				/console/common/captchaCheck.jhtml = anon
 				<!--系统管理  -->
-				/console/tenantAccount/** = perms["userManage"]
+				/console/tenantAccount/** = perms["accountManage"]
+				/console/tenantUser/** = perms["accountManage"]
 		    	/console/role/** = perms["role"]
 		    	/console/operationLog/** = perms["operationLog"]
-		    	/console/tenantUser/** = perms["tenantUser"]
-		    	
-		    	
+
 			</value>
 		</property>
 		<property name="filters">

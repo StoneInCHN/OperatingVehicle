@@ -22,7 +22,7 @@ import com.ov.entity.base.BaseEntity;
  *
  */
 @Entity
-@Table(name = "yly_tenant_config_info")
+@Table(name = "ov_tenant_config_info")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_tenant_config_info_sequence")
 public class TenantConfigInfo extends BaseEntity {
 

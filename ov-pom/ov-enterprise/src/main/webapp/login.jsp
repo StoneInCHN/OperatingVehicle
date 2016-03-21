@@ -58,7 +58,7 @@ if (applicationContext != null) {
 		} else if (loginFailure.equals("org.apache.shiro.authc.LockedAccountException")) {
 			message = "ov.login.lockedAccount";
 		} else if (loginFailure.equals("org.apache.shiro.authc.IncorrectCredentialsException")) {
-				message = "ov.login.incorrectCredentials";
+			message = "ov.login.incorrectCredentials";
 		} else if (loginFailure.equals("org.apache.shiro.authc.AuthenticationException")) {
 			message = "ov.login.authentication";
 		}else{

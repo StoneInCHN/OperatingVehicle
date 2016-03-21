@@ -34,7 +34,7 @@ import com.ov.lucene.DateBridgeImpl;
  *
  */
 @Entity
-@Table(name = "yly_tenant_user")
+@Table(name = "ov_tenant_user")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_tenant_user_sequence")
 @Indexed(index= "tenantUser")
 public class TenantUser extends BaseEntity {

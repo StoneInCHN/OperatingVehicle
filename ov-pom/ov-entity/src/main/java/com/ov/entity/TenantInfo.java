@@ -17,7 +17,7 @@ import com.ov.entity.commonenum.CommonEnum.AccountStatus;
  *
  */
 @Entity
-@Table(name = "yly_tenant_info")
+@Table(name = "ov_tenant_info")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_tenant_info_sequence")
 public class TenantInfo extends BaseEntity {
 

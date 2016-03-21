@@ -6,12 +6,12 @@ var tenantAccount_manager_tool = {
 			    height: 350,
 			    iconCls:'icon-mini-add',
 			    cache: false, 
+			    modal:true,
 			    buttons:[{
 			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
 						var validate = $('#addTenantAccount_form').form('validate');
-						
 						if(validate){
 								$.ajax({
 									url:"../tenantAccount/add.jhtml",
