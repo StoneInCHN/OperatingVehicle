@@ -56,7 +56,7 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
   }
 
   public TenantAccount findByNameAndOrgCode(String username, String orgCode) {
-    return tenantAccountDao.findByNameAndOrgCode(username, orgCode);
+    return tenantAccountDao.findByNameAndOrgCode(username,orgCode);
   }
 
   @Transactional(readOnly = true)
@@ -76,7 +76,7 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
     TenantAccount tenantUser = tenantAccountDao.find(id);
     if (tenantUser != null) {
       for (Role role : tenantUser.getRoles()) {
-        authorityResources.addAll(role.getConfigMetas());
+        authorityResources.addAll(role.getConfigMetas ());
       }
     }
     return authorityResources;
@@ -114,7 +114,7 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
     }
     return null;
   }
-
+  
   @Transactional(readOnly = true)
   public Long getCurrentTenantID() {
     Subject subject = SecurityUtils.getSubject();
@@ -126,7 +126,6 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
     }
     return null;
   }
-
   @Transactional(readOnly = true)
   public TenantInfo getCurrentTenantInfo() {
     Subject subject = SecurityUtils.getSubject();
@@ -138,7 +137,7 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
     }
     return null;
   }
-
+  
   @Transactional(readOnly = true)
   public String getCurrentTenantOrgCode() {
 
@@ -150,7 +149,7 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
       }
     }
     return null;
-
+  
   }
 
   @Override

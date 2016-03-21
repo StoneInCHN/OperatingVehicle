@@ -1,5 +1,9 @@
 package com.ov.service.impl;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
@@ -10,9 +14,13 @@ import org.springframework.stereotype.Service;
 import com.ov.dao.TenantInfoDao;
 import com.ov.entity.ConfigMeta;
 import com.ov.entity.TenantInfo;
+import com.ov.entity.commonenum.CommonEnum.ConfigKey;
+import com.ov.framework.filter.Filter;
+import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.service.impl.BaseServiceImpl;
 import com.ov.service.TenantAccountService;
 import com.ov.service.TenantInfoService;
+import com.ov.utils.DateTimeUtils;
 
 /**
  * 租户信息
@@ -38,8 +46,6 @@ public class TenantInfoServiceImpl extends BaseServiceImpl<TenantInfo, Long> imp
 
   @Resource(name = "threadPoolExecutor")
   private Executor threadPoolExecutor;
-
-
 
   @Override
   public TenantInfo findTenantWithOrgCode(String orgCode) {

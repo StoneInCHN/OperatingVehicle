@@ -26,30 +26,29 @@
 
   <body class="easyui-layout" >   
 	<div class="header" data-options="region:'north',split:true,noheader:true,collapse:'west'">
-		<div class="logo">后台管理中心</div>
-		<div id="nav-wrap" class="nav-wrap"  style="width:730px">
+		<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">车辆运营管理</div>
+		<div id="nav-wrap" class="nav-wrap"  style="width:900px">
 			<ul class="nav nav-pills">
 				<li><a href="#main"><i class="fa fa-home fa-1x"></i>首页</a></li>
 				[@shiro.hasPermission name="systemManage"]
 				<li><a href="#system"><i class="fa fa-users fa-1x"></i>系统管理</a></li>
 				[/@shiro.hasPermission]
-				[@shiro.hasPermission name="personnelManage"]
-				<li><a href="#personnel"><i class="fa fa-users fa-1x"></i>${message("ov.personnel.config")}</a></li>
+				[@shiro.hasPermission name="vehicleManagement"]
+				<li><a href="#vehicle"><i class="fa fa-users fa-1x"></i>车辆管理</a></li>
 				[/@shiro.hasPermission]
-				[@shiro.hasPermission name="vehicleManage"]
-				<li><a href="#vehicle"><i class="fa fa-users fa-1x"></i>${message("ov.vehicle.config")}</a></li>
+				[@shiro.hasPermission name="vehicleScheduling"]
+				<li><a href="#vehicleScheduling"><i class="fa fa-users fa-1x"></i>车辆调度</a></li>
 				[/@shiro.hasPermission]
-				[@shiro.hasPermission name="deviceManage"]
-				<li><a href="#device"><i class="fa fa-users fa-1x"></i>${message("ov.device.config")}</a></li>
+				[@shiro.hasPermission name="businessManagement"]
+				<li><a href="#businessManagement"><i class="fa fa-users fa-1x"></i>企业管理</a></li>
 				[/@shiro.hasPermission]
-				[@shiro.hasPermission name="endUserManage"]
-				<li><a href="#endUser"><i class="fa fa-users fa-1x"></i>${message("ov.endUser.config")}</a></li>
+				[@shiro.hasPermission name="statisticalReport"]
+				<li><a href="#statisticalReport"><i class="fa fa-users fa-1x"></i>统计报表</a></li>
 				[/@shiro.hasPermission]
-				[@shiro.hasPermission name="reservationMange"]
-				<li><a href="#reservationMange"><i class="fa fa-users fa-1x"></i>${message("ov.reservationMange.config")}</a></li>
+				[@shiro.hasPermission name="settleCenter"]
+				<li><a href="#settleCenter"><i class="fa fa-users fa-1x"></i>结算中心</a></li>
 				[/@shiro.hasPermission]
-				<a href="#" id="nav-switcher" class="nav-switcher">更多<i class="fa fa-angle-down fa-1x"></i></a>
-				<a id="nav-switcherset" href="#" class="router nav-switcherset off"><span class="middlehelper">设置</span><span><i class="fa fa-cog"></i></span></a>
+				<a href="#" id="nav-switcher" title="更多" class="nav-switcher"><i class="fa fa-angle-down fa-1x"></i></a>
 			</ul>
 		</div>
 		<div class="welcome pull-right">
@@ -58,7 +57,6 @@
 		    <li  class="dropdown" >
 				  <a class="btn  dropdiown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 				    <i class="fa fa-cog"></i>
-				   
 				  </a>
 				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 				     <li><a href="#" id="changePasswordHref">修改密码</a></li>
@@ -71,56 +69,19 @@
     <div class="footer" data-options="region:'south',split:true,noheader:true" ></div>   
     <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:115" >
     	<ul title="${message("ov.system.config")}" id="system">
-    		[@shiro.hasPermission name="tenantAccount"]
-    		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">${message("ov.system.tenantAccount")}</a></li>
+    		[@shiro.hasPermission name="userManage"]
+    		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">用户管理</a></li>
     		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="role"]
-    		<li><a href="#" data-url="${base}/console/role/role.jhtml">${message("ov.system.tenantAccount.role")}</a></li>
+    		[@shiro.hasPermission name="departmentManage"]
+    		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">部门管理</a></li>
     		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="operationLog"]
-    		<li><a href="#" data-url="${base}/console/operationLog/operationLog.jhtml">${message("ov.system.tenantAccount.operationLog")}</a></li>
+    		[@shiro.hasPermission name="authorityManage"]
+    		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">权限管理</a></li>
     		[/@shiro.hasPermission]
-    	</ul>
-    	<ul title="${message("ov.personnel.config")}" id="personnel">
-    		[@shiro.hasPermission name="department"]
-    		<li><a href="#" data-url="${base}/console/department/department.jhtml">${message("ov.personnel.department")}</a></li>
-    		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="position"]
-    		<li><a href="#" data-url="${base}/console/position/position.jhtml">${message("ov.personnel.position")}</a></li>
-    		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="tenantUser"]
-    		<li><a href="#" data-url="${base}/console/tenantUser/tenantUser.jhtml">${message("ov.personnel.tenantuser")}</a></li>
-    		[/@shiro.hasPermission]
-    	</ul>
-    	<ul title="${message("ov.vehicle.config")}" id="vehicle">
-    		[@shiro.hasPermission name="vehicle"]
-    		<li><a href="#" data-url="${base}/console/vehicle/vehicle.jhtml">${message("ov.vehicle.vehicle")}</a></li>
-    		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="vehicleDetail"]
-    		<li><a href="#" data-url="${base}/console/vehicleDetail/vehicleDetail.jhtml">${message("ov.vehicle.vehicleLine")}</a></li>
-    		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="vehicleMaintain"]
-    		<li><a href="#" data-url="${base}/console/vehicleMaintain/vehicleMaintain.jhtml">${message("ov.vehicle.vehicleMaintain")}</a></li>
-    		[/@shiro.hasPermission]
-    	</ul>
-    	<ul title="${message("ov.device.config")}" id="device">
-    		[@shiro.hasPermission name="device"]
-    		<li><a href="#" data-url="${base}/console/deviceInfo/deviceInfo.jhtml">${message("ov.device.device")}</a></li>
-    		[/@shiro.hasPermission]
-    	</ul>
-    	<ul title="${message("ov.endUser.config")}" id="endUser">
-    		[@shiro.hasPermission name="endUser"]
-    		<li><a href="#" data-url="${base}/console/endUser/endUser.jhtml">${message("ov.endUser.endUser")}</a></li>
-    		[/@shiro.hasPermission]
-    	</ul>
-    	<ul title="${message("ov.reservationManage.config")}" id="reservationMange">
-    		[@shiro.hasPermission name="repareReservation"]
-    		<li><a href="#" data-url="${base}/console/repareReservation/repareReservation.jhtml">${message("ov.repareReservation.repareReservation")}</a></li>
-    		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="maintainReservation"]
-    		<li><a href="#" data-url="${base}/console/maintainReservation/maintainReservation.jhtml">${message("ov.maintainReservation.maintainReservation")}</a></li>
-    		[/@shiro.hasPermission]
-    	</ul>          
+    		[@shiro.hasPermission name="roleManage"]
+    		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">角色管理</a></li>
+    		[/@shiro.hasPermission]    		    		    		
+    	</ul>        
     </div>
   
     <div class="main-content" data-options="region:'center'">

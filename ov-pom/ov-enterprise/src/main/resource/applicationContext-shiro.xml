@@ -20,9 +20,10 @@
 				/console/common/captcha.jhtml = anon
 				/console/common/captchaCheck.jhtml = anon
 				<!--系统管理  -->
-				/console/tenantAccount/** = perms["tenantAccount"]
+				/console/tenantAccount/** = perms["userManage"]
 		    	/console/role/** = perms["role"]
 		    	/console/operationLog/** = perms["operationLog"]
+		    	/console/tenantUser/** = perms["tenantUser"]
 		    	
 		    	
 			</value>

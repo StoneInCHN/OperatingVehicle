@@ -29,5 +29,4 @@ public interface TenantInfoService extends BaseService<TenantInfo, Long> {
    */
   Set<ConfigMeta> getCurrentTenantVersionPackage();
 
-
 }

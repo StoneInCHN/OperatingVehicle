@@ -10,25 +10,26 @@ body{
 }
 body .welcome{
 	color:#ffffff;
-	font-size: 20px;
-	padding-top:12px;
-	padding-right:50px;
+	font-size: 8px;
+	padding-top:58px;
+	padding-right:10px; 
+	width:150px;
 }
 .header{
-	height:55px;
+	height:88px;
 	background-color:#0285b3;
 	border: none;
 }
 .header .logo{
   display: inline-block;
-  width: 200px;
-  font-size: 24px;
+  width: 300px;
+  font-size: 30px;
   text-align: center;
   line-height: 24px;
-  padding: 12px;
+  padding: 15px;
   color: #ffffff;
   vertical-align:middle;
-  margin:0;
+  margin:12px;
   position: absolute;
   top: 0;
   left: 0;
@@ -36,10 +37,10 @@ body .welcome{
 
 .nav-wrap{
 	position: absolute;
-  	top:0;
-  	left: 200px;
+  	top:25px;
+  	left: 980px;
   	overflow: hidden;
-  	height:48px;
+  	height:60px;
 }
 
 .nav-silde{
@@ -103,8 +104,7 @@ body .welcome{
 
 .nav-wrap a.nav-switcher{
 	position: absolute;
-    right: 15px;
-    top: 15px;
+    top: 13px;
     color: #fff;
     text-decoration: none;
     vertical-align:middle;
@@ -283,7 +283,7 @@ body .welcome{
 }
 
 /**
-*床位图样式
+*搴婁綅鍥炬牱寮�
 */
 .panel-group .panel {
 	margin-bottom: 20px !important;
