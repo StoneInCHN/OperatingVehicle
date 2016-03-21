@@ -10,7 +10,7 @@ body{
 }
 body .welcome{
 	color:#ffffff;
-	font-size: 8px;
+	font-size: 12px;
 	padding-top:58px;
 	padding-right:10px; 
 	width:150px;
@@ -38,9 +38,9 @@ body .welcome{
 .nav-wrap{
 	position: absolute;
   	top:25px;
-  	left: 980px;
+  	left: 600px;
   	overflow: hidden;
-  	height:60px;
+  	height:50px;
 }
 
 .nav-silde{

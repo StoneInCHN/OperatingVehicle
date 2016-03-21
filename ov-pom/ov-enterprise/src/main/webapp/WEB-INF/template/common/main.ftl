@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="CSH管理系统">
-    <meta name="author" content="CSH">
+    <meta name="description" content="OV管理系统">
+    <meta name="author" content="OV">
     <link rel="icon" href="${base}/resources/images/favicon.ico">
     <title>管理中心</title>
     <link href="${base}/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -26,8 +26,9 @@
 
   <body class="easyui-layout" >   
 	<div class="header" data-options="region:'north',split:true,noheader:true,collapse:'west'">
-		<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">车辆运营管理</div>
-		<div id="nav-wrap" class="nav-wrap"  style="width:900px">
+		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">车辆运营管理</div>-->
+		<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">后台管理中心</div>
+		<div id="nav-wrap" class="nav-wrap"  style="width:700px">
 			<ul class="nav nav-pills">
 				<li><a href="#main"><i class="fa fa-home fa-1x"></i>首页</a></li>
 				[@shiro.hasPermission name="systemManage"]

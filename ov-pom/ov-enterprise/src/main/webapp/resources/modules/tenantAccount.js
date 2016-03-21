@@ -1,13 +1,13 @@
 var tenantAccount_manager_tool = {
 		add:function(){
 			$('#addTenantAccount').dialog({
-			    title: message("yly.tenantAccount.add"),    
+			    title: message("ov.tenantAccount.add"),    
 			    width: 400,    
 			    height: 350,
 			    iconCls:'icon-mini-add',
 			    cache: false, 
 			    buttons:[{
-			    	text:message("yly.common.save"),
+			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
 						var validate = $('#addTenantAccount_form').form('validate');
@@ -19,7 +19,7 @@ var tenantAccount_manager_tool = {
 									data:$("#addTenantAccount_form").serialize(),
 									beforeSend:function(){
 										$.messager.progress({
-											text:message("yly.common.saving")
+											text:message("ov.common.saving")
 										});
 									},
 									success:function(result,response,status){
@@ -37,7 +37,7 @@ var tenantAccount_manager_tool = {
 						};
 					}
 				},{
-					text:message("yly.common.cancel"),
+					text:message("ov.common.cancel"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#addTenantAccount').dialog("close");
@@ -52,18 +52,18 @@ var tenantAccount_manager_tool = {
 		edit:function(){
 			var _edit_row = $('#tenantAccount-table-list').datagrid('getSelected');
 			if( _edit_row == null ){
-				$.messager.alert(message("yly.common.select.editRow"));  
+				$.messager.alert(message("ov.common.select.editRow"));  
 				return false;
 			}
 			var _dialog = $('#editTenantAccount').dialog({    
-				title: message("yly.common.edit"),     
+				title: message("ov.common.edit"),     
 			    width: 400,    
 			    height: 350,    
 			    modal: true,
 			    iconCls:'icon-mini-edit',
 			    href:'../tenantAccount/edit.jhtml?id='+_edit_row.id,
 			    buttons:[{
-			    	text:message("yly.common.save"),
+			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
 						var validate = $('#editTenantAccount_form').form('validate');
@@ -74,7 +74,7 @@ var tenantAccount_manager_tool = {
 								data:$("#editTenantAccount_form").serialize(),
 								beforeSend:function(){
 									$.messager.progress({
-										text:message("yly.common.saving")
+										text:message("ov.common.saving")
 									});
 								},
 								success:function(result,response,status){
@@ -87,7 +87,7 @@ var tenantAccount_manager_tool = {
 						};
 					}
 				},{
-					text:message("yly.common.close"),
+					text:message("ov.common.close"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#editTenantAccount').dialog("close").form("reset");
@@ -105,23 +105,23 @@ var tenantAccount_manager_tool = {
 
 $(function(){
 	$("#tenantAccount-table-list").datagrid({
-		title:message("yly.tenantAccount.list"),
+		title:message("ov.tenantAccount.list"),
 		fitColumns:true,
 		toolbar:"#tenantAccount_manager_tool",
 		url:'../tenantAccount/list.jhtml',  
 		pagination:true,
-		loadMsg:message("yly.common.loading"),
+		loadMsg:message("ov.common.loading"),
 		striped:true,
 		onDblClickRow : function (rowIndex, rowData){
 			$('#tenantAccountDetail').dialog({    
-			    title: message("yly.common.detail"),    
+			    title: message("ov.common.detail"),    
 			    width: 400,    
 			    height: 350, 
 			    cache: false,
 			    modal: true,
 			    href:'../tenantAccount/details.jhtml?id='+rowData.id,
 			    buttons:[{
-					text:message("yly.common.close"),
+					text:message("ov.common.close"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#tenantAccountDetail').dialog("close");
@@ -132,8 +132,8 @@ $(function(){
 		columns:[
 		   [
 		      {field:'ck',checkbox:true},
-		      {title:message("yly.tenantAccount.userName"),field:"userName",width:100,sortable:true},
-		      {title:message("yly.tenantAccount.realName"),field:"tenantUser",width:100,sortable:true,
+		      {title:message("ov.tenantAccount.userName"),field:"userName",width:100,sortable:true},
+		      {title:message("ov.tenantAccount.realName"),field:"tenantUser",width:100,sortable:true,
 		    	  formatter: function(value,row,index){
 			    	  if(value !=null){
 			    		  return  value.realName;
@@ -142,21 +142,21 @@ $(function(){
 			    	  }
 		      	  }    
 		      },
-		      {title:message("yly.tenantAccount.isSystem"),field:"isSystem",width:100,sortable:true},
-		      {title:message("yly.tenantAccount.accoutStatus"),field:"accoutStatus",width:100,sortable:true,
+		      {title:message("ov.tenantAccount.isSystem"),field:"isSystem",width:100,sortable:true},
+		      {title:message("ov.tenantAccount.accoutStatus"),field:"accoutStatus",width:100,sortable:true,
 		    	  formatter: function(value,row,index){
 			    	  if(value == "ACTIVED"){
-			    		  return  message("yly.tenantAccount.active");
+			    		  return  message("ov.tenantAccount.active");
 			    	  }else if (value = "LOCKED"){
-			    		  return  message("yly.tenantAccount.locked");
+			    		  return  message("ov.tenantAccount.locked");
 			    	  }
 		      	  }  
 		      },
-		      {title:message("yly.tenantAccount.loginDate"),field:"loginDate",width:100,sortable:true,formatter: function(value,row,index){
+		      {title:message("ov.tenantAccount.loginDate"),field:"loginDate",width:100,sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format("yyyy-MM-dd:hh:mm:ss");
 				}
 		      },
-		      {title:message("yly.tenantAccount.loginIp"),field:"loginIp",width:100,sortable:true},
+		      {title:message("ov.tenantAccount.loginIp"),field:"loginIp",width:100,sortable:true},
 		   ]
 		]
 	});
