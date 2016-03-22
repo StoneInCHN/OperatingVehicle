@@ -1,6 +1,7 @@
 package com.ov.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +34,6 @@ import com.ov.service.TenantInfoService;
 /**
  * Controller - 角色
  * 
- * @author pengyanan
  *
  */
 @Controller("roleController")
@@ -51,15 +51,15 @@ public class RoleController extends BaseController {
   private TenantInfoService tenantInfoService;
 
   /**
-   * 界面展示
+   * 角色以及授权页面
    * 
    * @param model
    * @return
    */
   @RequestMapping(value = "/role", method = RequestMethod.GET)
-  public String list(ModelMap model) {
-    return "/role/role";
-  }
+  public String role(ModelMap model, String path) {
+    return "/role/" + path;
+  }  
 
   /**
    * 列表
@@ -69,7 +69,11 @@ public class RoleController extends BaseController {
    * @return
    */
   @RequestMapping(value = "/list", method = RequestMethod.POST)
-  public @ResponseBody Page<Role> list(Model model, Pageable pageable) {
+  public @ResponseBody Page<Role> list(Model model, String name_roleSearch, 
+      Date beginDate_roleSearch, Date endDate_roleSearch, Pageable pageable) {
+    if (name_roleSearch != null || beginDate_roleSearch != null || endDate_roleSearch != null) {
+      return roleService.searchByFilter(name_roleSearch, beginDate_roleSearch, endDate_roleSearch, pageable);
+    }
     return roleService.findPage (pageable, true);
   }
 
@@ -169,7 +173,7 @@ public class RoleController extends BaseController {
         } else {
           treeNodeResponse.setChecked(false);
         }
-        treeNodeResponse.setIconCls("icon-large-chart");
+        treeNodeResponse.setIconCls("icon-remove");
         treeNodeResponse.setState (TreeNodeState.closed);
         
         
@@ -187,7 +191,7 @@ public class RoleController extends BaseController {
           } else {
             treeNodeResponseChild.setChecked(false);
           }
-          treeNodeResponseChild.setIconCls("icon-large-shapes");
+          treeNodeResponseChild.setIconCls("icon-add");
           
           treeNodeResponseChild.setState (TreeNodeState.open);
           

@@ -73,13 +73,13 @@
     		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">用户管理</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="departmentManage"]
-    		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">部门管理</a></li>
+    		<li><a href="#" data-url="${base}/console/department/department.jhtml">部门管理</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="authorityManage"]
-    		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">权限管理</a></li>
+    		<li><a href="#" data-url="${base}/console/role/role.jhtml?path=roleAuth">权限管理</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="roleManage"]
-    		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">角色管理</a></li>
+    		<li><a href="#" data-url="${base}/console/role/role.jhtml?path=role">角色管理</a></li>
     		[/@shiro.hasPermission]    		    		    		
     	</ul>        
     </div>
