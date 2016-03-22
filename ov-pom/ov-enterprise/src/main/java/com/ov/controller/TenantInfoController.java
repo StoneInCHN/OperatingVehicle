@@ -2,6 +2,7 @@ package com.ov.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
+import com.ov.entity.Role;
+import com.ov.entity.TenantAccount;
 import com.ov.entity.TenantInfo;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
@@ -49,5 +53,23 @@ public class TenantInfoController extends BaseController{
 		pageable.setFilters(filters);
 		return tenantInfoService.findPage(pageable, false);
 	}
+	/**
+	 * 编辑页面
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping (value = "/editBranch", method = RequestMethod.GET)
+	public String editBranch(ModelMap model, Long id){
+		TenantInfo tenantInfo = tenantInfoService.find(id);
+	    model.put("tenantInfo", tenantInfo);
+	    return "tenantInfo/edit";
+	}
 	
+	@RequestMapping(value = "/updateBranch", method = RequestMethod.POST)
+	public @ResponseBody Message updateBranch(TenantInfo tenantInfo){
+		tenantInfoService.update(tenantInfo, "createDate", "orgCode", "parent", "child", "versionConfig");
+		return SUCCESS_MESSAGE;
+	}
+
 }

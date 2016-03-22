@@ -71,7 +71,7 @@
 				      label: 'LOCKED',
 				      value: '${message("ov.tenantAccount.accoutStatus.locked")}'
 				     }],
-				     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100"  name="accoutStatus" style="width:110px;"/>
+				     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100"  name="accountStatus" style="width:110px;"/>
 	    		</td>
 	    	</tr>
 	    	<tr>

@@ -160,6 +160,7 @@ public class TenantInfo extends BaseEntity {
     this.email = email;
   }
 
+  @JsonProperty
   public AccountStatus getAccountStatus() {
     return accountStatus;
   }

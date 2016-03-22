@@ -33,28 +33,5 @@ public class TenantInfoDaoImpl extends BaseDaoImpl<TenantInfo, Long> implements 
     }
   }
   
-//  public List<TenantInfo> findChildren(TenantInfo tenantInfo, Integer count) {
-//	    TypedQuery<TenantInfo> query;
-//	    if (tenantInfo != null) {
-//	      String jpql =
-//	          "select tenantInfo from TenantInfo tenantInfo where tenantInfo.parent = :id order by tenantInfo.id desc";
-//	      query =
-//	          entityManager
-//	              .createQuery(jpql, TenantInfo.class)
-//	              .setFlushMode(FlushModeType.COMMIT)
-//	              .setParameter(
-//	                  "id",
-//	                  "%" + Department.TREE_PATH_SEPARATOR + department.getId()
-//	                      + Department.TREE_PATH_SEPARATOR + "%");
-//	    } else {
-//	      String jpql = "select department from Department department order by department.id asc";
-//	      query = entityManager.createQuery(jpql, Department.class).setFlushMode(FlushModeType.COMMIT);
-//	    }
-//	    if (count != null) {
-//	      query.setMaxResults(count);
-//	    }
-//	    return sort(query.getResultList(), department);
-//	  }
-  
   
 }

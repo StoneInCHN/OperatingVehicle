@@ -1,4 +1,4 @@
-var tenantAccount_manager_tool = {
+var branchBusiness_manager_tool = {
 		add:function(){
 			$('#addTenantAccount').dialog({
 			    title: message("ov.tenantAccount.add"),    
@@ -50,28 +50,28 @@ var tenantAccount_manager_tool = {
 			});  
 		},
 		edit:function(){
-			var _edit_row = $('#tenantAccount-table-list').datagrid('getSelected');
+			var _edit_row = $('#branchBusiness-table-list').datagrid('getSelected');
 			if( _edit_row == null ){
 				$.messager.alert(message("ov.common.select.editRow"));  
 				return false;
 			}
-			var _dialog = $('#editTenantAccount').dialog({    
+			var _dialog = $('#editBranchBusiness').dialog({    
 				title: message("ov.common.edit"),     
 			    width: 400,    
 			    height: 350,    
 			    modal: true,
 			    iconCls:'icon-mini-edit',
-			    href:'../tenantAccount/edit.jhtml?id='+_edit_row.id,
+			    href:'../tenantInfo/editBranch.jhtml?id='+_edit_row.id,
 			    buttons:[{
 			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
-						var validate = $('#editTenantAccount_form').form('validate');
+						var validate = $('#editBranchBusiness_form').form('validate');
 						if(validate){
 							$.ajax({
-								url:"../tenantAccount/update.jhtml",
+								url:"../tenantInfo/updateBranch.jhtml",
 								type:"post",
-								data:$("#editTenantAccount_form").serialize(),
+								data:$("#editBranchBusiness_form").serialize(),
 								beforeSend:function(){
 									$.messager.progress({
 										text:message("ov.common.saving")
@@ -80,8 +80,8 @@ var tenantAccount_manager_tool = {
 								success:function(result,response,status){
 									$.messager.progress('close');
 										showSuccessMsg(result.content);
-										$('#editTenantAccount').dialog("close");
-										$("#tenantAccount-table-list").datagrid('reload');
+										$('#editBranchBusiness').dialog("close");
+										$("#branchBusiness-table-list").datagrid('reload');
 								}
 							});
 						};
@@ -90,7 +90,7 @@ var tenantAccount_manager_tool = {
 					text:message("ov.common.close"),
 					iconCls:'icon-cancel',
 					handler:function(){
-						 $('#editTenantAccount').dialog("close").form("reset");
+						 $('#editBranchBusiness').dialog("close").form("reset");
 					}
 			    }],
 			    onLoad:function(){
@@ -135,7 +135,7 @@ $(function(){
 		      {title:message("ov.tenantInfo.tenantName"),field:"tenantName",width:100,sortable:true},
 		      {title:message("ov.tenantInfo.contactPhone"),field:"contactPhone",width:100,sortable:true},
 		      {title:message("ov.tenantInfo.contactPerson"),field:"contactPerson",width:100,sortable:true},
-		      {title:message("ov.tenantInfo.accoutStatus"),field:"accoutStatus",width:100,sortable:true,
+		      {title:message("ov.tenantInfo.accountStatus"),field:"accountStatus",width:100,sortable:true,
 		    	  formatter: function(value,row,index){
 			    	  if(value == "ACTIVED"){
 			    		  return  message("ov.tenantAccount.active");
