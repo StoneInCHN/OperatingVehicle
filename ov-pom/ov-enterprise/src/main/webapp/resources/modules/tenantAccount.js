@@ -133,29 +133,30 @@ $(function(){
 		   [
 		      {field:'ck',checkbox:true},
 		      {title:message("ov.tenantAccount.userName"),field:"userName",width:100,sortable:true},
-		      {title:message("ov.tenantAccount.realName"),field:"tenantUser",width:100,sortable:true,
-		    	  formatter: function(value,row,index){
+		      {title:message("ov.tenantAccount.realName"),field:"tenantUser",width:100,sortable:true,formatter: function(value,row,index){
 			    	  if(value !=null){
 			    		  return  value.realName;
 			    	  }else {
 			    		  return value; 
 			    	  }
-		      	  }    
-		      },
-		      {title:message("ov.tenantAccount.isSystem"),field:"isSystem",width:100,sortable:true},
-		      {title:message("ov.tenantAccount.accoutStatus"),field:"accoutStatus",width:100,sortable:true,
-		    	  formatter: function(value,row,index){
+		      }},
+		      {title:message("ov.tenantAccount.isSystem"),field:"isSystem",width:100,sortable:true,formatter: function(value,row,index){
+			    	  if(value == false){
+			    		  return  message("ov.common.no");
+			    	  }else if (value = true){
+			    		  return  message("ov.common.yes");
+			    	  }
+				} },
+		      {title:message("ov.tenantAccount.accoutStatus"),field:"accoutStatus",width:100,sortable:true,formatter: function(value,row,index){
 			    	  if(value == "ACTIVED"){
 			    		  return  message("ov.tenantAccount.active");
 			    	  }else if (value = "LOCKED"){
 			    		  return  message("ov.tenantAccount.locked");
 			    	  }
-		      	  }  
-		      },
+		      }},
 		      {title:message("ov.tenantAccount.loginDate"),field:"loginDate",width:100,sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format("yyyy-MM-dd:hh:mm:ss");
-				}
-		      },
+			  }},
 		      {title:message("ov.tenantAccount.loginIp"),field:"loginIp",width:100,sortable:true},
 		   ]
 		]

@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.ov.beans.Message;
-import com.ov.common.log.LogUtil;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.Role;
 import com.ov.entity.TenantAccount;
@@ -41,7 +40,6 @@ import com.ov.utils.DateTimeUtils;
 
 /**
  * 租户用户
- * @author huyong
  *
  */
 @Controller ("tenantAccountController")
@@ -63,6 +61,16 @@ public class TenantAccountController extends BaseController
   {
     return "tenantAccount/tenantAccount";
   }
+  /**
+   * 用户账号列表
+   * @param pageable
+   * @param model
+   * @param beginDate
+   * @param endDate
+   * @param userNameSearch
+   * @param accountStatusSearch
+   * @return
+   */
   @RequestMapping (value = "/list", method = RequestMethod.POST)
   public @ResponseBody Page<TenantAccount> list (Pageable pageable, ModelMap model,
       Date beginDate, Date endDate, String userNameSearch,AccountStatus accountStatusSearch)
@@ -123,10 +131,9 @@ public class TenantAccountController extends BaseController
   }
 
   /**
-   * get data for vendor edit page
-   * 
+   * 编辑账户页面
    * @param model
-   * @param vendorId
+   * @param id
    * @return
    */
   @RequestMapping (value = "/edit", method = RequestMethod.GET)
@@ -141,7 +148,13 @@ public class TenantAccountController extends BaseController
     }
     return "tenantAccount/edit";
   }
-
+  /**
+   * 添加账户
+   * @param tenantAccount
+   * @param tenantUserID
+   * @param roleID
+   * @return
+   */
   @RequestMapping (value = "/add", method = RequestMethod.POST)
   public @ResponseBody Message add (TenantAccount tenantAccount,Long tenantUserID,Long roleID)
   {
@@ -157,7 +170,14 @@ public class TenantAccountController extends BaseController
     tenantAccountService.save (tenantAccount,true);
     return SUCCESS_MESSAGE;
   }
-
+  /**
+   * 更新账户
+   * @param enPassword
+   * @param tenantAccount
+   * @param tenantUserID
+   * @param roleID
+   * @return
+   */
   @RequestMapping (value = "/update", method = RequestMethod.POST)
   public @ResponseBody Message update (String enPassword,TenantAccount tenantAccount,Long tenantUserID,Long roleID)
   {
@@ -177,21 +197,20 @@ public class TenantAccountController extends BaseController
  
 
   /**
-   * 删除
+   * 删除账户
    */
   @RequestMapping (value = "/delete", method = RequestMethod.POST)
   public @ResponseBody Message delete (Long[] ids)
   {
     if (ids != null)
     {
-      // 检查是否能被删除
-      // if()
+      // 是否需要检查是否能被删除？
       tenantAccountService.delete (ids);
     }
     return SUCCESS_MESSAGE;
   }
   /**
-   * 获取数据进入详情页面
+   * 账号详情页面
    * 
    * @param model
    * @param id

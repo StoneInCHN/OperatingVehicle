@@ -1,8 +1,14 @@
-package com.ov.service; 
+package com.ov.service;
 
-import com.ov.entity.Role;
 import com.ov.framework.service.BaseService;
+import com.ov.entity.*;
 
-public interface RoleService extends BaseService<Role,Long>{
+/**
+ * Service
+ * 
+ * @author pengyanan
+ *
+ */
+public interface RoleService extends BaseService<Role, Long> {
 
 }

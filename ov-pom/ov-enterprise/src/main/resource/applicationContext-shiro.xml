@@ -22,7 +22,7 @@
 				<!--系统管理  -->
 				/console/tenantAccount/** = perms["systemManage"]
 				/console/tenantUser/** = perms["systemManage"]
-		    	/console/role/** = perms["role"]
+				/console/role/** = perms["systemManage"]
 		    	/console/operationLog/** = perms["operationLog"]
 
 			</value>

@@ -92,7 +92,7 @@
     </div>    
     <div class="footer" data-options="region:'south',split:true,noheader:true" ></div> 
     <div id = "commonMainDialog">
-	    <div id = "searchRoles"></div>
+	    <div id = "searchRole"></div>
 	    <div id = "searchTenantUser"></div>
 	    <div id = "changePassword">
     </div>

@@ -38,10 +38,10 @@ public class BaseController {
   protected static final String ERROR_VIEW = "/common/error";
 
   /** 错误消息 */
-  protected static final Message ERROR_MESSAGE = Message.error("yly.message.error");
+  protected static final Message ERROR_MESSAGE = Message.error("ov.message.error");
 
   /** 成功消息 */
-  protected static final Message SUCCESS_MESSAGE = Message.success("yly.message.success");
+  protected static final Message SUCCESS_MESSAGE = Message.success("ov.message.success");
 
   /** "验证结果"参数名称 */
   private static final String CONSTRAINT_VIOLATIONS_ATTRIBUTE_NAME = "constraintViolations";

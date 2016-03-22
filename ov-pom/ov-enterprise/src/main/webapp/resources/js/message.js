@@ -96,10 +96,12 @@ var messages = {
 		"ov.role.name":"角色名称",
 		"ov.role.description":"描述",
 		"ov.role.add":"添加角色",
+		"ov.role.search":"角色查询",
 		"ov.role.auth":"授权",
 		"ov.role.auth.manange":"权限分配",
 		"ov.role.auth.name":"菜单名称",
 		"ov.role.auth.status":"权限状态",
+		"ov.role.list":"角色列表",
 
 		
 		//数据字典

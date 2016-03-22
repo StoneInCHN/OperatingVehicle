@@ -346,10 +346,9 @@ function searchTenantUser(id) {
 					});
 
 }
+//查询角色(Role)
 function searchRoles(id) {
-	$('#searchRoles')
-			.dialog(
-					{
+	$('#searchRole').dialog({
 						title : message("ov.role.search"),
 						width : 1000,
 						height : 500,
@@ -360,76 +359,39 @@ function searchRoles(id) {
 							text : message("ov.common.cancel"),
 							iconCls : 'icon-cancel',
 							handler : function() {
-								$('#searchRoles').dialog("close");
+								$('#searchRole').dialog("close");
 							}
 						} ],
 						onLoad : function() {
 							/**
-							 * 此datagrid 用户展示老人数据,并且提供查询功能
+							 * 此datagrid 用户展示角色数据,并且提供查询功能
 							 */
-							$("#common-roles-table-list")
-									.datagrid(
-											{
-												title : message("ov.elderlyinfo"),
+							$("#common-roles-table-list").datagrid({
+												title : message("ov.role.list"),
 												fitColumns : true,
 												url : '../role/list.jhtml',
 												pagination : true,
 												loadMsg : message("ov.common.loading"),
 												striped : true,
-												onDblClickRow : function(
-														rowIndex, rowData) {
-													$("#" + id + "ID").val(
-															rowData.id);
-													$("#" + id).textbox(
-															'setValue',
-															rowData.name);
-													if ($("#identifier")) {
-														$("#identifier")
-																.val(
-																		rowData.identifier);
-													}
-													$('#searchRoles').dialog(
-															"close");
+												onDblClickRow : function(rowIndex, rowData) {
+													$("#" + id + "ID").val(rowData.id);
+													$("#" + id).textbox('setValue',rowData.name);
+													$('#searchRole').dialog("close");
 												},
 												columns : [ [
-														{
-															title : message("ov.role.name"),
-															field : "name",
-															width : 20,
-															align : 'center',
-															formatter : function(
-																	value, row,
-																	index) {
-																return row.name;
-															}
-														},
-														{
-															title : message("ov.role.description"),
-															field : "description",
-															width : 80,
-															align : 'center',
-															formatter : function(
-																	value, row,
-																	index) {
-																return row.description;
-															}
-														} ] ]
-
-											});
-
-							$("#common_elderlyinfo_search_btn")
-									.click(
-											function() {
-												var _queryParams = $(
-														"#common_elderlyinfo_search_form")
-														.serializeJSON();
-												$(
-														'#common_elderlyInfoSearch-table-list')
-														.datagrid('options').queryParams = _queryParams;
-												$(
-														"#common_elderlyInfoSearch-table-list")
-														.datagrid('reload');
-											})
+												             {title : message("ov.role.name"),field : "name",width : 20,align : 'center',formatter : function(value, row,index) {
+												            	 	return row.name;
+															 }},
+															 {title : message("ov.role.description"),field : "description",width : 80,align : 'center',formatter : function(value, row,index) {
+																 	return row.description;
+															}} 
+												] ]
+							});
+							$("#common-role-search-btn").click(function() {
+								var _queryParams = $("#common-role-search-form").serializeJSON();
+								$('#common-roles-table-list').datagrid('options').queryParams = _queryParams;
+								$("#common-roles-table-list").datagrid('reload');
+							});
 						}
 					});
 
