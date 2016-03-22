@@ -66,7 +66,7 @@ public class AuthenticationRealm extends AuthorizingRealm {
 			admin.setLoginIp(ip);
 			admin.setLoginDate(new Date());
 			adminService.update(admin);
-			return new SimpleAuthenticationInfo(new Principal(admin.getId(), username), password, getName());
+			return new SimpleAuthenticationInfo(new Principal(admin.getId(), username, null), password, getName());
 		}
 		throw new UnknownAccountException();
 	}
