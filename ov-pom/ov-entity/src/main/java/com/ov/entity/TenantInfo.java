@@ -1,12 +1,18 @@
 package com.ov.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
 import com.ov.entity.commonenum.CommonEnum.AccountStatus;
 
@@ -63,6 +69,16 @@ public class TenantInfo extends BaseEntity {
    * 租户账号状态
    */
   private AccountStatus accountStatus;
+  
+  /**
+   * 总公司
+   */
+  private TenantInfo parent;
+  
+  /**
+   * 子公司
+   */
+  private Set<TenantInfo> child = new HashSet<TenantInfo>();
 
   /**
    * 版本
@@ -88,6 +104,7 @@ public class TenantInfo extends BaseEntity {
   }
 
   @Column(length = 30)
+  @JsonProperty
   public String getContactPhone() {
     return contactPhone;
   }
@@ -97,6 +114,7 @@ public class TenantInfo extends BaseEntity {
   }
 
   @Column(length = 80)
+  @JsonProperty
   public String getTenantName() {
     return tenantName;
   }
@@ -115,6 +133,7 @@ public class TenantInfo extends BaseEntity {
   }
 
   @Column(length = 15)
+  @JsonProperty
   public String getContactPerson() {
     return contactPerson;
   }
@@ -159,4 +178,24 @@ public class TenantInfo extends BaseEntity {
   {
     this.versionConfig = versionConfig;
   }
+
+  	@ManyToOne(fetch = FetchType.LAZY)
+  	public TenantInfo getParent() {
+		return parent;
+	}
+	
+	public void setParent(TenantInfo parent) {
+		this.parent = parent;
+	}
+
+	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	public Set<TenantInfo> getChild() {
+		return child;
+	}
+
+	public void setChild(Set<TenantInfo> child) {
+		this.child = child;
+	}
+
+  
 }

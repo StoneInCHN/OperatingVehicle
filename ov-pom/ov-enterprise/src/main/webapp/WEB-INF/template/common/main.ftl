@@ -81,6 +81,11 @@
     		[@shiro.hasPermission name="roleManage"]
     		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">角色管理</a></li>
     		[/@shiro.hasPermission]    		    		    		
+    	</ul>
+    	<ul title="${message("ov.system.config")}" id="businessManagement">
+    		[@shiro.hasPermission name="branchBusinessManage"]
+    		<li><a href="#" data-url="${base}/console/tenantInfo/branchBusiness.jhtml">分公司管理</a></li>
+    		[/@shiro.hasPermission]  		    		    		
     	</ul>        
     </div>
   
