@@ -13,8 +13,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Index;
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
@@ -68,6 +72,8 @@ public class Role extends BaseEntity {
   @NotEmpty
   @Length(max = 200)
   @Column(nullable = false)
+  @Field(store = Store.NO, index = org.hibernate.search.annotations.Index.TOKENIZED,
+      analyzer = @Analyzer(impl = IKAnalyzer.class))
   public String getName() {
     return name;
   }

@@ -5,34 +5,33 @@
 	    <form id="role_search_form" class="search-form">
 	    	<div class="search-item">
 			    <label> 角色:</label>
-			    <input type="text" class="easyui-textbox" id="name" name="roleNameSearch" validtype="length[0,20]" style="width:85px;" />
+			    <input type="text" class="easyui-textbox" id="name" name="name_roleSearch" validtype="length[0,20]" style="width:85px;" />
 			</div>
 			<div class="search-item">
 			    <label> 录入时间:</label>
-			    <input type="text" class="Wdate" id="beginDate" name="beginDate"  onclick="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
+			    <input type="text" class="Wdate" id="beginDate_roleSearch" name="beginDate_roleSearch"  onclick="WdatePicker({maxDate: '#F{$dp.$D(\'endDate_roleSearch\')}'});" />
 			</div>
 			<div class="search-item">
 			    <label>到:</label>
-			   	<input type="text" class="Wdate" id="endDate"  name="endDate" onclick="WdatePicker({minDate: '#F{$dp.$D(\'beginDate\')}'});"/>
+			   	<input type="text" class="Wdate" id="endDate_roleSearch"  name="endDate_roleSearch" onclick="WdatePicker({minDate: '#F{$dp.$D(\'beginDate_roleSearch\')}'});"/>
 			</div>
 		</form>
 		<div class="search-item">
-	  	  <button id="role_search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">搜索</button>
+	  	  <button id="role_search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
 	    </div>
 	  </fieldset>
 </div>
 <table id="role-table-list"></table>
 <div id="role_manager_tool">
 	<div class="tool-button">
-		<a href="#" class="easyui-linkbutton" iconCls="icon-man" plain=true onclick="role_manager_tool.auth();">授权</a>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain=true onclick="role_manager_tool.add();">添加</a>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain=true onclick="role_manager_tool.edit();">修改</a>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain=true onclick="role_manager_tool.remove();">删除</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain=true onclick="role_manager_tool.add();">${message("ov.button.add")}</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain=true onclick="role_manager_tool.edit();">${message("ov.button.update")}</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain=true onclick="role_manager_tool.remove();">${message("ov.button.delete")}</a>
 	</div>
 	<div class="tool-filter"></div>
 </div> 
-<div id="addrole">
-	<form id="addrole_form" method="post" class="form-table">  
+<div id="addRole">
+	<form id="addRole_form" method="post" class="form-table">  
 	   <table class="table table-striped">
 	    	<tr>
 	    		<th>${message("ov.role.name")}:</th>
@@ -49,10 +48,6 @@
 	    </table>
 	</form>
 </div>
-<div id="role-dialog-auth">
-	<ul id="roleTreeAuth" class="easyui-tree" checkbox="true"></ul>  
-</div>
-
 <div id="editRole"></div> 
 
 

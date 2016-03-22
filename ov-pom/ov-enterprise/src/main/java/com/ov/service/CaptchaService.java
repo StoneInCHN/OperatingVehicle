@@ -6,8 +6,6 @@ import com.ov.beans.Setting.CaptchaType;
 
 /**
  * Service - 验证码
- * 
- * @author SHOP++ Team
  * @version 3.0
  */
 public interface CaptchaService {

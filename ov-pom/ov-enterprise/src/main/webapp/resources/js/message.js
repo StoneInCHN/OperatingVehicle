@@ -80,11 +80,14 @@ var messages = {
 		"ov.tenantAccount.list":"用户账号列表",
 		"ov.tenantAccount.locked":"账号锁定",
 		
-		//department
+		//部门管理
 		"ov.department.name":"部门名称",
 		"ov.department.grade":"部门层级",
 		"ov.department.parent":"上级部门",
 		"ov.department.add":"添加部门",
+		"ov.department.edit":"编辑部门",
+		"ov.department.list":"部门列表",
+		
 		
 		//position
 		"ov.position.add":"添加职位",
@@ -96,10 +99,12 @@ var messages = {
 		"ov.role.name":"角色名称",
 		"ov.role.description":"描述",
 		"ov.role.add":"添加角色",
+		"ov.role.search":"角色查询",
 		"ov.role.auth":"授权",
 		"ov.role.auth.manange":"权限分配",
 		"ov.role.auth.name":"菜单名称",
 		"ov.role.auth.status":"权限状态",
+		"ov.role.list":"角色列表",
 
 		
 		//数据字典

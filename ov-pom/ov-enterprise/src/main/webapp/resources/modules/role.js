@@ -1,74 +1,6 @@
 var role_manager_tool = {
-		auth:function(){		
-			//授权树形列表
-			var _edit_row = $('#role-table-list').datagrid('getSelected');
-			if( _edit_row == null ){
-				$.messager.alert(message("ov.common.notice"),message("ov.common.select.editRow"));  
-				return false;
-			}
-			$('#role-dialog-auth').dialog({    
-			    title: message("ov.role.auth.manange"),    
-			    width: 450,    
-			    height: 500,    
-			    closed: false,    
-			    cache: false,    
-			    modal: true ,
-			    onOpen:function(){
-			    	$('#roleTreeAuth').tree({
-			    		url:'../role/listAuth.jhtml?id='+_edit_row.id,  
-			    		cache:false,
-			    	    animate:true,
-			    	    lines:true
-			    	});
-			    	$('#roleTreeAuth').tree('collapseAll');
-
-			    },
-				buttons:[{
-			    	text:message("ov.common.save"),
-			    	iconCls:'icon-save',
-					handler:function(){
-							var selectedList = $('#roleTreeAuth').tree('getChecked', ['checked','indeterminate']);
-							var _ids = [];
-							for(var i=0; i< selectedList.length; i++){
-								_ids[i] = selectedList[i].id;
-							}
-							$.ajax({
-								url:"../role/addAuth.jhtml",
-								type:"post",
-								traditional : true,
-								data:{
-									"id":_edit_row.id,
-									"authIds": _ids
-								},
-								beforeSend:function(){
-									$.messager.progress({
-										text:message("ov.common.saving")
-									});
-								},
-								success:function(result,response,status){
-									$.messager.progress('close');
-									showSuccessMsg(result.content);
-									$('#role-dialog-auth').dialog("close");
-									$('#roleTreeAuth').tree("reload");
-								},
-								error:function (XMLHttpRequest, textStatus, errorThrown) {
-									$.messager.progress('close');
-									alertErrorMsg();
-								}
-							});
-					}
-				},{
-					text:message("ov.common.cancel"),
-					iconCls:'icon-cancel',
-					handler:function(){
-						 $('#role-dialog-auth').dialog("close");
-					}
-			    }]
-			}); 
-			
-		},
 		add:function(){		
-			$('#addrole').dialog({    
+			$('#addRole').dialog({    
 			    title: message("ov.role.add"),    
 			    width: 370,    
 			    height: 370,
@@ -78,12 +10,12 @@ var role_manager_tool = {
 			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
-						var validate = $('#addrole_form').form('validate');
+						var validate = $('#addRole_form').form('validate');
 						if(validate){
 							$.ajax({
 								url:"../role/add.jhtml",
 								type:"post",
-								data:$("#addrole_form").serialize(),
+								data:$("#addRRole_form").serialize(),
 								beforeSend:function(){
 									$.messager.progress({
 										text:message("ov.common.saving")
@@ -92,8 +24,8 @@ var role_manager_tool = {
 								success:function(result,response,status){
 									$.messager.progress('close');
 									showSuccessMsg(result.content);
-									$('#addrole_form').form('reset');
-									$('#addrole').dialog("close");
+									$('#addRole_form').form('reset');
+									$('#addRole').dialog("close");
 									$("#role-table-list").datagrid('reload');
 									
 								},
@@ -111,11 +43,11 @@ var role_manager_tool = {
 					text:message("ov.common.cancel"),
 					iconCls:'icon-cancel',
 					handler:function(){
-						 $('#addrole').dialog("close");
+						 $('#addRole').dialog("close");
 					}
 			    }]
 			});  
-			 $('#addrole_form').show();
+			 $('#addRole_form').show();
 		},
 		edit:function(){
 			var _edit_row = $('#role-table-list').datagrid('getSelected');
@@ -209,7 +141,7 @@ $(function(){
 		      {title:message("ov.role.description"),field:"description",width:80,align:'center',formatter:function(value,row,index){
 		    	  return row.description;
 		      }},
-		      {title:message("ov.role.createDate"),field:"createDate",width:100,sortable:true,formatter: function(value,row,index){
+		      {title:message("ov.common.createDate"),field:"createDate",width:100,sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format("yyyy-MM-dd");
 				}
 		      }
