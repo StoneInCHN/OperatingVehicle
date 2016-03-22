@@ -157,7 +157,7 @@ public class TenantAccount extends BaseEntity {
    */
   @NotEmpty
   @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "yly_tenant_account_role")
+  @JoinTable(name = "ov_tenant_account_role")
   @JsonProperty
   public Set<Role> getRoles() {
       return roles;
