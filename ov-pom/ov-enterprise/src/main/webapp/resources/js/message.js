@@ -80,6 +80,17 @@ var messages = {
 		"ov.tenantAccount.list":"用户账号列表",
 		"ov.tenantAccount.locked":"账号锁定",
 		
+		//租户信息
+		"ov.tenantInfo.tenantName":"公司名称",
+		"ov.tenantInfo.contactPhone":"联系电话",
+		"ov.tenantInfo.contactPerson":"联系人",
+		"ov.tenantInfo.accountStatus":"账号状态",
+		"ov.tenantInfo.address":"地址",
+		"ov.tenantInfo.email":"邮箱",
+		"ov.tenantInfo.zipCode":"邮编",
+		"ov.tenantInfo.remark":"备注",
+		"ov.branchBusiness.list":"分公司列表",
+		
 		//部门管理
 		"ov.department.name":"部门名称",
 		"ov.department.grade":"部门层级",

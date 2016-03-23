@@ -32,6 +32,12 @@
     		</td>
     	</tr>
     	<tr>
+    		<th>${message("ov.tenantInfo.address")}:</th>
+    		<td colspan="2">
+    			 <input type="text" class="easyui-textbox" value="${tenantInfo.address}" name="address" id= "address" />
+    		</td>
+    	</tr>
+    	<tr>
     		<th>${message("ov.tenantInfo.remark")}:</th>
     		<td colspan="2">
     			 <input type="text" class="easyui-textbox" name="remark" value="${tenantInfo.remark}" id= "remark"/>

@@ -12,6 +12,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+import org.wltea.analyzer.lucene.IKAnalyzer;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
 import com.ov.entity.commonenum.CommonEnum.AccountStatus;
@@ -25,6 +31,7 @@ import com.ov.entity.commonenum.CommonEnum.AccountStatus;
 @Entity
 @Table(name = "ov_tenant_info")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_tenant_info_sequence")
+@Indexed(index="tenantInfo")
 public class TenantInfo extends BaseEntity {
 
   
@@ -105,6 +112,7 @@ public class TenantInfo extends BaseEntity {
 
   @Column(length = 30)
   @JsonProperty
+  @Field(index=org.hibernate.search.annotations.Index.TOKENIZED,analyzer = @Analyzer(impl = IKAnalyzer.class))
   public String getContactPhone() {
     return contactPhone;
   }
@@ -115,6 +123,7 @@ public class TenantInfo extends BaseEntity {
 
   @Column(length = 80)
   @JsonProperty
+  @Field(index=org.hibernate.search.annotations.Index.TOKENIZED,analyzer = @Analyzer(impl = IKAnalyzer.class))
   public String getTenantName() {
     return tenantName;
   }
@@ -134,6 +143,7 @@ public class TenantInfo extends BaseEntity {
 
   @Column(length = 15)
   @JsonProperty
+  @Field(index=org.hibernate.search.annotations.Index.TOKENIZED,analyzer = @Analyzer(impl = IKAnalyzer.class))
   public String getContactPerson() {
     return contactPerson;
   }
@@ -161,6 +171,7 @@ public class TenantInfo extends BaseEntity {
   }
 
   @JsonProperty
+  @Field(store = Store.NO, index = org.hibernate.search.annotations.Index.UN_TOKENIZED, analyzer = @Analyzer(impl = IKAnalyzer.class))
   public AccountStatus getAccountStatus() {
     return accountStatus;
   }

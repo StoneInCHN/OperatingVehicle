@@ -99,7 +99,7 @@ var branchBusiness_manager_tool = {
 			});  
 		},
 		remove:function(){
-			listRemove('tenantAccount-table-list','../tenantAccount/delete.jhtml');
+			listRemove('branchBusiness-table-list','../tenantInfo/deleteBranch.jhtml');
 		}
 };
 
@@ -119,12 +119,12 @@ $(function(){
 			    height: 350, 
 			    cache: false,
 			    modal: true,
-			    href:'../tenantInfo/branchDetails.jhtml?id='+rowData.id,
+			    href:'../tenantInfo/detailsBranch.jhtml?id='+rowData.id,
 			    buttons:[{
 					text:message("ov.common.close"),
 					iconCls:'icon-cancel',
 					handler:function(){
-						 $('#tenantAccountDetail').dialog("close");
+						 $('#branchBusinessDetail').dialog("close");
 					}
 			    }]
 			});   
@@ -148,10 +148,10 @@ $(function(){
 		]
 	});
 	
-	$("#tenantAccount-search-btn").click(function(){
-	  var _queryParams = $("#tenantAccount-search-form").serializeJSON();
-	  $('#tenantAccount-table-list').datagrid('options').queryParams = _queryParams;  
-	  $("#tenantAccount-table-list").datagrid('reload');
+	$("#branchBusiness-search-btn").click(function(){
+	  var _queryParams = $("#branchBusiness-search-form").serializeJSON();
+	  $('#branchBusiness-table-list').datagrid('options').queryParams = _queryParams;  
+	  $("#branchBusiness-table-list").datagrid('reload');
 	})
 	
 	$("input:text").focus(function(){

@@ -1,14 +1,22 @@
 <script src="${base}/resources/modules/tenantInfo.js"></script>
 <div>
 	  <fieldset>
-	    <legend>${message("ov.tenantAccount.search")}</legend>
+	    <legend>${message("ov.tenantInfo.search")}</legend>
 	    <form id="branchBusiness-search-form" class="search-form">
 	    	<div class="search-item">
-			    <label> ${message("ov.tenantAccount.userName")}:</label>
-			    <input type="text" class="easyui-textbox" id="userNameSearch" name="userNameSearch" validtype="length[0,20]"/>
+			    <label> ${message("ov.tenantInfo.tenantName")}:</label>
+			    <input type="text" class="easyui-textbox" id="tenantNameSearch" name="tenantNameSearch" validtype="length[0,20]"/>
 			</div>
 			<div class="search-item">
-			    <label> ${message("ov.tenantUser.staffStatus")}:</label>
+			    <label> ${message("ov.tenantInfo.contactPhone")}:</label>
+			    <input type="text" class="easyui-textbox" id="contactPhoneSearch" name="contactPhoneSearch" validtype="length[0,20]"/>
+			</div>
+			<div class="search-item">
+			    <label> ${message("ov.tenantInfo.contactPerson")}:</label>
+			    <input type="text" class="easyui-textbox" id="contactPersonSearch" name="contactPersonSearch" validtype="length[0,20]"/>
+			</div>
+			<div class="search-item">
+			    <label> ${message("ov.tenantInfo.accountStatus")}:</label>
 			    <input class="easyui-combobox" data-options="
 				     valueField: 'label',
 				     textField: 'value',
@@ -23,7 +31,7 @@
 			</div>
 		</form>
 		<div class="search-item">
-	  	  <button id="tenantAccount-search-btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
+	  	  <button id="branchBusiness-search-btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
 	    </div>
 	  </fieldset>
 </div>
@@ -70,6 +78,12 @@
 	    		</td>
 	    	</tr>
 	    	<tr>
+	    		<th>${message("ov.tenantInfo.address")}:</th>
+	    		<td colspan="2">
+	    			 <input type="text" class="easyui-textbox" name="address" id= "address" />
+	    		</td>
+	    	</tr>
+	    	<tr>
 	    		<th>${message("ov.tenantInfo.remark")}:</th>
 	    		<td colspan="2">
 	    			 <input type="text" class="easyui-textbox" name="remark" id= "remark"/>
@@ -88,7 +102,7 @@
 				      label: 'LOCKED',
 				      value: '${message("ov.tenantAccount.accoutStatus.locked")}'
 				     }],
-				     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100" id="editAccountStatus"  name="accountStatus" style="width:110px;"/>
+				     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100" id="editAccountStatus" value="ACTIVED" name="accountStatus" style="width:110px;"/>
 				     
 	    		</td>
 	    	</tr>
