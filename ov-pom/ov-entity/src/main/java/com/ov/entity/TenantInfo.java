@@ -30,7 +30,7 @@ import com.ov.entity.commonenum.CommonEnum.AccountStatus;
  */
 @Entity
 @Table(name = "ov_tenant_info")
-@SequenceGenerator(name = "sequenceGenerator", sequenceName = "yly_tenant_info_sequence")
+@SequenceGenerator(name = "sequenceGenerator", sequenceName = "ov_tenant_info_sequence")
 @Indexed(index="tenantInfo")
 public class TenantInfo extends BaseEntity {
 
@@ -91,6 +91,17 @@ public class TenantInfo extends BaseEntity {
    * 版本
    */
   private VersionConfig versionConfig;
+  
+  /**
+   * 车辆调度请求
+   */
+  private Set<VehicleScheduling> requestScheduling = new HashSet<VehicleScheduling>();
+  
+  /**
+   * 处理车辆调度请求
+   */
+  private Set<VehicleScheduling> dealScheduling = new HashSet<VehicleScheduling>(); 
+  
   
   @Column(length = 20)
   public String getOrgCode() {
@@ -208,6 +219,25 @@ public class TenantInfo extends BaseEntity {
 	public void setChild(Set<TenantInfo> child) {
 		this.child = child;
 	}
+
+	@OneToMany(mappedBy = "requestBusiness", fetch = FetchType.LAZY)
+	public Set<VehicleScheduling> getRequestScheduling() {
+		return requestScheduling;
+	}
+
+	public void setRequestScheduling(Set<VehicleScheduling> requestScheduling) {
+		this.requestScheduling = requestScheduling;
+	}
+
+	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+	public Set<VehicleScheduling> getDealScheduling() {
+		return dealScheduling;
+	}
+
+	public void setDealScheduling(Set<VehicleScheduling> dealScheduling) {
+		this.dealScheduling = dealScheduling;
+	}
+	
 
   
 }

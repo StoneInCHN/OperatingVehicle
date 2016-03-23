@@ -1403,4 +1403,22 @@ public class CommonEnum {
      */
     CUSTOM_FORM
   }
+  /**
+   * 车辆调度状态
+   */
+  public enum VehicleSchedulingStatus{
+	  /**
+	   * 待确认
+	   */
+	  TO_CONFIRM,
+	  /**
+	   * 已分配
+	   */
+	  DISTRIBUTED,
+	  /**
+	   * 已结束
+	   */
+	  FINISHED
+  }
+  
 }

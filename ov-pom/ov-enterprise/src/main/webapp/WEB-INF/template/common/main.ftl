@@ -82,11 +82,16 @@
     		<li><a href="#" data-url="${base}/console/role/role.jhtml?path=role">角色管理</a></li>
     		[/@shiro.hasPermission]    		    		    		
     	</ul>
-    	<ul title="${message("ov.system.config")}" id="businessManagement">
+    	<ul title="${message("ov.business.branch")}" id="businessManagement">
     		[@shiro.hasPermission name="branchBusinessManage"]
     		<li><a href="#" data-url="${base}/console/tenantInfo/branchBusiness.jhtml">分公司管理</a></li>
     		[/@shiro.hasPermission]  		    		    		
-    	</ul>        
+    	</ul>    
+    	<ul title="${message("ov.vehicle.scheduling")}" id="vehicleScheduling">
+    		[@shiro.hasPermission name="useCarRequest"]
+    		<li><a href="#" data-url="${base}/console/vehicleScheduling/useCarRequest.jhtml">用车请求</a></li>
+    		[/@shiro.hasPermission]		
+    	</ul>     
     </div>
   
     <div class="main-content" data-options="region:'center'">

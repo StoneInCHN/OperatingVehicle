@@ -133,9 +133,9 @@ $(function(){
 		   [
 		      {field:'ck',checkbox:true},
 		      {title:message("ov.tenantInfo.tenantName"),field:"tenantName",width:100,sortable:true},
-		      {title:message("ov.tenantInfo.contactPhone"),field:"contactPhone",width:100,sortable:true},
-		      {title:message("ov.tenantInfo.contactPerson"),field:"contactPerson",width:100,sortable:true},
-		      {title:message("ov.tenantInfo.accountStatus"),field:"accountStatus",width:100,sortable:true,
+		      {title:message("ov.tenantInfo.contactPhone"),field:"contactPhone",width:60,sortable:true},
+		      {title:message("ov.tenantInfo.contactPerson"),field:"contactPerson",width:60,sortable:true},
+		      {title:message("ov.tenantInfo.accountStatus"),field:"accountStatus",width:60,sortable:true,
 		    	  formatter: function(value,row,index){
 			    	  if(value == "ACTIVED"){
 			    		  return  message("ov.tenantAccount.active");

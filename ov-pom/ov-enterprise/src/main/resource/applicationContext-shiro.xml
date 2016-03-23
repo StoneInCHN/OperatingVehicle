@@ -26,6 +26,8 @@
 				/console/department/** = perms["departmentManage"]
 				/console/tenantInfo/** = perms["businessManagement"]
 		    	/console/operationLog/** = perms["operationLog"]
+		    	/console/tenantInfo/** = perms["businessManagement"]
+		    	/console/vehicleScheduling/** = perms["vehicleScheduling"]
 
 			</value>
 		</property>
