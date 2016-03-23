@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.ov.dao.TenantInfoDao;
 import com.ov.entity.ConfigMeta;
+import com.ov.entity.Department;
 import com.ov.entity.TenantInfo;
 import com.ov.entity.commonenum.CommonEnum.ConfigKey;
 import com.ov.framework.filter.Filter;
@@ -63,5 +64,9 @@ public class TenantInfoServiceImpl extends BaseServiceImpl<TenantInfo, Long> imp
       return tenantInfo.getVersionConfig().getConfigMeta();
     }
     return null;
+  }
+
+  public List<TenantInfo> findRoots() {
+    return tenantInfoDao.findRoots(tenantAccountService.getCurrentTenantID(), null);
   }
 }

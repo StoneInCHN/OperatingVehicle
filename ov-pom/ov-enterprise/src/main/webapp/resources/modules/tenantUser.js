@@ -50,20 +50,18 @@ var tenantUser_manager_tool = {
 			    onOpen:function(){
 			    	$('#addTenantUser_form').show();
 			    	$("#tenantUserTenantInfo-add").combotree({    
-					    url: '../department/list.jhtml',    
+					    url: '../tenantInfo/list.jhtml',    
 					    method:"get",
 					    animate:true,
 					    lines:true,
 					    required:true,
 					    prompt:message("ov.common.please.select"),
 					    formatter:function(node){
-					    	node.text = node.name;
-							return node.name;
+					    	node.text = node.tenantName;
+							return node.tenantName;
 						},
 					    onSelect: function(rec){    
-				            var url = '../position/findPositions.jhtml?id='+rec.id;    
-				            $('#tenantUserPosition-add').combobox('clear');
-				            $('#tenantUserPosition-add').combobox('reload', url);    
+				           
 				        }
 					});			    	
 			    	$("#tenantUserDepartment-add").combotree({    
@@ -76,12 +74,7 @@ var tenantUser_manager_tool = {
 					    formatter:function(node){
 					    	node.text = node.name;
 							return node.name;
-						},
-					    onSelect: function(rec){    
-				            var url = '../position/findPositions.jhtml?id='+rec.id;    
-				            $('#tenantUserPosition-add').combobox('clear');
-				            $('#tenantUserPosition-add').combobox('reload', url);    
-				        }
+						}
 					});
 			    	$("#tenantUserPosition-add").combobox({    
 					    valueField:'id',    

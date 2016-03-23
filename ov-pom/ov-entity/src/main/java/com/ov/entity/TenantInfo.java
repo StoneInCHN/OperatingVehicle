@@ -82,10 +82,13 @@ public class TenantInfo extends BaseEntity {
    */
   private TenantInfo parent;
   
+  /** 层次 */
+  private Integer grade;
+  
   /**
    * 子公司
    */
-  private Set<TenantInfo> child = new HashSet<TenantInfo>();
+  private Set<TenantInfo> children = new HashSet<TenantInfo>();
 
   /**
    * 版本
@@ -185,6 +188,16 @@ public class TenantInfo extends BaseEntity {
   {
     return versionConfig;
   }
+  
+  @JsonProperty
+  @Column(length = 10)
+  public Integer getGrade() {
+    return grade;
+  }
+
+  public void setGrade(Integer grade) {
+    this.grade = grade;
+  }
 
   public void setVersionConfig (VersionConfig versionConfig)
   {
@@ -199,14 +212,14 @@ public class TenantInfo extends BaseEntity {
 	public void setParent(TenantInfo parent) {
 		this.parent = parent;
 	}
-
+	@JsonProperty
 	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	public Set<TenantInfo> getChild() {
-		return child;
+	public Set<TenantInfo> getChildren() {
+		return children;
 	}
 
-	public void setChild(Set<TenantInfo> child) {
-		this.child = child;
+	public void setChildren(Set<TenantInfo> children) {
+		this.children = children;
 	}
 
   
