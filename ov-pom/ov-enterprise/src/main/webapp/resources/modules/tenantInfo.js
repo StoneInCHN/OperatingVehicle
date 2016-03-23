@@ -1,7 +1,7 @@
 var branchBusiness_manager_tool = {
 		add:function(){
-			$('#addTenantAccount').dialog({
-			    title: message("ov.tenantAccount.add"),    
+			$('#addBranchBusiness').dialog({
+			    title: message("ov.branchBusiness.add"),    
 			    width: 400,    
 			    height: 350,
 			    iconCls:'icon-mini-add',
@@ -11,12 +11,12 @@ var branchBusiness_manager_tool = {
 			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
-						var validate = $('#addTenantAccount_form').form('validate');
+						var validate = $('#addBranchBusiness_form').form('validate');
 						if(validate){
 								$.ajax({
-									url:"../tenantAccount/add.jhtml",
+									url:"../tenantInfo/addBranch.jhtml",
 									type:"post",
-									data:$("#addTenantAccount_form").serialize(),
+									data:$("#addBranchBusiness_form").serialize(),
 									beforeSend:function(){
 										$.messager.progress({
 											text:message("ov.common.saving")
@@ -26,9 +26,9 @@ var branchBusiness_manager_tool = {
 										$.messager.progress('close');
 										if(response == "success"){
 											showSuccessMsg(result.content);
-											$('#addTenantAccount').dialog("close")
-											$("#addTenantAccount_form").form("reset");
-											$("#tenantAccount-table-list").datagrid('reload');
+											$('#addBranchBusiness').dialog("close")
+											$("#addBranchBusiness_form").form("reset");
+											$("#branchBusiness-table-list").datagrid('reload');
 										}else{
 											alertErrorMsg();
 										}
@@ -40,12 +40,12 @@ var branchBusiness_manager_tool = {
 					text:message("ov.common.cancel"),
 					iconCls:'icon-cancel',
 					handler:function(){
-						 $('#addTenantAccount').dialog("close");
-						 $("#addTenantAccount_form").form("reset");
+						 $('#addBranchBusiness').dialog("close");
+						 $("#addBranchBusiness_form").form("reset");
 					}
 			    }],
 			    onOpen:function(){
-			    	$('#addTenantAccount_form').show();
+			    	$('#addBranchBusiness_form').show();
 			    },
 			});  
 		},

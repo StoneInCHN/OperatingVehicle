@@ -45,7 +45,7 @@ public class TenantInfoController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/listBranch", method = RequestMethod.POST)
-	public @ResponseBody Page<TenantInfo> listBranchBusiness(Pageable pageable, ModelMap model){
+	public @ResponseBody Page<TenantInfo> listBranchBusiness(Pageable pageable){
 		
 		List<Filter> filters = new ArrayList<Filter>();
 		Filter filter = new Filter("parent", Operator.eq, tenantAccountService.getCurrentTenantInfo());
@@ -65,11 +65,26 @@ public class TenantInfoController extends BaseController{
 	    model.put("tenantInfo", tenantInfo);
 	    return "tenantInfo/edit";
 	}
-	
+	/**
+	 * 更新
+	 * @param tenantInfo
+	 * @return
+	 */
 	@RequestMapping(value = "/updateBranch", method = RequestMethod.POST)
 	public @ResponseBody Message updateBranch(TenantInfo tenantInfo){
 		tenantInfoService.update(tenantInfo, "createDate", "orgCode", "parent", "child", "versionConfig");
 		return SUCCESS_MESSAGE;
 	}
-
+	/**
+	 * 新增子公司
+	 * @return
+	 */
+	@RequestMapping(value = "/addBranch", method = RequestMethod.POST)
+	public @ResponseBody Message addBranch(TenantInfo tenantInfo){
+		tenantInfo.setParent(tenantAccountService.getCurrentTenantInfo());
+		tenantInfoService.save(tenantInfo);
+		return SUCCESS_MESSAGE;
+	}
+	
+	
 }

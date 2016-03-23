@@ -38,29 +38,46 @@
 </div>
 <div id="addBranchBusiness"> 
 	<form id="addBranchBusiness_form" method="post" class="form-table">
-	<input type="hidden" name="parentId" id="parentId">
 	    <table class="table table-striped"  border="0">
 	    	<tr>
-	    		<th>${message("ov.tenantAccount.staffID")}:</th>
-	    		<td colspan='2'>
-	    			 <input type="text" class="easyui-textbox" name="staffID" id= "staffID"   data-options="required:true"/>
+	    		<th>${message("ov.tenantInfo.tenantName")}:</th>
+	    		<td colspan="2">
+	    			 <input type="text" class="easyui-textbox" name="tenantName" id= "tenantName"  data-options="required:true"/>
 	    		</td>
 	    	</tr>
 	    	<tr>
-	    		<th>${message("ov.tenantAccount.userName")}:</th>
-	    		<td colspan='2'>
-	    			 <input type="text" class="easyui-textbox" name="userName" id= "userName"  data-options="required:true"/>
+	    		<th>${message("ov.tenantInfo.contactPhone")}:</th>
+	    		<td colspan="2">
+	    			 <input type="text" class="easyui-textbox" name="contactPhone" id= "contactPhone"  data-options="required:true"/>
 	    		</td>
 	    	</tr>
 	    	<tr>
-	    		<th>${message("ov.tenantAccount.password")}:</th>
-	    		<td colspan='2'>
-	    			 <input type="password" class="easyui-textbox" name="password" id= "password"  data-options="required:true"/>
+	    		<th>${message("ov.tenantInfo.contactPerson")}:</th>
+	    		<td colspan="2">
+	    			 <input type="text" class="easyui-textbox" name="contactPerson" id= "contactPerson"  data-options="required:true"/>
 	    		</td>
 	    	</tr>
 	    	<tr>
-	    		<th>${message("ov.tenantAccount.accoutStatus")}:</th>
-	    		<td colspan='2'>
+	    		<th>${message("ov.tenantInfo.email")}:</th>
+	    		<td colspan="2">
+	    			 <input type="text" class="easyui-textbox" name="email" id= "email"  data-options="required:true"/>
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<th>${message("ov.tenantInfo.zipCode")}:</th>
+	    		<td colspan="2">
+	    			 <input type="text" class="easyui-textbox" name="zipCode" id= "zipCode" />
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<th>${message("ov.tenantInfo.remark")}:</th>
+	    		<td colspan="2">
+	    			 <input type="text" class="easyui-textbox" name="remark" id= "remark"/>
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<th>${message("ov.tenantInfo.accountStatus")}:</th>
+	    		<td colspan="2">
 	    			 <input class="easyui-combobox" data-options="
 				     valueField: 'label',
 				     textField: 'value',
@@ -71,25 +88,8 @@
 				      label: 'LOCKED',
 				      value: '${message("ov.tenantAccount.accoutStatus.locked")}'
 				     }],
-				     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100"  name="accountStatus" style="width:110px;"/>
-	    		</td>
-	    	</tr>
-	    	<tr>
-	    		<th>${message("ov.tenantAccount.tenantUser")}:</th>
-	    		<td>
-	    			 <input type="text" class="easyui-textbox" name="addTenantAccountUser" id= "addTenantAccountUser"  />
-	    		</td>
-	    		<td>
-	    			<a href="#" id="tenant_user_search_btn" class="easyui-linkbutton" onclick="searchTenantUser('addTenantAccountUser')" iconCls="icon-search" plain=true"></a>
-	    		</td>
-	    	</tr>
-	    	<tr>
-	    	<th>${message("ov.tenantAccount.role")}:</th>
-	    		<td>
-	    			 <input type="text" class="easyui-textbox" name="addTenantAccountRole" id= "addTenantAccountRole"  />
-	    		</td>
-	    		<td>
-	    			<a href="#" id="role_search_btn" class="easyui-linkbutton" onclick="searchRoles('addTenantAccountRole')" iconCls="icon-search" plain=true"></a>
+				     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100" id="editAccountStatus"  name="accountStatus" style="width:110px;"/>
+				     
 	    		</td>
 	    	</tr>
 	    </table>

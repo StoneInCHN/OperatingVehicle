@@ -63,29 +63,32 @@ public class AuthenticationRealm extends AuthorizingRealm {
 		
 		if (username != null && password != null && orgCode != null) {
 		    
-		    TenantInfo tenantInfo = tenantInfoService.findTenantWithOrgCode(orgCode);
-		    TenantAccount tenantAccount = null;
-		    if(tenantInfo == null){
-		      throw new UnknownAccountException();
-		    }else {
-              if(tenantInfo.getAccountStatus().equals(AccountStatus.LOCKED)){
-                throw new DisabledAccountException();
-              }else{
-                tenantAccount = tenantAccountService.findByNameAndOrgCode(username, orgCode);
-                if (tenantAccount == null) {
-                    throw new UnknownAccountException();
-                }
-                if (tenantAccount.getAccoutStatus().equals(AccountStatus.LOCKED)) {
+//		    TenantInfo tenantInfo = tenantInfoService.findTenantWithOrgCode(orgCode);
+		    
+		    TenantAccount tenantAccount = tenantAccountService.findByNameAndOrgCode(username, orgCode);
+		    TenantInfo tenantInfo = null;
+		    
+		    if (tenantAccount == null) {
+		    	throw new UnknownAccountException();
+			}else {
+				tenantInfo = tenantInfoService.find(tenantAccount.getTenantID());
+				if (tenantInfo == null) {
+					throw new UnknownAccountException();
+				}else if(tenantInfo.getAccountStatus().equals(AccountStatus.LOCKED)){
+					throw new DisabledAccountException();
+		        }
+				if (tenantAccount.getAccoutStatus().equals(AccountStatus.LOCKED)) {
                     throw new DisabledAccountException();
                 }
                 if (!DigestUtils.md5Hex(password).equals(tenantAccount.getPassword())) {
                     throw new IncorrectCredentialsException();
-                }
-              }
-            }
+                }				
+			}
+
 			tenantAccount.setLoginIp(ip);
 			tenantAccount.setLoginDate(new Date());
 			tenantAccountService.update(tenantAccount);
+			
 			return new SimpleAuthenticationInfo(new Principal(tenantAccount.getId(), username,tenantInfo), password, getName());
 		}
 		throw new UnknownAccountException();
