@@ -32,6 +32,18 @@ public class TenantInfoDaoImpl extends BaseDaoImpl<TenantInfo, Long> implements 
       return null;
     }
   }
-  
-  
+  @Override
+  public List<TenantInfo> findRoots(Long tenantID,Integer count) {
+    String jpql =
+        "select tenantInfo from TenantInfo tenantInfo where tenantInfo.parent is null and tenantInfo.id = :tenantID";
+    TypedQuery<TenantInfo> query =
+        entityManager.createQuery(jpql, TenantInfo.class).setParameter("tenantID", tenantID).setFlushMode(FlushModeType.COMMIT);
+    if (count != null) {
+      query.setMaxResults(count);
+    }
+    List<TenantInfo> list = query.getResultList();
+    return list;
+  }
+
+
 }

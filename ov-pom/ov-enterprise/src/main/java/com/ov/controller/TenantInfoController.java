@@ -23,6 +23,7 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
+import com.ov.entity.Department;
 import com.ov.entity.TenantInfo;
 import com.ov.entity.commonenum.CommonEnum.AccountStatus;
 import com.ov.framework.filter.Filter.Operator;
@@ -169,6 +170,14 @@ public class TenantInfoController extends BaseController{
 	    TenantInfo tenantInfo = tenantInfoService.find(id);
 	    model.addAttribute("tenantInfo", tenantInfo);
 	    return "tenantInfo/detailsBranch";
+	  }
+	  /**
+	   * 企业列表
+	   * @return
+	   */
+	  @RequestMapping(value = "/list", method = RequestMethod.GET)
+	  public @ResponseBody List<TenantInfo> list() {
+	    return tenantInfoService.findRoots();
 	  }
 	
 }

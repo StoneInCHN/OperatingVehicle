@@ -1,8 +1,10 @@
 package com.ov.service;
 
+import java.util.List;
 import java.util.Set;
 
 import com.ov.entity.ConfigMeta;
+import com.ov.entity.Department;
 import com.ov.entity.TenantInfo;
 import com.ov.framework.service.BaseService;
 
@@ -28,5 +30,8 @@ public interface TenantInfoService extends BaseService<TenantInfo, Long> {
    * @return
    */
   Set<ConfigMeta> getCurrentTenantVersionPackage();
+
+  List<TenantInfo> findRoots();
+
 
 }

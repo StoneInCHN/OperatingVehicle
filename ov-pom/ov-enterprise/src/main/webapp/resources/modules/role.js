@@ -10,12 +10,13 @@ var role_manager_tool = {
 			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
+						alert($('#addRoleName').val());
 						var validate = $('#addRole_form').form('validate');
 						if(validate){
 							$.ajax({
 								url:"../role/add.jhtml",
 								type:"post",
-								data:$("#addRRole_form").serialize(),
+								data:$("#addRole_form").serialize(),
 								beforeSend:function(){
 									$.messager.progress({
 										text:message("ov.common.saving")

@@ -1,5 +1,7 @@
 package com.ov.dao;
 
+import java.util.List;
+
 import com.ov.entity.TenantInfo;
 import com.ov.framework.dao.BaseDao;
 
@@ -18,4 +20,6 @@ public interface TenantInfoDao extends BaseDao<TenantInfo, Long> {
    * @return
    */
   public TenantInfo findTenantWithOrgCode(String orgCode);
+
+  public List<TenantInfo> findRoots(Long currentTenantID, Integer count);
 }
