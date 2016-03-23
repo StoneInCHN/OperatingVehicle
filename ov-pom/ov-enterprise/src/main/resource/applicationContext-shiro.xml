@@ -24,6 +24,7 @@
 				/console/tenantUser/** = perms["accountManage"]
 				/console/role/** = perms["roleManage"]
 				/console/department/** = perms["departmentManage"]
+				/console/tenantInfo/** = perms["businessManagement"]
 		    	/console/operationLog/** = perms["operationLog"]
 
 			</value>
