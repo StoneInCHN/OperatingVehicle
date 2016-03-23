@@ -1,13 +1,13 @@
 var tenantUser_manager_tool = {
 		add:function(){
 			$('#addTenantUser').dialog({
-			    title: message("yly.tenantUser.add"),    
+			    title: message("ov.tenantUser.add"),    
 			    width: 700,    
 			    height: 550,
 			    iconCls:'icon-mini-add',
 			    cache: false, 
 			    buttons:[{
-			    	text:message("yly.common.save"),
+			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
 						var validate = $('#addTenantUser_form').form('validate');
@@ -23,14 +23,14 @@ var tenantUser_manager_tool = {
 									data:$("#addTenantUser_form").serialize(),
 									beforeSend:function(){
 										$.messager.progress({
-											text:message("yly.common.saving")
+											text:message("ov.common.saving")
 										});
 									},
 									success:function(result,response,status){
 										$.messager.progress('close');
 										if(response == "success"){
 											showSuccessMsg(result.content);
-											$('#addTenantUser').dialog("close").form("reset");
+											$('#addTenantUser_form').form("reset");
 											$("#tenantUser-table-list").datagrid('reload');
 										}else{
 											alertErrorMsg();
@@ -41,7 +41,7 @@ var tenantUser_manager_tool = {
 						};
 					}
 				},{
-					text:message("yly.common.cancel"),
+					text:message("ov.common.cancel"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#addTenantUser').dialog("close").form("reset");
@@ -49,13 +49,30 @@ var tenantUser_manager_tool = {
 			    }],
 			    onOpen:function(){
 			    	$('#addTenantUser_form').show();
+			    	$("#tenantUserTenantInfo-add").combotree({    
+					    url: '../department/list.jhtml',    
+					    method:"get",
+					    animate:true,
+					    lines:true,
+					    required:true,
+					    prompt:message("ov.common.please.select"),
+					    formatter:function(node){
+					    	node.text = node.name;
+							return node.name;
+						},
+					    onSelect: function(rec){    
+				            var url = '../position/findPositions.jhtml?id='+rec.id;    
+				            $('#tenantUserPosition-add').combobox('clear');
+				            $('#tenantUserPosition-add').combobox('reload', url);    
+				        }
+					});			    	
 			    	$("#tenantUserDepartment-add").combotree({    
 					    url: '../department/list.jhtml',    
 					    method:"get",
 					    animate:true,
 					    lines:true,
 					    required:true,
-					    prompt:message("yly.common.please.select"),
+					    prompt:message("ov.common.please.select"),
 					    formatter:function(node){
 					    	node.text = node.name;
 							return node.name;
@@ -71,7 +88,7 @@ var tenantUser_manager_tool = {
 					    textField:'name',
 					    editable : false,
 					    required:true,
-					    prompt:message("yly.common.please.select"),
+					    prompt:message("ov.common.please.select"),
 					});
 			    	//头像上传
 			     	var options ={
@@ -137,7 +154,7 @@ var tenantUser_manager_tool = {
 									data:$("#addTenantUser_form").serialize(),
 									beforeSend:function(){
 										$.messager.progress({
-											text:message("yly.common.saving")
+											text:message("ov.common.saving")
 										});
 									},
 									success:function(result,response,status){
@@ -166,18 +183,18 @@ var tenantUser_manager_tool = {
 		edit:function(){
 			var _edit_row = $('#tenantUser-table-list').datagrid('getSelected');
 			if( _edit_row == null ){
-				$.messager.alert(message("yly.common.select.editRow"));  
+				$.messager.alert(message("ov.common.select.editRow"));  
 				return false;
 			}
 			var _dialog = $('#editTenantUser').dialog({    
-				title: message("yly.common.edit"),     
+				title: message("ov.common.edit"),     
 			    width: 700,    
 			    height: 550,    
 			    modal: true,
 			    iconCls:'icon-mini-edit',
 			    href:'../tenantUser/edit.jhtml?id='+_edit_row.id,
 			    buttons:[{
-			    	text:message("yly.common.save"),
+			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
 						var validate = $('#editTenantUser_form').form('validate');
@@ -188,7 +205,7 @@ var tenantUser_manager_tool = {
 								data:$("#editTenantUser_form").serialize(),
 								beforeSend:function(){
 									$.messager.progress({
-										text:message("yly.common.saving")
+										text:message("ov.common.saving")
 									});
 								},
 								success:function(result,response,status){
@@ -201,7 +218,7 @@ var tenantUser_manager_tool = {
 						};
 					}
 				},{
-					text:message("yly.common.close"),
+					text:message("ov.common.close"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#editTenantUser').dialog("close").form("reset");
@@ -309,7 +326,7 @@ $(function(){
 		 method:"get",
 		 animate:true,
 		 lines:true,
-		 prompt:message("yly.common.please.select"),
+		 prompt:message("ov.common.please.select"),
 	     formatter:function(node){
 	    	node.text = node.name;
 			return node.name;
@@ -326,26 +343,26 @@ $(function(){
 	    valueField:'id',    
 	    textField:'name',
 	    cache: true,
-	    prompt:message("yly.common.please.select")
+	    prompt:message("ov.common.please.select")
 	});
 	$("#tenantUser-table-list").datagrid({
-		title:message("yly.tenantUser.list"),
+		title:message("ov.tenantUser.list"),
 		fitColumns:true,
 		toolbar:"#tenantUser_manager_tool",
 		url:'../tenantUser/list.jhtml',  
 		pagination:true,
-		loadMsg:message("yly.common.loading"),
+		loadMsg:message("ov.common.loading"),
 		striped:true,
 		onDblClickRow : function (rowIndex, rowData){
 			$('#tenantUserDetail').dialog({    
-			    title: message("yly.common.detail"),    
+			    title: message("ov.common.detail"),    
 			    width: 660,    
 			    height: 550, 
 			    cache: false,
 			    modal: true,
 			    href:'../tenantUser/details.jhtml?id='+rowData.id,
 			    buttons:[{
-					text:message("yly.common.close"),
+					text:message("ov.common.close"),
 					iconCls:'icon-cancel',
 					handler:function(){
 						 $('#tenantUserDetail').dialog("close");
@@ -356,42 +373,42 @@ $(function(){
 		columns:[
 		   [
 		      {field:'ck',checkbox:true},
-		      {title:message("yly.tenantUser.realName"),field:"realName",width:100,sortable:true},
-		      {title:message("yly.common.gender"),field:"gender",width:100,sortable:true,
+		      {title:message("ov.tenantUser.realName"),field:"realName",width:100,sortable:true},
+		      {title:message("ov.common.gender"),field:"gender",width:100,sortable:true,
 		    	  formatter: function(value,row,index){
 			    	  if(value == "MALE"){
-			    		  return  message("yly.common.male");
+			    		  return  message("ov.common.male");
 			    	  }else if (value = "FEMALE"){
-			    		  return  message("yly.common.female");
+			    		  return  message("ov.common.female");
 			    	  }
 		      	  }  },
-		      {title:message("yly.common.age"),field:"age",width:100,sortable:true},
-		      {title:message("yly.tenantUser.staffID"),field:"staffID",width:100,sortable:true},
-		      {title:message("yly.tenantUser.staffStatus"),field:"staffStatus",width:100,sortable:true,
+		      {title:message("ov.common.age"),field:"age",width:100,sortable:true},
+		      {title:message("ov.tenantUser.staffID"),field:"staffID",width:100,sortable:true},
+		      {title:message("ov.tenantUser.staffStatus"),field:"staffStatus",width:100,sortable:true,
 		    	  formatter: function(value,row,index){
 			    	  if(value == "INSERVICE"){
-			    		  return  message("yly.tenantUser.staffStatus.inService");
+			    		  return  message("ov.tenantUser.staffStatus.inService");
 			    	  }else if (value = "OUTSERVICE"){
-			    		  return  message("yly.tenantUser.staffStatus.outService");
+			    		  return  message("ov.tenantUser.staffStatus.outService");
 			    	  }
 		      	  }  
 		      },
 	    	  
-		      {title:message("yly.tenantUser.department"),field:"department",width:100,sortable:true,formatter: function(value,row,index){
+		      {title:message("ov.tenantUser.department"),field:"department",width:100,sortable:true,formatter: function(value,row,index){
 		    	  if(value){
 		    		  return  value.name;
 		    	  }else{
 		    		  return  value;
 		    	  }
 	      	  }},
-		      {title:message("yly.tenantUser.position"),field:"position",width:100,sortable:true,formatter: function(value,row,index){
+		      {title:message("ov.tenantUser.position"),field:"position",width:100,sortable:true,formatter: function(value,row,index){
 		    	  if(value){
 		    		  return  value.name;
 		    	  }else{
 		    		  return  value;
 		    	  }
 	      	  }},
-		      {title:message("yly.tenantUser.hireDate"),field:"hireDate",width:100,sortable:true,formatter: function(value,row,index){
+		      {title:message("ov.tenantUser.hireDate"),field:"hireDate",width:100,sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format("yyyy-MM-dd");
 				}
 		      },

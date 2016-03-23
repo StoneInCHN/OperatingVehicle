@@ -55,8 +55,8 @@ var messages = {
 
 
 		//租户用户
-		"ov.tenantUser.search":"用户查询",
-		"ov.tenantUser.list":"用户列表",
+		"ov.tenantUser.search":"人员查询",
+		"ov.tenantUser.list":"人员列表",
 		"ov.tenantUser.realName":"姓名",
 		"ov.tenantUser.gender":"性别",
 		"ov.tenantUser.age":"年龄",
@@ -67,6 +67,7 @@ var messages = {
 		"ov.tenantUser.department":"所在部门",
 		"ov.tenantUser.position":"担任职务",
 		"ov.tenantUser.hireDate":"入职时间",
+		"ov.tenantUser.add":"人员添加",
 		
 		//租户账号
 		"ov.tenantAccount.add":"添加用户",

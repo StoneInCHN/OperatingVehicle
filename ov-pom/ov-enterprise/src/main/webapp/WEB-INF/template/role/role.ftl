@@ -36,7 +36,7 @@
 	    	<tr>
 	    		<th>${message("ov.role.name")}:</th>
 	    		<td>
-	    			  <input class="easyui-textbox" type="text" name="name" validtype="length[0,150]" data-options="required:true,multiline:true,height:90,width:260"/> 
+	    			  <input class="easyui-textbox" type="text" id="addRoleName" name="name" validtype="length[0,150]" data-options="required:true,multiline:true,height:90,width:260"/> 
 	    		</td>
 	    	</tr>
 	    	<tr>

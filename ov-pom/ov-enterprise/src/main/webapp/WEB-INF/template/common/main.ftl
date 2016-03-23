@@ -69,6 +69,9 @@
 	</div>   
     <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:115" >
     	<ul title="${message("ov.system.config")}" id="systemManage">
+    		[@shiro.hasPermission name="userManage"]
+    		<li><a href="#" data-url="${base}/console/tenantUser/tenantUser.jhtml">人员管理</a></li>
+    		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="accountManage"]
     		<li><a href="#" data-url="${base}/console/tenantAccount/tenantAccount.jhtml">用户管理</a></li>
     		[/@shiro.hasPermission]
