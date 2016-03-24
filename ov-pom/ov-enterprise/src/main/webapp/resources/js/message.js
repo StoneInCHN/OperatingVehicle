@@ -92,6 +92,23 @@ var messages = {
 		"ov.tenantInfo.remark":"备注",
 		"ov.branchBusiness.list":"分公司列表",
 		
+		//用车请求
+		"ov.useCarRequest.to_confirm":"待确认",
+		"ov.useCarRequest.distributed":"已分配",
+		"ov.useCarRequest.finished":"已结束",
+		"ov.useCarRequest.cancelled":"已取消",
+		"ov.useCarRequest.rejected":"已驳回",
+		"ov.useCarRequest.break_contract":"已违约",
+		"ov.useCarRequest.list":"请求列表",
+		"ov.useCarRequest.title":"标题",
+		"ov.useCarRequest.startDate":"出发日期",
+		"ov.useCarRequest.startPositionDetails":"起始地",
+		"ov.useCarRequest.endPositionDetails":"目的地",
+		"ov.useCarRequest.status":"状态",
+		"ov.useCarRequest.personNum":"乘车人数",
+		"ov.useCarRequest.remark":"备注",
+		"ov.useCarRequest.add":"新增用车请求",
+		
 		//部门管理
 		"ov.department.name":"部门名称",
 		"ov.department.grade":"部门层级",

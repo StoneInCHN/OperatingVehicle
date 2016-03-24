@@ -1418,7 +1418,19 @@ public class CommonEnum {
 	  /**
 	   * 已结束
 	   */
-	  FINISHED
+	  FINISHED,
+	  /**
+	   * 已取消
+	   */
+	  CANCELLED,
+	  /**
+	   * 拒绝，驳回
+	   */
+	  REJECTED,
+	  /**
+	   * 违约
+	   */
+	  BREAK_CONTRACT
   }
   
 }

@@ -11,7 +11,6 @@ import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Filter;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TermQuery;
-import org.apache.lucene.search.TermRangeQuery;
 import org.apache.lucene.util.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,6 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
-import com.ov.entity.Department;
 import com.ov.entity.TenantInfo;
 import com.ov.entity.commonenum.CommonEnum.AccountStatus;
 import com.ov.framework.filter.Filter.Operator;
