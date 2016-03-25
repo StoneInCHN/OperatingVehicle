@@ -108,6 +108,7 @@ var messages = {
 		"ov.useCarRequest.personNum":"乘车人数",
 		"ov.useCarRequest.remark":"备注",
 		"ov.useCarRequest.add":"新增用车请求",
+		"ov.useCarRequest.select_start_position":"选择起始地",
 		
 		//部门管理
 		"ov.department.name":"部门名称",

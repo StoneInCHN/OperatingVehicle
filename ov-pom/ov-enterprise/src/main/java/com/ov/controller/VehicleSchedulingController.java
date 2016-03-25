@@ -3,13 +3,15 @@ package com.ov.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TermQuery;
-import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.util.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.ov.beans.Message;
+import com.ov.beans.Message.Type;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.VehicleScheduling;
 import com.ov.entity.commonenum.CommonEnum.VehicleSchedulingStatus;
@@ -157,6 +160,13 @@ public class VehicleSchedulingController extends BaseController{
 		}else {
 			return Message.error("ov.message.statusError");
 		}
+	}
+	
+	@RequestMapping(value = "/getIP", method = RequestMethod.GET)
+	public @ResponseBody Message getIP(HttpServletRequest request){
+		String remoteAddr = request.getRemoteAddr();
+		Message message = new Message(Type.success, remoteAddr);
+		return message;
 	}
 	
 	

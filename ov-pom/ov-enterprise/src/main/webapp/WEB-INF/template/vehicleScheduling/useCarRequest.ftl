@@ -1,4 +1,14 @@
+<style>
+.add_request_table tr td input{
+	width: 400px;
+}
+.tangram-suggestion-main {
+	z-index:9999;
+}
+</style>
+
 <script src="${base}/resources/modules/vehicleScheduling.js"></script>
+
 <div>
 	  <fieldset>
 	    <legend>${message("ov.useCarRequest.search")}</legend>
@@ -57,7 +67,7 @@
 </div>
 <div id="addUseCarRequest"> 
 	<form id="addUseCarRequest_form" method="post" class="form-table">
-	    <table class="table table-striped"  border="0">
+	    <table class="table table-striped add_request_table"  border="0">
 	    	<tr>
 	    		<th>${message("ov.useCarRequest.title")}:</th>
 	    		<td colspan="2">
@@ -79,19 +89,21 @@
 	    	<tr>
 	    		<th>${message("ov.useCarRequest.startPositionDetails")}:</th>
 	    		<td colspan="2">
-	    			 <input type="text" class="easyui-textbox" name="startPositionDetails" id= "startPositionDetails"  data-options="required:true"/>
+	    			<input type="text" class="easyui-textbox" name="startPositionDetails" id= "startPositionDetails"  data-options="required:true"/>
+	    			<input type="button" class="easyui-linkbutton" value="${message("ov.select")}" id="startPositionButton" style="width: 60px"/>
 	    		</td>
 	    	</tr>
 	    	<tr>
 	    		<th>${message("ov.useCarRequest.endPositionDetails")}:</th>
 	    		<td colspan="2">
-	    			 <input type="text" class="easyui-textbox" name="endPositionDetails" id= "endPositionDetails" data-options="required:true" />
+	    			<input type="text" class="easyui-textbox" name="endPositionDetails" id= "endPositionDetails" data-options="required:true" />
+	    			<input type="button" class="easyui-linkbutton" value="${message("ov.select")}" id="endPositionButton" style="width: 60px"/>
 	    		</td>
 	    	</tr>
 	    	<tr>
 	    		<th>${message("ov.useCarRequest.remark")}:</th>
 	    		<td colspan="2">
-	    			 <input type="text" class="easyui-textbox" name="remark" id= "remark" validtype="length[0,150]" data-options="multiline:true,height:90,width:260" />
+	    			 <input type="text" class="easyui-textbox" name="remark" id= "remark" validtype="length[0,150]" data-options="multiline:true,height:90,width:400" />
 	    		</td>
 	    	</tr>
 	    </table>
@@ -99,7 +111,7 @@
 </div>
 <div id="editUseCarRequest"></div>
 <div id="useCarRequestDetail"></div>
-
+<div id="mapContainer"></div>
 
 
 

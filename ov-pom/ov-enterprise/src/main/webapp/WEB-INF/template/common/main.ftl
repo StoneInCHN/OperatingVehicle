@@ -21,6 +21,8 @@
 	<!--[if lt IE 9]>
     <script type="text/javascript" src="${base}/resources/js/respond.1.4.2.min.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ulsOtfMZcNc4D6aQnBwwnOTt6ZKohflO"></script>
+    
   </head>
 
   <body class="easyui-layout" >   
