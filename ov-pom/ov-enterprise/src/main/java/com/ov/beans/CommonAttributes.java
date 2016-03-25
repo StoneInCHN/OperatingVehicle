@@ -16,6 +16,17 @@ public final class CommonAttributes {
 	/** common-config.properties文件路径 */
 	public static final String COMMON_CONFIG_PROPERTIES_PATH = "/common-config.properties";
 	
+	/**管理员*/
+	public static final String ADMIN = "admin";
+	/**管理员配置元*/
+	public static final String SYSTEM_MANAGE = "systemManage";
+	public static final String USER_MANAGE = "userManage";
+	public static final String ACCOUNT_MANAGE= "accountManage";
+	public static final String DEPARTMENT_MANAGE= "departmentManage";
+	public static final String AUTHORITY_MANAGE= "authorityManage";
+	public static final String ROLE_MANAGE= "roleManage";
+    
+	
 	/**
 	 * 不可实例化
 	 */

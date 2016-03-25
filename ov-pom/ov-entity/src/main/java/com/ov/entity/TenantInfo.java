@@ -214,7 +214,6 @@ public class TenantInfo extends BaseEntity {
   {
     this.versionConfig = versionConfig;
   }
-
   	@ManyToOne(fetch = FetchType.LAZY)
   	public TenantInfo getParent() {
 		return parent;

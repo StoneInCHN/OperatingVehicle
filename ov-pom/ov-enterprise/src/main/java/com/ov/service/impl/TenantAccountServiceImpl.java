@@ -19,6 +19,10 @@ import com.ov.entity.ConfigMeta;
 import com.ov.entity.Role;
 import com.ov.entity.TenantAccount;
 import com.ov.entity.TenantInfo;
+import com.ov.framework.filter.Filter;
+import com.ov.framework.filter.Filter.Operator;
+import com.ov.framework.paging.Page;
+import com.ov.framework.paging.Pageable;
 import com.ov.framework.service.impl.BaseServiceImpl;
 import com.ov.service.TenantAccountService;
 
@@ -206,6 +210,14 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
       }
     }
     return false;
+  }
+
+  @Override
+  public Page<TenantAccount> findPage(Pageable pageable, Long[] tenantIDs) {
+      List<Filter> filters = pageable.getFilters();
+      Filter tenantFilter = new Filter("tenantID", Operator.in, tenantIDs);
+      filters.add(tenantFilter);
+      return tenantAccountDao.findPage(pageable);
   }
 
 }

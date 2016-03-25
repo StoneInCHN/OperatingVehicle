@@ -60,7 +60,7 @@ $(function(){
 						}],
 						onOpen:function(){
 						    	$('#addDepartment_form').show();
-						    	$("#addDepartment_form_parentName").combotree({    
+						    	$("#addDepartment_parentName").combotree({    
 						    	    url: '../department/list.jhtml',    
 						    	    method:"get",
 						    	    animate:true,
@@ -70,8 +70,19 @@ $(function(){
 						    	    	node.text = node.name;
 						    			return node.name;
 						    		}
-									
 						    	});  
+						    	$("#addDepartment_tenantInfo").combotree({    
+								    url: '../tenantInfo/list.jhtml',    
+								    method:"get",
+								    animate:true,
+								    lines:true,
+								    required:true,
+								    prompt:message("ov.common.please.select"),
+								    formatter:function(node){
+								    	node.text = node.tenantName;
+										return node.tenantName;
+									}
+								});		
 						},
 						onClose:function(){
 						    	$('#addDepartment_form').form('reset');

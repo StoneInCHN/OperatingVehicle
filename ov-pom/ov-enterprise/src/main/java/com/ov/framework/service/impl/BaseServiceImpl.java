@@ -126,8 +126,8 @@ public class BaseServiceImpl<T, ID extends Serializable> implements BaseService<
   }
 
   @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-  public void save(T entity, Boolean isTenant) {
-    if (isTenant) {
+  public void save(T entity, Boolean isCurrentTenant) {
+    if (isCurrentTenant) {
       FieldFilterUtils.addFieldValue("tenantID", tenantAccountService.getCurrentTenantID(), entity);
     }
     baseDao.persist(entity);

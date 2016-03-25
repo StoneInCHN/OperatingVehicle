@@ -91,7 +91,9 @@ var messages = {
 		"ov.tenantInfo.zipCode":"邮编",
 		"ov.tenantInfo.remark":"备注",
 		"ov.branchBusiness.list":"分公司列表",
-		
+		"ov.tenantInfo.branch.admin.list":"分公司管理员列表",
+		"ov.tenantInfo.branch.admin.add":"分公司管理员添加",
+		"ov.tenantInfo.select.branch":"请选择子公司！",		
 		//用车请求
 		"ov.useCarRequest.to_confirm":"待确认",
 		"ov.useCarRequest.distributed":"已分配",

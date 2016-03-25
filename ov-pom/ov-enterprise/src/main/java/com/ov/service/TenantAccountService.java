@@ -6,6 +6,8 @@ import com.ov.entity.ConfigMeta;
 import com.ov.entity.TenantAccount;
 import com.ov.entity.TenantInfo;
 import com.ov.entity.VersionConfig;
+import com.ov.framework.paging.Page;
+import com.ov.framework.paging.Pageable;
 import com.ov.framework.service.BaseService;
 
 /**
@@ -119,5 +121,9 @@ public interface TenantAccountService extends BaseService<TenantAccount, Long> {
 	 * 
 	 */
 	boolean isSystemAdmin();
+	/**
+	 * 根据多个租户查找
+	 */
+    Page<TenantAccount> findPage(Pageable pageable, Long[] tenantIDs);
 	
 }

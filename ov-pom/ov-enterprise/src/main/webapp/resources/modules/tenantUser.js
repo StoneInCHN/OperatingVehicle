@@ -30,6 +30,7 @@ var tenantUser_manager_tool = {
 										$.messager.progress('close');
 										if(response == "success"){
 											showSuccessMsg(result.content);
+											$('#addTenantUser').dialog("close");
 											$('#addTenantUser_form').form("reset");
 											$("#tenantUser-table-list").datagrid('reload');
 										}else{
@@ -60,21 +61,42 @@ var tenantUser_manager_tool = {
 					    	node.text = node.tenantName;
 							return node.tenantName;
 						},
-					    onSelect: function(rec){    
-				           
+					    onSelect: function(tenantInfo){    
+					    	if(tenantInfo != null){
+						    	$("#tenantUserDepartment-add").combotree({    
+								    url: '../department/listByTenantID.jhtml?tenantID='+tenantInfo.id,    
+								    method:"get",
+								    animate:true,
+								    lines:true,
+								    required:true,
+								    prompt:message("ov.common.please.select"),
+								    formatter:function(node){
+								    	node.text = node.name;
+										return node.name;
+									},
+									onLoadSuccess: function(node, department){
+										if(department.length > 0){
+											$("#tenantUser_department").css('visibility','visible');
+										}else{
+											$("#tenantUser_department").css('visibility','hidden');
+											 $('#tenantUserPosition-add').combobox('clear');
+										}
+									},
+								    onSelect: function(department){    
+							            var url = '../position/findPositions.jhtml?id='+department.id;    
+							            $('#tenantUserPosition-add').combobox('clear');
+							            $('#tenantUserPosition-add').combobox('reload', url);    
+							        }
+								});
+					    	}
 				        }
 					});			    	
 			    	$("#tenantUserDepartment-add").combotree({    
-					    url: '../department/list.jhtml',    
 					    method:"get",
 					    animate:true,
 					    lines:true,
 					    required:true,
-					    prompt:message("ov.common.please.select"),
-					    formatter:function(node){
-					    	node.text = node.name;
-							return node.name;
-						}
+					    prompt:message("ov.common.please.select")
 					});
 			    	$("#tenantUserPosition-add").combobox({    
 					    valueField:'id',    
@@ -176,7 +198,7 @@ var tenantUser_manager_tool = {
 		edit:function(){
 			var _edit_row = $('#tenantUser-table-list').datagrid('getSelected');
 			if( _edit_row == null ){
-				$.messager.alert(message("ov.common.select.editRow"));  
+				$.messager.alert(message("ov.common.prompt"),message("ov.common.select.editRow"),'warning');  
 				return false;
 			}
 			var _dialog = $('#editTenantUser').dialog({    

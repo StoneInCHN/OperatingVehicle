@@ -1,6 +1,7 @@
 package com.ov.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.ov.entity.ConfigMeta;
 import com.ov.entity.MetaRelation;
@@ -21,4 +22,5 @@ public interface ConfigMetaService extends BaseService<ConfigMeta, Long> {
    * @return
    */
   List<ConfigMeta> findRelationFunction(ConfigMeta configMeta);
+  List<ConfigMeta> findSetByConfigKeys(String[] configKeys);
 }

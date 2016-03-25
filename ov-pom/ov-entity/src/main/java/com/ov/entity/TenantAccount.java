@@ -28,7 +28,6 @@ import com.ov.entity.commonenum.CommonEnum.AccountStatus;
 /**
  * 租户用户登录账户
  * 
- * @author shijun
  *
  */
 @Entity
@@ -78,7 +77,10 @@ public class TenantAccount extends BaseEntity {
    * 是否为内置账户
    */
   private Boolean isSystem;
-  
+  /**
+   * 是否为管理员
+   */
+  private Boolean isAdmin;
   /**
    *  租户用户
    */
@@ -104,6 +106,7 @@ public class TenantAccount extends BaseEntity {
   }
 
   @JsonProperty
+  @Index(name="tenant_account_accountstatus")
   @Field(store = Store.NO, index = org.hibernate.search.annotations.Index.UN_TOKENIZED, analyzer = @Analyzer(impl = IKAnalyzer.class))
   public AccountStatus getAccoutStatus() {
     return accoutStatus;
@@ -149,7 +152,15 @@ public class TenantAccount extends BaseEntity {
   public void setIsSystem(Boolean isSystem) {
     this.isSystem = isSystem;
   }
+  @JsonProperty
+  @Index(name="tenant_account_isadmin")
+  public Boolean getIsAdmin() {
+    return isAdmin;
+  }
 
+  public void setIsAdmin(Boolean isAdmin) {
+    this.isAdmin = isAdmin;
+  }
   /**
    * 获取角色
    * 
@@ -185,6 +196,7 @@ public class TenantAccount extends BaseEntity {
 
   @Column(length = 20)
   @JsonProperty
+  @Index(name="tenant_account_username")
   @Field(index=org.hibernate.search.annotations.Index.TOKENIZED,analyzer = @Analyzer(impl = IKAnalyzer.class))
   public String getUserName() {
     return userName;

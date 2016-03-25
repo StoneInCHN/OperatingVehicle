@@ -5,7 +5,10 @@ import java.util.Set;
 
 import com.ov.entity.ConfigMeta;
 import com.ov.entity.Department;
+import com.ov.entity.Role;
+import com.ov.entity.TenantAccount;
 import com.ov.entity.TenantInfo;
+import com.ov.entity.TenantUser;
 import com.ov.framework.service.BaseService;
 
 /**
@@ -32,6 +35,10 @@ public interface TenantInfoService extends BaseService<TenantInfo, Long> {
   Set<ConfigMeta> getCurrentTenantVersionPackage();
 
   List<TenantInfo> findRoots();
+
+  void addAdminTransaction(TenantUser tenantUser, TenantAccount tenantAccount, Role role);
+
+  void updateAdminTransaction(TenantUser tenantUser, TenantAccount tenantAccount);
 
 
 }

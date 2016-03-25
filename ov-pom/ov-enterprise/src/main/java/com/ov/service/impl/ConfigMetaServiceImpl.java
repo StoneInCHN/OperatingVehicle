@@ -2,6 +2,7 @@ package com.ov.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -80,6 +81,17 @@ public class ConfigMetaServiceImpl extends BaseServiceImpl<ConfigMeta, Long>
       }
       
     }
+    return configMetas;
+  }
+  /**
+   * 根据configKey查找config_meta的ID
+   */
+  @Override
+  public List<ConfigMeta> findSetByConfigKeys(String[] configKeys) {
+    List<Filter> filters = new ArrayList<Filter>();
+    Filter configKeyFilter = new Filter("configKey", Operator.in, configKeys);
+    filters.add(configKeyFilter);
+    List<ConfigMeta> configMetas = configMetaDao.findList(null, null, filters, null);
     return configMetas;
   }
 

@@ -55,7 +55,11 @@ public class DepartmentServiceImpl extends BaseServiceImpl<Department, Long> imp
   public List<Department> findRoots() {
     return departmentDao.findRoots(tenantAccountService.getCurrentTenantID(), null);
   }
-
+  
+  @Override
+  public List<Department> findRoots(Boolean isTenant, Long tenantID) {
+    return departmentDao.findRoots(tenantID, null);
+  }
   public List<Department> findRoots(Integer count) {
     return departmentDao.findRoots(tenantAccountService.getCurrentTenantID(), count);
   }
@@ -91,5 +95,6 @@ public class DepartmentServiceImpl extends BaseServiceImpl<Department, Long> imp
   public List<Department> findChildren(Department department, Integer count, String cacheRegion) {
     return departmentDao.findChildren(department, count);
   }
+
 
 }

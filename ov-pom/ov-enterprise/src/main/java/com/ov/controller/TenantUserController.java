@@ -169,13 +169,16 @@ public class TenantUserController extends BaseController
   }
 
   @RequestMapping (value = "/add", method = RequestMethod.POST)
-  public @ResponseBody Message add (TenantUser tenantUser,Long departmentId, Long positionId)
+  public @ResponseBody Message add (TenantUser tenantUser,Long tenantInfoId, Long departmentId, Long positionId)
   {
-    Department department = departmentService.find (departmentId);
-    Position position = positionService.find (positionId);
-    tenantUser.setDepartment (department);
-    tenantUser.setPosition (position);
-    tenantUserService.save (tenantUser,true);
+    if (departmentId != null && positionId != null) {
+      Department department = departmentService.find (departmentId);
+      Position position = positionService.find (positionId);
+      tenantUser.setDepartment (department);
+      tenantUser.setPosition (position);
+    }
+    tenantUser.setTenantID(tenantInfoId);
+    tenantUserService.save (tenantUser,false);
     return SUCCESS_MESSAGE;
   }
 

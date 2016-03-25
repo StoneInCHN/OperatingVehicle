@@ -145,7 +145,7 @@ public interface BaseService<T, ID extends Serializable>
    * @param isTenant 根据租户保存
    * @param entity 实体对象
    */
-  void save (T entity, Boolean isTenant);
+  void save (T entity, Boolean isCurrentTenant);
 
   /**
    * 更新实体对象

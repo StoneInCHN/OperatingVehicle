@@ -145,12 +145,12 @@
 	    		</td>
 	    	</tr>
 	    	<tr>
-	    		<th>所在公司:</th>
+	    		<th>${message("ov.tenantUser.tenantInfo")}:</th>
 	    		<td>
 	    			 <input class="easyui-combobox" id="tenantUserTenantInfo-add" name="tenantInfoId" />   
 	    		</td>
 	    	</tr>
-	    	<tr>
+	    	<tr id="tenantUser_department" style="visibility:hidden">
 	    		<th>${message("ov.tenantUser.department")}:</th>
 	    		<td>
 	    			 <input class="easyui-combobox" id="tenantUserDepartment-add" name="departmentId" />   

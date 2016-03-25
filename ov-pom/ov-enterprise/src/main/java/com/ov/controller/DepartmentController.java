@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.Department;
 import com.ov.service.DepartmentService;
+import com.ov.service.TenantInfoService;
 
 /**
  * 部门管理
@@ -31,6 +33,10 @@ public class DepartmentController extends BaseController {
   public String list(ModelMap model) {
     return "department/department";
   }
+  
+  @Autowired
+  private TenantInfoService tenantInfoService;
+  
   /**
    * 部门列表
    * @return
@@ -39,7 +45,17 @@ public class DepartmentController extends BaseController {
   public @ResponseBody List<Department> list() {
     return departmentService.findRoots();
   }
-
+  /**
+   * 部门列表（根据租户）
+   * @return
+   */
+  @RequestMapping(value = "/listByTenantID", method = RequestMethod.GET)
+  public @ResponseBody List<Department> listByTenantID(Long tenantID) {
+    if (tenantID != null && tenantInfoService.find(tenantID) != null) {
+      return departmentService.findRoots(true, tenantID);
+    }
+    return null;
+  }
   /**
    * 编辑部门页面
    * 
@@ -59,7 +75,7 @@ public class DepartmentController extends BaseController {
    * @return
    */
   @RequestMapping(value = "/add", method = RequestMethod.POST)
-  public @ResponseBody Message add(Long parentId, Department department) {
+  public @ResponseBody Message add(Long tenantID, Long parentId, Department department) {
 
     if (parentId != null) {
       Department parent = departmentService.find(parentId);
@@ -72,7 +88,8 @@ public class DepartmentController extends BaseController {
     } else {
       department.setGrade(1);
     }
-    departmentService.save(department, true);;
+    department.setTenantID(tenantID);
+    departmentService.save(department, false);;
     return SUCCESS_MESSAGE;
   }
   /**

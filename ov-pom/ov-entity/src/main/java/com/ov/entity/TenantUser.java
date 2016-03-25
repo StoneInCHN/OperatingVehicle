@@ -90,6 +90,10 @@ public class TenantUser extends BaseEntity {
   
   /**所在部门*/
   private Department department;
+  /**
+   * 租户名称
+   */
+  private String tenantName;
   
   /**担任职务*/
   private Position position;
@@ -297,6 +301,16 @@ public class TenantUser extends BaseEntity {
 
   public void setIsJoinNurse(Boolean isJoinNurse) {
     this.isJoinNurse = isJoinNurse;
+  }
+
+  @Column(length = 80)
+  @JsonProperty
+  public String getTenantName() {
+    return tenantName;
+  }
+
+  public void setTenantName(String tenantName) {
+    this.tenantName = tenantName;
   }
 
 }

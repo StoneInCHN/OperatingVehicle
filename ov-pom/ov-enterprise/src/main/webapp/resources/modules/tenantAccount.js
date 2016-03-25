@@ -52,7 +52,7 @@ var tenantAccount_manager_tool = {
 		edit:function(){
 			var _edit_row = $('#tenantAccount-table-list').datagrid('getSelected');
 			if( _edit_row == null ){
-				$.messager.alert(message("ov.common.select.editRow"));  
+				$.messager.alert(message("ov.common.prompt"),message("ov.common.select.editRow"),'warning');  
 				return false;
 			}
 			var _dialog = $('#editTenantAccount').dialog({    

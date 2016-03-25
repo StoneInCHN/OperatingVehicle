@@ -26,6 +26,8 @@ public interface DepartmentService extends BaseService<Department, Long> {
 
 
   List<Department> findRoots(Integer count);
+  
+  List<Department> findRoots(Boolean isTenant, Long tenantID);
 
 
   List<Department> findRoots(Integer count, String cacheRegion);
