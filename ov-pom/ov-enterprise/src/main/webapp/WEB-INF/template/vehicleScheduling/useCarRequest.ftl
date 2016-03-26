@@ -91,6 +91,8 @@
 	    		<td colspan="2">
 	    			<input type="text" class="easyui-textbox" name="startPositionDetails" id= "startPositionDetails"  data-options="required:true"/>
 	    			<input type="button" class="easyui-linkbutton" value="${message("ov.select")}" id="startPositionButton" style="width: 60px"/>
+	    			<input type="text" style="display: none;" id="startLongitude" name="startLongitude"/>
+	    			<input type="text" style="display: none;" id="startLatitude" name="startLatitude"/>
 	    		</td>
 	    	</tr>
 	    	<tr>
@@ -98,6 +100,8 @@
 	    		<td colspan="2">
 	    			<input type="text" class="easyui-textbox" name="endPositionDetails" id= "endPositionDetails" data-options="required:true" />
 	    			<input type="button" class="easyui-linkbutton" value="${message("ov.select")}" id="endPositionButton" style="width: 60px"/>
+	    			<input type="text" style="display: none;" id="endLongitude" name="endLongitude"/>
+	    			<input type="text" style="display: none;" id="endLatitude" name="endLatitude"/>
 	    		</td>
 	    	</tr>
 	    	<tr>

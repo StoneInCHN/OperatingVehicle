@@ -24,6 +24,7 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 import com.ov.beans.Message;
 import com.ov.beans.Message.Type;
 import com.ov.controller.base.BaseController;
+import com.ov.entity.TenantInfo;
 import com.ov.entity.VehicleScheduling;
 import com.ov.entity.commonenum.CommonEnum.VehicleSchedulingStatus;
 import com.ov.framework.filter.Filter;
@@ -31,6 +32,7 @@ import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
 import com.ov.service.TenantAccountService;
+import com.ov.service.TenantInfoService;
 import com.ov.service.VehicleSchedulingService;
 
 @Controller("vehicleSchedulingController")
@@ -42,6 +44,9 @@ public class VehicleSchedulingController extends BaseController{
 
 	@Autowired
 	private TenantAccountService tenantAccountService;
+	
+	@Autowired
+	private TenantInfoService tenantInfoService;
 	
 	@RequestMapping(value = "/useCarRequest", method = RequestMethod.GET)
 	public String useCarRequest(){
@@ -119,9 +124,11 @@ public class VehicleSchedulingController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/addRequest", method = RequestMethod.POST)
-	public @ResponseBody Message addBranch(VehicleScheduling vehicleScheduling){
+	public @ResponseBody Message addRequest(VehicleScheduling vehicleScheduling){
 		vehicleScheduling.setStatus(VehicleSchedulingStatus.TO_CONFIRM);
 		vehicleScheduling.setRequestBusiness(tenantAccountService.getCurrentTenantInfo());
+//		Long id = tenantAccountService.getCurrentTenantInfo().getId();
+//		TenantInfo tenantInfo = tenantInfoService.find(id);
 		vehicleScheduling.setParent(tenantAccountService.getCurrentTenantInfo().getParent());
 		vehicleSchedulingService.save(vehicleScheduling);
 		return SUCCESS_MESSAGE;

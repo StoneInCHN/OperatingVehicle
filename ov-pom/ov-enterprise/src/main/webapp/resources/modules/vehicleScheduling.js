@@ -99,6 +99,7 @@ var useCarRequest_manager_tool = {
 };
 
 $(function(){
+	var map_ip_location = "http://api.map.baidu.com/location/ip?ak=ulsOtfMZcNc4D6aQnBwwnOTt6ZKohflO&coor=bd09ll";
 
 	$("#useCarRequest-table-list").datagrid({
 		title:message("ov.useCarRequest.list"),
@@ -168,15 +169,8 @@ $(function(){
 		this.select();
 	});
 	
-	//百度地图api
-	function G(id) {
-		return document.getElementById(id);
-	}
-	
-	
 	$("#startPositionButton").click(function(){
 		
-		var map_ip_location = "http://api.map.baidu.com/location/ip?ak=ulsOtfMZcNc4D6aQnBwwnOTt6ZKohflO&coor=bd09ll";
 		$.ajax({
 			url:map_ip_location,
 			type:"get",
@@ -184,127 +178,157 @@ $(function(){
 			data: "",
 			success:function(result){
 
-				$('#mapContainer').dialog({    
-					title: message("ov.useCarRequest.select_start_position"),     
-				    width: 800,    
-				    height: 600,    
-				    modal: true,
-				    iconCls:'icon-mini-add',
-				    onOpen:function(){
-						
-				    }
-				});			
-				
-				var map = new BMap.Map("mapContainer");          // 创建地图实例  
-				var point = new BMap.Point(result.content.point.x, result.content.point.y);  // 创建点坐标  
-				map.centerAndZoom(point, 11);	
-
-				// 定义一个控件类,即function
-				function InputControl(){
-				  // 默认停靠位置和偏移量
-				  this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
-				  this.defaultOffset = new BMap.Size(15, 15);
-				}
-
-				InputControl.prototype = new BMap.Control();
-				InputControl.prototype.initialize = function(map){
-				  
-					  var div = document.createElement("div");
-					  var input = document.createElement("input");
-					  input.id = "suggestId";
-					  input.type = "text";
-					  div.appendChild(input);
-					  // 设置样式
-					  div.style.cursor = "pointer";
-					  div.style.border = "1px solid gray";
-					  div.style.backgroundColor = "white";
-					  // 添加DOM元素到地图中
-					  map.getContainer().appendChild(div);
-					  // 将DOM元素返回
-					  return div;
-  
-				}
-				var myInputCtrl = new InputControl();
-				// 添加到地图当中
-				map.addControl(myInputCtrl);
-				
-				
-				function DivControl(){
-				  // 默认停靠位置和偏移量
-				  this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
-				  this.defaultOffset = new BMap.Size(200, 15);
-				}
-
-				DivControl.prototype = new BMap.Control();
-				DivControl.prototype.initialize = function(map){
-				  
-					  var div = document.createElement("div");
-					  div.id = "searchResultPanel";
-					  div.style.border = "1px solid #C0C0C0";
-					  div.style.width = "150px";
-					  div.style.height = "25px";
-					  div.style.display = "none";
-					  div.style.position = "relative";
-					  div.style.zIndex = "9009";
-					  map.getContainer().appendChild(div);
-					  return div;
-  
-				}
-				var myDivCtrl = new DivControl();
-				// 添加到地图当中
-				map.addControl(myDivCtrl);
-
-				var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
-						{"input" : "suggestId"
-						,"location" : map
-					});
-				
-				ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
-					var str = "";
-					var _value = e.fromitem.value;
-					var value = "";
-					if (e.fromitem.index > -1) {
-						value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
-					}    
-					str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
-					
-					value = "";
-					if (e.toitem.index > -1) {
-						_value = e.toitem.value;
-						value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
-					}    
-					str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
-					G("searchResultPanel").innerHTML = str;
-				});
-
-				var myValue;
-				ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
-				var _value = e.item.value;
-					myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
-					G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
-					
-					setPlace();
-				});
-
-				function setPlace(){
-					map.clearOverlays();    //清除地图上所有覆盖物
-					function myFun(){
-						var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
-						map.centerAndZoom(pp, 18);
-						map.addOverlay(new BMap.Marker(pp));    //添加标注
-					}
-					var local = new BMap.LocalSearch(map, { //智能搜索
-					  onSearchComplete: myFun
-					});
-					local.search(myValue);
-				}
-
+				createMap(result.content.point.x, result.content.point.y, message("ov.useCarRequest.select_start_position"),
+						"#startLongitude", "#startLatitude", "#startPositionDetails");
 				
 			}
 		});
-		
-		
+			
 	})
 	
-	 
+	$("#endPositionButton").click(function(){
+		$.ajax({
+			url:map_ip_location,
+			type:"get",
+			dataType: 'JSONP',
+			data: "",
+			success:function(result){
+				
+				createMap(result.content.point.x, result.content.point.y, message("ov.useCarRequest.select_end_position"),
+						"#endLongitude", "#endLatitude", "#endPositionDetails");
+				
+			}
+		});
+	})
+	
+	function createMap(x, y, title, lng, lat, details){
+		$('#mapContainer').dialog({    
+			title: title,     
+		    width: 800,    
+		    height: 500,    
+		    modal: true,
+		    iconCls:'icon-mini-add',
+		    onOpen:function(){}
+		});
+		
+		var map = new BMap.Map("mapContainer");          // 创建地图实例  
+		var point = new BMap.Point(x, y);  // 创建点坐标  
+		map.centerAndZoom(point, 11);	
+		map.enableScrollWheelZoom();	//启用滚轮放大缩小，默认禁用
+		map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+		map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+		map.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件
+		map.addControl(new BMap.OverviewMapControl({ 
+			isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT }));   //右下角，打开
+		map.addEventListener("click", showInfo);
+		var geoc = new BMap.Geocoder();  //地理编码
+
+		function showInfo(e){
+			var pt = e.point;
+			$(lng).val(pt.lng);
+			$(lat).val(pt.lat);
+			geoc.getLocation(pt, function(rs){
+				var addComp = rs.addressComponents;
+				var addressDetails = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+//				alert(addressDetails);
+				$(details).textbox('setValue', addressDetails);
+				$('#mapContainer').dialog("close");
+			});
+		}
+		
+		//输入控件
+		function InputControl(){
+		  // 默认停靠位置和偏移量
+		  this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+		  this.defaultOffset = new BMap.Size(80, 15);
+		}
+
+		InputControl.prototype = new BMap.Control();
+		InputControl.prototype.initialize = function(map){
+		  var div = document.createElement("div");
+		  var input = document.createElement("input");
+		  input.id = "suggestId";
+		  input.type = "text";
+		  div.appendChild(input);
+		  div.style.cursor = "pointer";
+		  div.style.border = "1px solid gray";
+		  div.style.backgroundColor = "white";
+		  map.getContainer().appendChild(div);
+		  return div;
+		}
+		var myInputCtrl = new InputControl();
+		map.addControl(myInputCtrl);
+		
+		//搜索显示控件
+		function DivControl(){
+		  this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+		  this.defaultOffset = new BMap.Size(200, 15);
+		}
+
+		DivControl.prototype = new BMap.Control();
+		DivControl.prototype.initialize = function(map){
+		  var div = document.createElement("div");
+		  div.id = "searchResultPanel";
+		  div.style.border = "1px solid #C0C0C0";
+		  div.style.width = "150px";
+		  div.style.height = "25px";
+		  div.style.display = "none";
+		  div.style.position = "relative";
+		  div.style.zIndex = "9009";
+		  map.getContainer().appendChild(div);
+		  return div;
+		}
+		var myDivCtrl = new DivControl();
+		map.addControl(myDivCtrl);
+
+		var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+				{"input" : "suggestId"
+				,"location" : map
+			});
+		
+		function G(id) {
+			return document.getElementById(id);
+		}
+		
+		ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+			var str = "";
+			var _value = e.fromitem.value;
+			var value = "";
+			if (e.fromitem.index > -1) {
+				value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+			}    
+			str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+			
+			value = "";
+			if (e.toitem.index > -1) {
+				_value = e.toitem.value;
+				value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+			}    
+			str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+			G("searchResultPanel").innerHTML = str;
+		});
+
+		var myValue;
+		ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+		var _value = e.item.value;
+			myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+			G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+			
+			setPlace();
+		});
+
+		function setPlace(){
+			map.clearOverlays();    //清除地图上所有覆盖物
+			function myFun(){
+				var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+				map.centerAndZoom(pp, 18);
+				map.addOverlay(new BMap.Marker(pp));    //添加标注
+			}
+			var local = new BMap.LocalSearch(map, { //智能搜索
+			  onSearchComplete: myFun
+			});
+			local.search(myValue);
+		}
+	}
+	
 })
