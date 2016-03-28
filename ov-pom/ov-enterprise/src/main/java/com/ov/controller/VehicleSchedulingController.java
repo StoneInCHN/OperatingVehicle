@@ -24,7 +24,6 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 import com.ov.beans.Message;
 import com.ov.beans.Message.Type;
 import com.ov.controller.base.BaseController;
-import com.ov.entity.TenantInfo;
 import com.ov.entity.VehicleScheduling;
 import com.ov.entity.commonenum.CommonEnum.VehicleSchedulingStatus;
 import com.ov.framework.filter.Filter;
@@ -38,6 +37,10 @@ import com.ov.service.VehicleSchedulingService;
 @Controller("vehicleSchedulingController")
 @RequestMapping("console/vehicleScheduling")
 public class VehicleSchedulingController extends BaseController{
+	
+	private static final String CHILDREN_REQUEST = "children";
+	
+	private static final String PARENT_REQUEST = "parent";
 	
 	@Autowired
 	private VehicleSchedulingService vehicleSchedulingService;
@@ -54,12 +57,12 @@ public class VehicleSchedulingController extends BaseController{
 	}
 	
 	/**
-	 * 子公司用车请求列表
+	 * 用车请求列表
 	 * @param pageable
 	 * @return
 	 */
 	@RequestMapping(value = "/listRequest", method = RequestMethod.POST)
-	public @ResponseBody Page<VehicleScheduling> listRequest(Pageable pageable, String titlesSearch,
+	public @ResponseBody Page<VehicleScheduling> listRequest(Pageable pageable, String titlesSearch, String childrenOrParent, 
 			String startPositionDetailsSearch, String endPositionDetailsSearch, VehicleSchedulingStatus statusSearch){
 		
 		IKAnalyzer analyzer = new IKAnalyzer ();
@@ -114,7 +117,12 @@ public class VehicleSchedulingController extends BaseController{
 	    }
 		
 		List<Filter> filters = new ArrayList<>();
-		Filter filter = new Filter("requestBusiness", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+		Filter filter = null;
+		if (CHILDREN_REQUEST.equals(childrenOrParent)) {
+			filter = new Filter("requestBusiness", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+		}else if (PARENT_REQUEST.equals(childrenOrParent)) {
+			filter = new Filter("parent", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+		}
 		filters.add(filter);
 		pageable.setFilters(filters);
 		return vehicleSchedulingService.findPage(pageable);
@@ -127,8 +135,6 @@ public class VehicleSchedulingController extends BaseController{
 	public @ResponseBody Message addRequest(VehicleScheduling vehicleScheduling){
 		vehicleScheduling.setStatus(VehicleSchedulingStatus.TO_CONFIRM);
 		vehicleScheduling.setRequestBusiness(tenantAccountService.getCurrentTenantInfo());
-//		Long id = tenantAccountService.getCurrentTenantInfo().getId();
-//		TenantInfo tenantInfo = tenantInfoService.find(id);
 		vehicleScheduling.setParent(tenantAccountService.getCurrentTenantInfo().getParent());
 		vehicleSchedulingService.save(vehicleScheduling);
 		return SUCCESS_MESSAGE;
@@ -168,13 +174,34 @@ public class VehicleSchedulingController extends BaseController{
 			return Message.error("ov.message.statusError");
 		}
 	}
-	
+	/**
+	 * 获取当前访问者IP
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/getIP", method = RequestMethod.GET)
 	public @ResponseBody Message getIP(HttpServletRequest request){
 		String remoteAddr = request.getRemoteAddr();
 		Message message = new Message(Type.success, remoteAddr);
 		return message;
 	}
+	/**
+	 * 车辆分配列表
+	 * @return
+	 */
+	@RequestMapping(value = "/vehicleAssign", method = RequestMethod.GET)
+	public String vehicleAssign(){
+		return "vehicleScheduling/vehicleAssign";
+	}
+	/**
+	 * 车辆分配弹出框
+	 * @return
+	 */
+	@RequestMapping(value = "/assignVehicleView", method = RequestMethod.GET)
+	public String assignVehicleView(){
+		return "vehicleScheduling/assignVehicleView";
+	}
+	
 	
 	
 }

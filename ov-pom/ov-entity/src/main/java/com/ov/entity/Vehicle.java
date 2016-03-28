@@ -20,6 +20,7 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
+import com.ov.entity.commonenum.CommonEnum.VehicleStatus;
 
 /**
  * The persistent class for the csh_vehicle database table.
@@ -128,6 +129,11 @@ public class Vehicle extends BaseEntity {
    * 所属车队
    */
   private Motorcade motorcade;
+  
+  /**
+   * 状态
+   */
+  private VehicleStatus vehicleStatus;
   
 
   @Column(length = 200)
@@ -310,7 +316,14 @@ public class Vehicle extends BaseEntity {
 	public void setMotorcade(Motorcade motorcade) {
 		this.motorcade = motorcade;
 	}
+	
+	public VehicleStatus getVehicleStatus() {
+		return vehicleStatus;
+	}
 
+	public void setVehicleStatus(VehicleStatus vehicleStatus) {
+		this.vehicleStatus = vehicleStatus;
+	}
 
 
 }

@@ -1432,5 +1432,23 @@ public class CommonEnum {
 	   */
 	  BREAK_CONTRACT
   }
+  /**
+   * 车辆状态
+   *
+   */
+  public enum VehicleStatus{
+	  /**
+	   * 可用
+	   */
+	  ENABLE,
+	  /**
+	   * 不可用
+	   */
+	  DISABLE,
+	  /**
+	   * 使用中
+	   */
+	  WORKING
+  }
   
 }

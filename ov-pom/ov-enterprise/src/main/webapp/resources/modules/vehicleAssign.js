@@ -5,10 +5,10 @@ var vehicleAssign_manager_tool = {
 				$.messager.alert(message("ov.common.select.editRow"));  
 				return false;
 			}
-			var _dialog = $('#assignUseCarRequest').dialog({    
+			var _dialog = $('#assignVehicleView').dialog({    
 				title: message("ov.common.assign"),     
-			    width: 400,    
-			    height: 350,    
+			    width: 800,    
+			    height: 500,    
 			    modal: true,
 			    iconCls:'icon-mini-edit',
 			    href:'../vehicleScheduling/assignVehicleView.jhtml?id='+_edit_row.id,
@@ -16,12 +16,12 @@ var vehicleAssign_manager_tool = {
 			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
-						var validate = $('#editUseCarRequest_form').form('validate');
+						var validate = $('#assignVehicleView_form').form('validate');
 						if(validate){
 							$.ajax({
-								url:"../vehicleScheduling/updateRequest.jhtml",
+								url:"../vehicleScheduling/assignVehicle.jhtml",
 								type:"post",
-								data:$("#editUseCarRequest_form").serialize(),
+								data:$("#assignVehicleView_form").serialize(),
 								beforeSend:function(){
 									$.messager.progress({
 										text:message("ov.common.saving")
@@ -30,7 +30,7 @@ var vehicleAssign_manager_tool = {
 								success:function(result,response,status){
 									$.messager.progress('close');
 										showSuccessMsg(result.content);
-										$('#editUseCarRequest').dialog("close");
+										$('#assignUseCarRequest').dialog("close");
 										$("#useCarRequest-table-list").datagrid('reload');
 								}
 							});
@@ -40,7 +40,7 @@ var vehicleAssign_manager_tool = {
 					text:message("ov.common.close"),
 					iconCls:'icon-cancel',
 					handler:function(){
-						 $('#editUseCarRequest').dialog("close").form("reset");
+						 $('#assignUseCarRequest').dialog("close").form("reset");
 					}
 			    }]
 			});  

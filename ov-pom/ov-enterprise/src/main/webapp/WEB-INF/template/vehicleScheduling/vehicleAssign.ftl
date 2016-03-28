@@ -56,7 +56,7 @@
 	<div class="tool-filter"></div>
 </div>
 
-<div id="assignUseCarRequest"></div>
+<div id="assignVehicleView"></div>
 <div id="useCarRequestDetail"></div>
 
 
