@@ -105,7 +105,7 @@ $(function(){
 		title:message("ov.useCarRequest.list"),
 		fitColumns:true,
 		toolbar:"#useCarRequest_manager_tool",
-		url:'../vehicleScheduling/listRequest.jhtml',  
+		url:'../vehicleScheduling/listRequest.jhtml?childrenOrParent=children',  
 		pagination:true,
 		loadMsg:message("ov.common.loading"),
 		striped:true,

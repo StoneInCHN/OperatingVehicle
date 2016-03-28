@@ -1,9 +1,14 @@
 package com.ov.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -80,7 +85,7 @@ public class VehicleScheduling extends BaseEntity{
 	/**
 	 * 拥堵费
 	 */
-	private Float congestionCharge;
+	private BigDecimal congestionCharge;
 	
 	/**
 	 * 备注
@@ -101,6 +106,12 @@ public class VehicleScheduling extends BaseEntity{
 	 * 总公司
 	 */
 	private TenantInfo parent;
+	
+	/**
+	 * 分配的车辆
+	 */
+	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
+	
 
 	@Column(length = 100)
 	@JsonProperty
@@ -191,11 +202,11 @@ public class VehicleScheduling extends BaseEntity{
 	}
 
 	@Column
-	public Float getCongestionCharge() {
+	public BigDecimal getCongestionCharge() {
 		return congestionCharge;
 	}
 
-	public void setCongestionCharge(Float congestionCharge) {
+	public void setCongestionCharge(BigDecimal congestionCharge) {
 		this.congestionCharge = congestionCharge;
 	}
 
@@ -235,6 +246,16 @@ public class VehicleScheduling extends BaseEntity{
 
 	public void setParent(TenantInfo parent) {
 		this.parent = parent;
+	}
+
+	@ManyToMany
+	@JoinTable(name = "ov_scheduling_vehicle")
+	public Set<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+	public void setVehicles(Set<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 	
 	

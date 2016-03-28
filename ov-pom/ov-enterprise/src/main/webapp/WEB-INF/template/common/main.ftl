@@ -95,7 +95,10 @@
     	<ul title="${message("ov.vehicle.scheduling")}" id="vehicleScheduling">
     		[@shiro.hasPermission name="useCarRequest"]
     		<li><a href="#" data-url="${base}/console/vehicleScheduling/useCarRequest.jhtml">用车请求</a></li>
-    		[/@shiro.hasPermission]		
+    		[/@shiro.hasPermission]	
+    		[@shiro.hasPermission name="vehicleAssign"]
+    		<li><a href="#" data-url="${base}/console/vehicleScheduling/vehicleAssign.jhtml">车辆指派</a></li>
+    		[/@shiro.hasPermission]	
     	</ul>     
     </div>
   

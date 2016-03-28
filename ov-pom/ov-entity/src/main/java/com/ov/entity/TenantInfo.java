@@ -105,6 +105,11 @@ public class TenantInfo extends BaseEntity {
    */
   private Set<VehicleScheduling> dealScheduling = new HashSet<VehicleScheduling>(); 
   
+  /**
+   * 所有车队
+   * @return
+   */
+  private Set<Motorcade> motorcades = new HashSet<Motorcade>();
   
   @Column(length = 20)
   public String getOrgCode() {
@@ -248,6 +253,15 @@ public class TenantInfo extends BaseEntity {
 
 	public void setDealScheduling(Set<VehicleScheduling> dealScheduling) {
 		this.dealScheduling = dealScheduling;
+	}
+
+	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+	public Set<Motorcade> getMotorcades() {
+		return motorcades;
+	}
+
+	public void setMotorcades(Set<Motorcade> motorcades) {
+		this.motorcades = motorcades;
 	}
 	
 

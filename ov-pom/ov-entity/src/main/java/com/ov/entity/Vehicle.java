@@ -123,6 +123,12 @@ public class Vehicle extends BaseEntity {
    * 上次保养里程
    */
   private Long lastMaintainMileage;
+  
+  /**
+   * 所属车队
+   */
+  private Motorcade motorcade;
+  
 
   @Column(length = 200)
   public String getBrandIcon() {
@@ -296,6 +302,14 @@ public class Vehicle extends BaseEntity {
   public void setPlateDate(Date plateDate) {
     this.plateDate = plateDate;
   }
+  	@ManyToOne
+	public Motorcade getMotorcade() {
+		return motorcade;
+	}
+	
+	public void setMotorcade(Motorcade motorcade) {
+		this.motorcade = motorcade;
+	}
 
 
 
