@@ -22,8 +22,8 @@ import com.ov.entity.base.BaseEntity;
  * 
  */
 @Entity
-@Table (name = "csh_vehicle_brand_detail")
-@SequenceGenerator (name = "sequenceGenerator", sequenceName = "csh_vehicle_brand_detail_sequence")
+@Table (name = "ov_vehicle_brand_detail")
+@SequenceGenerator (name = "sequenceGenerator", sequenceName = "ov_vehicle_brand_detail_sequence")
 public class VehicleBrandDetail extends BaseEntity
 {
   private static final long serialVersionUID = 1L;
