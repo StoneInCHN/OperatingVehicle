@@ -39,7 +39,7 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
   @Resource(name = "tenantAccountDaoImpl")
   private TenantAccountDao tenantAccountDao;
 
-  @Resource(name = "tenantAccountDaoImpl")
+  @Resource
   public void setBaseDao(TenantAccountDao tenantAccountDao) {
     super.setBaseDao(tenantAccountDao);
   }
