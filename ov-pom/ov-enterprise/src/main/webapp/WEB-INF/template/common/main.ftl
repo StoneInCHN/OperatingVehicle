@@ -114,7 +114,14 @@
 						    		<div id="maintenanceChargeReportDiv" style="height:300px;width: 800px;"></div>
 						    	</div>
 						</div>
-
+						<div class="row index-report">
+								<div class="col-md-6 index-report-item">
+						    		<div id="oilChargeReportDiv" style="height:300px;width: 800px;"></div>
+						    	</div>
+						    	<div class="col-md-6 index-report-item">
+						    		<div id="vehicleMileageChargeReportDiv" style="height:300px;width: 800px;"></div>
+						    	</div>
+						</div>
 						</div>
 					</div>
 		    </div>    

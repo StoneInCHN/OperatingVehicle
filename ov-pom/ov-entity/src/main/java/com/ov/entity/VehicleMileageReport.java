@@ -48,7 +48,7 @@ public class VehicleMileageReport extends BaseEntity {
   /**
    * 报告统计时间
    */
-  private Date ehicleMileageStatisticsDate;
+  private Date vehicleMileageStatisticsDate;
 	
 	
 	@Index(name="vehicle_mileage_report_tenantid")
@@ -71,6 +71,7 @@ public class VehicleMileageReport extends BaseEntity {
 	}
 
 	@Column(nullable = false)
+	@JsonProperty
 	public Long getMileage() {
 		return mileage;
 	}
@@ -78,15 +79,17 @@ public class VehicleMileageReport extends BaseEntity {
 	public void setMileage(Long mileage) {
 		this.mileage = mileage;
 	}
-	
 	@JsonProperty
 	@Temporal(TemporalType.DATE)
-	public Date getEhicleMileageStatisticsDate() {
-		return ehicleMileageStatisticsDate;
+	public Date getVehicleMileageStatisticsDate() {
+		return vehicleMileageStatisticsDate;
 	}
 
-	public void setEhicleMileageStatisticsDate(Date ehicleMileageStatisticsDate) {
-		this.ehicleMileageStatisticsDate = ehicleMileageStatisticsDate;
+	public void setVehicleMileageStatisticsDate(Date vehicleMileageStatisticsDate) {
+		this.vehicleMileageStatisticsDate = vehicleMileageStatisticsDate;
 	}
+	
+
+
 	
 }

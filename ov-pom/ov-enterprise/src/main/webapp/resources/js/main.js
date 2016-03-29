@@ -280,5 +280,125 @@ $(function(){
 				};
 			    loadDataLine(maintenanceChargeReportOptions,"../../console/maintenanceChargeReport/report.jhtml",null,
 					"maintenanceChargeStatisticsDate","maintenanceAmount");
+				  //车辆保养费报表
+				var oilChargeReportDivOptions = {
+						colors : [ '#004B97' ],
+						chart : {
+							renderTo : 'oilChargeReportDiv',
+							backgroundColor: {
+			        			linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+			        			stops: [
+			            				[0, 'rgb(250, 250, 250)'],
+			            				[1, 'rgb(221, 221, 221)']
+			            		]
+			        		},
+							plotBackgroundColor : 'rgba(255, 255, 255, .9)',
+							plotBorderWidth : 1
+						},
+						title : {
+							text : '每月车辆油费统计',
+							x : -20
+						//center
+						},
+						credits : {
+							enabled : false
+						// 禁用版权信息
+						},
+						xAxis : {
+							gridLineWidth : 1,
+							lineColor : '#000',
+							categories : []
+						},
+						yAxis : {
+							minorTickInterval : 'auto',
+							lineColor : '#000',
+							lineWidth : 1,
+							tickWidth : 1,
+							tickColor : '#000',
+							title : {
+								text : '费用/元'
+							},
+							plotLines : [ {
+								value : 0,
+								width : 1,
+								color : '#808080'
+							} ]
+						},
+						tooltip : {
+							valueSuffix : '元'
+						},
+						legend : {
+							layout : 'vertical',
+							align : 'right',
+							verticalAlign : 'middle',
+							borderWidth : 0
+						},
+						series : [ {
+							name : '费用',
+							data : []
+						} ]
+					};
+				    loadDataLine(oilChargeReportDivOptions,"../../console/oilChargeReport/report.jhtml",null,
+						"oilChargeReportStatisticsDate","oilFinalAmount");
+					  //车辆保养费报表
+					var vehicleMileageChargeReportOptions = {
+							colors : [ '#004B97' ],
+							chart : {
+								renderTo : 'vehicleMileageChargeReportDiv',
+								backgroundColor: {
+				        			linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+				        			stops: [
+				            				[0, 'rgb(250, 250, 250)'],
+				            				[1, 'rgb(221, 221, 221)']
+				            		]
+				        		},
+								plotBackgroundColor : 'rgba(255, 255, 255, .9)',
+								plotBorderWidth : 1
+							},
+							title : {
+								text : '每月车辆行程统计',
+								x : -20
+							//center
+							},
+							credits : {
+								enabled : false
+							// 禁用版权信息
+							},
+							xAxis : {
+								gridLineWidth : 1,
+								lineColor : '#000',
+								categories : []
+							},
+							yAxis : {
+								minorTickInterval : 'auto',
+								lineColor : '#000',
+								lineWidth : 1,
+								tickWidth : 1,
+								tickColor : '#000',
+								title : {
+									text : '费用/元'
+								},
+								plotLines : [ {
+									value : 0,
+									width : 1,
+									color : '#808080'
+								} ]
+							},
+							tooltip : {
+								valueSuffix : '元'
+							},
+							legend : {
+								layout : 'vertical',
+								align : 'right',
+								verticalAlign : 'middle',
+								borderWidth : 0
+							},
+							series : [ {
+								name : '费用',
+								data : []
+							} ]
+						};
+					    loadDataLine(vehicleMileageChargeReportOptions,"../../console/vehicleMileageReport/report.jhtml",null,
+							"vehicleMileageStatisticsDate","mileage");
 })
 
