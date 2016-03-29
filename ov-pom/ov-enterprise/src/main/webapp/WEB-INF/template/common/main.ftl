@@ -101,10 +101,17 @@
     		[/@shiro.hasPermission]	
     	</ul>     
     </div>
-  
-    <div class="main-content" data-options="region:'center'">
+     
+     <div class="main-content" data-options="region:'center'">
     	<div id="manager-tabs">   
 		    <div title="起始页">
+					<div class="main-content-left">
+						<div class="row index-report">
+								<div class="col-md-3 index-report-item">
+						    		<div id="upkeepChargeReportDiv" style="height:300px;width: 800px;"></div>
+						    	</div>
+						</div>
+					</div>
 		    </div>    
 		</div>  
     </div>    

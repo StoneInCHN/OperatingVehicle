@@ -703,4 +703,40 @@ function exportData(control, form) {
 				}
 			});
 }
-
+//曲线图加载
+function loadDataLine(option, url, args, categoryName, valueName, viewName) {
+	$.ajax({
+		url : url,
+		type : "post",
+		cache : false,
+		data : args,
+		success : function(dataSource) {
+			refreshLine(option, dataSource, categoryName, valueName,viewName );
+		}
+	});
+}
+//曲线图刷新 
+function refreshLine(option, dataSource, categoryName, valueName, viewName) {
+	if (dataSource.length > 0) {
+		option.xAxis.categories = [];
+		if (valueName instanceof Array) {
+			for (var j = 0; j < valueName.length; j++) {
+				var value = new Object();
+				value.name = viewName[j];
+				value.data = [];
+				option.series.push(value);
+			}
+		}
+		for (var i = 0; i < dataSource.length; i++) {
+			option.xAxis.categories.push(new Date(dataSource[i][categoryName]).Format("yyyy年MM月"));
+			if (valueName instanceof Array) {
+				for (var j = 0; j < valueName.length; j++) {
+					id.series[j].data.push(dataSource[i][valueName[j]]);
+				}
+			} else {
+				option.series[0].data.push(dataSource[i][valueName]);
+			}
+		}
+	}
+	var chart = new Highcharts.Chart(option);
+}
