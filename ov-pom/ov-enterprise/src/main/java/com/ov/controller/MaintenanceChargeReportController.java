@@ -15,26 +15,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ov.controller.base.BaseController;
-import com.ov.entity.UpkeepChargeReport;
+import com.ov.entity.MaintenanceChargeReport;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.ordering.Ordering;
 import com.ov.framework.ordering.Ordering.Direction;
 import com.ov.framework.paging.Pageable;
-import com.ov.service.UpkeepChargeReportService;
+import com.ov.service.MaintenanceChargeReportService;
 import com.ov.utils.ReportDataComparator;
 
 /**
- * Controller - 车辆维修费报表
+ * Controller - 车辆维保养报表
  * @author luzhang
  *
  */
-@Controller("upkeepChargeReportController")
-@RequestMapping("console/upkeepChargeReport")
-public class UpkeepChargeReportController extends BaseController {
+@Controller("MaintenanceChargeReportController")
+@RequestMapping("console/maintenanceChargeReport")
+public class MaintenanceChargeReportController extends BaseController {
   
-  @Resource(name = "upkeepChargeReportServiceImpl")
-  private UpkeepChargeReportService upkeepChargeReportService;
+  @Resource(name = "MaintenanceChargeReportServiceImpl")
+  private MaintenanceChargeReportService maintenanceChargeReportService;
 
   /**
    * 界面展示
@@ -42,9 +42,9 @@ public class UpkeepChargeReportController extends BaseController {
    * @param model
    * @return
    */
-  @RequestMapping(value = "/upkeepChargeReport", method = RequestMethod.GET)
+  @RequestMapping(value = "/maintenanceChargeReport", method = RequestMethod.GET)
   public String list(ModelMap model) {
-    return "/report/upkeepChargeReport";
+    return "/report/maintenanceChargeReport";
   }
 
   /**
@@ -55,12 +55,12 @@ public class UpkeepChargeReportController extends BaseController {
    * @return
    */
   @RequestMapping(value = "/report", method = RequestMethod.POST)
-  public @ResponseBody List<UpkeepChargeReport> list(Model model, Pageable pageable
+  public @ResponseBody List<MaintenanceChargeReport> list(Model model, Pageable pageable
       ,Date beginDate, Date endDate) {
     
     //时间倒序
     List<Ordering> orderings = new ArrayList<Ordering> ();
-    Ordering dateCycleOrdering = new Ordering ("upkeepChargeStatisticsDate",
+    Ordering dateCycleOrdering = new Ordering ("maintenanceChargeStatisticsDate",
         Direction.desc);
     orderings.add (dateCycleOrdering);
     
@@ -69,7 +69,7 @@ public class UpkeepChargeReportController extends BaseController {
     {
       Filter startDateFilter = new Filter();
       startDateFilter.setOperator (Operator.gt);
-      startDateFilter.setProperty ("upkeepChargeStatisticsDate");
+      startDateFilter.setProperty ("maintenanceChargeStatisticsDate");
       startDateFilter.setValue (beginDate);
       filters.add (startDateFilter);
     }
@@ -77,14 +77,14 @@ public class UpkeepChargeReportController extends BaseController {
     if (endDate != null)
     {
       Filter endDateFilter = new Filter();
-      endDateFilter.setProperty ("upkeepChargeStatisticsDate");
+      endDateFilter.setProperty ("maintenanceChargeStatisticsDate");
       endDateFilter.setValue (endDate);
       endDateFilter.setOperator (Operator.lt);
       filters.add (endDateFilter);
     }
     
-    List<UpkeepChargeReport>  reportWaterElectricityRecordList = upkeepChargeReportService.findList (12, filters, orderings, true,null);
-    ReportDataComparator comparator =new ReportDataComparator ("upkeepChargeStatisticsDate");
+    List<MaintenanceChargeReport>  reportWaterElectricityRecordList = maintenanceChargeReportService.findList (12, filters, orderings, true,null);
+    ReportDataComparator comparator =new ReportDataComparator ("maintenanceChargeStatisticsDate");
     Collections.sort (reportWaterElectricityRecordList, comparator);
     return reportWaterElectricityRecordList;
   }
