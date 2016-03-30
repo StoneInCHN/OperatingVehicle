@@ -105,21 +105,25 @@
      <div class="main-content" data-options="region:'center'">
     	<div id="manager-tabs">   
 		    <div title="起始页">
-					<div class="main-content-left">
-						<div class="row index-report">
-								<div class="col-md-6 index-report-item">
-						    		<div id="upkeepChargeReportDiv" style="height:300px;width: 800px;"></div>
+		    		<div class="main-content-top">
+						<div class="shortcutNavigation" style="padding-top:20px">
+				        </div>
+				    </div>
+					<div class="main-content-center">
+						<div>
+								<div class="col-md-5">
+						    		<div id="maintenanceChargeReportDiv" style="height:350px;width: 550px;"></div>
 						    	</div>
-						    	<div class="col-md-6 index-report-item">
-						    		<div id="maintenanceChargeReportDiv" style="height:300px;width: 800px;"></div>
+								<div class="col-md-7" >
+						    		<div id="oilChargeReportDiv" style="height:350px;width: 650px;"></div>
 						    	</div>
 						</div>
-						<div class="row index-report">
-								<div class="col-md-6 index-report-item">
-						    		<div id="oilChargeReportDiv" style="height:300px;width: 800px;"></div>
+						<div>
+								<div class="col-md-6">
+									<div id="upkeepChargeReportDiv" style="height:350px;width: 600px;"></div>
 						    	</div>
-						    	<div class="col-md-6 index-report-item">
-						    		<div id="vehicleMileageChargeReportDiv" style="height:300px;width: 800px;"></div>
+						    	<div class="col-md-6">
+						    		<div id="vehicleMileageChargeReportDiv" style="height:350px;width: 600px;"></div>
 						    	</div>
 						</div>
 						</div>
@@ -142,6 +146,8 @@
 	<script type="text/javascript" src="${base}/resources/easyui/locale/easyui-lang-zh_CN.js"></script>
 	<script type="text/javascript" src="${base}/resources/js/validator.js"></script>
 	<script type="text/javascript" src="${base}/resources/js/highcharts.js"></script>
+	<script type="text/javascript" src="${base}/resources/js/exporting.js"></script>
+	<script type="text/javascript" src="${base}/resources/js/highcharts-more.js"></script>
 	<script type="text/javascript" src="${base}/resources/js/common.js"></script>
 	<script type="text/javascript" src="${base}/resources/js/message.js"></script>
 	<script type="text/javascript" src="${base}/resources/js/main.js"></script>

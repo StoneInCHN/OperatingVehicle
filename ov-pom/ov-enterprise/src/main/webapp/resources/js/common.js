@@ -731,7 +731,7 @@ function refreshLine(option, dataSource, categoryName, valueName, viewName) {
 			option.xAxis.categories.push(new Date(dataSource[i][categoryName]).Format("yyyy年MM月"));
 			if (valueName instanceof Array) {
 				for (var j = 0; j < valueName.length; j++) {
-					id.series[j].data.push(dataSource[i][valueName[j]]);
+					option.series[j].data.push(dataSource[i][valueName[j]]);
 				}
 			} else {
 				option.series[0].data.push(dataSource[i][valueName]);
@@ -739,4 +739,27 @@ function refreshLine(option, dataSource, categoryName, valueName, viewName) {
 		}
 	}
 	var chart = new Highcharts.Chart(option);
+}
+//气泡图加载
+function loadDataBubble(option, url, args, xName, yName, bubbleName) {
+	$.ajax({
+		url : url,
+		type : "post",
+		cache : false,
+		data : args,
+		success : function(dataSource) {
+			console.info(dataSource);
+			if (dataSource.length > 0) {
+				option.xAxis.categories = [];
+				for (var i = 0; i < dataSource.length; i++) {
+					option.xAxis.categories.push(new Date(dataSource[i][xName]).Format("yyyy年MM月"));
+					var bubbleData = [];
+					bubbleData.push(dataSource[i][yName]);
+					bubbleData.push(dataSource[i][bubbleName]);
+					option.series[0].data.push(bubbleData);
+				}
+			}
+			var chart = new Highcharts.Chart(option);
+		}
+	});
 }

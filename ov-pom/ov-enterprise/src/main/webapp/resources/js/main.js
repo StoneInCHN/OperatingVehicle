@@ -162,243 +162,170 @@ $(function(){
 		}
 		//车辆维修费报表
 		var upkeepChargeReportOptions = {
-				colors : [ '#004B97' ],
-				chart : {
-					renderTo : 'upkeepChargeReportDiv',
-					backgroundColor: {
-	        			linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-	        			stops: [
-	            				[0, 'rgb(250, 250, 250)'],
-	            				[1, 'rgb(221, 221, 221)']
-	            		]
-	        		},
-					plotBackgroundColor : 'rgba(255, 255, 255, .9)',
-					plotBorderWidth : 1
-				},
-				title : {
-					text : '每月车辆维修费统计',
-					x : -20
-				//center
-				},
-				credits : {
-					enabled : false
-				// 禁用版权信息
-				},
-				xAxis : {
-					gridLineWidth : 1,
-					lineColor : '#000',
-					categories : []
-				},
-				yAxis : {
-					minorTickInterval : 'auto',
-					lineColor : '#000',
-					lineWidth : 1,
-					tickWidth : 1,
-					tickColor : '#000',
-					title : {
-						text : '费用/元'
-					},
-					plotLines : [ {
-						value : 0,
-						width : 1,
-						color : '#808080'
-					} ]
-				},
-				tooltip : {
-					valueSuffix : '元'
-				},
-				legend : {
-					layout : 'vertical',
-					align : 'right',
-					verticalAlign : 'middle',
-					borderWidth : 0
-				},
-				series : [ {
-					name : '费用',
-					data : []
-				} ]
-			};
-		    loadDataLine(upkeepChargeReportOptions,"../../console/upkeepChargeReport/report.jhtml",null,
-				"upkeepChargeStatisticsDate","upkeepAmount");
+				 	chart: {type: 'spline', renderTo : "upkeepChargeReportDiv"},
+			        title: {text: '<a href="#" style="color: #222222"}>车辆维修费统计</a>',margin:50,useHTML:true},
+			        subtitle: {text: '周期：按月统计'},
+					credits : {enabled : false},
+			        xAxis: {},
+			        yAxis: {
+			        	min: 0,
+			            title: {text: '费用/元'},
+			            labels: {formatter: function() {return this.value +'￥'}}
+			        },
+			        tooltip: {crosshairs: true,shared: true,valueSuffix : '元'},
+			        plotOptions: {
+			            spline: {
+			                marker: {radius: 4,lineColor: '#666666',lineWidth: 1}
+			            }
+			        },
+			        series: [{name: '费用',
+			            marker: {symbol: 'square'},
+			            data: []
+			        }]
+		};
+	    loadDataLine(upkeepChargeReportOptions,"../../console/upkeepChargeReport/report.jhtml",null,
+		"upkeepChargeStatisticsDate","upkeepAmount");
+		  //车辆行程统计报表
+	    var vehicleMileageChargeReportOptions = {
+	    		chart: {type: 'column',margin: [ 50, 50, 100, 80], renderTo : "vehicleMileageChargeReportDiv"},
+		        title: {text: '<a href="#" style="color: #222222">车辆行程统计</a>',margin:50,useHTML:true},
+		        subtitle: {text: '周期：按月统计'},
+		        xAxis: {},
+		        yAxis: {
+		            min: 0,
+		            title: {text: '行程/千米'},
+		            labels: {formatter: function() {return this.value +'km'}}
+		        },
+		        credits : {enabled : false},
+		        legend: {enabled: false},
+		        tooltip: {crosshairs: true,shared: true,valueSuffix : '千米'},
+		        series: [{
+		            name: '行程',
+		            data: [],
+		            dataLabels: { enabled: true,rotation: -90,	color: '#FFFFFF',align: 'right',x: 4,y: 10,
+		                	style: {fontSize: '11px',fontFamily: 'Verdana, sans-serif',textShadow: '0 0 1px black'}
+		            }
+		        }]
+	    };
+	    loadDataLine(vehicleMileageChargeReportOptions,"../../console/vehicleMileageReport/report.jhtml",null,
+		"vehicleMileageStatisticsDate","mileage");
 		  //车辆保养费报表
-			var maintenanceChargeReportOptions = {
-					colors : [ '#004B97' ],
-					chart : {
-						renderTo : 'maintenanceChargeReportDiv',
-						backgroundColor: {
-		        			linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-		        			stops: [
-		            				[0, 'rgb(250, 250, 250)'],
-		            				[1, 'rgb(221, 221, 221)']
-		            		]
-		        		},
-						plotBackgroundColor : 'rgba(255, 255, 255, .9)',
-						plotBorderWidth : 1
-					},
-					title : {
-						text : '每月车辆保养费统计',
-						x : -20
-					//center
-					},
-					credits : {
-						enabled : false
-					// 禁用版权信息
-					},
-					xAxis : {
-						gridLineWidth : 1,
-						lineColor : '#000',
-						categories : []
-					},
-					yAxis : {
-						minorTickInterval : 'auto',
-						lineColor : '#000',
-						lineWidth : 1,
-						tickWidth : 1,
-						tickColor : '#000',
-						title : {
-							text : '费用/元'
-						},
-						plotLines : [ {
-							value : 0,
-							width : 1,
-							color : '#808080'
-						} ]
-					},
-					tooltip : {
-						valueSuffix : '元'
-					},
-					legend : {
-						layout : 'vertical',
-						align : 'right',
-						verticalAlign : 'middle',
-						borderWidth : 0
-					},
-					series : [ {
-						name : '费用',
-						data : []
-					} ]
-				};
-			    loadDataLine(maintenanceChargeReportOptions,"../../console/maintenanceChargeReport/report.jhtml",null,
-					"maintenanceChargeStatisticsDate","maintenanceAmount");
-				  //车辆保养费报表
-				var oilChargeReportDivOptions = {
-						colors : [ '#004B97' ],
-						chart : {
-							renderTo : 'oilChargeReportDiv',
-							backgroundColor: {
-			        			linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-			        			stops: [
-			            				[0, 'rgb(250, 250, 250)'],
-			            				[1, 'rgb(221, 221, 221)']
-			            		]
-			        		},
-							plotBackgroundColor : 'rgba(255, 255, 255, .9)',
-							plotBorderWidth : 1
-						},
-						title : {
-							text : '每月车辆油费统计',
-							x : -20
-						//center
-						},
-						credits : {
-							enabled : false
-						// 禁用版权信息
-						},
-						xAxis : {
-							gridLineWidth : 1,
-							lineColor : '#000',
-							categories : []
-						},
-						yAxis : {
-							minorTickInterval : 'auto',
-							lineColor : '#000',
-							lineWidth : 1,
-							tickWidth : 1,
-							tickColor : '#000',
-							title : {
-								text : '费用/元'
-							},
-							plotLines : [ {
-								value : 0,
-								width : 1,
-								color : '#808080'
-							} ]
-						},
-						tooltip : {
-							valueSuffix : '元'
-						},
-						legend : {
-							layout : 'vertical',
-							align : 'right',
-							verticalAlign : 'middle',
-							borderWidth : 0
-						},
-						series : [ {
-							name : '费用',
-							data : []
-						} ]
-					};
-				    loadDataLine(oilChargeReportDivOptions,"../../console/oilChargeReport/report.jhtml",null,
-						"oilChargeReportStatisticsDate","oilFinalAmount");
-					  //车辆保养费报表
-					var vehicleMileageChargeReportOptions = {
-							colors : [ '#004B97' ],
-							chart : {
-								renderTo : 'vehicleMileageChargeReportDiv',
-								backgroundColor: {
-				        			linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-				        			stops: [
-				            				[0, 'rgb(250, 250, 250)'],
-				            				[1, 'rgb(221, 221, 221)']
-				            		]
-				        		},
-								plotBackgroundColor : 'rgba(255, 255, 255, .9)',
-								plotBorderWidth : 1
-							},
-							title : {
-								text : '每月车辆行程统计',
-								x : -20
-							//center
-							},
-							credits : {
-								enabled : false
-							// 禁用版权信息
-							},
-							xAxis : {
-								gridLineWidth : 1,
-								lineColor : '#000',
-								categories : []
-							},
-							yAxis : {
-								minorTickInterval : 'auto',
-								lineColor : '#000',
-								lineWidth : 1,
-								tickWidth : 1,
-								tickColor : '#000',
-								title : {
-									text : '费用/元'
-								},
-								plotLines : [ {
-									value : 0,
-									width : 1,
-									color : '#808080'
-								} ]
-							},
-							tooltip : {
-								valueSuffix : '元'
-							},
-							legend : {
-								layout : 'vertical',
-								align : 'right',
-								verticalAlign : 'middle',
-								borderWidth : 0
-							},
-							series : [ {
-								name : '费用',
-								data : []
-							} ]
-						};
-					    loadDataLine(vehicleMileageChargeReportOptions,"../../console/vehicleMileageReport/report.jhtml",null,
-							"vehicleMileageStatisticsDate","mileage");
+	    $('#maintenanceChargeReportDiv').highcharts({
+	        chart: {plotBackgroundColor: null,plotBorderWidth: null,plotShadow: false},
+	        title: {text: '<a href="#" style="color: #222222">车辆保养费统计</a>',margin:50,useHTML:true},
+	        subtitle: {text: '周期：按年统计'},
+	        credits : {enabled : false},
+	        tooltip: {pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'},
+	        plotOptions: {
+	            pie: {
+	                allowPointSelect: true,
+	                cursor: 'pointer',
+	                dataLabels: {
+	                    enabled: true,
+	                    color: '#000000',
+	                    connectorColor: '#000000',
+	                    format: '<b>{point.name}</b>: {point.percentage:.1f} 元'
+	                }
+	            }
+	        },
+	        series: [{
+	            type: 'pie',
+	            name: '保养费',
+	            data: [
+	                ['2011年',   26.8],
+	                ['2012年',   12.8],
+	                ['2013年',    8.5],
+	                ['2014年',   6.2],
+	                ['2015年',   1.8],
+	                {
+	                    name: '2016年',
+	                    y: 32.8,
+	                    sliced: true,
+	                    selected: true
+	                },
+	            ]
+	        }]
+	    });
+//			var maintenanceChargeReportOptions = {
+//					colors : [ '#004B97' ],
+//					chart : {
+//						renderTo : 'maintenanceChargeReportDiv',
+//						backgroundColor: {
+//		        			linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+//		        			stops: [
+//		            				[0, 'rgb(250, 250, 250)'],
+//		            				[1, 'rgb(221, 221, 221)']
+//		            		]
+//		        		},
+//						plotBackgroundColor : 'rgba(255, 255, 255, .9)',
+//						plotBorderWidth : 1
+//					},
+//					title : {
+//						text : '每月车辆保养费统计',
+//						x : -20
+//					//center
+//					},
+//					credits : {
+//						enabled : false
+//					// 禁用版权信息
+//					},
+//					xAxis : {
+//						gridLineWidth : 1,
+//						lineColor : '#000',
+//						categories : []
+//					},
+//					yAxis : {
+//						minorTickInterval : 'auto',
+//						lineColor : '#000',
+//						lineWidth : 1,
+//						tickWidth : 1,
+//						tickColor : '#000',
+//						title : {
+//							text : '费用/元'
+//						},
+//						plotLines : [ {
+//							value : 0,
+//							width : 1,
+//							color : '#808080'
+//						} ]
+//					},
+//					tooltip : {
+//						valueSuffix : '元'
+//					},
+//					legend : {
+//						layout : 'vertical',
+//						align : 'right',
+//						verticalAlign : 'middle',
+//						borderWidth : 0
+//					},
+//					series : [ {
+//						name : '费用',
+//						data : []
+//					} ]
+//				};
+//			    loadDataLine(maintenanceChargeReportOptions,"../../console/maintenanceChargeReport/report.jhtml",null,
+//					"maintenanceChargeStatisticsDate","maintenanceAmount");
+	    //油费统计表
+	    var oilChargeReportDivOptions = {
+			    chart: {type: 'bubble',zoomType: 'xy',renderTo:"oilChargeReportDiv"},
+		        xAxis: {},
+		        yAxis: {
+		            min: 0,
+		            title: {text: '费用/元'},
+		            labels: {formatter: function() {return this.value +'￥'}}
+		        },
+			    title: {text: '<a href="#" style="color: #222222">每月车辆油费统计</a>',margin:50,useHTML:true},
+			    subtitle: {text: '周期：按月统计'},
+			    credits : {enabled : false},
+		        tooltip: {
+		            pointFormat: '<b>{point.y:.1f} 元</b>',
+		        },
+			    series: [{
+			    	name: '用油量',
+			        data: []
+			    }]
+	    };
+	    loadDataBubble(oilChargeReportDivOptions,"../../console/oilChargeReport/report.jhtml",null,
+	    		"oilChargeReportStatisticsDate","oilFinalAmount","oilCount");
 })
 

@@ -46,7 +46,10 @@ public class OilChargeReport extends BaseEntity{
    * 油费
    */
   private BigDecimal oilFinalAmount;
-  
+  /**
+   * 加油量L
+   */
+  private BigDecimal oilCount;
   /**
    * 报告统计时间
    */
@@ -81,7 +84,14 @@ public class OilChargeReport extends BaseEntity{
   public void setOilFinalAmount(BigDecimal oilFinalAmount) {
     this.oilFinalAmount = oilFinalAmount;
   }
-  
+  @JsonProperty
+  @Column(nullable = false, precision = 12, scale = 2)
+  public BigDecimal getOilCount() {
+    return oilCount;
+  }
+  public void setOilCount(BigDecimal oilCount) {
+    this.oilCount = oilCount;
+  }
   @JsonProperty
   @Temporal(TemporalType.DATE)
 	public Date getOilChargeReportStatisticsDate() {
