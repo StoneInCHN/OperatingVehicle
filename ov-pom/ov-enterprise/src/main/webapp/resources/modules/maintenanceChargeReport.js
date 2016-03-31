@@ -3,18 +3,18 @@ $("#maintenanceChargeReport-table-list").datagrid({
 	fitColumns:true,
 	pagination:true,
 	checkOnSelect:false,
-	url : "../../console/maintenanceChargeReport/reportSingleVehicle.jhtml?vehicleID=1",
+	url : "../../console/maintenanceChargeReport/reportSingleVehicle.jhtml",
 	loadMsg:message("yly.common.loading"),
 	striped:true,
 	pagination:false,
 	columns:[
 		    [
-		     {title:"保养费用",field:"maintenanceAmount",width:100,sortable:true,
+		     {title:"保养费用",field:"maintenanceAmount",width:"50%",sortable:true,
 		    	 formatter: function(value,row,index){
 		    			if(value != null){return value+"￥";}
 			    	 }
 		     },
-		     {title:"统计时间",field:"maintenanceChargeStatisticsDate",width:100,sortable:true,
+		     {title:"统计时间",field:"maintenanceChargeStatisticsDate",width:"50%",sortable:true,
 		    	 formatter: function(value,row,index){
 	    			if(value != null){return new Date(value).Format("yyyy年");}
 		    	  }
@@ -53,4 +53,33 @@ $("#maintenanceChargeReport_search_btn").click(function(){
 	  var _queryParams = $("#maintenanceChargeReport_search_form").serializeJSON();
 	  $('#maintenanceChargeReport-table-list').datagrid('options').queryParams = _queryParams;
 	  $("#maintenanceChargeReport-table-list").datagrid('reload');
-	})
+	});
+//车辆查询
+$(function(){
+	$("#maintenanceChargeVehicleSearch-table-list").datagrid({
+		url:'../vehicle/list.jhtml',  
+		pagination:true,
+		loadMsg:message("ov.common.loading"),
+		striped:true,
+		singleSelect:true,
+		onSelect:function(rowIndex,rowData){
+			$('#maintenanceCharge_vehicleID').val(rowData.id);
+			  var _queryParams = $("#maintenanceChargeReport_search_form").serializeJSON();
+			  $('#maintenanceChargeReport-table-list').datagrid('options').queryParams = _queryParams;  
+			  $("#maintenanceChargeReport-table-list").datagrid('reload');
+		},
+		onDblClickRow : function (rowIndex, rowData){
+			
+		},
+		columns:[[
+			{field : 'ck',checkbox : true},
+			{title : "车牌号",field : "plate",width :"47%",align : 'center',sortable : true},
+			{title : "品牌图标",field : "brandIcon",width :"47%",align : 'center',sortable : true},					
+		]]
+});
+$("#maintenanceCharge_vehicle_search_btn").click(function(){
+		  var _queryParams = $("#maintenanceCharge_vehicle_search_form").serializeJSON();
+		  $('#maintenanceChargeVehicleSearch-table-list').datagrid('options').queryParams = _queryParams;  
+		  $("#maintenanceChargeVehicleSearch-table-list").datagrid('reload');			
+		});
+});

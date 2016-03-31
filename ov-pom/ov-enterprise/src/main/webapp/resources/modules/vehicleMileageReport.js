@@ -4,18 +4,18 @@ $("#vehicleMileageReport-table-list").datagrid({
 	fitColumns:true,
 	pagination:true,
 	checkOnSelect:false,
-	url : "../../console/vehicleMileageReport/reportSingleVehicle.jhtml?vehicleID=1",
+	url : "../../console/vehicleMileageReport/reportSingleVehicle.jhtml",
 	loadMsg:message("yly.common.loading"),
 	striped:true,
 	pagination:false,
 	columns:[
 		    [
-		     {title:"行程",field:"mileage",width:100,sortable:true,
+		     {title:"行程",field:"mileage",width:"50%",sortable:true,
 		    	 formatter: function(value,row,index){
 	    			if(value != null){return value+"km";}
 		    	 }
 		     },
-		     {title:"统计时间",field:"vehicleMileageStatisticsDate",width:100,sortable:true,
+		     {title:"统计时间",field:"vehicleMileageStatisticsDate",width:"50%",sortable:true,
 		    	 formatter: function(value,row,index){
 	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
 		    	  }
@@ -64,10 +64,10 @@ $(function(){
 		striped:true,
 		singleSelect:true,
 		onSelect:function(rowIndex,rowData){
-			$('#upkeepCharge_vehicleID').val(rowData.id);
-			  var _queryParams = $("#upkeepChargeReport_search_form").serializeJSON();
-			  $('#upkeepChargeReport-table-list').datagrid('options').queryParams = _queryParams;  
-			  $("#upkeepChargeReport-table-list").datagrid('reload');
+			$('#vehicleMileage_vehicleID').val(rowData.id);
+			  var _queryParams = $("#vehicleMileageReport_search_form").serializeJSON();
+			  $('#vehicleMileageReport-table-list').datagrid('options').queryParams = _queryParams;
+			  $("#vehicleMileageReport-table-list").datagrid('reload');
 		},
 		onDblClickRow : function (rowIndex, rowData){
 			

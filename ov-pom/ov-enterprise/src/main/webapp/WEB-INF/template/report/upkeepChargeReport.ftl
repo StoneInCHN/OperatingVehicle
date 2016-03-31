@@ -27,7 +27,7 @@
 								    <label>${message("ov.to")}:</label>
 								   	<input type="text" class="Wdate" id="upkeepChargeReport_endDate"  name="endDate"  onclick="WdatePicker({minDate: '#F{$dp.$D(\'upkeepChargeReport_beginDate\')}'});"/>
 								</div>
-								<input type="hidden" name="vehicleID" id="upkeepCharge_vehicleID">
+								<input type="hidden" name="vehicleID" id="upkeepCharge_vehicleID" value="1">
 							</form>
 							<div class="search-item">
 						  	  <button id="upkeepChargeReport_search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>

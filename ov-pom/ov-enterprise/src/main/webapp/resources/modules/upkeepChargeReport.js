@@ -3,7 +3,7 @@ $("#upkeepChargeReport-table-list").datagrid({
 	fitColumns:true,
 	pagination:true,
 	checkOnSelect:false,
-	url : "../../console/upkeepChargeReport/reportSingleVehicle.jhtml?vehicleID=1",
+	url : "../../console/upkeepChargeReport/reportSingleVehicle.jhtml",
 	loadMsg:message("yly.common.loading"),
 	striped:true,
 	pagination:false,

@@ -27,15 +27,14 @@
 										    <label>${message("ov.to")}:</label>
 										   	<input type="text" class="Wdate" id="vehicleMileageReport_endDate"  name="endDate" readonly="readonly" onclick="WdatePicker({minDate: '#F{$dp.$D(\'vehicleMileageReport_beginDate\')}'});"/>
 										</div>
-										<input type="hidden" name="vehicleID" id="vehicleMileage_vehicleID">
+										<input type="hidden" name="vehicleID" id="vehicleMileage_vehicleID" value="1">
 									</form>
 									<div class="search-item">
 								  	  <button id="vehicleMileageReport_search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
 								    </div>
 								  </fieldset>
-							</div>
 							<div id="vehicleMileageReport">
-								<div id="vehicleMileageReportDivId" style="height:400px;width: 880px;">
+								<div id="vehicleMileageReportDivId" style="height:400px;width:99%;">
 								</div>
 								<table id = "vehicleMileageReport-table-list" class="table table-striped" >   
 								</table>

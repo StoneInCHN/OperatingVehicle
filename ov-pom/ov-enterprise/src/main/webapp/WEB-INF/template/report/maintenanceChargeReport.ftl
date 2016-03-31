@@ -33,9 +33,8 @@
 							  	  <button id="maintenanceChargeReport_search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
 							    </div>
 							  </fieldset>
-						</div>
 						<div id="maintenanceChargeReport">
-							<div id="maintenanceChargeReportDivId" style="height:400px;width: 880px;">
+							<div id="maintenanceChargeReportDivId" style="height:400px;width:99%;">
 							</div>
 							<table id = "maintenanceChargeReport-table-list" class="table table-striped" >   
 							</table>

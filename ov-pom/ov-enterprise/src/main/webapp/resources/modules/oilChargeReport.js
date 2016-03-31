@@ -4,19 +4,19 @@ $("#oilChargeReport-table-list").datagrid({
 	fitColumns:true,
 	pagination:true,
 	checkOnSelect:false,
-	url : "../../console/oilChargeReport/reportSingleVehicle.jhtml?vehicleID=1",
+	url : "../../console/oilChargeReport/reportSingleVehicle.jhtml",
 	loadMsg:message("yly.common.loading"),
 	striped:true,
 	pagination:false,
 	columns:[
 		    [
-		     {title:"油费",field:"oilFinalAmount",width:100,sortable:true,
+		     {title:"油费",field:"oilFinalAmount",width:"33%",sortable:true,
 		    	 formatter: function(value,row,index){
 		    			if(value != null){return value+"￥";}
 			    	 }
 		     },
-		     {title:"加油量L",field:"oilCount",width:100,sortable:true},
-		     {title:"统计时间",field:"oilChargeReportStatisticsDate",width:100,sortable:true,
+		     {title:"加油量L",field:"oilCount",width:"33%",sortable:true},
+		     {title:"统计时间",field:"oilChargeReportStatisticsDate",width:"33%",sortable:true,
 		    	 formatter: function(value,row,index){
 	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
 		    	  }
@@ -55,4 +55,33 @@ $("#oilChargeReport_search_btn").click(function(){
 	  var _queryParams = $("#oilChargeReport_search_form").serializeJSON();
 	  $('#oilChargeReport-table-list').datagrid('options').queryParams = _queryParams;
 	  $("#oilChargeReport-table-list").datagrid('reload');
-	})
+	});
+//车辆查询
+$(function(){
+	$("#oilChargeVehicleSearch-table-list").datagrid({
+		url:'../vehicle/list.jhtml',  
+		pagination:true,
+		loadMsg:message("ov.common.loading"),
+		striped:true,
+		singleSelect:true,
+		onSelect:function(rowIndex,rowData){
+			$('#oilCharge_vehicleID').val(rowData.id);
+			  var _queryParams = $("#oilChargeReport_search_form").serializeJSON();
+			  $('#oilChargeReport-table-list').datagrid('options').queryParams = _queryParams;  
+			  $("#oilChargeReport-table-list").datagrid('reload');
+		},
+		onDblClickRow : function (rowIndex, rowData){
+			
+		},
+		columns:[[
+			{field : 'ck',checkbox : true},
+			{title : "车牌号",field : "plate",width :"47%",align : 'center',sortable : true},
+			{title : "品牌图标",field : "brandIcon",width :"47%",align : 'center',sortable : true},					
+		]]
+});
+$("#oilCharge_vehicle_search_btn").click(function(){
+		  var _queryParams = $("#oilCharge_vehicle_search_form").serializeJSON();
+		  $('#oilChargeVehicleSearch-table-list').datagrid('options').queryParams = _queryParams;  
+		  $("#oilChargeVehicleSearch-table-list").datagrid('reload');			
+		});
+});
