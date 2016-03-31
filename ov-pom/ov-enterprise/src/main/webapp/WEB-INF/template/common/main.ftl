@@ -100,6 +100,20 @@
     		<li><a href="#" data-url="${base}/console/vehicleScheduling/vehicleAssign.jhtml">车辆指派</a></li>
     		[/@shiro.hasPermission]	
     	</ul>     
+    	<ul title="${message("ov.system.config")}" id="statisticalReport">
+    		[@shiro.hasPermission name="maintenanceChargeReport"]
+    		<li><a href="#" data-url="${base}/console/maintenanceChargeReport/maintenanceChargeReport.jhtml">保养费用统计</a></li>
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="oilChargeReport"]
+    		<li><a href="#" data-url="${base}/console/oilChargeReport/oilChargeReport.jhtml">油费统计</a></li>
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="upkeepChargeReport"]
+    		<li><a href="#" data-url="${base}/console/upkeepChargeReport/upkeepChargeReport.jhtml">维修费统计</a></li>
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="upkeepChargeReport"]
+    		<li><a href="#" data-url="${base}/console/vehicleMileageReport/vehicleMileageReport.jhtml?path=roleAuth">车辆里程统计</a></li>
+    		[/@shiro.hasPermission]	    		    		
+    	</ul>
     </div>
      
      <div class="main-content" data-options="region:'center'">

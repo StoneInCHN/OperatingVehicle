@@ -29,6 +29,10 @@
 		    	/console/operationLog/** = perms["operationLog"]
 		    	/console/tenantInfo/** = perms["businessManagement"]
 		    	/console/vehicleScheduling/** = perms["vehicleScheduling"]
+		    	/console/maintenanceChargeReport/** = perms["maintenanceChargeReport"]
+		    	/console/oilChargeReport/** = perms["oilChargeReport"]
+		    	/console/upkeepChargeReport/** = perms["upkeepChargeReport"]
+		    	/console/vehicleMileageReport/** = perms["vehicleMileageReport"]
 
 			</value>
 		</property>

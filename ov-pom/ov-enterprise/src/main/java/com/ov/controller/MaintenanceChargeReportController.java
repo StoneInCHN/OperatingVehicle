@@ -25,7 +25,7 @@ import com.ov.service.MaintenanceChargeReportService;
 import com.ov.utils.ReportDataComparator;
 
 /**
- * Controller - 车辆维保养报表
+ * Controller - 车辆保养报表
  * @author luzhang
  *
  */
