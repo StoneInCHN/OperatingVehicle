@@ -183,7 +183,7 @@ $(function(){
 			            data: []
 			        }]
 		};
-	    loadDataLine(upkeepChargeReportOptions,"../../console/upkeepChargeReport/report.jhtml",null,
+	    loadDataLine(upkeepChargeReportOptions,"../../console/upkeepChargeReport/reportAll.jhtml",null,
 		"upkeepChargeStatisticsDate","upkeepAmount");
 	    
 		  //车辆行程统计报表
@@ -208,7 +208,7 @@ $(function(){
 		            }
 		        }]
 	    };
-	    loadDataLine(vehicleMileageChargeReportOptions,"../../console/vehicleMileageReport/report.jhtml",null,
+	    loadDataLine(vehicleMileageChargeReportOptions,"../../console/vehicleMileageReport/reportAll.jhtml",null,
 		"vehicleMileageStatisticsDate","mileage");
 	    
 		  //车辆保养费报表
@@ -237,7 +237,7 @@ $(function(){
 		        }]
 		    
 	    };
-	    loadDataPie(maintenanceChargeReportOptions,"../../console/maintenanceChargeReport/report.jhtml",null,
+	    loadDataPie(maintenanceChargeReportOptions,"../../console/maintenanceChargeReport/reportAll.jhtml",null,
 		"maintenanceChargeStatisticsDate","maintenanceAmount");
 	    
 	    //油费统计表
@@ -260,7 +260,7 @@ $(function(){
 			        data: []
 			    }]
 	    };
-	    loadDataBubble(oilChargeReportDivOptions,"../../console/oilChargeReport/report.jhtml",null,
+	    loadDataBubble(oilChargeReportDivOptions,"../../console/oilChargeReport/reportAll.jhtml",null,
 	    		"oilChargeReportStatisticsDate","oilFinalAmount","oilCount");
 })
 

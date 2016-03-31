@@ -111,7 +111,7 @@
     		<li><a href="#" data-url="${base}/console/upkeepChargeReport/upkeepChargeReport.jhtml">维修费统计</a></li>
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="upkeepChargeReport"]
-    		<li><a href="#" data-url="${base}/console/vehicleMileageReport/vehicleMileageReport.jhtml?path=roleAuth">车辆里程统计</a></li>
+    		<li><a href="#" data-url="${base}/console/vehicleMileageReport/vehicleMileageReport.jhtml">车辆里程统计</a></li>
     		[/@shiro.hasPermission]	    		    		
     	</ul>
     </div>

@@ -3,7 +3,7 @@ $("#maintenanceChargeReport-table-list").datagrid({
 	fitColumns:true,
 	pagination:true,
 	checkOnSelect:false,
-	url : "../../console/maintenanceChargeReport/report.jhtml",
+	url : "../../console/maintenanceChargeReport/reportSingleVehicle.jhtml?vehicleID=1",
 	loadMsg:message("yly.common.loading"),
 	striped:true,
 	pagination:false,

@@ -3,18 +3,23 @@ $("#upkeepChargeReport-table-list").datagrid({
 	fitColumns:true,
 	pagination:true,
 	checkOnSelect:false,
-	url : "../../console/upkeepChargeReport/report.jhtml",
+	url : "../../console/upkeepChargeReport/reportSingleVehicle.jhtml?vehicleID=1",
 	loadMsg:message("yly.common.loading"),
 	striped:true,
 	pagination:false,
 	columns:[
 		    [
-		     {title:"维修费用",field:"upkeepAmount",width:100,sortable:true,
+		     {title:"车牌号",field:"vehicleTitle",width:"33%",align: 'center',sortable:true,
+		    	 formatter: function(value,row,index){
+		    			if(row != null){return row.vehicle.plate;}
+			    	 }
+		     },
+		     {title:"维修费用",field:"upkeepAmount",width:"33%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 		    			if(value != null){return value+"￥";}
 			    	 }
 		     },
-		     {title:"统计时间",field:"upkeepChargeStatisticsDate",width:100,sortable:true,
+		     {title:"统计时间",field:"upkeepChargeStatisticsDate",width:"33%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
 		    	  }
@@ -54,4 +59,33 @@ $("#upkeepChargeReport_search_btn").click(function(){
 	  var _queryParams = $("#upkeepChargeReport_search_form").serializeJSON();
 	  $('#upkeepChargeReport-table-list').datagrid('options').queryParams = _queryParams;
 	  $("#upkeepChargeReport-table-list").datagrid('reload');
-	})
+});
+//车辆查询
+$(function(){
+	$("#upkeepChargeVehicleSearch-table-list").datagrid({
+		url:'../vehicle/list.jhtml',  
+		pagination:true,
+		loadMsg:message("ov.common.loading"),
+		striped:true,
+		singleSelect:true,
+		onSelect:function(rowIndex,rowData){
+			$('#upkeepCharge_vehicleID').val(rowData.id);
+			  var _queryParams = $("#upkeepChargeReport_search_form").serializeJSON();
+			  $('#upkeepChargeReport-table-list').datagrid('options').queryParams = _queryParams;  
+			  $("#upkeepChargeReport-table-list").datagrid('reload');
+		},
+		onDblClickRow : function (rowIndex, rowData){
+			
+		},
+		columns:[[
+			{field : 'ck',checkbox : true},
+			{title : "车牌号",field : "plate",width :"47%",align : 'center',sortable : true},
+			{title : "品牌图标",field : "brandIcon",width :"47%",align : 'center',sortable : true},					
+		]]
+});
+$("#upkeepCharge_vehicle_search_btn").click(function(){
+		  var _queryParams = $("#upkeepCharge_vehicle_search_form").serializeJSON();
+		  $('#upkeepChargeVehicleSearch-table-list').datagrid('options').queryParams = _queryParams;  
+		  $("#upkeepChargeVehicleSearch-table-list").datagrid('reload');			
+		});
+});

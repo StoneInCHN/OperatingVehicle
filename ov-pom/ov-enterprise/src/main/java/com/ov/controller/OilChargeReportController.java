@@ -54,7 +54,7 @@ public class OilChargeReportController extends BaseController {
    * @param pageable
    * @return
    */
-  @RequestMapping(value = "/report", method = RequestMethod.POST)
+  @RequestMapping(value = "/reportAll", method = RequestMethod.POST)
   public @ResponseBody List<OilChargeReport> list(Model model, Pageable pageable
       ,Date beginDate, Date endDate) {
     

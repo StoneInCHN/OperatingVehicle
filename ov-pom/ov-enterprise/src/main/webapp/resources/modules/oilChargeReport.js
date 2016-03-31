@@ -4,7 +4,7 @@ $("#oilChargeReport-table-list").datagrid({
 	fitColumns:true,
 	pagination:true,
 	checkOnSelect:false,
-	url : "../../console/oilChargeReport/report.jhtml",
+	url : "../../console/oilChargeReport/reportSingleVehicle.jhtml?vehicleID=1",
 	loadMsg:message("yly.common.loading"),
 	striped:true,
 	pagination:false,
