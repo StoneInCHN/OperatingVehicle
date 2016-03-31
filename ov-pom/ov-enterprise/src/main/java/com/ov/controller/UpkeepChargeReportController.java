@@ -37,6 +37,7 @@ public class UpkeepChargeReportController extends BaseController {
   
   @Resource(name = "upkeepChargeReportServiceImpl")
   private UpkeepChargeReportService upkeepChargeReportService;
+  
   @Resource(name = "vehicleServiceImpl")
   private VehicleService vehicleService;
   

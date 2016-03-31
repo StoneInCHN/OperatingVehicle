@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
@@ -241,19 +239,6 @@ public class VehicleSchedulingController extends BaseController{
 		}
 		Page<VehicleResponse> page = new Page<VehicleResponse>(vehicleResponses, total, pageable);
 		return page;
-	}
-	/**
-	 * 确认车辆分配
-	 * @return
-	 */
-	@RequestMapping(value = "/assignVehicle", method = RequestMethod.POST)
-	public @ResponseBody Message assignVehicle(Long vehicleSchedulingId, String vehicle_id){
-		JSONArray jsonArray = JSONArray.fromObject(vehicle_id);
-		for (Object object : jsonArray) {
-			System.out.println(object.toString());
-		}
-		
-		return SUCCESS_MESSAGE;
 	}
 	
 	

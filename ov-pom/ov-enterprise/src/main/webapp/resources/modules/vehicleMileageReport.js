@@ -54,4 +54,33 @@ $("#vehicleMileageReport_search_btn").click(function(){
 	  var _queryParams = $("#vehicleMileageReport_search_form").serializeJSON();
 	  $('#vehicleMileageReport-table-list').datagrid('options').queryParams = _queryParams;
 	  $("#vehicleMileageReport-table-list").datagrid('reload');
-	})
+});
+	//车辆查询
+$(function(){
+	$("#vehicleMileageVehicleSearch-table-list").datagrid({
+		url:'../vehicle/list.jhtml',  
+		pagination:true,
+		loadMsg:message("ov.common.loading"),
+		striped:true,
+		singleSelect:true,
+		onSelect:function(rowIndex,rowData){
+			$('#upkeepCharge_vehicleID').val(rowData.id);
+			  var _queryParams = $("#upkeepChargeReport_search_form").serializeJSON();
+			  $('#upkeepChargeReport-table-list').datagrid('options').queryParams = _queryParams;  
+			  $("#upkeepChargeReport-table-list").datagrid('reload');
+		},
+		onDblClickRow : function (rowIndex, rowData){
+			
+		},
+		columns:[[
+			{field : 'ck',checkbox : true},
+			{title : "车牌号",field : "plate",width :"47%",align : 'center',sortable : true},
+			{title : "品牌图标",field : "brandIcon",width :"47%",align : 'center',sortable : true},					
+		]]
+});
+$("#upkeepCharge_vehicle_search_btn").click(function(){
+		  var _queryParams = $("#upkeepCharge_vehicle_search_form").serializeJSON();
+		  $('#upkeepChargeVehicleSearch-table-list').datagrid('options').queryParams = _queryParams;  
+		  $("#upkeepChargeVehicleSearch-table-list").datagrid('reload');			
+		});
+});

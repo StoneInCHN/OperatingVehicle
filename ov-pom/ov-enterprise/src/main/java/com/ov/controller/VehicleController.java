@@ -60,10 +60,7 @@ public class VehicleController extends BaseController {
     if (vehicleBrandSearch == null && vehiclePlateSearch == null) {
       vehiclePage = vehicleService.findPage(pageable, true);
     } else {
-      
-      
-      vehiclePage = vehicleService.findPage(pageable, true);
-//      vehiclePage = vehicleService.searchPageByFilter(keysOfElderlyName, beginDate, endDate,pageable);
+      vehiclePage = vehicleService.searchPageByFilter(vehiclePlateSearch, pageable, true);
     }
     return vehiclePage;
   }
