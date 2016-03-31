@@ -748,7 +748,6 @@ function loadDataBubble(option, url, args, xName, yName, bubbleName) {
 		cache : false,
 		data : args,
 		success : function(dataSource) {
-			console.info(dataSource);
 			if (dataSource.length > 0) {
 				option.xAxis.categories = [];
 				for (var i = 0; i < dataSource.length; i++) {
@@ -757,6 +756,27 @@ function loadDataBubble(option, url, args, xName, yName, bubbleName) {
 					bubbleData.push(dataSource[i][yName]);
 					bubbleData.push(dataSource[i][bubbleName]);
 					option.series[0].data.push(bubbleData);
+				}
+			}
+			var chart = new Highcharts.Chart(option);
+		}
+	});
+}
+//饼图加载
+function loadDataPie(option, url, args, xName, yName) {
+	$.ajax({
+		url : url,
+		type : "post",
+		cache : false,
+		data : args,
+		success : function(dataSource) {
+			console.info(dataSource);
+			if (dataSource.length > 0) {
+				for (var i = 0; i < dataSource.length; i++) {
+					var pieData = [];
+					pieData.push(new Date(dataSource[i][xName]).Format("yyyy年"));
+					pieData.push(dataSource[i][yName]);
+					option.series[0].data.push(pieData);
 				}
 			}
 			var chart = new Highcharts.Chart(option);
