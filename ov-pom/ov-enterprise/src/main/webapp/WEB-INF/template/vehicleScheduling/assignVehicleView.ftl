@@ -1,3 +1,5 @@
+<script src="${base}/resources/modules/assignVehicleView.js"></script>
+
 <div>
   <fieldset>
     <legend>${message("ov.vehicle.search")}</legend>
@@ -12,11 +14,11 @@
 		</div>
 	</form>
 	<div class="search-item">
-  	  <button id="useCarRequest-search-btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
+  	  <button id="vehicle-search-btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
     </div>
   </fieldset>
 </div>
-<table id="useCarRequest-table-list"></table>
+<table id="vehicle-table-list"></table>
 <div id="vehicle_manager_tool">
 	<div class="tool-button">
 		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain=true onclick="vehicle_manager_tool.add();">${message("ov.button.add")}</a>
@@ -26,5 +28,16 @@
 
 <div id="vehicleDetails"></div>
 
+<form id="assignVehicleView_form" method="post">   
+	<input type="hidden" name="vehicleSchedulingId" value= "${vehicleSchedulingId}" id=""/>
+	
+	<table id="selected_vehicle_table"></table>
+	<div id="selected_manager_tool">
+		<div class="tool-button">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain=true onclick="selected_manager_tool.remove();">${message("ov.button.delete")}</a>
+		</div>
+		<div class="tool-filter"></div>
+	</div>
 
+</form>
 

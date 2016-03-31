@@ -7,8 +7,8 @@ var vehicleAssign_manager_tool = {
 			}
 			var _dialog = $('#assignVehicleView').dialog({    
 				title: message("ov.common.assign"),     
-			    width: 800,    
-			    height: 500,    
+			    width: 810,    
+			    height: 600,    
 			    modal: true,
 			    iconCls:'icon-mini-edit',
 			    href:'../vehicleScheduling/assignVehicleView.jhtml?id='+_edit_row.id,
@@ -30,8 +30,8 @@ var vehicleAssign_manager_tool = {
 								success:function(result,response,status){
 									$.messager.progress('close');
 										showSuccessMsg(result.content);
-										$('#assignUseCarRequest').dialog("close");
-										$("#useCarRequest-table-list").datagrid('reload');
+										$('#assignVehicleView').dialog("close");
+//										$("#useCarRequest-table-list").datagrid('reload');
 								}
 							});
 						};
@@ -40,7 +40,7 @@ var vehicleAssign_manager_tool = {
 					text:message("ov.common.close"),
 					iconCls:'icon-cancel',
 					handler:function(){
-						 $('#assignUseCarRequest').dialog("close").form("reset");
+						 $('#assignVehicleView').dialog("close").form("reset");
 					}
 			    }]
 			});  
@@ -49,7 +49,6 @@ var vehicleAssign_manager_tool = {
 };
 
 $(function(){
-	var map_ip_location = "http://api.map.baidu.com/location/ip?ak=ulsOtfMZcNc4D6aQnBwwnOTt6ZKohflO&coor=bd09ll";
 
 	$("#useCarRequest-table-list").datagrid({
 		title:message("ov.useCarRequest.list"),

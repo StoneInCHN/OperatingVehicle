@@ -51,6 +51,7 @@ var messages = {
 		"ov.common.print":"打印",
 		"ov.common.action":"操作",
 		"ov.common.dateFormatChina":"yyyy年MM月dd日",
+		"ov.common.assign":"指派",
 		
 
 
@@ -112,6 +113,14 @@ var messages = {
 		"ov.useCarRequest.add":"新增用车请求",
 		"ov.useCarRequest.select_start_position":"选择起始地",
 		"ov.useCarRequest.select_end_position":"选择目的地",
+		
+		//车辆信息
+		"ov.vehicle.motorcade":"车队",
+		"ov.vehicle.plate":"车牌号",
+		"ov.vehicle.line":"车系",
+		"ov.vehicle.oilPerHundred":"百公里油耗",
+		"ov.vehicle.list":"车辆列表",
+		
 		
 		//部门管理
 		"ov.department.name":"部门名称",

@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
 
 /*
@@ -24,7 +25,7 @@ public class Motorcade extends BaseEntity{
 	private static final long serialVersionUID = 7044117024315860925L;
 
 	/**
-	 * 秒速
+	 * 描述
 	 */
 	private String motorcadeDesc;
 	
@@ -39,6 +40,7 @@ public class Motorcade extends BaseEntity{
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 
 	@Column
+	@JsonProperty
 	public String getMotorcadeDesc() {
 		return motorcadeDesc;
 	}

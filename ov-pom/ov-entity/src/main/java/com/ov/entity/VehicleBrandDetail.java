@@ -208,6 +208,7 @@ public class VehicleBrandDetail extends BaseEntity
     this.canOBD = canOBD;
   }
 
+  @JsonProperty
   public Float getOilPerHundred ()
   {
     return oilPerHundred;

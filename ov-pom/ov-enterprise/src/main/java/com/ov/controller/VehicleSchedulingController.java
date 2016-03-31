@@ -24,15 +24,19 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 import com.ov.beans.Message;
 import com.ov.beans.Message.Type;
 import com.ov.controller.base.BaseController;
+import com.ov.entity.Vehicle;
 import com.ov.entity.VehicleScheduling;
 import com.ov.entity.commonenum.CommonEnum.VehicleSchedulingStatus;
+import com.ov.entity.commonenum.CommonEnum.VehicleStatus;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
+import com.ov.response.VehicleResponse;
 import com.ov.service.TenantAccountService;
 import com.ov.service.TenantInfoService;
 import com.ov.service.VehicleSchedulingService;
+import com.ov.service.VehicleService;
 
 @Controller("vehicleSchedulingController")
 @RequestMapping("console/vehicleScheduling")
@@ -50,6 +54,9 @@ public class VehicleSchedulingController extends BaseController{
 	
 	@Autowired
 	private TenantInfoService tenantInfoService;
+	
+	@Autowired
+	private VehicleService vehicleService;
 	
 	@RequestMapping(value = "/useCarRequest", method = RequestMethod.GET)
 	public String useCarRequest(){
@@ -198,10 +205,52 @@ public class VehicleSchedulingController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/assignVehicleView", method = RequestMethod.GET)
-	public String assignVehicleView(){
+	public String assignVehicleView(Long id, ModelMap model){
+		model.put("vehicleSchedulingId", id);
 		return "vehicleScheduling/assignVehicleView";
 	}
-	
+	/**
+	 * 车辆分配弹出框-车辆列表
+	 * @return
+	 */
+	@RequestMapping(value = "/listVehicle", method = RequestMethod.POST)
+	public @ResponseBody Page<VehicleResponse> listVehicle(Pageable pageable){
+		
+		List<Filter> filters = new ArrayList<>();
+		Filter filter = new Filter("tenantInfo", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+		filters.add(filter);
+		filter = new Filter("vehicleStatus", Operator.eq, VehicleStatus.ENABLE);
+		filters.add(filter);
+		pageable.setFilters(filters);
+		Page<Vehicle> vehiclePage = vehicleService.findPage(pageable);
+		
+		long total = vehiclePage.getTotal();
+		List<Vehicle> vehicleRows = vehiclePage.getRows();
+		List<VehicleResponse> vehicleResponses = new ArrayList<VehicleResponse>();
+		for (Vehicle vehicle : vehicleRows) {
+			VehicleResponse vehicleResponse = new VehicleResponse();
+			vehicleResponse.setId(vehicle.getId());
+			vehicleResponse.setPlate(vehicle.getPlate());
+			vehicleResponse.setVehicleLine(vehicle.getVehicleBrandDetail().getVehicleLine().getName());
+			vehicleResponse.setMotorcade(vehicle.getMotorcade().getMotorcadeDesc());
+			vehicleResponse.setOilPerHundred(vehicle.getVehicleBrandDetail().getOilPerHundred());
+			vehicleResponses.add(vehicleResponse);
+		}
+		Page<VehicleResponse> page = new Page<VehicleResponse>(vehicleResponses, total, pageable);
+		return page;
+	}
+	/**
+	 * 确认车辆分配
+	 * @return
+	 */
+	@RequestMapping(value = "/assignVehicle", method = RequestMethod.POST)
+	public @ResponseBody Message assignVehicle(Long vehicleSchedulingId, Long[] vehicle_id){
+		System.out.println("---------");
+		System.out.println(vehicleSchedulingId);
+		System.out.println(vehicle_id);
+		
+		return SUCCESS_MESSAGE;
+	}
 	
 	
 }
