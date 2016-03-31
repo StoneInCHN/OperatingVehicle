@@ -1,6 +1,7 @@
 <script src="${base}/resources/modules/oilChargeReport.js"></script>
 <div>
 	  <fieldset>
+	  	<legend>条件查询</legend>
 	    <form id="oilChargeReport_search_form" class="search-form">
 			<div class="search-item">
 			    <label> 筛选时间:</label>

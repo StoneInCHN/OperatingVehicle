@@ -1,4 +1,28 @@
-//维修费统计
+
+$("#upkeepChargeReport-table-list").datagrid({
+	fitColumns:true,
+	pagination:true,
+	checkOnSelect:false,
+	url : "../../console/upkeepChargeReport/report.jhtml",
+	loadMsg:message("yly.common.loading"),
+	striped:true,
+	pagination:false,
+	columns:[
+		    [
+		     {title:"维修费用",field:"upkeepAmount",width:100,sortable:true,
+		    	 formatter: function(value,row,index){
+		    			if(value != null){return value+"￥";}
+			    	 }
+		     },
+		     {title:"统计时间",field:"upkeepChargeStatisticsDate",width:100,sortable:true,
+		    	 formatter: function(value,row,index){
+	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
+		    	  }
+		     }
+		 ]
+	],
+	onLoadSuccess:function(data){
+		//维修费统计
 		var upkeepChargeReportOptions = {
 				 	chart: {type: 'spline', renderTo : "upkeepChargeReportDivId"},
 			        title: {text: '<a href="#" style="color: #222222"}>车辆维修费统计</a>',margin:50,useHTML:true},
@@ -22,25 +46,6 @@
 			        }]
 		};
 
-$("#upkeepChargeReport-table-list").datagrid({
-	fitColumns:true,
-	pagination:true,
-	checkOnSelect:false,
-	url : "../../console/upkeepChargeReport/report.jhtml",
-	loadMsg:message("yly.common.loading"),
-	striped:true,
-	pagination:false,
-	columns:[
-		    [
-		     {title:"维修费用",field:"upkeepAmount",width:100,sortable:true},
-		     {title:"统计时间",field:"upkeepChargeStatisticsDate",width:100,sortable:true,
-		    	 formatter: function(value,row,index){
-	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
-		    	  }
-		     }
-		 ]
-	],
-	onLoadSuccess:function(data){
 		refreshLine(upkeepChargeReportOptions,data.rows,'upkeepChargeStatisticsDate','upkeepAmount');
 	}
 

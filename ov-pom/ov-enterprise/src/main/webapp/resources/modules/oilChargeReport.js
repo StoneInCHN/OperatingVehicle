@@ -1,4 +1,30 @@
-//油费统计
+
+
+$("#oilChargeReport-table-list").datagrid({
+	fitColumns:true,
+	pagination:true,
+	checkOnSelect:false,
+	url : "../../console/oilChargeReport/report.jhtml",
+	loadMsg:message("yly.common.loading"),
+	striped:true,
+	pagination:false,
+	columns:[
+		    [
+		     {title:"油费",field:"oilFinalAmount",width:100,sortable:true,
+		    	 formatter: function(value,row,index){
+		    			if(value != null){return value+"￥";}
+			    	 }
+		     },
+		     {title:"加油量L",field:"oilCount",width:100,sortable:true},
+		     {title:"统计时间",field:"oilChargeReportStatisticsDate",width:100,sortable:true,
+		    	 formatter: function(value,row,index){
+	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
+		    	  }
+		     }
+		 ]
+	],
+	onLoadSuccess:function(data){
+		//油费统计
 		var oilChargeReportOptions = {
 				 	chart: {type: 'spline', renderTo : "oilChargeReportDivId"},
 			        title: {text: '<a href="#" style="color: #222222"}>车辆油费统计</a>',margin:50,useHTML:true},
@@ -21,27 +47,6 @@
 			            data: []
 			        }]
 		};
-
-$("#oilChargeReport-table-list").datagrid({
-	fitColumns:true,
-	pagination:true,
-	checkOnSelect:false,
-	url : "../../console/oilChargeReport/report.jhtml",
-	loadMsg:message("yly.common.loading"),
-	striped:true,
-	pagination:false,
-	columns:[
-		    [
-		     {title:"油费",field:"oilFinalAmount",width:100,sortable:true},
-		     {title:"加油量L",field:"oilCount",width:100,sortable:true},
-		     {title:"统计时间",field:"oilChargeReportStatisticsDate",width:100,sortable:true,
-		    	 formatter: function(value,row,index){
-	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
-		    	  }
-		     }
-		 ]
-	],
-	onLoadSuccess:function(data){
 		refreshLine(oilChargeReportOptions,data.rows,'oilChargeReportStatisticsDate','oilFinalAmount');
 	}
 
