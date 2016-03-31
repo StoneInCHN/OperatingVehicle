@@ -16,12 +16,28 @@ var vehicleAssign_manager_tool = {
 			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
-						var validate = $('#assignVehicleView_form').form('validate');
-						if(validate){
+
+						$('#selected_vehicle_table').datagrid('selectAll');
+						var _rows = $('#selected_vehicle_table').datagrid('getSelections');
+						if (_rows.length == 0) {
+							$.messager.alert(message("ov.common.prompt"),
+									"未添加任何车辆信息", 'warning');
+						}else{
+							var vehicleSchedulingId = $("#vehicleSchedulingId").val();
+							var vehicle_id = new Array();
+							for (var i = 0; i < _rows.length; i++) {
+								vehicle_id[i] = _rows[i].vehicle_id + "";
+							}
+							var obj = {};
+							obj.vehicleSchedulingId = vehicleSchedulingId;
+							obj.vehicle_id = JSON.stringify(vehicle_id);
+							console.log(JSON.stringify(obj));
+							
 							$.ajax({
-								url:"../vehicleScheduling/assignVehicle.jhtml",
-								type:"post",
-								data:$("#assignVehicleView_form").serialize(),
+								url: "../vehicleScheduling/assignVehicle.jhtml",
+								type: "post",
+								dataType: "JSON",
+								data: obj,
 								beforeSend:function(){
 									$.messager.progress({
 										text:message("ov.common.saving")
@@ -31,10 +47,11 @@ var vehicleAssign_manager_tool = {
 									$.messager.progress('close');
 										showSuccessMsg(result.content);
 										$('#assignVehicleView').dialog("close");
-//										$("#useCarRequest-table-list").datagrid('reload');
+//											$("#useCarRequest-table-list").datagrid('reload');
 								}
 							});
-						};
+						}
+						
 					}
 				},{
 					text:message("ov.common.close"),

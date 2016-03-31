@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
@@ -244,10 +247,11 @@ public class VehicleSchedulingController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/assignVehicle", method = RequestMethod.POST)
-	public @ResponseBody Message assignVehicle(Long vehicleSchedulingId, Long[] vehicle_id){
-		System.out.println("---------");
-		System.out.println(vehicleSchedulingId);
-		System.out.println(vehicle_id);
+	public @ResponseBody Message assignVehicle(Long vehicleSchedulingId, String vehicle_id){
+		JSONArray jsonArray = JSONArray.fromObject(vehicle_id);
+		for (Object object : jsonArray) {
+			System.out.println(object.toString());
+		}
 		
 		return SUCCESS_MESSAGE;
 	}

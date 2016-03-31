@@ -6,6 +6,7 @@ var vehicle_manager_tool = {
 					"请选择要添加的记录", 'warning');
 		}else{
 			for (var i = 0; i < _rows.length; i++) {
+				
 				$('#selected_vehicle_table').datagrid("appendRow", { 
 					vehicle_id: _rows[i].id,
 					plate: _rows[i].plate, 

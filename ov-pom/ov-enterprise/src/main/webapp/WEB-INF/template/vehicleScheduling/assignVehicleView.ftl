@@ -29,7 +29,7 @@
 <div id="vehicleDetails"></div>
 
 <form id="assignVehicleView_form" method="post">   
-	<input type="hidden" name="vehicleSchedulingId" value= "${vehicleSchedulingId}" id=""/>
+	<input type="hidden" name="vehicleSchedulingId" value= "${vehicleSchedulingId}" id="vehicleSchedulingId"/>
 	
 	<table id="selected_vehicle_table"></table>
 	<div id="selected_manager_tool">
