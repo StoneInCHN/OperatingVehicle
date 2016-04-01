@@ -163,7 +163,7 @@ $(function(){
 		//车辆维修费报表
 		var upkeepChargeReportOptions = {
 				 	chart: {type: 'spline', renderTo : "upkeepChargeReportDiv"},
-			        title: {text: '<a href="#" style="color: #222222"}>车辆维修费统计</a>',margin:50,useHTML:true},
+			        title: {text: '<a href="#" style="color: #222222"}>车辆维修费统计(总)</a>',margin:20,useHTML:true},
 			        subtitle: {text: '周期：按月统计'},
 					credits : {enabled : false},
 			        xAxis: {},
@@ -189,7 +189,7 @@ $(function(){
 		  //车辆行程统计报表
 	    var vehicleMileageChargeReportOptions = {
 	    		chart: {type: 'column',margin: [ 50, 50, 100, 80], renderTo : "vehicleMileageChargeReportDiv"},
-		        title: {text: '<a href="#" style="color: #222222">车辆行程统计</a>',margin:50,useHTML:true},
+		        title: {text: '<a href="#" style="color: #222222">车辆行程统计(总)</a>',margin:20,useHTML:true},
 		        subtitle: {text: '周期：按月统计'},
 		        xAxis: {},
 		        yAxis: {
@@ -214,7 +214,7 @@ $(function(){
 		  //车辆保养费报表
 	    var maintenanceChargeReportOptions = {
 		        chart: {plotBackgroundColor: null,plotBorderWidth: null,plotShadow: false,renderTo : "maintenanceChargeReportDiv"},
-		        title: {text: '<a href="#" style="color: #222222">车辆保养费统计</a>',margin:50,useHTML:true},
+		        title: {text: '<a href="#" style="color: #222222">车辆保养费统计(总)</a>',margin:20,useHTML:true},
 		        subtitle: {text: '周期：按年统计'},
 		        credits : {enabled : false},
 		        tooltip: {pointFormat: '{series.name}: <b>共计:{point.y:.1f} 元, 占百分比{point.percentage:.1f}%</b>'},
@@ -241,26 +241,45 @@ $(function(){
 		"maintenanceChargeStatisticsDate","maintenanceAmount");
 	    
 	    //油费统计表
-	    var oilChargeReportDivOptions = {
-			    chart: {type: 'bubble',zoomType: 'xy',renderTo:"oilChargeReportDiv"},
+	    var oilChargeAmountReportDivOptions = {
+			    chart: {type: 'bubble',zoomType: 'xy',renderTo:"oilChargeAmountReportDiv"},
 		        xAxis: {},
 		        yAxis: {
 		            min: 0,
 		            title: {text: '费用/元'},
 		            labels: {formatter: function() {return this.value +'￥'}}
 		        },
-			    title: {text: '<a href="#" style="color: #222222">每月车辆油费统计</a>',margin:50,useHTML:true},
+			    title: {text: '<a href="#" style="color: #222222">每月车辆油费统计(总)</a>',margin:20,useHTML:true},
 			    subtitle: {text: '周期：按月统计'},
 			    credits : {enabled : false},
 		        tooltip: {
 		            pointFormat: '<b>{point.y:.1f} 元</b>',
 		        },
 			    series: [{
+			    	name: '费用',
+			        data: []
+			    }]
+	    };
+	    var oilChargeCountReportDivOptions = {
+			    chart: {type: 'bubble',zoomType: 'xy',renderTo:"oilChargeCountReportDiv"},
+		        xAxis: {},
+		        yAxis: {
+		            min: 0,
+		            title: {text: '用量/升'},
+		            labels: {formatter: function() {return this.value +'L'}}
+		        },
+			    title: {text: '<a href="#" style="color: #222222">每月车辆用油量统计(总)</a>',margin:20,useHTML:true},
+			    subtitle: {text: '周期：按月统计'},
+			    credits : {enabled : false},
+		        tooltip: {
+		            pointFormat: '<b>{point.y:.1f} 升</b>',
+		        },
+			    series: [{
 			    	name: '用油量',
 			        data: []
 			    }]
 	    };
-	    loadDataBubble(oilChargeReportDivOptions,"../../console/oilChargeReport/reportAll.jhtml",null,
+	    loadDataBubble(oilChargeAmountReportDivOptions, oilChargeCountReportDivOptions,"../../console/oilChargeReport/reportAll.jhtml",null,
 	    		"oilChargeReportStatisticsDate","oilFinalAmount","oilCount");
 })
 

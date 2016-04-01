@@ -118,28 +118,42 @@
      
      <div class="main-content" data-options="region:'center'">
     	<div id="manager-tabs">   
-		    <div title="起始页">
+		    <div title="起始页" style="background-color:#efeff0">
 		    		<div class="main-content-top">
 						<div class="shortcutNavigation" style="padding-top:20px">
 				        </div>
 				    </div>
 					<div class="main-content-center">
-						<div>
-								<div class="col-md-5">
-						    		<div id="maintenanceChargeReportDiv" style="height:350px;width: 550px;"></div>
-						    	</div>
-								<div class="col-md-7" >
-						    		<div id="oilChargeReportDiv" style="height:350px;width: 650px;"></div>
-						    	</div>
-						</div>
-						<div>
-								<div class="col-md-6">
-									<div id="upkeepChargeReportDiv" style="height:350px;width: 600px;"></div>
-						    	</div>
-						    	<div class="col-md-6">
-						    		<div id="vehicleMileageChargeReportDiv" style="height:350px;width: 600px;"></div>
-						    	</div>
-						</div>
+					
+							<div style="height:800px;width:650px;float:left;padding:0 20px">
+								<div class="thumbnail" style="border-radius: 10px;padding:5px 0 10px 0">
+						    			<div id="maintenanceChargeReportDiv" style="height:350px;width:600px;"></div>
+						    		</div>
+						    		<div class="thumbnail" style="border-radius: 10px;padding:5px 0 10px 0">
+										<div id="upkeepChargeReportDiv" style="height:360px;width:600px;"></div>
+									</div>
+							</div>
+							<div style="height:820px;width:600px;float:left;padding:0 20px">
+									<div class="row">
+										<div class="col-md-6" style="width:50%">
+												<div class="thumbnail" style="border-radius: 10px;padding:20px 0px 5px 0px">
+						    						<div id="oilChargeAmountReportDiv" style="height:300px;width:255px;"></div>
+						    					</div>
+										</div>
+										<div class="col-md-6" style="width:50%">
+												<div class="thumbnail" style="border-radius: 10px;padding:20px 0px 5px 0px">
+						    						<div id="oilChargeCountReportDiv" style="height:300px;width:255px;"></div>
+						    					</div>	
+										</div>
+									</div>
+									<div class="row">
+						    		<div class="thumbnail" style="border-radius: 10px;padding:10px 0 5px 10px">
+						    			<div id="vehicleMileageChargeReportDiv" style="height:400px;width:550px;"></div>
+						    		</div>
+						    		</div>
+							</div>
+
+						    
 						</div>
 					</div>
 		    </div>    

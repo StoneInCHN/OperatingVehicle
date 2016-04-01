@@ -741,24 +741,36 @@ function refreshLine(option, dataSource, categoryName, valueName, viewName) {
 	var chart = new Highcharts.Chart(option);
 }
 //气泡图加载
-function loadDataBubble(option, url, args, xName, yName, bubbleName) {
+function loadDataBubble(optionAmount, optionCount, url, args, xName, yName, bubbleName) {
 	$.ajax({
 		url : url,
 		type : "post",
 		cache : false,
 		data : args,
 		success : function(dataSource) {
-			if (dataSource.length > 0) {
-				option.xAxis.categories = [];
+			if (dataSource.length > 0) {//费用
+				optionAmount.xAxis.categories = [];
 				for (var i = 0; i < dataSource.length; i++) {
-					option.xAxis.categories.push(new Date(dataSource[i][xName]).Format("yyyy年MM月"));
+					optionAmount.xAxis.categories.push(new Date(dataSource[i][xName]).Format("yyyy-MM"));
 					var bubbleData = [];
 					bubbleData.push(dataSource[i][yName]);
-					bubbleData.push(dataSource[i][bubbleName]);
-					option.series[0].data.push(bubbleData);
+					bubbleData.push(dataSource[i][yName]);
+					optionAmount.series[0].data.push(bubbleData);
 				}
 			}
-			var chart = new Highcharts.Chart(option);
+			var chart = new Highcharts.Chart(optionAmount);
+			
+			if (dataSource.length > 0) {//用油量
+				optionCount.xAxis.categories = [];
+				for (var i = 0; i < dataSource.length; i++) {
+					optionCount.xAxis.categories.push(new Date(dataSource[i][xName]).Format("yyyy-MM"));
+					var bubbleData = [];
+					bubbleData.push(dataSource[i][bubbleName]);
+					bubbleData.push(dataSource[i][bubbleName]);
+					optionCount.series[0].data.push(bubbleData);
+				}
+			}
+			var chart = new Highcharts.Chart(optionCount);
 		}
 	});
 }
