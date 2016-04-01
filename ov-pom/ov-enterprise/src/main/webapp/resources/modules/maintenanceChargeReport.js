@@ -9,12 +9,17 @@ $("#maintenanceChargeReport-table-list").datagrid({
 	pagination:false,
 	columns:[
 		    [
-		     {title:"保养费用",field:"maintenanceAmount",width:"50%",sortable:true,
+		     {title:"车牌号",field:"vehicleTitle",width:"33%",align: 'center',sortable:true,
+		    	 formatter: function(value,row,index){
+		    			if(row != null){return row.vehicle.plate;}
+			    	 }
+		     },
+		     {title:"保养费用",field:"maintenanceAmount",width:"33%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 		    			if(value != null){return value+"￥";}
 			    	 }
 		     },
-		     {title:"统计时间",field:"maintenanceChargeStatisticsDate",width:"50%",sortable:true,
+		     {title:"统计时间",field:"maintenanceChargeStatisticsDate",width:"33%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 	    			if(value != null){return new Date(value).Format("yyyy年");}
 		    	  }

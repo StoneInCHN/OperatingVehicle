@@ -10,13 +10,21 @@ $("#oilChargeReport-table-list").datagrid({
 	pagination:false,
 	columns:[
 		    [
-		     {title:"油费",field:"oilFinalAmount",width:"33%",sortable:true,
+		     {title:"车牌号",field:"vehicleTitle",width:"25%",align: 'center',sortable:true,
+		    	 formatter: function(value,row,index){
+		    			if(row != null){return row.vehicle.plate;}
+			    	 }
+		     },
+		     {title:"油费/元",field:"oilFinalAmount",width:"25%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 		    			if(value != null){return value+"￥";}
 			    	 }
 		     },
-		     {title:"加油量L",field:"oilCount",width:"33%",sortable:true},
-		     {title:"统计时间",field:"oilChargeReportStatisticsDate",width:"33%",sortable:true,
+		     {title:"加油量/升",field:"oilCount",width:"25%",align: 'center',sortable:true,
+		    	 formatter: function(value,row,index){
+		    			if(value != null){return value+"L";}
+			    	 }},
+		     {title:"统计时间",field:"oilChargeReportStatisticsDate",width:"25%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
 		    	  }
