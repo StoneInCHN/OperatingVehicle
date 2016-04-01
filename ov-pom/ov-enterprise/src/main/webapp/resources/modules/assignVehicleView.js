@@ -48,21 +48,21 @@ $(function(){
 		loadMsg:message("ov.common.loading"),
 		striped:true,
 		onDblClickRow : function (rowIndex, rowData){
-			$('#vehicleDetails').dialog({    
-			    title: message("ov.common.detail"),    
-			    width: 400,    
-			    height: 350, 
-			    cache: false,
-			    modal: true,
-			    href:'../vehicleScheduling/detailsVehicle.jhtml?id='+rowData.id,
-			    buttons:[{
-					text:message("ov.common.close"),
-					iconCls:'icon-cancel',
-					handler:function(){
-						 $('#vehicleDetails').dialog("close");
-					}
-			    }]
-			});   
+//			$('#vehicleDetails').dialog({    
+//			    title: message("ov.common.detail"),    
+//			    width: 400,    
+//			    height: 350, 
+//			    cache: false,
+//			    modal: true,
+//			    href:'../vehicleScheduling/detailsVehicle.jhtml?id='+rowData.id,
+//			    buttons:[{
+//					text:message("ov.common.close"),
+//					iconCls:'icon-cancel',
+//					handler:function(){
+//						 $('#vehicleDetails').dialog("close");
+//					}
+//			    }]
+//			});   
 		},
 		columns:[
 		   [

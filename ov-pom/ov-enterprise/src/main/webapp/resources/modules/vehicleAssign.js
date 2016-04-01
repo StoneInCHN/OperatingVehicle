@@ -1,8 +1,20 @@
 var vehicleAssign_manager_tool = {
 		assign:function(){
+			var _rows = $('#useCarRequest-table-list').datagrid('getSelections');
+			if (_rows.length > 1) {
+				$.messager.alert(message("ov.common.prompt"),
+						"只能选择一条记录", 'warning');
+				return false;
+			}
 			var _edit_row = $('#useCarRequest-table-list').datagrid('getSelected');
 			if( _edit_row == null ){
-				$.messager.alert(message("ov.common.select.editRow"));  
+				$.messager.alert(message("ov.common.prompt"),
+						"未选择记录", 'warning');
+				return false;
+			}
+			if(_edit_row.status != "TO_CONFIRM"){
+				$.messager.alert(message("ov.common.prompt"),
+						"此状态不允许指派车辆", 'warning');
 				return false;
 			}
 			var _dialog = $('#assignVehicleView').dialog({    
@@ -47,7 +59,7 @@ var vehicleAssign_manager_tool = {
 									$.messager.progress('close');
 										showSuccessMsg(result.content);
 										$('#assignVehicleView').dialog("close");
-//											$("#useCarRequest-table-list").datagrid('reload');
+										$("#useCarRequest-table-list").datagrid('reload');
 								}
 							});
 						}

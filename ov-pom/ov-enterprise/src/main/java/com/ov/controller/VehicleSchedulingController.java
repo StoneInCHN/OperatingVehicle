@@ -1,10 +1,11 @@
 package com.ov.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
@@ -119,12 +120,8 @@ public class VehicleSchedulingController extends BaseController{
 	      statusQuery = new TermQuery (new Term ("status",statusSearch.toString ()));
 	      query.add (statusQuery,Occur.MUST);
 	    }
-
-	    if (nameQuery != null || statusQuery != null){
-	      return vehicleSchedulingService.search (query, pageable, analyzer, luceneFilter, false);
-	    }
-		
-		List<Filter> filters = new ArrayList<>();
+	    
+	    List<Filter> filters = new ArrayList<>();
 		Filter filter = null;
 		if (CHILDREN_REQUEST.equals(childrenOrParent)) {
 			filter = new Filter("requestBusiness", Operator.eq, tenantAccountService.getCurrentTenantInfo());
@@ -133,6 +130,11 @@ public class VehicleSchedulingController extends BaseController{
 		}
 		filters.add(filter);
 		pageable.setFilters(filters);
+
+	    if (nameQuery != null || statusQuery != null){
+	      return vehicleSchedulingService.search (query, pageable, analyzer, luceneFilter, false);
+	    }
+		
 		return vehicleSchedulingService.findPage(pageable);
 	}
 	/**
@@ -215,15 +217,64 @@ public class VehicleSchedulingController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/listVehicle", method = RequestMethod.POST)
-	public @ResponseBody Page<VehicleResponse> listVehicle(Pageable pageable){
+	public @ResponseBody Page<VehicleResponse> listVehicle(Pageable pageable, String motorcadeSearch, String plateSearch){
 		
-		List<Filter> filters = new ArrayList<>();
+		/**
+		 * 车辆信息添加功能未做，此处不能使用lucene
+		 */
+//		IKAnalyzer analyzer = new IKAnalyzer ();
+//	    analyzer.setMaxWordLength (true);
+//	    BooleanQuery query = new BooleanQuery ();
+//
+//	    QueryParser nameParser = null;
+//	    Query nameQuery = null;
+//	    
+//	    org.apache.lucene.search.Filter luceneFilter = null;
+//	    if (motorcadeSearch != null){
+//	      String text = QueryParser.escape (motorcadeSearch);
+//	        try{
+//	        	nameParser = new QueryParser (Version.LUCENE_35, "motorcade", analyzer);
+//	        	nameQuery = nameParser.parse (text);
+//	        	query.add (nameQuery, Occur.MUST);
+//	          
+//	        }catch (ParseException e){
+//	          e.printStackTrace();
+//	        }
+//	    }
+//	    if (plateSearch != null){
+//	      String text = QueryParser.escape (plateSearch);
+//	        try{
+//	        	nameParser = new QueryParser (Version.LUCENE_35, "plate", analyzer);
+//	          nameQuery = nameParser.parse (text);
+//	          query.add (nameQuery, Occur.MUST);
+//	          
+//	        }catch (ParseException e){
+//	          e.printStackTrace();
+//	        }
+//	    }
+		
+	    List<Filter> filters = new ArrayList<>();
 		Filter filter = new Filter("tenantInfo", Operator.eq, tenantAccountService.getCurrentTenantInfo());
 		filters.add(filter);
 		filter = new Filter("vehicleStatus", Operator.eq, VehicleStatus.ENABLE);
 		filters.add(filter);
+
+		if (plateSearch != null){
+			filter = new Filter("plate", Operator.like, plateSearch);
+			filters.add(filter);
+		}
+		
 		pageable.setFilters(filters);
-		Page<Vehicle> vehiclePage = vehicleService.findPage(pageable);
+	    
+		Page<Vehicle> vehiclePage = null;
+		
+//	    if (motorcadeSearch != null || plateSearch != null){
+//	    	vehiclePage = vehicleService.search (query, pageable, analyzer, luceneFilter, false);
+//	    }else {
+//	    	vehiclePage = vehicleService.findPage(pageable);
+//		}
+		
+		vehiclePage = vehicleService.findPage(pageable);
 		
 		long total = vehiclePage.getTotal();
 		List<Vehicle> vehicleRows = vehiclePage.getRows();
@@ -240,6 +291,24 @@ public class VehicleSchedulingController extends BaseController{
 		Page<VehicleResponse> page = new Page<VehicleResponse>(vehicleResponses, total, pageable);
 		return page;
 	}
-	
+	/**
+	 * 确认车辆分配
+	 * @return
+	 */
+	 @RequestMapping(value = "/assignVehicle", method = RequestMethod.POST)
+	 public @ResponseBody Message assignVehicle(Long vehicleSchedulingId, String vehicle_id){
+		 VehicleScheduling vehicleScheduling = vehicleSchedulingService.find(vehicleSchedulingId);
+		 Set<Vehicle> vehicles = new HashSet<Vehicle>();
+		 org.json.JSONArray jsonArray = new org.json.JSONArray(vehicle_id);
+		 for (Object object : jsonArray) {
+			 vehicles.add(vehicleService.find(Long.valueOf((String) object)));
+		 }
+		 vehicleScheduling.setVehicles(vehicles);
+		 vehicleScheduling.setStatus(VehicleSchedulingStatus.DISTRIBUTED);
+		 vehicleSchedulingService.update(vehicleScheduling);
+		 
+		 return SUCCESS_MESSAGE;
+	 }
+	 
 	
 }
