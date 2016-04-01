@@ -28,7 +28,8 @@
   <body class="easyui-layout" >   
 	<div class="header" data-options="region:'north',split:true,noheader:true,collapse:'west'">
 		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">车辆运营管理</div>-->
-		<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">后台管理中心</div>
+		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">后台管理中心</div>-->
+		<div class="logo">车辆后台管理中心</div>
 		<div id="nav-wrap" class="nav-wrap"  style="width:700px">
 			<ul class="nav nav-pills">
 				<li><a href="#main"><i class="fa fa-home fa-1x"></i>首页</a></li>
@@ -70,7 +71,7 @@
 		</ul>
 	</div>   
     <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:115" >
-    	<ul title="${message("ov.system.config")}" id="systemManage">
+    	<ul title="${message("ov.system.manage")}" id="systemManage">
     		[@shiro.hasPermission name="userManage"]
     		<li><a href="#" data-url="${base}/console/tenantUser/tenantUser.jhtml">人员管理</a></li>
     		[/@shiro.hasPermission]
@@ -100,7 +101,7 @@
     		<li><a href="#" data-url="${base}/console/vehicleScheduling/vehicleAssign.jhtml">车辆指派</a></li>
     		[/@shiro.hasPermission]	
     	</ul>     
-    	<ul title="${message("ov.system.config")}" id="statisticalReport">
+    	<ul title="${message("ov.statistical.report")}" id="statisticalReport">
     		[@shiro.hasPermission name="maintenanceChargeReport"]
     		<li><a href="#" data-url="${base}/console/maintenanceChargeReport/maintenanceChargeReport.jhtml">保养费用统计</a></li>
     		[/@shiro.hasPermission]
@@ -118,7 +119,7 @@
      
      <div class="main-content" data-options="region:'center'">
     	<div id="manager-tabs">   
-		    <div title="起始页" style="background-color:#efeff0">
+		    <div title="起始页" style="background-color:#f3f3f6">
 		    		<div class="main-content-top">
 						<div class="shortcutNavigation" style="padding-top:20px">
 				        </div>
