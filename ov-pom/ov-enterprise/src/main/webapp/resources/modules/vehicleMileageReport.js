@@ -10,12 +10,17 @@ $("#vehicleMileageReport-table-list").datagrid({
 	pagination:false,
 	columns:[
 		    [
-		     {title:"行程",field:"mileage",width:"50%",sortable:true,
+		     {title:"车牌号",field:"vehicleTitle",width:"33%",align: 'center',sortable:true,
+		    	 formatter: function(value,row,index){
+		    			if(row != null){return row.vehicle.plate;}
+			    	 }
+		     },
+		     {title:"行程",field:"mileage",width:"33%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 	    			if(value != null){return value+"km";}
 		    	 }
 		     },
-		     {title:"统计时间",field:"vehicleMileageStatisticsDate",width:"50%",sortable:true,
+		     {title:"统计时间",field:"vehicleMileageStatisticsDate",width:"33%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
 		    	  }
