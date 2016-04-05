@@ -155,6 +155,9 @@ var messages = {
 		"ov.systemConfig.isEnabled":"是否启用",
 		"ov.systemConfig.add":"添数据字典",
 		"ov.systemConfig.edit":"编辑数据字典",
+		
+		//企业管理
+		"ov.branchBusiness.add":"添加分公司"
 			
 };
 //多语言

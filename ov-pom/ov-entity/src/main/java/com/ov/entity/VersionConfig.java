@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
 import com.ov.entity.commonenum.CommonEnum.VersionStatus;
 
@@ -39,7 +40,8 @@ public class VersionConfig extends BaseEntity {
    * 版本状态
    */
   private VersionStatus versionStatus;
-
+  
+  @JsonProperty
   public String getVersionName() {
     return versionName;
   }

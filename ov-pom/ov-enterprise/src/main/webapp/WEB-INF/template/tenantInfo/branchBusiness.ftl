@@ -151,6 +151,12 @@
 				     
 	    		</td>
 	    	</tr>
+	    	<tr>
+	    		<th>${message("ov.tenantInfo.select.version")}:</th>
+	    		<td>
+	    			 <input class="easyui-combobox" id="tenantInfoVersion-add" name="versionConfig.id" />   
+	    		</td>
+	    	</tr>
 	    </table>
 	</form>
 </div>

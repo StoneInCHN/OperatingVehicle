@@ -8,7 +8,6 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import org.apache.commons.codec.digest.DigestUtils;
-
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
@@ -34,6 +33,7 @@ import com.ov.entity.Role;
 import com.ov.entity.TenantAccount;
 import com.ov.entity.TenantInfo;
 import com.ov.entity.TenantUser;
+import com.ov.entity.VersionConfig;
 import com.ov.entity.commonenum.CommonEnum.AccountStatus;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.paging.Page;
@@ -42,6 +42,7 @@ import com.ov.service.ConfigMetaService;
 import com.ov.service.TenantAccountService;
 import com.ov.service.TenantInfoService;
 import com.ov.service.TenantUserService;
+import com.ov.service.VersionConfigService;
 
 @Controller
 @RequestMapping("console/tenantInfo")
@@ -55,6 +56,9 @@ public class TenantInfoController extends BaseController{
 	
 	@Resource (name = "tenantUserServiceImpl")
 	private TenantUserService tenantUserService;
+	
+	@Resource (name = "versionConfigServiceImpl")
+	private VersionConfigService versionConfigService;
 	
 	@Autowired
 	private ConfigMetaService configMetaService;  
@@ -179,6 +183,14 @@ public class TenantInfoController extends BaseController{
 	public @ResponseBody Message addBranch(TenantInfo tenantInfo){
 		tenantInfo.setParent(tenantAccountService.getCurrentTenantInfo());
 		tenantInfo.setOrgCode(tenantAccountService.getCurrentTenantOrgCode());
+		//为子公司分配版本
+		if (tenantInfo.getVersionConfig() != null) {
+          Long verisonId = tenantInfo.getVersionConfig().getId();
+          if (verisonId != null) {
+            VersionConfig versionConfig = versionConfigService.find(verisonId);
+            tenantInfo.setVersionConfig(versionConfig);
+          }
+        }
 		tenantInfoService.save(tenantInfo);
 		return SUCCESS_MESSAGE;
 	}
@@ -197,6 +209,7 @@ public class TenantInfoController extends BaseController{
 	        tenantAccount.setTenantID(tenantInfoId);
 	        tenantAccount.setPassword (DigestUtils.md5Hex(tenantAccount.getPassword ()));
 	        tenantAccount.setIsAdmin(true);
+	        tenantAccount.setAccoutStatus(AccountStatus.ACTIVED);
 	        //为管理员新创建一个角色
 	        Role role = new Role();
 	        role.setIsSystem(true);
@@ -311,8 +324,13 @@ public class TenantInfoController extends BaseController{
         }else {
           return null;
         }
-	    
-	    
+	  }
+	  
+	  
+	  @RequestMapping(value = "/listVersion", method = RequestMethod.GET)
+      public @ResponseBody List<VersionConfig> listVersion() {
+	    List<VersionConfig> versionConfigs = versionConfigService.findAll();
+	    return versionConfigs;
 	  }
 	
 }

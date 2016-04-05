@@ -46,6 +46,20 @@ var branchBusiness_manager_tool = {
 			    }],
 			    onOpen:function(){
 			    	$('#addBranchBusiness_form').show();
+			    	$("#tenantInfoVersion-add").combotree({    
+					    url: '../tenantInfo/listVersion.jhtml',    
+					    method:"get",
+					    animate:true,
+					    lines:true,
+					    required:true,
+					    prompt:message("ov.common.please.select"),
+					    formatter:function(node){
+					    	console.info(node);
+					    	node.text = node.versionName;
+							return node.versionName;
+						}
+					});
+			    	
 			    },
 			});  
 		},
