@@ -1,6 +1,8 @@
 <script src="${base}/resources/modules/tenantInfo.js"></script>
+<!--
 <div class="easyui-layout" data-options="fit:true">
 	<div data-options="region:'center'">
+	-->
 			<div class="easyui-panel" style="height:400px;background:#fafafa;" data-options="border:false">
 						  <fieldset>
 						    <legend>${message("ov.tenantInfo.branch.search")}</legend>
@@ -82,9 +84,10 @@
 											<div class="tool-filter"></div>
 									</div>
 			</div>
+<!--
 	</div>
 </div>
-
+-->
 
 <div id="addBranchBusiness"> 
 	<form id="addBranchBusiness_form" method="post" class="form-table">
