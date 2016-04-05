@@ -253,7 +253,7 @@ $(function(){
 			    subtitle: {text: '周期：按月统计'},
 			    credits : {enabled : false},
 		        tooltip: {
-		            pointFormat: '<b>{point.y:.1f} 次</b>',
+		            pointFormat: '<b>{point.y} 次</b>',
 		        },
 			    series: [{
 			    	name: '次数',

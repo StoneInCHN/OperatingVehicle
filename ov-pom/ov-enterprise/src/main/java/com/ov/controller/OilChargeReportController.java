@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ov.controller.base.BaseController;
 import com.ov.entity.OilChargeReport;
+import com.ov.entity.OilTotalReport;
 import com.ov.entity.Vehicle;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
@@ -23,23 +24,28 @@ import com.ov.framework.ordering.Ordering;
 import com.ov.framework.ordering.Ordering.Direction;
 import com.ov.framework.paging.Pageable;
 import com.ov.service.OilChargeReportService;
+import com.ov.service.OilTotalReportService;
 import com.ov.service.VehicleService;
 import com.ov.utils.ReportDataComparator;
 
 /**
  * Controller - 车辆维修费报表
+ * 
  * @author luzhang
  *
  */
 @Controller("oilChargeReportController")
 @RequestMapping("console/oilChargeReport")
 public class OilChargeReportController extends BaseController {
-  
+
   @Resource(name = "oilChargeReportServiceImpl")
   private OilChargeReportService oilChargeReportService;
-  
+  @Resource(name = "oilTotalReportServiceImpl")
+  private OilTotalReportService oilTotalReportService;
+
   @Resource(name = "vehicleServiceImpl")
   private VehicleService vehicleService;
+
   /**
    * 界面展示
    * 
@@ -59,86 +65,73 @@ public class OilChargeReportController extends BaseController {
    * @return
    */
   @RequestMapping(value = "/reportAll", method = RequestMethod.POST)
-  public @ResponseBody List<OilChargeReport> list(Model model, Pageable pageable
-      ,Date beginDate, Date endDate) {
-    
-    //时间倒序
-    List<Ordering> orderings = new ArrayList<Ordering> ();
-    Ordering dateCycleOrdering = new Ordering ("oilChargeReportStatisticsDate",
-        Direction.desc);
-    orderings.add (dateCycleOrdering);
-    
-    List<Filter> filters = new ArrayList<Filter> ();
-    if (beginDate != null)
-    {
-      Filter startDateFilter = new Filter();
-      startDateFilter.setOperator (Operator.gt);
-      startDateFilter.setProperty ("oilChargeReportStatisticsDate");
-      startDateFilter.setValue (beginDate);
-      filters.add (startDateFilter);
-    }
-    
-    if (endDate != null)
-    {
-      Filter endDateFilter = new Filter();
-      endDateFilter.setProperty ("oilChargeReportStatisticsDate");
-      endDateFilter.setValue (endDate);
-      endDateFilter.setOperator (Operator.lt);
-      filters.add (endDateFilter);
-    }
-    
-    List<OilChargeReport>  reportWaterElectricityRecordList = oilChargeReportService.findList (12, filters, orderings, true,null);
-    ReportDataComparator comparator =new ReportDataComparator ("oilChargeReportStatisticsDate");
-    Collections.sort (reportWaterElectricityRecordList, comparator);
-    return reportWaterElectricityRecordList;
+  public @ResponseBody List<OilTotalReport> list(Model model, Pageable pageable, Date beginDate,
+      Date endDate) {
+
+    List<Filter> filters = constructFilter(null, beginDate, endDate);
+    List<Ordering> orderings = constructOrdering();
+
+    List<OilTotalReport> oilTotalReportList =
+        oilTotalReportService.findList(12, filters, orderings, true, null);
+    ReportDataComparator comparator = new ReportDataComparator("oilChargeReportStatisticsDate");
+    Collections.sort(oilTotalReportList, comparator); 
+    return oilTotalReportList;
   }
-  
+
   @RequestMapping(value = "/reportSingleVehicle", method = RequestMethod.POST)
-  public @ResponseBody List<OilChargeReport> list(Model model, Long vehicleID, Pageable pageable
-      ,Date beginDate, Date endDate) {
+  public @ResponseBody List<OilChargeReport> list(Model model, Long vehicleID, Pageable pageable,
+      Date beginDate, Date endDate) {
+
+    List<Filter> filters = constructFilter(vehicleID, beginDate, endDate);
+    List<Ordering> orderings = constructOrdering();
+
+    List<OilChargeReport> oilChargeReportList =
+        oilChargeReportService.findList(12, filters, orderings, true, null);
+    ReportDataComparator comparator = new ReportDataComparator("oilChargeReportStatisticsDate");
+    Collections.sort(oilChargeReportList, comparator);
+    return oilChargeReportList;
+  }
+
+  private List<Ordering> constructOrdering() {
+    // 时间倒序
+    List<Ordering> orderings = new ArrayList<Ordering>();
+    Ordering dateCycleOrdering = new Ordering("oilChargeReportStatisticsDate", Direction.desc);
+    orderings.add(dateCycleOrdering);
+    return orderings;
+  }
+
+  private List<Filter> constructFilter(Long vehicleID, Date beginDate, Date endDate) {
     if (vehicleID == null) {
       return null;
     }
-    List<Filter> filters = new ArrayList<Filter> ();
+    List<Filter> filters = new ArrayList<Filter>();
     Vehicle vehicle = vehicleService.find(vehicleID);
-    if (vehicle == null) 
-    {
+    if (vehicle == null) {
       return null;
-      
-    }else{
+
+    } else {
       Filter vehicleFilter = new Filter();
-      vehicleFilter.setOperator (Operator.eq);
-      vehicleFilter.setProperty ("vehicle");
-      vehicleFilter.setValue (vehicle);
-      filters.add (vehicleFilter);
+      vehicleFilter.setOperator(Operator.eq);
+      vehicleFilter.setProperty("vehicle");
+      vehicleFilter.setValue(vehicle);
+      filters.add(vehicleFilter);
     }
-    //时间倒序
-    List<Ordering> orderings = new ArrayList<Ordering> ();
-    Ordering dateCycleOrdering = new Ordering ("oilChargeReportStatisticsDate",
-        Direction.desc);
-    orderings.add (dateCycleOrdering);
-    
-    if (beginDate != null)
-    {
+
+    if (beginDate != null) {
       Filter startDateFilter = new Filter();
-      startDateFilter.setOperator (Operator.gt);
-      startDateFilter.setProperty ("oilChargeReportStatisticsDate");
-      startDateFilter.setValue (beginDate);
-      filters.add (startDateFilter);
+      startDateFilter.setOperator(Operator.gt);
+      startDateFilter.setProperty("oilChargeReportStatisticsDate");
+      startDateFilter.setValue(beginDate);
+      filters.add(startDateFilter);
     }
-    
-    if (endDate != null)
-    {
+
+    if (endDate != null) {
       Filter endDateFilter = new Filter();
-      endDateFilter.setProperty ("oilChargeReportStatisticsDate");
-      endDateFilter.setValue (endDate);
-      endDateFilter.setOperator (Operator.lt);
-      filters.add (endDateFilter);
+      endDateFilter.setProperty("oilChargeReportStatisticsDate");
+      endDateFilter.setValue(endDate);
+      endDateFilter.setOperator(Operator.lt);
+      filters.add(endDateFilter);
     }
-    
-    List<OilChargeReport>  reportWaterElectricityRecordList = oilChargeReportService.findList (12, filters, orderings, true,null);
-    ReportDataComparator comparator =new ReportDataComparator ("oilChargeReportStatisticsDate");
-    Collections.sort (reportWaterElectricityRecordList, comparator);
-    return reportWaterElectricityRecordList;
+    return filters;
   }
 }
