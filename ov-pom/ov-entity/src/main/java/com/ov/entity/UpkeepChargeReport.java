@@ -42,6 +42,10 @@ public class UpkeepChargeReport extends BaseEntity{
    * 维修费用
    */
   private BigDecimal upkeepAmount;
+  /**
+   * 维修次数
+   */
+  private int upkeepNumber;
   
   /**
    * 报告统计时间
@@ -85,6 +89,14 @@ public class UpkeepChargeReport extends BaseEntity{
 
   public void setUpkeepChargeStatisticsDate(Date upkeepChargeStatisticsDate) {
 	this.upkeepChargeStatisticsDate = upkeepChargeStatisticsDate;
+  }
+  @JsonProperty
+  public int getUpkeepNumber() {
+    return upkeepNumber;
+  }
+
+  public void setUpkeepNumber(int upkeepNumber) {
+    this.upkeepNumber = upkeepNumber;
   }
   
 }

@@ -25,13 +25,14 @@ import com.ov.lucene.DateBridgeImpl;
 
 /**
  * 车辆加油信息报表
+ * 
  * @author luzhang
  *
  */
 @Entity
 @Table(name = "ov_oil_charge_report")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "ov_oil_charge_report_sequence")
-public class OilChargeReport extends BaseEntity{
+public class OilChargeReport extends BaseEntity {
 
   private static final long serialVersionUID = -6400399057900315583L;
   /**
@@ -47,6 +48,10 @@ public class OilChargeReport extends BaseEntity{
    */
   private BigDecimal oilFinalAmount;
   /**
+   * 加油次数
+   */
+  private int oilNumber;
+  /**
    * 加油量L
    */
   private BigDecimal oilCount;
@@ -55,51 +60,63 @@ public class OilChargeReport extends BaseEntity{
    */
   private Date oilChargeReportStatisticsDate;
 
-  
-  @Index(name="oil_charge_report_tenantid")
-  public Long getTenantID ()
-  {
+
+  @Index(name = "oil_charge_report_tenantid")
+  public Long getTenantID() {
     return tenantID;
   }
 
-  public void setTenantID (Long tenantID)
-  {
+  public void setTenantID(Long tenantID) {
     this.tenantID = tenantID;
   }
-  
+
   @JsonProperty
-  @ManyToOne(fetch=FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER)
   public Vehicle getVehicle() {
     return vehicle;
   }
+
   public void setVehicle(Vehicle vehicle) {
     this.vehicle = vehicle;
   }
-  
+
   @JsonProperty
   @Column(nullable = false, precision = 12, scale = 2)
   public BigDecimal getOilFinalAmount() {
     return oilFinalAmount;
   }
+
   public void setOilFinalAmount(BigDecimal oilFinalAmount) {
     this.oilFinalAmount = oilFinalAmount;
   }
+
   @JsonProperty
   @Column(nullable = false, precision = 12, scale = 2)
   public BigDecimal getOilCount() {
     return oilCount;
   }
+
   public void setOilCount(BigDecimal oilCount) {
     this.oilCount = oilCount;
   }
+
   @JsonProperty
   @Temporal(TemporalType.DATE)
-	public Date getOilChargeReportStatisticsDate() {
-		return oilChargeReportStatisticsDate;
-	}
-	
-	public void setOilChargeReportStatisticsDate(Date oilChargeReportStatisticsDate) {
-		this.oilChargeReportStatisticsDate = oilChargeReportStatisticsDate;
-	}
-  
+  public Date getOilChargeReportStatisticsDate() {
+    return oilChargeReportStatisticsDate;
+  }
+
+  public void setOilChargeReportStatisticsDate(Date oilChargeReportStatisticsDate) {
+    this.oilChargeReportStatisticsDate = oilChargeReportStatisticsDate;
+  }
+
+  @JsonProperty
+  public int getOilNumber() {
+    return oilNumber;
+  }
+
+  public void setOilNumber(int oilNumber) {
+    this.oilNumber = oilNumber;
+  }
+
 }

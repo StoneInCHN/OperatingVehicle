@@ -163,28 +163,28 @@ $(function(){
 		//车辆维修费报表
 		var upkeepChargeReportOptions = {
 				 	chart: {type: 'spline', renderTo : "upkeepChargeReportDiv"},
-			        title: {text: '<a href="#" style="color: #222222"}>车辆维修费统计(总)</a>',margin:20,useHTML:true},
+			        title: {text: '<a href="#" style="color: #222222"}>车辆维修次数统计(总)</a>',margin:20,useHTML:true},
 			        subtitle: {text: '周期：按月统计'},
 					credits : {enabled : false},
 			        xAxis: {},
 			        yAxis: {
 			        	min: 0,
-			            title: {text: '费用/元'},
-			            labels: {formatter: function() {return this.value +'￥'}}
+			            title: {text: '费用/次数'},
+			            labels: {formatter: function() {return this.value +'次'}}
 			        },
-			        tooltip: {crosshairs: true,shared: true,valueSuffix : '元'},
+			        tooltip: {crosshairs: true,shared: true,valueSuffix : '次'},
 			        plotOptions: {
 			            spline: {
 			                marker: {radius: 4,lineColor: '#666666',lineWidth: 1}
 			            }
 			        },
-			        series: [{name: '费用',
+			        series: [{name: '次数',
 			            marker: {symbol: 'square'},
 			            data: []
 			        }]
 		};
 	    loadDataLine(upkeepChargeReportOptions,"../../console/upkeepChargeReport/reportAll.jhtml",null,
-		"upkeepChargeStatisticsDate","upkeepAmount");
+		"upkeepChargeStatisticsDate","upkeepNumber");
 	    
 		  //车辆行程统计报表
 	    var vehicleMileageChargeReportOptions = {
@@ -214,10 +214,10 @@ $(function(){
 		  //车辆保养费报表
 	    var maintenanceChargeReportOptions = {
 		        chart: {plotBackgroundColor: null,plotBorderWidth: null,plotShadow: false,renderTo : "maintenanceChargeReportDiv"},
-		        title: {text: '<a href="#" style="color: #222222">车辆保养费统计(总)</a>',margin:20,useHTML:true},
+		        title: {text: '<a href="#" style="color: #222222">车辆保养次数统计(总)</a>',margin:20,useHTML:true},
 		        subtitle: {text: '周期：按年统计'},
 		        credits : {enabled : false},
-		        tooltip: {pointFormat: '{series.name}: <b>共计:{point.y:.1f} 元, 占百分比{point.percentage:.1f}%</b>'},
+		        tooltip: {pointFormat: '{series.name}: <b>共计:{point.y} 次 占百分比{point.percentage:.1f}%</b>'},
 		        plotOptions: {
 		            pie: {
 		                allowPointSelect: true,
@@ -226,19 +226,19 @@ $(function(){
 		                    enabled: true,
 		                    color: '#222222',
 		                    connectorColor: '#222222',
-		                    format: '<b>{point.name}</b>: {point.y:.1f} 元'
+		                    format: '<b>{point.name}</b>: {point.y} 次数'
 		                }
 		            }
 		        },
 		        series: [{
 		            type: 'pie',
-		            name: '保养费',
+		            name: '保养次数',
 		            data: []
 		        }]
 		    
 	    };
 	    loadDataPie(maintenanceChargeReportOptions,"../../console/maintenanceChargeReport/reportAll.jhtml",null,
-		"maintenanceChargeStatisticsDate","maintenanceAmount");
+		"maintenanceChargeStatisticsDate","maintenanceNumber");
 	    
 	    //油费统计表
 	    var oilChargeAmountReportDivOptions = {
@@ -246,17 +246,17 @@ $(function(){
 		        xAxis: {},
 		        yAxis: {
 		            min: 0,
-		            title: {text: '费用/元'},
-		            labels: {formatter: function() {return this.value +'￥'}}
+		            title: {text: '次数/次'},
+		            labels: {formatter: function() {return this.value +'次'}}
 		        },
-			    title: {text: '<a href="#" style="color: #222222">每月车辆油费统计(总)</a>',margin:20,useHTML:true},
+			    title: {text: '<a href="#" style="color: #222222">每月车辆加油次数统计(总)</a>',margin:20,useHTML:true},
 			    subtitle: {text: '周期：按月统计'},
 			    credits : {enabled : false},
 		        tooltip: {
-		            pointFormat: '<b>{point.y:.1f} 元</b>',
+		            pointFormat: '<b>{point.y:.1f} 次</b>',
 		        },
 			    series: [{
-			    	name: '费用',
+			    	name: '次数',
 			        data: []
 			    }]
 	    };
@@ -280,6 +280,6 @@ $(function(){
 			    }]
 	    };
 	    loadDataBubble(oilChargeAmountReportDivOptions, oilChargeCountReportDivOptions,"../../console/oilChargeReport/reportAll.jhtml",null,
-	    		"oilChargeReportStatisticsDate","oilFinalAmount","oilCount");
+	    		"oilChargeReportStatisticsDate","oilNumber","oilCount");
 })
 

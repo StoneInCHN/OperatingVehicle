@@ -51,6 +51,10 @@ public class MaintenanceChargeReport extends BaseEntity{
    */
   private BigDecimal maintenanceAmount;
   /**
+   * 保养次数
+   */
+  private int maintenanceNumber;
+  /**
    * 报告统计时间
    */
   private Date maintenanceChargeStatisticsDate;
@@ -90,6 +94,13 @@ public class MaintenanceChargeReport extends BaseEntity{
   public void setMaintenanceChargeStatisticsDate(
 			Date maintenanceChargeStatisticsDate) {
 		this.maintenanceChargeStatisticsDate = maintenanceChargeStatisticsDate;
+  }
+  @JsonProperty
+  public int getMaintenanceNumber() {
+    return maintenanceNumber;
+  }
+  public void setMaintenanceNumber(int maintenanceNumber) {
+    this.maintenanceNumber = maintenanceNumber;
   }
   
 }

@@ -22,6 +22,7 @@ import com.ov.entity.base.BaseEntity;
 
 /**
  * 每日车辆里程报表
+ * 
  * @author luzhang
  *
  */
@@ -31,65 +32,65 @@ import com.ov.entity.base.BaseEntity;
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "ov_vehicle_mileage_report_sequence")
 public class VehicleMileageReport extends BaseEntity {
 
-	private static final long serialVersionUID = -7701072636165837668L;
-	/**
-	   * 租户ID
-	   */
-	private Long tenantID;
-	/**
-	 * 车辆信息
-	 */
-	private Vehicle vehicle;
-	/**
-	 * 每日行车里程总数
-	 */
-	private Long mileage;
-	
+  private static final long serialVersionUID = -7701072636165837668L;
+  /**
+   * 租户ID
+   */
+  private Long tenantID;
+  /**
+   * 车辆信息
+   */
+  private Vehicle vehicle;
+  /**
+   * 每日行车里程总数
+   */
+  private Long mileage;
+
   /**
    * 报告统计时间
    */
   private Date vehicleMileageStatisticsDate;
-	
-	
-	@Index(name="vehicle_mileage_report_tenantid")
-	public Long getTenantID() {
-	   return tenantID;
-	}
-
-	public void setTenantID(Long tenantID) {
-	   this.tenantID = tenantID;
-	}
-	
-	@JsonProperty
-	@ManyToOne(fetch=FetchType.EAGER)
-	public Vehicle getVehicle() {
-		return vehicle;
-	}
-
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
-	}
-
-	@Column(nullable = false)
-	@JsonProperty
-	public Long getMileage() {
-		return mileage;
-	}
-
-	public void setMileage(Long mileage) {
-		this.mileage = mileage;
-	}
-	@JsonProperty
-	@Temporal(TemporalType.DATE)
-	public Date getVehicleMileageStatisticsDate() {
-		return vehicleMileageStatisticsDate;
-	}
-
-	public void setVehicleMileageStatisticsDate(Date vehicleMileageStatisticsDate) {
-		this.vehicleMileageStatisticsDate = vehicleMileageStatisticsDate;
-	}
-	
 
 
-	
+  @Index(name = "vehicle_mileage_report_tenantid")
+  public Long getTenantID() {
+    return tenantID;
+  }
+
+  public void setTenantID(Long tenantID) {
+    this.tenantID = tenantID;
+  }
+
+  @JsonProperty
+  @ManyToOne(fetch = FetchType.EAGER)
+  public Vehicle getVehicle() {
+    return vehicle;
+  }
+
+  public void setVehicle(Vehicle vehicle) {
+    this.vehicle = vehicle;
+  }
+
+  @Column(nullable = false)
+  @JsonProperty
+  public Long getMileage() {
+    return mileage;
+  }
+
+  public void setMileage(Long mileage) {
+    this.mileage = mileage;
+  }
+
+  @JsonProperty
+  @Temporal(TemporalType.DATE)
+  public Date getVehicleMileageStatisticsDate() {
+    return vehicleMileageStatisticsDate;
+  }
+
+  public void setVehicleMileageStatisticsDate(Date vehicleMileageStatisticsDate) {
+    this.vehicleMileageStatisticsDate = vehicleMileageStatisticsDate;
+  }
+
+
+
 }

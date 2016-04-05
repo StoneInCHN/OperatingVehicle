@@ -9,17 +9,22 @@ $("#upkeepChargeReport-table-list").datagrid({
 	pagination:false,
 	columns:[
 		    [
-		     {title:"车牌号",field:"vehicleTitle",width:"33%",align: 'center',sortable:true,
+		     {title:"车牌号",field:"vehicleTitle",width:"25%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 		    			if(row != null){return row.vehicle.plate;}
 			    	 }
 		     },
-		     {title:"维修费用",field:"upkeepAmount",width:"33%",align: 'center',sortable:true,
+		     {title:"维修费用",field:"upkeepAmount",width:"25%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 		    			if(value != null){return value+"￥";}
 			    	 }
 		     },
-		     {title:"统计时间",field:"upkeepChargeStatisticsDate",width:"33%",align: 'center',sortable:true,
+		     {title:"维修次数",field:"upkeepNumber",width:"25%",align: 'center',sortable:true,
+		    	 formatter: function(value,row,index){
+		    			if(value != null){return value+"次";}
+			    	 }
+		     },
+		     {title:"统计时间",field:"upkeepChargeStatisticsDate",width:"25%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
 	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
 		    	  }
