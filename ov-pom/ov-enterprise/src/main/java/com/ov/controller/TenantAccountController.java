@@ -140,8 +140,8 @@ public class TenantAccountController extends BaseController
   public String edit (ModelMap model, Long id)
   {
     TenantAccount tenantAccount = tenantAccountService.find (id);
-    Set<Role> roles =tenantAccount.getRoles ();
     model.put ("tenantAccount", tenantAccount);
+    Set<Role> roles =tenantAccount.getRoles ();
     if (roles != null && roles.iterator ().hasNext ())
     {
       model.put ("roleInfo", roles.iterator ().next ());
@@ -220,6 +220,11 @@ public class TenantAccountController extends BaseController
   public String details(ModelMap model, Long id) {
     TenantAccount tenantAccount = tenantAccountService.find(id);
     model.addAttribute("tenantAccount", tenantAccount);
+    Set<Role> roles =tenantAccount.getRoles ();
+    if (roles != null && roles.iterator ().hasNext ())
+    {
+      model.put ("roleInfo", roles.iterator ().next ());
+    }
     return "tenantAccount/details";
   }
 }

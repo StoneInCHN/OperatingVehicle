@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -167,7 +169,7 @@ public class TenantAccount extends BaseEntity {
    * @return 角色
    */
   @NotEmpty
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
   @JoinTable(name = "ov_tenant_account_role")
   @JsonProperty
   public Set<Role> getRoles() {

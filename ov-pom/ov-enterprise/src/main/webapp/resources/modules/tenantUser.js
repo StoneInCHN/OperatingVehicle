@@ -50,47 +50,72 @@ var tenantUser_manager_tool = {
 			    }],
 			    onOpen:function(){
 			    	$('#addTenantUser_form').show();
-			    	$("#tenantUserTenantInfo-add").combotree({    
-					    url: '../tenantInfo/list.jhtml',    
-					    method:"get",
-					    animate:true,
-					    lines:true,
-					    required:true,
-					    prompt:message("ov.common.please.select"),
-					    formatter:function(node){
-					    	node.text = node.tenantName;
-							return node.tenantName;
-						},
-					    onSelect: function(tenantInfo){    
-					    	if(tenantInfo != null){
-						    	$("#tenantUserDepartment-add").combotree({    
-								    url: '../department/listByTenantID.jhtml?tenantID='+tenantInfo.id,    
-								    method:"get",
-								    animate:true,
-								    lines:true,
-								    required:true,
-								    prompt:message("ov.common.please.select"),
-								    formatter:function(node){
-								    	node.text = node.name;
-										return node.name;
-									},
-									onLoadSuccess: function(node, department){
-										if(department.length > 0){
-											$("#tenantUser_department").css('visibility','visible');
-										}else{
-											$("#tenantUser_department").css('visibility','hidden');
-											 $('#tenantUserPosition-add').combobox('clear');
-										}
-									},
-								    onSelect: function(department){    
-							            var url = '../position/findPositions.jhtml?id='+department.id;    
-							            $('#tenantUserPosition-add').combobox('clear');
-							            $('#tenantUserPosition-add').combobox('reload', url);    
-							        }
-								});
-					    	}
-				        }
-					});			    	
+//			    	$("#tenantUserTenantInfo-add").combotree({    
+//					    url: '../tenantInfo/list.jhtml',    
+//					    method:"get",
+//					    animate:true,
+//					    lines:true,
+//					    required:true,
+//					    prompt:message("ov.common.please.select"),
+//					    formatter:function(node){
+//					    	node.text = node.tenantName;
+//							return node.tenantName;
+//						},
+//					    onSelect: function(tenantInfo){    
+//					    	if(tenantInfo != null){
+//						    	$("#tenantUserDepartment-add").combotree({    
+//								    url: '../department/listByTenantID.jhtml?tenantID='+tenantInfo.id,    
+//								    method:"get",
+//								    animate:true,
+//								    lines:true,
+//								    required:true,
+//								    prompt:message("ov.common.please.select"),
+//								    formatter:function(node){
+//								    	node.text = node.name;
+//										return node.name;
+//									},
+//									onLoadSuccess: function(node, department){
+//										if(department.length > 0){
+//											$("#tenantUser_department").css('visibility','visible');
+//										}else{
+//											$("#tenantUser_department").css('visibility','hidden');
+//											 $('#tenantUserPosition-add').combobox('clear');
+//										}
+//									},
+//								    onSelect: function(department){    
+//							            var url = '../position/findPositions.jhtml?id='+department.id;    
+//							            $('#tenantUserPosition-add').combobox('clear');
+//							            $('#tenantUserPosition-add').combobox('reload', url);    
+//							        }
+//								});
+//					    	}
+//				        }
+//					});		
+			    	$("#tenantUserDepartment-add").combotree({    
+				    url: '../department/list.jhtml',    
+				    method:"get",
+				    animate:true,
+				    lines:true,
+				    required:true,
+				    prompt:message("ov.common.please.select"),
+				    formatter:function(node){
+				    	node.text = node.name;
+						return node.name;
+					},
+					onLoadSuccess: function(node, department){
+						if(department.length > 0){
+							$("#tenantUser_department").css('visibility','visible');
+						}else{
+							$("#tenantUser_department").css('visibility','hidden');
+							 $('#tenantUserPosition-add').combobox('clear');
+						}
+					},
+				    onSelect: function(department){    
+			            var url = '../position/findPositions.jhtml?id='+department.id;    
+			            $('#tenantUserPosition-add').combobox('clear');
+			            $('#tenantUserPosition-add').combobox('reload', url);    
+			        }
+				});
 			    	$("#tenantUserDepartment-add").combotree({    
 					    method:"get",
 					    animate:true,

@@ -88,8 +88,8 @@ public class DepartmentController extends BaseController {
     } else {
       department.setGrade(1);
     }
-    department.setTenantID(tenantID);
-    departmentService.save(department, false);;
+//    department.setTenantID(tenantID);
+    departmentService.save(department, true);;
     return SUCCESS_MESSAGE;
   }
   /**

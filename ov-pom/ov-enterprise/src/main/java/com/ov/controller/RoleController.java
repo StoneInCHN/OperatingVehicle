@@ -22,6 +22,7 @@ import com.ov.common.log.LogUtil;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.ConfigMeta;
 import com.ov.entity.Role;
+import com.ov.entity.TenantInfo;
 import com.ov.entity.commonenum.CommonEnum.TreeNodeState;
 import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
@@ -47,6 +48,7 @@ public class RoleController extends BaseController {
 
   @Resource(name = "configMetaServiceImpl")
   private ConfigMetaService configMetaService;
+  
   @Resource(name = "tenantInfoServiceImpl")
   private TenantInfoService tenantInfoService;
 
@@ -179,8 +181,20 @@ public class RoleController extends BaseController {
         
         //配置子节点（function）
         List<ConfigMeta> relatedFunctions = configMetaService.findRelationFunction (packagecConfigMeta);
+        //是否是总公司
+        boolean isParentTenant = isParentTenant();
         for (ConfigMeta function : relatedFunctions)
         {
+          //功能包 "车辆调度" 下，子公司只能 "用车请求"，总公司只能 "车辆指派"
+          if (isParentTenant) {
+            if (function.getConfigKey().equals("useCarRequest")) {
+              continue;
+            }
+          }else {
+            if (function.getConfigKey().equals("vehicleAssign")) {
+              continue;
+            }
+          }
           List<TreeNodeResponse> childList = new ArrayList<TreeNodeResponse>();
           TreeNodeResponse treeNodeResponseChild = new TreeNodeResponse();
           
@@ -235,5 +249,17 @@ public class RoleController extends BaseController {
     roleService.update (role);
 
     return SUCCESS_MESSAGE;
+  }
+  /**
+   * 检查是否是总公司，总公司return true， 否者分公司return false
+   * @return
+   */
+  private boolean isParentTenant(){
+    Long currentTenantID = tenantAccountService.getCurrentTenantID();
+    TenantInfo tenantInfo = tenantInfoService.find(currentTenantID);
+    if (tenantInfo.getParent() == null) {
+      return true;
+    }
+    return false;
   }
 }

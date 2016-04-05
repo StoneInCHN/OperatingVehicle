@@ -44,7 +44,7 @@
 	    	<tr>
 	    		<th>${message("ov.tenantAccount.role")}:</th>
 	    		<td>
-	    			 <input type="text" class="easyui-textbox" disabled="disabled" name="addTenantAccountRole" value = "${tenantAccount.roles[0].name}"id= "addTenantAccountRole"  />
+	    			 <input type="text" class="easyui-textbox" disabled="disabled" name="addTenantAccountRole" value = "${roleInfo.name}"id= "addTenantAccountRole"  />
 	    		</td>
 	    	</tr>
 	    </table>

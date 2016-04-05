@@ -42,7 +42,6 @@ import com.ov.utils.DateTimeUtils;
 
 /**
  * 租户用户
- * @author huyong
  *
  */
 @Controller ("tenantUserController")
@@ -169,7 +168,7 @@ public class TenantUserController extends BaseController
   }
 
   @RequestMapping (value = "/add", method = RequestMethod.POST)
-  public @ResponseBody Message add (TenantUser tenantUser,Long tenantInfoId, Long departmentId, Long positionId)
+  public @ResponseBody Message add (TenantUser tenantUser, Long tenantInfoId, Long departmentId, Long positionId)
   {
     if (departmentId != null && positionId != null) {
       Department department = departmentService.find (departmentId);
@@ -177,8 +176,8 @@ public class TenantUserController extends BaseController
       tenantUser.setDepartment (department);
       tenantUser.setPosition (position);
     }
-    tenantUser.setTenantID(tenantInfoId);
-    tenantUserService.save (tenantUser,false);
+    //tenantUser.setTenantID(tenantInfoId);
+    tenantUserService.save (tenantUser,true);
     return SUCCESS_MESSAGE;
   }
 

@@ -10,12 +10,16 @@ import org.springframework.stereotype.Service;
 
 import com.ov.dao.ConfigMetaDao;
 import com.ov.dao.MetaRelationDao;
+import com.ov.dao.impl.TenantInfoDaoImpl;
 import com.ov.entity.ConfigMeta;
+import com.ov.entity.TenantInfo;
 import com.ov.entity.commonenum.CommonEnum.MetaRelation;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.service.impl.BaseServiceImpl;
 import com.ov.service.ConfigMetaService;
+import com.ov.service.TenantAccountService;
+import com.ov.service.TenantInfoService;
 
 @Service ("configMetaServiceImpl")
 public class ConfigMetaServiceImpl extends BaseServiceImpl<ConfigMeta, Long>
@@ -26,7 +30,10 @@ public class ConfigMetaServiceImpl extends BaseServiceImpl<ConfigMeta, Long>
   private ConfigMetaDao configMetaDao;
   @Resource (name = "metaRelationDaoImpl")
   private MetaRelationDao metaRelationDao;
-  
+  @Resource(name = "tenantAccountServiceImpl")
+  private TenantAccountService tenantAccountService;
+  @Resource(name = "tenantInfoServiceImpl")
+  private TenantInfoService tenantInfoService;
   @Resource
   public void setBaseDao (ConfigMetaDao configMetaDao)
   {
@@ -40,12 +47,12 @@ public class ConfigMetaServiceImpl extends BaseServiceImpl<ConfigMeta, Long>
   public List<ConfigMeta> getPackageConfigMeta ()
   {
     List<ConfigMeta> configMetas = new ArrayList<ConfigMeta> ();
-    List<Filter> filters =new ArrayList<Filter>();
+    List<Filter> filters = new ArrayList<Filter>();
     
     //查询所有为include的关系，
-    Filter relationFilter =new Filter ("metaRelation", Operator.eq, MetaRelation.INCLUDE);
+    Filter relationFilter = new Filter ("metaRelation", Operator.eq, MetaRelation.INCLUDE);
     filters.add (relationFilter);
-    List<com.ov.entity.MetaRelation> metaRelationList= metaRelationDao.findList (null, null, filters, null);
+    List<com.ov.entity.MetaRelation> metaRelationList = metaRelationDao.findList (null, null, filters, null);
     
     for (com.ov.entity.MetaRelation metaRelation : metaRelationList)
     {
@@ -72,9 +79,13 @@ public class ConfigMetaServiceImpl extends BaseServiceImpl<ConfigMeta, Long>
     
     List<com.ov.entity.MetaRelation> metaRelationList= metaRelationDao.findList (null, null, filters, null);
     
+
+    
+    
     //根据关系表，查询对应功能包下面的功能
     for (com.ov.entity.MetaRelation metaRelation : metaRelationList)
     {
+      
       if (metaRelation.getRelationID ().getConfigKey () != null)
       {
         configMetas.add (metaRelation.getRelationID ());

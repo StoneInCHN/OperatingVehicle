@@ -10,7 +10,6 @@ var role_manager_tool = {
 			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
 					handler:function(){
-						alert($('#addRoleName').val());
 						var validate = $('#addRole_form').form('validate');
 						if(validate){
 							$.ajax({
