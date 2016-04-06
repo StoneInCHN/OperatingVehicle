@@ -44,9 +44,9 @@ import com.ov.service.VehicleService;
 @RequestMapping("console/vehicleScheduling")
 public class VehicleSchedulingController extends BaseController{
 	
-	private static final String CHILDREN_REQUEST = "children";
+	public static final String CHILDREN_REQUEST = "children";
 	
-	private static final String PARENT_REQUEST = "parent";
+	public static final String PARENT_REQUEST = "parent";
 	
 	@Autowired
 	private VehicleSchedulingService vehicleSchedulingService;

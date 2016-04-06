@@ -1450,5 +1450,18 @@ public class CommonEnum {
 	   */
 	  WORKING
   }
+  /**
+   * 结算状态
+   */
+  public enum ClearingStatus{
+	  /**
+	   * 成功
+	   */
+	  SUCCESS,
+	  /**
+	   * 失败
+	   */
+	  FAILURE
+  }
   
 }

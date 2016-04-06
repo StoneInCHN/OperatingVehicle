@@ -113,6 +113,16 @@ var messages = {
 		"ov.useCarRequest.add":"新增用车请求",
 		"ov.useCarRequest.select_start_position":"选择起始地",
 		"ov.useCarRequest.select_end_position":"选择目的地",
+		//结算
+		"ov.clearingRecord.clearingSn":"结算单号",
+		"ov.clearingRecord.unitPrice":"单价",
+		"ov.clearingRecord.amountOfCurrent":"总额",
+		"ov.clearingRecord.reduce":"扣除金额",
+		"ov.clearingRecord.clearingStatus":"结算状态",
+		"ov.clearingRecord.success":"结算成功",
+		"ov.clearingRecord.failure":"结算失败",
+		"ov.clearingRecord.list":"结算列表",
+		"ov.clearingRecord.add":"新增结算",
 		
 		//车辆信息
 		"ov.vehicle.motorcade":"车队",

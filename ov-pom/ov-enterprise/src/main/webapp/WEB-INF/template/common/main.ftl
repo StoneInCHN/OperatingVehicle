@@ -115,6 +115,14 @@
     		<li><a href="#" data-url="${base}/console/vehicleMileageReport/vehicleMileageReport.jhtml">车辆里程统计</a></li>
     		[/@shiro.hasPermission]	    		    		
     	</ul>
+    	<ul title="${message("ov.vehicleScheduling.settle")}" id="settleCenter">
+    		[@shiro.hasPermission name="settleManagement"]
+    		<li><a href="#" data-url="${base}/console/tenantClearingRecord/clearingRecordsManagement.jhtml">结算管理</a></li>
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="settleSearch"]
+    		<li><a href="#" data-url="${base}/console/tenantClearingRecord/clearingRecordsView.jhtml">结算查询</a></li>
+    		[/@shiro.hasPermission]
+    	</ul>
     </div>
      
      <div class="main-content" data-options="region:'center'">

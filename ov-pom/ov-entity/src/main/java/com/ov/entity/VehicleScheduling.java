@@ -112,6 +112,8 @@ public class VehicleScheduling extends BaseEntity{
 	 */
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>();
 	
+	private TenantClearingRecord clearingRecord;
+	
 
 	@Column(length = 100)
 	@JsonProperty
@@ -257,6 +259,16 @@ public class VehicleScheduling extends BaseEntity{
 	public void setVehicles(Set<Vehicle> vehicles) {
 		this.vehicles = vehicles;
 	}
+
+	@ManyToOne
+	public TenantClearingRecord getClearingRecord() {
+		return clearingRecord;
+	}
+
+	public void setClearingRecord(TenantClearingRecord clearingRecord) {
+		this.clearingRecord = clearingRecord;
+	}
+	
 	
 	
 }
