@@ -33,6 +33,10 @@ public class VehicleMileage extends BaseEntity {
 	   * 租户ID
 	   */
 	private Long tenantID;
+	  /**
+	   * 车辆 ID
+	   */
+	private Long vehicleID;
 	/**
 	 * 车辆信息
 	 */
@@ -56,7 +60,14 @@ public class VehicleMileage extends BaseEntity {
 	public void setTenantID(Long tenantID) {
 	   this.tenantID = tenantID;
 	}
-	
+	@org.hibernate.annotations.Index(name="vehicle_mileage_vehicleid")
+	@Field(index = org.hibernate.search.annotations.Index.UN_TOKENIZED, store = Store.NO)
+	public Long getVehicleID() {
+	    return vehicleID;
+	}
+	public void setVehicleID(Long vehicleID) {
+	    this.vehicleID = vehicleID;
+	}	
 	@JsonProperty
 	@ManyToOne(fetch=FetchType.EAGER)
 	@IndexedEmbedded	
