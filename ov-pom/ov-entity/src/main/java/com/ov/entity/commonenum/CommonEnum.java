@@ -1467,5 +1467,36 @@ public class CommonEnum {
 	   */
 	  FAILURE
   }
-  
+  /**
+   * 绑定状态
+   * 
+   * @author huyong
+   *
+   */
+  public enum BindStatus {
+    /**
+     * 已绑定
+     */
+    BINDED,
+    /**
+     * 未绑定
+     */
+    UNBINDED
+  }
+  /**
+   * 通用状态
+   * 
+   * @author shijun
+   *
+   */
+  public enum Status {
+    /**
+     * 启用
+     */
+    ENABLE,
+    /**
+     * 禁用
+     */
+    DISABLE
+  }
 }

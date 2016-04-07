@@ -6,7 +6,20 @@
   <packaging>pom</packaging>
   
   <url>http://maven.apache.org</url>
-  
+  <repositories>
+		<repository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>http://10.50.20.72:8081/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>http://10.50.20.72:8081/nexus/content/groups/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
     <properties>
 		<org.springframework.version>4.0.4.RELEASE</org.springframework.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

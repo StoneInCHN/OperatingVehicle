@@ -8,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.Index;
 import org.hibernate.search.annotations.Analyzer;
@@ -191,14 +190,14 @@ public class Vehicle extends BaseEntity {
     this.lastMaintainMileage = lastMaintainMileage;
   }
 
-  @Transient
+//  @Transient
   public String getVehicleFullBrand() {
-    VehicleLine vl = vehicleBrandDetail.getVehicleLine();
-    vehicleFullBrand = vl.getName();
-    if (vl.getParent() != null) {
-      VehicleLine vl_parent = vl.getParent();
-      vehicleFullBrand = vl_parent.getName() + "-" + vehicleFullBrand;
-    }
+//    VehicleLine vl = vehicleBrandDetail.getVehicleLine();
+//    vehicleFullBrand = vl.getName();
+//    if (vl.getParent() != null) {
+//      VehicleLine vl_parent = vl.getParent();
+//      vehicleFullBrand = vl_parent.getName() + "-" + vehicleFullBrand;
+//    }
     return vehicleFullBrand;
   }
 

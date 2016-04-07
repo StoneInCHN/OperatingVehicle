@@ -104,6 +104,7 @@ public String main(ModelMap model,  HttpSession session) {
     model.addAttribute("tenantAccount", tenantAccount);
     model.addAttribute("tenantUserCount", tenantUserService.count());
     model.addAttribute("vehicleCount", vehicleService.count());
+    model.addAttribute("vehicleSchedulingCount", vehicleSchedulingService.count());
     
   return "/common/main";
 }
