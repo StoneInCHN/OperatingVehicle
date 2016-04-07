@@ -37,7 +37,7 @@
 				<li><a href="#systemManage"><i class="fa fa-users fa-1x"></i>系统管理</a></li>
 				[/@shiro.hasPermission]
 				[@shiro.hasPermission name="vehicleManagement"]
-				<li><a href="#vehicle"><i class="fa fa-users fa-1x"></i>车辆管理</a></li>
+				<li><a href="#vehicleManagement"><i class="fa fa-users fa-1x"></i>${message("ov.vehicleManagement.settle")}</a></li>
 				[/@shiro.hasPermission]
 				[@shiro.hasPermission name="vehicleScheduling"]
 				<li><a href="#vehicleScheduling"><i class="fa fa-users fa-1x"></i>车辆调度</a></li>
@@ -121,6 +121,14 @@
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="settleSearch"]
     		<li><a href="#" data-url="${base}/console/tenantClearingRecord/clearingRecordsView.jhtml">结算查询</a></li>
+    		[/@shiro.hasPermission]
+    	</ul>
+    	<ul title="${message("ov.vehicleManagement.settle")}" id="vehicleManagement">
+    		[@shiro.hasPermission name="vehicle"]
+    		<li><a href="#" data-url="${base}/console/vehicle/vehicle.jhtml">${message("ov.vehicleManagement.vehicle")}</a></li>
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="device"]
+    		<li><a href="#" data-url="${base}/console/deviceInfo/deviceInfo.jhtml">${message("ov.vehicleManagement.device")}</a></li>
     		[/@shiro.hasPermission]
     	</ul>
     </div>

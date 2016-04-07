@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
+import com.ov.entity.Motorcade;
 import com.ov.entity.Vehicle;
 import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
+import com.ov.service.MotorcadeService;
 import com.ov.service.VehicleService;
 import com.ov.service.TenantAccountService;
 import com.ov.utils.FieldFilterUtils;
@@ -32,7 +34,8 @@ public class VehicleController extends BaseController {
 
   @Resource(name = "vehicleServiceImpl")
   private VehicleService vehicleService;
-
+  @Resource(name ="motorcadeServiceImpl")
+  private MotorcadeService motorcadeService;
   @Resource(name = "tenantAccountServiceImpl")
   private TenantAccountService tenantAccountService;
 
@@ -95,8 +98,12 @@ public class VehicleController extends BaseController {
    * @return
    */
   @RequestMapping(value = "/add", method = RequestMethod.POST)
-  public @ResponseBody Message save(Vehicle vehicle, Long elderlyInfoID) {
+  public @ResponseBody Message save(Vehicle vehicle, Long motorcadeId) {
     
+    Motorcade motorcade = motorcadeService.find (motorcadeId);
+    vehicle.setMotorcade (motorcade);
+    vehicle.setTenantInfo (tenantAccountService.getCurrentTenantInfo ());
+    vehicleService.save (vehicle, true);
     return SUCCESS_MESSAGE;
   }
 

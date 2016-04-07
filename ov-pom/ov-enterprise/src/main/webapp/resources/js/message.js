@@ -166,6 +166,41 @@ var messages = {
 		"ov.systemConfig.add":"添数据字典",
 		"ov.systemConfig.edit":"编辑数据字典",
 		
+		//设备信息
+		"ov.deviceInfo.list":"设备列表",
+		"ov.deviceInfo.deviceNO":"设备编号",
+		"ov.deviceInfo.deviceStatus":"设备状态",
+		"ov.deviceInfo.deviceStatus.INITED":"初始状态",
+		"ov.deviceInfo.deviceStatus.SENDOUT":"下发状态",
+		"ov.deviceInfo.deviceStatus.STORAGEOUT":"已出库",
+		"ov.deviceInfo.deviceStatus.BINDED":"已绑定",
+		"ov.deviceInfo.deviceStatus.REFUNDED":"已退还",
+		"ov.deviceInfo.bindStatus":"绑定状态",
+		"ov.deviceInfo.bindStatus.BINDED":"已绑定",
+		"ov.deviceInfo.bindStatus.UNBINDED":"未绑定",
+		"ov.deviceInfo.bindTime":"绑定时间",
+		"ov.deviceInfo.deviceType":"设备类型",
+		"ov.deviceInfo.bindVehicle":"绑定车辆",
+		"ov.deviceInfo.bindStatus.unBinded":"设备未绑定",
+		"ov.deviceInfo.bindStatus.binded":"设备已绑定",
+		//车辆信息
+		"ov.vehicle.motorcade":"所属车队",
+		"ov.vehicle.plateDate":"上牌日期",
+		"ov.vehicle.produceDate":"生产日期",
+		"ov.vehicle.add":"添加车辆",
+		"ov.vehicle.plate":"车牌号",
+		"ov.vehicle.vehicleBrand":"品牌",
+		"ov.vehicle.vehicleLine":"车系",
+		"ov.vehicle.vehicleBrandDetail":"车辆型号",
+		"ov.vehicle.endUser":"车辆所有者",
+		"ov.vehicle.device":"绑定的设备",
+		"ov.vehicle.status":"车辆状态",
+		"ov.vehicle.list":"车辆列表",
+		"ov.vehicle.bindTime":"绑定时间",
+		"ov.vehicle.vehicleNo":"车架号",
+		"ov.vehicle.dashboardBV":"电瓶电压",
+		"ov.vehicle.dashboardMileage":"仪表盘里程",
+		
 		//企业管理
 		"ov.branchBusiness.add":"添加分公司"
 			
