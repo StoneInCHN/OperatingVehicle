@@ -31,6 +31,9 @@ import com.ov.entity.TenantAccount;
 import com.ov.service.CaptchaService;
 import com.ov.service.RSAService;
 import com.ov.service.TenantAccountService;
+import com.ov.service.TenantUserService;
+import com.ov.service.VehicleSchedulingService;
+import com.ov.service.VehicleService;
 
 /**
  * Controller - 共用
@@ -46,6 +49,12 @@ public class CommonController extends BaseController {
   private CaptchaService captchaService;
   @Resource(name = "tenantAccountServiceImpl")
   private TenantAccountService tenantAccountService;
+  @Resource(name = "tenantUserServiceImpl")
+  private TenantUserService tenantUserService;
+  @Resource(name = "vehicleServiceImpl")
+  private VehicleService vehicleService;
+  @Resource(name = "vehicleSchedulingServiceImpl")
+  private VehicleSchedulingService vehicleSchedulingService;
 //  @Resource(name = "areaServiceImpl")
 //  private AreaService areaService;
 
@@ -93,6 +102,9 @@ public class CommonController extends BaseController {
 public String main(ModelMap model,  HttpSession session) {
     TenantAccount tenantAccount = tenantAccountService.getCurrent();
     model.addAttribute("tenantAccount", tenantAccount);
+    model.addAttribute("tenantUserCount", tenantUserService.count());
+    model.addAttribute("vehicleCount", vehicleService.count());
+    
   return "/common/main";
 }
 

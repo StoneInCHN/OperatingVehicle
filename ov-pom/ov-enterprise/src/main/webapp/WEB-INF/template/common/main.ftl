@@ -70,7 +70,7 @@
 		    </li>
 		</ul>
 	</div>   
-    <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:115" >
+    <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:115"  style="background-color:#fbfbfb">
     	<ul title="${message("ov.system.manage")}" id="systemManage">
     		[@shiro.hasPermission name="userManage"]
     		<li><a href="#" data-url="${base}/console/tenantUser/tenantUser.jhtml">人员管理</a></li>
@@ -115,26 +115,40 @@
     		<li><a href="#" data-url="${base}/console/vehicleMileageReport/vehicleMileageReport.jhtml">车辆里程统计</a></li>
     		[/@shiro.hasPermission]	    		    		
     	</ul>
+    	<ul title="${message("ov.vehicleScheduling.settle")}" id="settleCenter">
+    		[@shiro.hasPermission name="settleManagement"]
+    		<li><a href="#" data-url="${base}/console/tenantClearingRecord/clearingRecordsManagement.jhtml">结算管理</a></li>
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="settleSearch"]
+    		<li><a href="#" data-url="${base}/console/tenantClearingRecord/clearingRecordsView.jhtml">结算查询</a></li>
+    		[/@shiro.hasPermission]
+    	</ul>
     </div>
      
      <div class="main-content" data-options="region:'center'">
     	<div id="manager-tabs">   
-		    <div title="起始页" style="background-color:#f3f3f6">
+		    <div title="起始页" style="background-color:#f9f9f9">
 		    		<div>
 		    			<div class="row" style="float:right">
 						<div class="col-md-6" style="width:22%">
-								<div style="border-radius:3px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/tenantUser.jpg')">
-								<span style="margin:10px 10px 30px 150px;color:#cccccc";font-size:large>22</span>
+								<div style="border-radius:4px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/tenantUser.jpg')">
+								<font color="#cccccc"><h3  style="margin-top: 20px; margin-left: 120px">${tenantUserCount}</h3><font style="margin-left: 110px;font-size:13px">租户用户</font></font>
 								</div>
 						</div>
 						<div class="col-md-6" style="width:22%">
-								<div style="border-radius:3px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/vehicle.jpg')"></div>
+								<div style="border-radius:4px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/vehicle.jpg')">
+								<font color="#cccccc"><h3  style="margin-top: 20px; margin-left: 120px">${vehicleCount}</h3><p style="margin-left: 100px;font-size:13px">车辆总数</p></font>
+								</div>
 						</div>
 						<div class="col-md-6" style="width:22%">
-								<div style="border-radius:3px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/vehicleRequest.jpg')"></div>
+								<div style="border-radius:4px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/vehicleRequest.jpg')">
+								<font color="#cccccc"><h3  style="margin-top: 20px; margin-left: 120px">117</h3><p style="margin-left: 100px;font-size:13px">用车请求</p></font>
+								</div>
 						</div>
 						<div class="col-md-6" style="width:22%">
-								<div style="border-radius:3px;margin:20px 0 20px 20px;width:200px;height:60px;background:url('${base}/resources/images/applySettle.jpg')"></div>
+								<div style="border-radius:4px;margin:20px 0 20px 20px;width:200px;height:60px;background:url('${base}/resources/images/applySettle.jpg')">
+								<font color="#cccccc"><h4 style="margin-top: 20px;margin-left: 100px">申请结算</h4></font>
+								</div>
 						</div>
 				        </div>
 				    </div>
