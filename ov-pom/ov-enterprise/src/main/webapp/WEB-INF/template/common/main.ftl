@@ -115,21 +115,27 @@
     		<li><a href="#" data-url="${base}/console/vehicleMileageReport/vehicleMileageReport.jhtml">车辆里程统计</a></li>
     		[/@shiro.hasPermission]	    		    		
     	</ul>
-    	<ul title="${message("ov.vehicleScheduling.settle")}" id="settleCenter">
-    		[@shiro.hasPermission name="settleManagement"]
-    		<li><a href="#" data-url="${base}/console/tenantClearingRecord/clearingRecordsManagement.jhtml">结算管理</a></li>
-    		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="settleSearch"]
-    		<li><a href="#" data-url="${base}/console/tenantClearingRecord/clearingRecordsView.jhtml">结算查询</a></li>
-    		[/@shiro.hasPermission]
-    	</ul>
     </div>
      
      <div class="main-content" data-options="region:'center'">
     	<div id="manager-tabs">   
 		    <div title="起始页" style="background-color:#f3f3f6">
-		    		<div class="main-content-top">
-						<div class="shortcutNavigation" style="padding-top:20px">
+		    		<div>
+		    			<div class="row" style="float:right">
+						<div class="col-md-6" style="width:22%">
+								<div style="border-radius:3px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/tenantUser.jpg')">
+								<span style="margin:10px 10px 30px 150px;color:#cccccc";font-size:large>22</span>
+								</div>
+						</div>
+						<div class="col-md-6" style="width:22%">
+								<div style="border-radius:3px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/vehicle.jpg')"></div>
+						</div>
+						<div class="col-md-6" style="width:22%">
+								<div style="border-radius:3px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/vehicleRequest.jpg')"></div>
+						</div>
+						<div class="col-md-6" style="width:22%">
+								<div style="border-radius:3px;margin:20px 0 20px 20px;width:200px;height:60px;background:url('${base}/resources/images/applySettle.jpg')"></div>
+						</div>
 				        </div>
 				    </div>
 					<div class="main-content-center">
