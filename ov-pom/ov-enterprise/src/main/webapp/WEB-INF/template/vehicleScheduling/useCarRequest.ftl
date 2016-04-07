@@ -102,6 +102,7 @@
 	    			<input type="button" class="easyui-linkbutton" value="${message("ov.select")}" id="endPositionButton" style="width: 60px"/>
 	    			<input type="text" style="display: none;" id="endLongitude" name="endLongitude"/>
 	    			<input type="text" style="display: none;" id="endLatitude" name="endLatitude"/>
+	    			<input type="text" style="display: none;" id="totalDistance" name="totalDistance"/>
 	    		</td>
 	    	</tr>
 	    	<tr>

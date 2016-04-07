@@ -119,16 +119,18 @@ $(function(){
 		    	  formatter: function(value,row,index){
 			    	  if(value == "TO_CONFIRM"){
 			    		  return  message("ov.useCarRequest.to_confirm");
-			    	  }else if (value = "DISTRIBUTED"){
+			    	  }else if (value == "DISTRIBUTED"){
 			    		  return  message("ov.useCarRequest.distributed");
-			    	  }else if (value = "FINISHED"){
+			    	  }else if (value == "FINISHED"){
 			    		  return  message("ov.useCarRequest.finished");
-			    	  }else if (value = "CANCELLED"){
+			    	  }else if (value == "CANCELLED"){
 			    		  return  message("ov.useCarRequest.cancelled");
-			    	  }else if (value = "REJECTED"){
+			    	  }else if (value == "REJECTED"){
 			    		  return  message("ov.useCarRequest.rejected");
-			    	  }else if (value = "BREAK_CONTRACT"){
+			    	  }else if (value == "BREAK_CONTRACT"){
 			    		  return  message("ov.useCarRequest.break_contract");
+			    	  }else if (value == "CLEARED"){
+			    		  return  message("ov.useCarRequest.cleared");
 			    	  }
 		      	  }  
 		      },

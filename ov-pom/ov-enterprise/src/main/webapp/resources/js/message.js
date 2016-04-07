@@ -102,6 +102,7 @@ var messages = {
 		"ov.useCarRequest.cancelled":"已取消",
 		"ov.useCarRequest.rejected":"已驳回",
 		"ov.useCarRequest.break_contract":"已违约",
+		"ov.useCarRequest.cleared":"已结算",
 		"ov.useCarRequest.list":"请求列表",
 		"ov.useCarRequest.title":"标题",
 		"ov.useCarRequest.startDate":"出发日期",
