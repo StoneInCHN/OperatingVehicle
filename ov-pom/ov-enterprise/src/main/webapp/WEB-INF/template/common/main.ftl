@@ -70,7 +70,7 @@
 		    </li>
 		</ul>
 	</div>   
-    <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:115"  style="background-color:#fbfbfb">
+    <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:125"  style="background-color:#fbfbfb">
     	<ul title="${message("ov.system.manage")}" id="systemManage">
     		[@shiro.hasPermission name="userManage"]
     		<li><a href="#" data-url="${base}/console/tenantUser/tenantUser.jhtml">人员管理</a></li>
@@ -127,27 +127,27 @@
      
      <div class="main-content" data-options="region:'center'">
     	<div id="manager-tabs">   
-		    <div title="起始页" style="background-color:#f9f9f9">
+		    <div title="起始页" style="background-color:#f3f3f6">
 		    		<div>
 		    			<div class="row" style="float:right">
 						<div class="col-md-6" style="width:22%">
-								<div style="border-radius:4px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/tenantUser.jpg')">
-								<font color="#cccccc"><h3  style="margin-top: 20px; margin-left: 120px">${tenantUserCount}</h3><font style="margin-left: 110px;font-size:13px">租户用户</font></font>
+								<div class="reportLabel" style="background:url('${base}/resources/images/tenantUser.jpg')">
+								<font color="#bbbbcc"><h3  style="margin-top: 20px; margin-left: 120px">${tenantUserCount}</h3><p style="margin-left: 110px;font-size:13px">租户用户</p></font>
 								</div>
 						</div>
 						<div class="col-md-6" style="width:22%">
-								<div style="border-radius:4px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/vehicle.jpg')">
-								<font color="#cccccc"><h3  style="margin-top: 20px; margin-left: 120px">${vehicleCount}</h3><p style="margin-left: 100px;font-size:13px">车辆总数</p></font>
+								<div class="reportLabel" style="background:url('${base}/resources/images/vehicle.jpg')">
+								<font color="#bbbbcc"><h3  style="margin-top: 20px; margin-left: 120px">${vehicleCount}</h3><p style="margin-left: 100px;font-size:13px">车辆总数</p></font>
 								</div>
 						</div>
 						<div class="col-md-6" style="width:22%">
-								<div style="border-radius:4px;margin:20px;width:200px;height:60px;background:url('${base}/resources/images/vehicleRequest.jpg')">
-								<font color="#cccccc"><h3  style="margin-top: 20px; margin-left: 120px">117</h3><p style="margin-left: 100px;font-size:13px">用车请求</p></font>
+								<div class="reportLabel" style="background:url('${base}/resources/images/vehicleRequest.jpg')">
+								<font color="#bbbbcc"><h3  style="margin-top: 20px; margin-left: 120px">${vehicleSchedulingCount}</h3><p style="margin-left: 100px;font-size:13px">用车请求</p></font>
 								</div>
 						</div>
 						<div class="col-md-6" style="width:22%">
-								<div style="border-radius:4px;margin:20px 0 20px 20px;width:200px;height:60px;background:url('${base}/resources/images/applySettle.jpg')">
-								<font color="#cccccc"><h4 style="margin-top: 20px;margin-left: 100px">申请结算</h4></font>
+								<div class="reportLabel" style="background:url('${base}/resources/images/applySettle.jpg')">
+								<font color="#bbbbcc"><h4 style="margin-top: 20px;margin-left: 100px">申请结算</h4></font>
 								</div>
 						</div>
 				        </div>
@@ -155,28 +155,28 @@
 					<div class="main-content-center">
 					
 							<div style="height:800px;width:650px;float:left;padding:0 20px">
-								<div class="thumbnail" style="border-radius: 10px;padding:5px 0 10px 0">
+								<div class="reportChart">
 						    			<div id="maintenanceChargeReportDiv" style="height:350px;width:600px;"></div>
 						    		</div>
-						    		<div class="thumbnail" style="border-radius: 10px;padding:5px 0 10px 0">
+						    		<div class="reportChart">
 										<div id="upkeepChargeReportDiv" style="height:360px;width:600px;"></div>
 									</div>
 							</div>
 							<div style="height:820px;width:600px;float:left;padding:0 20px">
 									<div class="row">
 										<div class="col-md-6" style="width:50%">
-												<div class="thumbnail" style="border-radius: 10px;padding:20px 0px 5px 0px">
+												<div class="reportChart" style="padding:20px 0px 5px 0px">
 						    						<div id="oilChargeAmountReportDiv" style="height:300px;width:255px;"></div>
 						    					</div>
 										</div>
 										<div class="col-md-6" style="width:50%">
-												<div class="thumbnail" style="border-radius: 10px;padding:20px 0px 5px 0px">
+												<div class="reportChart" style="padding:20px 0px 5px 0px">
 						    						<div id="oilChargeCountReportDiv" style="height:300px;width:255px;"></div>
 						    					</div>	
 										</div>
 									</div>
 									<div class="row">
-						    		<div class="thumbnail" style="border-radius: 10px;padding:10px 0 5px 10px">
+						    		<div class="reportChart">
 						    			<div id="vehicleMileageChargeReportDiv" style="height:400px;width:550px;"></div>
 						    		</div>
 						    		</div>
