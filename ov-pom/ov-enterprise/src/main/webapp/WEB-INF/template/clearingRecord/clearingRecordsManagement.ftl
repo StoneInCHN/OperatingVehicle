@@ -62,7 +62,7 @@
 	    	<tr>
 	    		<th>${message("ov.clearingRecord.branchBusiness")}:</th>
 	    		<td colspan="2">
-	    			 <input type="text" class="easyui-combobox" name="branchBusiness" id= "branchBusiness"  data-options="required:true, valueField:'id', textField:'tenantName'"/>
+	    			 <input type="text" class="easyui-combobox" name="branchBusinessId" id= "branchBusinessId"  data-options="required:true, valueField:'id', textField:'tenantName'"/>
 	    		</td>
 	    	</tr>
 	    	<tr>
@@ -94,9 +94,5 @@
 	    </table>
 	</form>
 </div>
-<div id="editUseCarRequest"></div>
-<div id="useCarRequestDetail"></div>
-<div id="mapContainer"></div>
-
-
+<div id="clearingRecordDetail"></div>
 

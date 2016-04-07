@@ -8,7 +8,7 @@ var clearingRecord_manager_tool = {
 			success:function(result,response,status){
 				if(response == "success"){
 					console.log(result);
-					$("#branchBusiness").combobox("loadData", result);
+					$("#branchBusinessId").combobox("loadData", result);
 				}else{
 					alertErrorMsg();
 				}
@@ -41,9 +41,9 @@ var clearingRecord_manager_tool = {
 									$.messager.progress('close');
 									if(response == "success"){
 										showSuccessMsg(result.content);
-										$('#addUseCarRequest').dialog("close")
-										$("#addUseCarRequest_form").form("reset");
-										$("#useCarRequest-table-list").datagrid('reload');
+										$('#addClearingRecord').dialog("close")
+										$("#addClearingRecord_form").form("reset");
+										$("#clearingRecord-table-list").datagrid('reload');
 									}else{
 										alertErrorMsg();
 									}

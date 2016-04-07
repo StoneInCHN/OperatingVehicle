@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,15 +14,20 @@ import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.TenantClearingRecord;
 import com.ov.entity.TenantInfo;
+import com.ov.entity.Sn.Type;
+import com.ov.entity.VehicleScheduling;
+import com.ov.entity.commonenum.CommonEnum.VehicleSchedulingStatus;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.ordering.Ordering;
 import com.ov.framework.ordering.Ordering.Direction;
 import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
+import com.ov.service.SnService;
 import com.ov.service.TenantAccountService;
 import com.ov.service.TenantClearingRecordService;
 import com.ov.service.TenantInfoService;
+import com.ov.service.VehicleSchedulingService;
 
 @Controller("tenantClearingRecordController")
 @RequestMapping("console/tenantClearingRecord")
@@ -35,6 +41,12 @@ public class TenantClearingRecordController extends BaseController{
 	
 	@Autowired
 	private TenantInfoService tenantInfoService;
+	
+	@Autowired
+	private SnService snService;
+	
+	@Autowired
+	private VehicleSchedulingService vehicleSchedulingService;
 	
 	@RequestMapping(value = "/clearingRecordsManagement", method = RequestMethod.GET)
 	public String clearingRecordsView(){
@@ -74,9 +86,45 @@ public class TenantClearingRecordController extends BaseController{
 		orderings.add(new Ordering("id", Direction.asc));
 		return tenantInfoService.findList(1000, filters, orderings);
 	}
-	
-	public @ResponseBody Message addClearingRecord(){
+	/**
+	 * 新增结算
+	 * @param clearingRecord
+	 * @param branchBusinessId
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
+	@RequestMapping(value = "/addClearingRecord", method = RequestMethod.POST)
+	public @ResponseBody Message addClearingRecord(TenantClearingRecord clearingRecord, Long branchBusinessId,
+			String startDate, String endDate){
+		TenantInfo branchBusiness = tenantInfoService.find(branchBusinessId);
+		clearingRecord.setChild(branchBusiness);
+		clearingRecord.setParent(tenantAccountService.getCurrentTenantInfo());
+		clearingRecord.setClearingSn(snService.generate(Type.clearing));
 		
+		List<Filter> filters = new ArrayList<Filter>();
+	    Filter filter = new Filter("requestBusiness", Operator.eq, branchBusiness);
+	    filters.add(filter);
+	    filter = new Filter("parent", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+	    filters.add(filter);
+	    filter = new Filter("status", Operator.eq, VehicleSchedulingStatus.FINISHED);
+	    filters.add(filter);
+		if ( !StringUtils.isEmpty(startDate) && !StringUtils.isEmpty(endDate)) {
+			filter = new Filter("startDate", Operator.ge, startDate);
+		    filters.add(filter);
+		    filter = new Filter("startDate", Operator.le, endDate);
+		    filters.add(filter);
+		}
+		List<VehicleScheduling> vehicleSchedulings = vehicleSchedulingService.findList(null, filters, null);
+		for (VehicleScheduling vehicleScheduling : vehicleSchedulings) {
+			System.out.println(vehicleScheduling.getTitle());
+		}
+		
+		System.out.println(branchBusinessId);
+		System.out.println(clearingRecord.getUnitPrice());
+		System.out.println(clearingRecord.getReduce());
+		System.out.println(startDate);
+		System.out.println(endDate);
 		
 		
 		return SUCCESS_MESSAGE;

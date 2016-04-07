@@ -1430,7 +1430,11 @@ public class CommonEnum {
 	  /**
 	   * 违约
 	   */
-	  BREAK_CONTRACT
+	  BREAK_CONTRACT,
+	  /**
+	   * 已结算
+	   */
+	  CLEARED
   }
   /**
    * 车辆状态
