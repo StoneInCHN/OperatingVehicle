@@ -52,6 +52,9 @@ var messages = {
 		"ov.common.action":"操作",
 		"ov.common.dateFormatChina":"yyyy年MM月dd日",
 		"ov.common.assign":"指派",
+		"ov.date.China.format.yyyyMMdd":"yyyy年MM月dd日",
+		"ov.date.China.format.yyyyMM":"yyyy年MM",
+		"ov.date.China.format.yyyy":"yyyy年",
 		
 
 
@@ -204,6 +207,14 @@ var messages = {
 		
 		//企业管理
 		"ov.branchBusiness.add":"添加分公司"
+		//车辆管理
+		"ov.maintenanceCharge.select.vehicle":"车辆",
+		"ov.maintenanceCharge.date":"保养时间",
+		"ov.maintenanceCharge.amount":"保养费用",
+		"ov.maintenanceCharge.mileage":"保养时公里数",
+		"ov.maintenanceCharge.maintenanceCompany":"保养公司",
+		"ov.maintenanceCharge.list":"保养列表",
+		"ov.maintenanceCharge.add":"添加保养"
 			
 };
 //多语言

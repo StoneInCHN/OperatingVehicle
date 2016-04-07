@@ -344,7 +344,6 @@ function searchTenantUser(id) {
 							});
 						}
 					});
-
 }
 //查询角色(Role)
 function searchRoles(id) {
@@ -394,8 +393,53 @@ function searchRoles(id) {
 							});
 						}
 					});
-
 }
+//查询车辆(Vehicle)
+function searchVehicle(id) {
+	$('#searchVehicle').dialog({
+						title : message("ov.role.search"),
+						width : 550,
+						height : 400,
+						modal : true, 
+						cache : false,
+						href : '../maintenanceCharge/commonVehiclesSearch.jhtml',
+						buttons : [ {
+							text : message("ov.common.cancel"),
+							iconCls : 'icon-cancel',
+							handler : function() {
+								$('#searchVehicle').dialog("close");
+							}
+						} ],
+						onLoad : function() {
+							/**
+							 * 此datagrid 用户展示车辆数据,并且提供查询功能
+							 */
+							$("#common-vehicles-table-list").datagrid({
+								url:'../vehicle/list.jhtml',  
+								pagination:true,
+								loadMsg:message("ov.common.loading"),
+								striped:true,
+								singleSelect:true,
+								onDblClickRow : function (rowIndex, rowData){
+									$("#" + id + "ID").val(rowData.id);
+									$("#" + id).textbox('setValue',rowData.plate);
+									$('#searchVehicle').dialog("close");
+								},
+								columns:[[
+									{field : 'ck',checkbox : true},
+									{title : "车牌号",field : "plate",width :"47%",align : 'center',sortable : true},
+									{title : "品牌图标",field : "brandIcon",width :"47%",align : 'center',sortable : true},					
+								]]
+							});
+							$("#common_vehicle_search_btn").click(function() {
+								var _queryParams = $("#common_vehicle_search_form").serializeJSON();
+								$('#common-vehicles-table-list').datagrid('options').queryParams = _queryParams;
+								$("#common-vehicles-table-list").datagrid('reload');
+							});
+						}
+					});
+}
+
 //查询终端用户用户
 function searchEndUser(id) {
 	$('#commonMainDialog')

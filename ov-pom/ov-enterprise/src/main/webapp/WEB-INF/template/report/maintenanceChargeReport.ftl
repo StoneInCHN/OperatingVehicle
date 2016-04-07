@@ -4,7 +4,7 @@
 			<fieldset style="padding:5px 0px 4px 4px;margin:0px">
 			        <form id="maintenanceCharge_vehicle_search_form" class="search-form">
 						<div class="search-item">
-						   <label>车牌:</label>
+						   <label>${message("ov.vehicle.plate")}:</label>
 						   <input type="text" class="easyui-textbox"  id="vehiclePlateSearch" name="vehiclePlateSearch" validtype="length[0,10]" style="width:60px;"/>
 						</div>
 					</form>

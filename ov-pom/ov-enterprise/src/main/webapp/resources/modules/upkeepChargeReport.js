@@ -26,7 +26,7 @@ $("#upkeepChargeReport-table-list").datagrid({
 		     },
 		     {title:"统计时间",field:"upkeepChargeStatisticsDate",width:"25%",align: 'center',sortable:true,
 		    	 formatter: function(value,row,index){
-	    			if(value != null){return new Date(value).Format("yyyy年MM月");}
+	    			if(value != null){return new Date(value).Format(message("ov.date.China.format.yyyyMM"));}
 		    	  }
 		     }
 		 ]
