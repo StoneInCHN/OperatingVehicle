@@ -46,9 +46,21 @@ public class TenantClearingRecordController extends BaseController{
 	@Autowired
 	private VehicleSchedulingService vehicleSchedulingService;
 	
+	/**
+	 * 总公司结算管理页面
+	 * @return
+	 */
 	@RequestMapping(value = "/clearingRecordsManagement", method = RequestMethod.GET)
-	public String clearingRecordsView(){
+	public String clearingRecordsManagement(){
 		return "clearingRecord/clearingRecordsManagement";
+	}
+	/**
+	 * 分公司结算查询页面
+	 * @return
+	 */
+	@RequestMapping(value = "/clearingRecordsView", method = RequestMethod.GET)
+	public String clearingRecordsView(){
+		return "clearingRecord/clearingRecordsView";
 	}
 	
 	/**
@@ -57,15 +69,15 @@ public class TenantClearingRecordController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/listClearingRecord", method = RequestMethod.POST)
-	public @ResponseBody Page<TenantClearingRecord> listClearingRecord(Pageable pageable, String childrenOrParent,
-			String snSearch){
+	public @ResponseBody Page<TenantClearingRecord> listClearingRecord(Pageable pageable, String snSearch){
 		
+		TenantInfo currentTenantInfo = tenantAccountService.getCurrentTenantInfo();
 		List<Filter> filters = new ArrayList<>();
 		Filter filter = null;
-		if (VehicleSchedulingController.CHILDREN_REQUEST.equals(childrenOrParent)) {
-			filter = new Filter("child", Operator.eq, tenantAccountService.getCurrentTenantInfo());
-		}else if (VehicleSchedulingController.PARENT_REQUEST.equals(childrenOrParent)) {
-			filter = new Filter("parent", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+		if (currentTenantInfo.getParent() != null) {
+			filter = new Filter("child", Operator.eq, currentTenantInfo);
+		}else if (currentTenantInfo.getParent() == null) {
+			filter = new Filter("parent", Operator.eq, currentTenantInfo);
 		}
 		filters.add(filter);
 		if (!StringUtils.isEmpty(snSearch)) {

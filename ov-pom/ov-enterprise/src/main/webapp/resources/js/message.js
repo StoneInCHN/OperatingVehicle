@@ -120,14 +120,18 @@ var messages = {
 		"ov.useCarRequest.select_end_position":"选择目的地",
 		//结算
 		"ov.clearingRecord.clearingSn":"结算单号",
-		"ov.clearingRecord.unitPrice":"单价",
-		"ov.clearingRecord.amountOfCurrent":"总额",
-		"ov.clearingRecord.reduce":"扣除金额",
+		"ov.clearingRecord.unitPrice":"单价(元)",
+		"ov.clearingRecord.amountOfCurrent":"总额(元)",
+		"ov.clearingRecord.reduce":"扣除金额(元)",
 		"ov.clearingRecord.clearingStatus":"结算状态",
 		"ov.clearingRecord.success":"结算成功",
 		"ov.clearingRecord.failure":"结算失败",
 		"ov.clearingRecord.list":"结算列表",
 		"ov.clearingRecord.add":"新增结算",
+<<<<<<< HEAD
+		"ov.clearingRecord.totalDistance":"总路程(公里)",
+=======
+>>>>>>> 09e815e892558faa0755c6df31b916dcf9ca033d
 		
 		//车辆信息
 		"ov.vehicle.motorcade":"车队",

@@ -72,7 +72,7 @@ $(function(){
 		title:message("ov.clearingRecord.list"),
 		fitColumns:true,
 		toolbar:"#clearingRecord_manager_tool",
-		url:'../tenantClearingRecord/listClearingRecord.jhtml?childrenOrParent=parent',  
+		url:'../tenantClearingRecord/listClearingRecord.jhtml',  
 		pagination:true,
 		loadMsg:message("ov.common.loading"),
 		striped:true,

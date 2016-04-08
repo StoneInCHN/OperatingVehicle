@@ -33,9 +33,6 @@ import com.ov.utils.DateTimeUtils;
 public class TenantClearingRecordServiceImpl extends BaseServiceImpl<TenantClearingRecord, Long> implements TenantClearingRecordService{
 
 	@Autowired
-	private TenantClearingRecordService tenantClearingRecordService;
-	
-	@Autowired
 	private TenantAccountService tenantAccountService;
 	
 	@Autowired
@@ -87,7 +84,7 @@ public class TenantClearingRecordServiceImpl extends BaseServiceImpl<TenantClear
 		clearingRecord.setTotalDistance(totalDistance);
 		clearingRecord.setAmountOfCurrent(amountOfCurrent);
 
-		tenantClearingRecordService.save(clearingRecord);
+		save(clearingRecord);
 		
 		for (VehicleScheduling vehicleScheduling : vehicleSchedulings) {
 			totalDistance = totalDistance.add(vehicleScheduling.getTotalDistance());
