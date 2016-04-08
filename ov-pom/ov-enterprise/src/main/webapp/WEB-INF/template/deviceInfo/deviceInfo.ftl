@@ -57,7 +57,7 @@
 		    		<th>${message("ov.vehicle.plate")}:</th>
 		    		<td colspan="2">
 		    			 <input type="text" class="easyui-textbox" name="vehicleName" id= "bindDevice_vehicle"  data-options="required:true" disabled="disabled"/>
-		    			<a href="#" id="device_search_btn" class="easyui-linkbutton" onclick="searchVehicle('bindDevice_vehicle')" iconCls="icon-search" plain=true"></a>
+		    			<a href="#" id="device_search_btn" class="easyui-linkbutton" onclick="searchVehicle('bindDevice_vehicle',true)" iconCls="icon-search" plain=true"></a>
 		    		</td>
 		    	</tr>
 		    </table>

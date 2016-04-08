@@ -395,7 +395,8 @@ function searchRoles(id) {
 					});
 }
 //查询车辆(Vehicle)
-function searchVehicle(id) {
+function searchVehicle(id,unbind) {
+	
 	$('#searchVehicle').dialog({
 						title : message("ov.role.search"),
 						width : 550,
@@ -411,11 +412,15 @@ function searchVehicle(id) {
 							}
 						} ],
 						onLoad : function() {
+							var url ='../vehicle/list.jhtml';
+							if(unbind){
+								url = '../vehicle/listUnBuindVehicle.jhtml';
+							}
 							/**
 							 * 此datagrid 用户展示车辆数据,并且提供查询功能
 							 */
 							$("#common-vehicles-table-list").datagrid({
-								url:'../vehicle/list.jhtml',  
+								url:url,  
 								pagination:true,
 								loadMsg:message("ov.common.loading"),
 								striped:true,

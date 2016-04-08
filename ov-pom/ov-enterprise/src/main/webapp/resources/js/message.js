@@ -205,6 +205,7 @@ var messages = {
 		"ov.vehicle.vehicleNo":"车架号",
 		"ov.vehicle.dashboardBV":"电瓶电压",
 		"ov.vehicle.dashboardMileage":"仪表盘里程",
+		"ov.vehicle.vehicleFullBrand":"车型",
 		
 		//企业管理
 		"ov.branchBusiness.add":"添加分公司",

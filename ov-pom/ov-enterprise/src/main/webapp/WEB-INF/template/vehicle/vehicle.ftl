@@ -12,7 +12,7 @@
 			    <input type="text" class="easyui-textbox" name="vehiclePlateSearch" validtype="length[0,20]"/>
 			</div>
 			<div class="search-item">
-			    <label> ${message("ov.vehicle.vehicleFullBrandSearch")}:</label>
+			    <label> ${message("ov.vehicle.vehicleFullBrand")}:</label>
 			    <input type="text" class="easyui-textbox" name="vehicleFullBrandSearch" validtype="length[0,20]"/>
 			</div>
 			<div class="search-item">

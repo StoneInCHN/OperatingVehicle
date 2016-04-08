@@ -1,5 +1,6 @@
 package com.ov.entity;
 
+import java.awt.Image;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -15,6 +16,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Index;
 import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
@@ -23,6 +25,7 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
 import com.ov.entity.commonenum.CommonEnum.VehicleStatus;
+import com.ov.lucene.VehicleDeviceBridgeImpl;
 
 /**
  * The persistent class for the csh_vehicle database table.
@@ -355,7 +358,9 @@ public class Vehicle extends BaseEntity {
 	}
 
 	@OneToOne(mappedBy = "vehicle", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-  public DeviceInfo getDevice() {
+	@Field(store = Store.NO,index=org.hibernate.search.annotations.Index.UN_TOKENIZED)
+	@FieldBridge(impl= VehicleDeviceBridgeImpl.class)
+	public DeviceInfo getDevice() {
     return device;
   }
 

@@ -1,5 +1,6 @@
 package com.ov.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,8 @@ import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.Motorcade;
 import com.ov.entity.Vehicle;
+import com.ov.framework.filter.Filter;
+import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
 import com.ov.service.MotorcadeService;
@@ -60,14 +63,23 @@ public class VehicleController extends BaseController {
   public @ResponseBody Page<Vehicle> list(String vehicleFullBrandSearch,String motorcadeSearch, 
       String vehiclePlateSearch, Pageable pageable) {
     Page<Vehicle> vehiclePage = null;
-    if (vehicleFullBrandSearch == null && vehiclePlateSearch == null) {
+    if (vehicleFullBrandSearch == null && vehiclePlateSearch == null && motorcadeSearch == null) {
       vehiclePage = vehicleService.findPage(pageable, true);
     } else {
       vehiclePage = vehicleService.searchPageByFilter(vehiclePlateSearch,motorcadeSearch,vehicleFullBrandSearch, pageable);
     }
     return vehiclePage;
   }
+  
+  @RequestMapping (value = "/listUnBuindVehicle", method = RequestMethod.POST)
+  public @ResponseBody Page<Vehicle> listUnBuindVehicle (
+      String vehicleFullBrandSearch, String motorcadeSearch,
+      String vehiclePlateSearch, Pageable pageable)
+  {
 
+    return vehicleService.listUnBuindVehicle (vehiclePlateSearch,
+        motorcadeSearch, vehicleFullBrandSearch, pageable);
+  }
   @RequestMapping(value = "/findAll", method = RequestMethod.POST)
   public @ResponseBody List<Map<String, Object>> findAll() {
     String[] propertys = {"id", "buildingName"};

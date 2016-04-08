@@ -36,6 +36,8 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle,Long> implements
           BooleanQuery query = new BooleanQuery ();
           Query tenantQuery = LuceneUtils.getTermQuery ("tenantID", tenantAccountService.getCurrentTenantID ().toString ());
           query.add (tenantQuery,Occur.MUST);
+          Query unBindQuery = LuceneUtils.getTermQuery ("device", "null");
+          query.add (unBindQuery,Occur.MUST);
           
           if (vehiclePlateSearch != null){
             Query plateQuery = LuceneUtils.getBooleanQuery (analyzer,"plate", vehiclePlateSearch, true);
@@ -58,6 +60,15 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle,Long> implements
         }
         return null;
     
+      }
+
+      @Override
+      public Page<Vehicle> listUnBuindVehicle (String vehiclePlateSearch,
+          String motorcadeSearch, String vehicleFullBrandSearch,
+          Pageable pageable)
+      {
+        return vehicleDao.listUnBuindVehicle(vehiclePlateSearch,motorcadeSearch,
+              vehicleFullBrandSearch,pageable);
       }
       
 }
