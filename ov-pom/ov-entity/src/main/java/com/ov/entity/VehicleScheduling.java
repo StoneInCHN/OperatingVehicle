@@ -83,6 +83,11 @@ public class VehicleScheduling extends BaseEntity{
 	private String endPositionDetails;
 	
 	/**
+	 * 起点终点总距离,单位:公里
+	 */
+	private BigDecimal totalDistance;
+	
+	/**
 	 * 拥堵费
 	 */
 	private BigDecimal congestionCharge;
@@ -268,7 +273,14 @@ public class VehicleScheduling extends BaseEntity{
 	public void setClearingRecord(TenantClearingRecord clearingRecord) {
 		this.clearingRecord = clearingRecord;
 	}
-	
+
+	public BigDecimal getTotalDistance() {
+		return totalDistance;
+	}
+
+	public void setTotalDistance(BigDecimal totalDistance) {
+		this.totalDistance = totalDistance;
+	}
 	
 	
 }

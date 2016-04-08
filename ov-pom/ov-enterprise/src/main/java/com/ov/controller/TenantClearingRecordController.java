@@ -1,5 +1,6 @@
 package com.ov.controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +15,6 @@ import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.TenantClearingRecord;
 import com.ov.entity.TenantInfo;
-import com.ov.entity.Sn.Type;
-import com.ov.entity.VehicleScheduling;
-import com.ov.entity.commonenum.CommonEnum.VehicleSchedulingStatus;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.ordering.Ordering;
@@ -59,8 +57,8 @@ public class TenantClearingRecordController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/listClearingRecord", method = RequestMethod.POST)
-	public @ResponseBody Page<TenantClearingRecord> listClearingRecord(Pageable pageable, String childrenOrParent){
-		
+	public @ResponseBody Page<TenantClearingRecord> listClearingRecord(Pageable pageable, String childrenOrParent,
+			String snSearch){
 		
 		List<Filter> filters = new ArrayList<>();
 		Filter filter = null;
@@ -68,6 +66,10 @@ public class TenantClearingRecordController extends BaseController{
 			filter = new Filter("child", Operator.eq, tenantAccountService.getCurrentTenantInfo());
 		}else if (VehicleSchedulingController.PARENT_REQUEST.equals(childrenOrParent)) {
 			filter = new Filter("parent", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+		}
+		filters.add(filter);
+		if (!StringUtils.isEmpty(snSearch)) {
+			filter = new Filter("clearingSn", Operator.eq, snSearch);
 		}
 		filters.add(filter);
 		pageable.setFilters(filters);
@@ -93,41 +95,20 @@ public class TenantClearingRecordController extends BaseController{
 	 * @param startDate
 	 * @param endDate
 	 * @return
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/addClearingRecord", method = RequestMethod.POST)
 	public @ResponseBody Message addClearingRecord(TenantClearingRecord clearingRecord, Long branchBusinessId,
 			String startDate, String endDate){
-		TenantInfo branchBusiness = tenantInfoService.find(branchBusinessId);
-		clearingRecord.setChild(branchBusiness);
-		clearingRecord.setParent(tenantAccountService.getCurrentTenantInfo());
-		clearingRecord.setClearingSn(snService.generate(Type.clearing));
-		
-		List<Filter> filters = new ArrayList<Filter>();
-	    Filter filter = new Filter("requestBusiness", Operator.eq, branchBusiness);
-	    filters.add(filter);
-	    filter = new Filter("parent", Operator.eq, tenantAccountService.getCurrentTenantInfo());
-	    filters.add(filter);
-	    filter = new Filter("status", Operator.eq, VehicleSchedulingStatus.FINISHED);
-	    filters.add(filter);
-		if ( !StringUtils.isEmpty(startDate) && !StringUtils.isEmpty(endDate)) {
-			filter = new Filter("startDate", Operator.ge, startDate);
-		    filters.add(filter);
-		    filter = new Filter("startDate", Operator.le, endDate);
-		    filters.add(filter);
-		}
-		List<VehicleScheduling> vehicleSchedulings = vehicleSchedulingService.findList(null, filters, null);
-		for (VehicleScheduling vehicleScheduling : vehicleSchedulings) {
-			System.out.println(vehicleScheduling.getTitle());
+		try {
+			tenantClearingRecordService.saveClearingRecord(clearingRecord, branchBusinessId, startDate, endDate);
+			return SUCCESS_MESSAGE;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ERROR_MESSAGE;
 		}
 		
-		System.out.println(branchBusinessId);
-		System.out.println(clearingRecord.getUnitPrice());
-		System.out.println(clearingRecord.getReduce());
-		System.out.println(startDate);
-		System.out.println(endDate);
-		
-		
-		return SUCCESS_MESSAGE;
 	}
 	
 	

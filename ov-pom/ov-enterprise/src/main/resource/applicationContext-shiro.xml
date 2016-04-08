@@ -25,15 +25,21 @@
 				/console/tenantUser/** = perms["userManage"]
 				/console/role/** = perms["roleManage"]
 				/console/department/** = perms["departmentManage"]
+				<!--企业管理  -->
 				/console/tenantInfo/** = perms["businessManagement"]
 		    	/console/operationLog/** = perms["operationLog"]
 		    	/console/tenantInfo/** = perms["businessManagement"]
+		    	<!--车辆调度  -->
 		    	/console/vehicleScheduling/** = perms["vehicleScheduling"]
+		    	<!--统计报表  -->
 		    	/console/maintenanceChargeReport/** = perms["maintenanceChargeReport"]
 		    	/console/oilChargeReport/** = perms["oilChargeReport"]
 		    	/console/upkeepChargeReport/** = perms["upkeepChargeReport"]
 		    	/console/vehicleMileageReport/** = perms["vehicleMileageReport"]
-
+		    	<!--车辆管理  -->
+		    	/console/maintenanceCharge/** = perms["maintenanceCharge"]
+		    	/console/oilCharge/** = perms["oilCharge"]
+		    	/console/upkeepCharge/** = perms["upkeepCharge"]
 			</value>
 		</property>
 		<property name="filters">

@@ -100,6 +100,9 @@ var useCarRequest_manager_tool = {
 
 $(function(){
 	var map_ip_location = "http://api.map.baidu.com/location/ip?ak=ulsOtfMZcNc4D6aQnBwwnOTt6ZKohflO&coor=bd09ll";
+	var startPoint = "";
+	var endPoint = "";
+	var totalDistance = "0";
 
 	$("#useCarRequest-table-list").datagrid({
 		title:message("ov.useCarRequest.list"),
@@ -141,16 +144,18 @@ $(function(){
 		    	  formatter: function(value,row,index){
 			    	  if(value == "TO_CONFIRM"){
 			    		  return  message("ov.useCarRequest.to_confirm");
-			    	  }else if (value = "DISTRIBUTED"){
+			    	  }else if (value == "DISTRIBUTED"){
 			    		  return  message("ov.useCarRequest.distributed");
-			    	  }else if (value = "FINISHED"){
+			    	  }else if (value == "FINISHED"){
 			    		  return  message("ov.useCarRequest.finished");
-			    	  }else if (value = "CANCELLED"){
+			    	  }else if (value == "CANCELLED"){
 			    		  return  message("ov.useCarRequest.cancelled");
-			    	  }else if (value = "REJECTED"){
+			    	  }else if (value == "REJECTED"){
 			    		  return  message("ov.useCarRequest.rejected");
-			    	  }else if (value = "BREAK_CONTRACT"){
+			    	  }else if (value == "BREAK_CONTRACT"){
 			    		  return  message("ov.useCarRequest.break_contract");
+			    	  }else if (value == "CLEARED"){
+			    		  return  message("ov.useCarRequest.cleared");
 			    	  }
 		      	  }  
 		      },
@@ -179,7 +184,7 @@ $(function(){
 			success:function(result){
 
 				createMap(result.content.point.x, result.content.point.y, message("ov.useCarRequest.select_start_position"),
-						"#startLongitude", "#startLatitude", "#startPositionDetails");
+						"#startLongitude", "#startLatitude", "#startPositionDetails", "start");
 				
 			}
 		});
@@ -195,13 +200,13 @@ $(function(){
 			success:function(result){
 				
 				createMap(result.content.point.x, result.content.point.y, message("ov.useCarRequest.select_end_position"),
-						"#endLongitude", "#endLatitude", "#endPositionDetails");
+						"#endLongitude", "#endLatitude", "#endPositionDetails", "end");
 				
 			}
 		});
 	})
 	
-	function createMap(x, y, title, lng, lat, details){
+	function createMap(x, y, title, lng, lat, details, start_end){
 		$('#mapContainer').dialog({    
 			title: title,     
 		    width: 800,    
@@ -222,9 +227,33 @@ $(function(){
 			isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT }));   //右下角，打开
 		map.addEventListener("click", showInfo);
 		var geoc = new BMap.Geocoder();  //地理编码
+		
+		//获取距离
+		var searchComplete = function (results){
+			if (transit.getStatus() != BMAP_STATUS_SUCCESS){
+				return ;
+			}
+			var plan = results.getPlan(0);
+			totalDistance = plan.getDistance(true);
+			//eg. totalDistance: 22.3公里
+			$("#totalDistance").val(totalDistance.split("公里")[0]);
+//			alert($("#totalDistance").val());
+		}
+		var transit = new BMap.DrivingRoute(map, 
+			{
+				renderOptions: {map: map}, onSearchComplete: searchComplete
+			}
+		);
 
+		//获取点击地图信息
 		function showInfo(e){
 			var pt = e.point;
+			if (start_end == "start"){
+				startPoint = pt;
+			}
+			if (start_end == "end"){
+				endPoint = pt;
+			}
 			$(lng).val(pt.lng);
 			$(lat).val(pt.lat);
 			geoc.getLocation(pt, function(rs){
@@ -232,6 +261,9 @@ $(function(){
 				var addressDetails = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
 //				alert(addressDetails);
 				$(details).textbox('setValue', addressDetails);
+				if (startPoint != "" && endPoint != ""){
+					transit.search(startPoint, endPoint);
+				}
 				$('#mapContainer').dialog("close");
 			});
 		}

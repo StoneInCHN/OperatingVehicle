@@ -421,4 +421,21 @@ public class DateTimeUtils implements Serializable {
 
     return strDate;
   }
+  
+  /**
+   * String 转Date
+   * @param dateString
+   * @param format 默认:yyyy-MM-dd HH:mm:ss
+   * @return
+   * @throws ParseException 
+   */
+  public static Date convertStringToDate(String dateString, String format) throws ParseException{
+	  if (org.springframework.util.StringUtils.isEmpty(format)) {
+		format = "yyyy-MM-dd HH:mm:ss";
+	}
+	  SimpleDateFormat sdf = new SimpleDateFormat(format);  
+	  return sdf.parse(dateString);
+  }
+  
+  
 }

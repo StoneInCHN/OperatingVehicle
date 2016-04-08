@@ -28,8 +28,8 @@
   <body class="easyui-layout" >   
 	<div class="header" data-options="region:'north',split:true,noheader:true,collapse:'west'">
 		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">车辆运营管理</div>-->
-		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">后台管理中心</div>-->
-		<div class="logo">车辆后台管理中心</div>
+		<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">后台管理中心</div>
+		<!--<div class="logo">车辆后台管理中心</div>-->
 		<div id="nav-wrap" class="nav-wrap"  style="width:700px">
 			<ul class="nav nav-pills">
 				<li><a href="#main"><i class="fa fa-home fa-1x"></i>首页</a></li>
@@ -87,6 +87,17 @@
     		[@shiro.hasPermission name="roleManage"]
     		<li><a href="#" data-url="${base}/console/role/role.jhtml?path=role">角色管理</a></li>
     		[/@shiro.hasPermission]    		    		    		
+    	</ul>
+    	<ul title="${message("ov.vehicle.manage")}" id="vehicle">
+    		[@shiro.hasPermission name="maintenanceCharge"]
+    		<li><a href="#" data-url="${base}/console/maintenanceCharge/maintenanceCharge.jhtml">保养信息</a></li>
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="oilCharge"]
+    		<li><a href="#" data-url="${base}/console/oilCharge/oilCharge.jhtml">加油信息</a></li>
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="upkeepCharge"]
+    		<li><a href="#" data-url="${base}/console/upkeepCharge/upkeepCharge.jhtml">维修信息</a></li>
+    		[/@shiro.hasPermission]
     	</ul>
     	<ul title="${message("ov.business.branch")}" id="businessManagement">
     		[@shiro.hasPermission name="branchBusinessManage"]
@@ -199,6 +210,7 @@
     <div class="footer" data-options="region:'south',split:true,noheader:true" ></div> 
     <div id = "commonMainDialog">
 	    <div id = "searchRole"></div>
+		<div id = "searchVehicle"></div>
 	    <div id = "searchTenantUser"></div>
 	    <div id = "changePassword">
     </div>

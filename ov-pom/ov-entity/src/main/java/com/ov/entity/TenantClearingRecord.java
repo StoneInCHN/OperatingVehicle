@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -46,6 +47,11 @@ public class TenantClearingRecord extends BaseEntity{
   private BigDecimal unitPrice = new BigDecimal(0);
   
   /**
+   * 所有用车请求总距离,单位:公里
+   */
+  private BigDecimal totalDistance;
+  
+  /**
    *本次结算金额 
    */
   private BigDecimal amountOfCurrent = new BigDecimal (0);
@@ -84,6 +90,7 @@ public class TenantClearingRecord extends BaseEntity{
     this.clearingSn = clearingSn;
   }
 
+  @JsonProperty
   public ClearingStatus getClearingStatus ()
   {
     return clearingStatus;
@@ -94,6 +101,7 @@ public class TenantClearingRecord extends BaseEntity{
     this.clearingStatus = clearingStatus;
   }
   
+  @JsonProperty
   public BigDecimal getAmountOfCurrent()
   {
     return amountOfCurrent;
@@ -105,6 +113,7 @@ public class TenantClearingRecord extends BaseEntity{
     this.amountOfCurrent = amountOfCurrent;
   }
   
+  @JsonProperty
   public BigDecimal getReduce() {
 		return reduce;
 	}
@@ -139,7 +148,7 @@ public class TenantClearingRecord extends BaseEntity{
 		this.child = child;
 	}
 
-    @OneToMany(mappedBy = "clearingRecord")
+    @OneToMany(mappedBy = "clearingRecord", cascade = CascadeType.PERSIST)
 	public List<VehicleScheduling> getVehicleSchedulings() {
 		return vehicleSchedulings;
 	}
@@ -148,12 +157,22 @@ public class TenantClearingRecord extends BaseEntity{
 		this.vehicleSchedulings = vehicleSchedulings;
 	}
 
+	@JsonProperty
 	public BigDecimal getUnitPrice() {
 		return unitPrice;
 	}
 
 	public void setUnitPrice(BigDecimal unitPrice) {
 		this.unitPrice = unitPrice;
+	}
+
+	@JsonProperty
+	public BigDecimal getTotalDistance() {
+		return totalDistance;
+	}
+
+	public void setTotalDistance(BigDecimal totalDistance) {
+		this.totalDistance = totalDistance;
 	}
 
   
