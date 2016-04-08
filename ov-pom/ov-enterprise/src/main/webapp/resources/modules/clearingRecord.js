@@ -96,8 +96,9 @@ $(function(){
 		columns:[
 		   [
 		      {field:'ck',checkbox:true},
-		      {title:message("ov.clearingRecord.clearingSn"),field:"clearingSn",width:100,sortable:true},
+		      {title:message("ov.clearingRecord.clearingSn"),field:"clearingSn",width:80,sortable:true},
 		      {title:message("ov.clearingRecord.unitPrice"),field:"unitPrice",width:50,sortable:true},
+		      {title:message("ov.clearingRecord.totalDistance"),field:"totalDistance",width:50,sortable:true},
 		      {title:message("ov.clearingRecord.amountOfCurrent"),field:"amountOfCurrent",width:50},
 		      {title:message("ov.clearingRecord.reduce"),field:"reduce",width:50},
 		      {title:message("ov.clearingRecord.clearingStatus"),field:"clearingStatus",width:30,sortable:true,
@@ -113,10 +114,10 @@ $(function(){
 		]
 	});
 	
-	$("#useCarRequest-search-btn").click(function(){
-	  var _queryParams = $("#useCarRequest-search-form").serializeJSON();
-	  $('#useCarRequest-table-list').datagrid('options').queryParams = _queryParams;  
-	  $("#useCarRequest-table-list").datagrid('reload');
+	$("#clearingRecord-search-btn").click(function(){
+	  var _queryParams = $("#clearingRecord-search-form").serializeJSON();
+	  $('#clearingRecord-table-list').datagrid('options').queryParams = _queryParams;  
+	  $("#clearingRecord-table-list").datagrid('reload');
 	});
 	
 	$("input:text").focus(function(){

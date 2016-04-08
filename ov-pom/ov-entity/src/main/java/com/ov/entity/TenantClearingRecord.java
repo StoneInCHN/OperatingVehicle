@@ -90,6 +90,7 @@ public class TenantClearingRecord extends BaseEntity{
     this.clearingSn = clearingSn;
   }
 
+  @JsonProperty
   public ClearingStatus getClearingStatus ()
   {
     return clearingStatus;
@@ -100,6 +101,7 @@ public class TenantClearingRecord extends BaseEntity{
     this.clearingStatus = clearingStatus;
   }
   
+  @JsonProperty
   public BigDecimal getAmountOfCurrent()
   {
     return amountOfCurrent;
@@ -111,6 +113,7 @@ public class TenantClearingRecord extends BaseEntity{
     this.amountOfCurrent = amountOfCurrent;
   }
   
+  @JsonProperty
   public BigDecimal getReduce() {
 		return reduce;
 	}
@@ -154,6 +157,7 @@ public class TenantClearingRecord extends BaseEntity{
 		this.vehicleSchedulings = vehicleSchedulings;
 	}
 
+	@JsonProperty
 	public BigDecimal getUnitPrice() {
 		return unitPrice;
 	}
@@ -162,6 +166,7 @@ public class TenantClearingRecord extends BaseEntity{
 		this.unitPrice = unitPrice;
 	}
 
+	@JsonProperty
 	public BigDecimal getTotalDistance() {
 		return totalDistance;
 	}
