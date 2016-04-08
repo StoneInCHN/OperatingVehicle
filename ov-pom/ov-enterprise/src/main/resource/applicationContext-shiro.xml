@@ -43,7 +43,7 @@
 		    	/console/tenantClearingRecord/** = perms["settleManagement"]
 		    	/console/tenantClearingRecord/** = perms["settleSearch"]
 
-		    	/console/vehicle/** = perms["vehicleManagement"]"]
+		    	/console/vehicle/** = perms["vehicleManagement"]
 		    	/console/deviceInfo/** = perms["device"]
 
 			</value>
