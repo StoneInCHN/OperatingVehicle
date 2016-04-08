@@ -1,6 +1,6 @@
 <form id="editMaintenanceCharge_form" method="post">
 		<input type="hidden" name="id" value= "${maintenanceCharge.id}"/>
-		<input type="hidden" name="vehicleID"  id= "vehicle_maintenanceEditID" />
+		<input type="hidden" name="vehicleID"  id= "vehicle_maintenanceEditID" value= "${maintenanceCharge.vehicleID}"/>
 	    <table class="table table-striped"  border="0">
 	    	<tr>
 	    		<th>${message("ov.maintenanceCharge.select.vehicle")}:</th>
