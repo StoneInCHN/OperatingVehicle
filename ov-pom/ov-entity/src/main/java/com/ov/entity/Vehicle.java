@@ -2,12 +2,15 @@ package com.ov.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Index;
 import org.hibernate.search.annotations.Analyzer;
@@ -138,8 +141,14 @@ public class Vehicle extends BaseEntity {
    * 状态
    */
   private VehicleStatus vehicleStatus;
-  
-
+  /**
+   * 设备
+   */
+  private DeviceInfo device;
+  /**
+   * 设备号，冗余字段
+   */
+  private String deviceNo;
   @Column(length = 200)
   @JsonProperty
   public String getBrandIcon() {
@@ -345,5 +354,27 @@ public class Vehicle extends BaseEntity {
 		this.vehicleStatus = vehicleStatus;
 	}
 
+	@OneToOne(mappedBy = "vehicle", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+  public DeviceInfo getDevice() {
+    return device;
+  }
 
+  public void setDevice(DeviceInfo device) {
+    this.device = device;
+  }
+  
+  @JsonProperty
+  @Transient
+  public String getDeviceNo() {
+    if (device != null) {
+      return device.getDeviceNo();
+    } else {
+      return null;
+    }
+
+  }
+
+  public void setDeviceNo(String deviceNo) {
+    this.deviceNo = deviceNo;
+  }
 }

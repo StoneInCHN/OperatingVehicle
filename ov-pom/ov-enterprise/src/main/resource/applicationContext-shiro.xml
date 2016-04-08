@@ -40,6 +40,8 @@
 		    	/console/maintenanceCharge/** = perms["maintenanceCharge"]
 		    	/console/oilCharge/** = perms["oilCharge"]
 		    	/console/upkeepCharge/** = perms["upkeepCharge"]
+		    	/console/vehicle/** = perms["vehicle"]
+		    	/console/deviceInfo/** = perms["device"]
 			</value>
 		</property>
 		<property name="filters">

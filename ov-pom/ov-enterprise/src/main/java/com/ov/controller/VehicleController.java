@@ -142,4 +142,14 @@ public class VehicleController extends BaseController {
     }
     return SUCCESS_MESSAGE;
   }
+  
+  /**
+   * 查询车辆
+   * @param model
+   * @return
+   */
+  @RequestMapping(value = "/commonVehiclesSearch", method = RequestMethod.GET)
+  public String commonVehiclesSearch(ModelMap model) {
+    return "/common/commonVehiclesSearch";
+  }
 }

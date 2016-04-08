@@ -44,15 +44,7 @@ public class MaintenanceChargeController extends BaseController{
   {
     return "maintenanceCharge/maintenanceCharge";
   }
-  /**
-   * 查询车辆
-   * @param model
-   * @return
-   */
-  @RequestMapping(value = "/commonVehiclesSearch", method = RequestMethod.GET)
-  public String commonVehiclesSearch(ModelMap model) {
-    return "/common/commonVehiclesSearch";
-  }
+  
   @RequestMapping (value = "/list", method = RequestMethod.POST)
   public @ResponseBody Page<MaintenanceCharge> list (String vehiclePlateSearch, Date beginDate, Date endDate, Pageable pageable){
     if(vehiclePlateSearch != null || beginDate != null || endDate != null){
