@@ -25,8 +25,10 @@ public final class CommonAttributes {
 	public static final String DEPARTMENT_MANAGE= "departmentManage";
 	public static final String AUTHORITY_MANAGE= "authorityManage";
 	public static final String ROLE_MANAGE= "roleManage";
-    
-	
+    /**
+     * 用于调用每月车辆状态报告的URL
+     */
+	public static final String MONTHLY_VEHICLE_STATUS_URL= "http://10.50.40.102:8080/ov-obd-data/tenantVehicleData/monthlyVehicleStatus.jhtml";
 	/**
 	 * 不可实例化
 	 */

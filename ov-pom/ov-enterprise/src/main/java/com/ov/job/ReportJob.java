@@ -14,6 +14,7 @@ import com.ov.entity.TenantInfo;
 import com.ov.service.ReportProcedureService;
 import com.ov.service.TenantAccountService;
 import com.ov.service.TenantInfoService;
+import com.ov.utils.ApiUtils;
 import com.ov.utils.DateTimeUtils;
 /**
  * 调用存储过程生成报表
@@ -36,7 +37,7 @@ public class ReportJob {
   private static final String[] procedures = {"report_maintenance_charge_pr","report_oil_charge_pr",
                       "report_upkeep_charge_pr","report_vehicle_mileage_pr"}; 
   
-  @Scheduled(cron = "${job.monthly.report.cron.test}")//用于测试
+  //@Scheduled(cron = "${job.monthly.report.cron.test}")//用于测试
   //@Scheduled(cron = "${job.monthly.report.cron}")//每个月最后一天 23:30PM 跑一次
   public void startReportJob() {
     List<TenantInfo> tenantInfos = tenantInfoService.findAll();

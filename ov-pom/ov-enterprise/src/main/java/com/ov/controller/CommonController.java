@@ -18,6 +18,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ov.beans.CommonAttributes;
 import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.TenantAccount;
@@ -34,6 +36,7 @@ import com.ov.service.TenantAccountService;
 import com.ov.service.TenantUserService;
 import com.ov.service.VehicleSchedulingService;
 import com.ov.service.VehicleService;
+import com.ov.utils.ApiUtils;
 
 /**
  * Controller - 共用
@@ -187,7 +190,17 @@ public String main(ModelMap model,  HttpSession session) {
     tenantAccountService.refreshIndex();
     return SUCCESS_MESSAGE;
   }
-
+  /**
+   * @param params 参数：deviceId=8801001667&fromDate=2016-4-1&toDate=2016-4-30
+   */
+  @RequestMapping(value = "/monthlyVehicleStatus", method = RequestMethod.POST)
+  public String monthlyVehicleStatus(String params) {
+    String mileageJson = "";
+    if(org.apache.commons.lang.StringUtils.isNotBlank(params)){
+      mileageJson = ApiUtils.post(CommonAttributes.MONTHLY_VEHICLE_STATUS_URL,params);
+    }
+    return mileageJson;
+  }
 //  /**
 //   * 异步判断验证码是否正确
 //   * @param captchaType 验证码类型
