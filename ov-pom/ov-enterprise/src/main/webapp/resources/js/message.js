@@ -206,7 +206,7 @@ var messages = {
 		"ov.vehicle.dashboardMileage":"仪表盘里程",
 		
 		//企业管理
-		"ov.branchBusiness.add":"添加分公司"
+		"ov.branchBusiness.add":"添加分公司",
 		//车辆管理
 		"ov.maintenanceCharge.select.vehicle":"车辆",
 		"ov.maintenanceCharge.date":"保养时间",
