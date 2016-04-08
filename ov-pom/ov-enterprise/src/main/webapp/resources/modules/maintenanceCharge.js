@@ -137,7 +137,7 @@ $(function(){
 		      {title:message("ov.maintenanceCharge.date"),field:"maintenanceDate",width:100,sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format(message("ov.date.China.format.yyyyMMdd"));
 			  }},
-		      {title:message("ov.maintenanceCharge.amount")+"/元",field:"maintenanceAmount",width:100,sortable:true},
+		      {title:message("ov.maintenanceCharge.amount")+message("ov.common.unitPrice"),field:"maintenanceAmount",width:100,sortable:true},
 		      {title:message("ov.maintenanceCharge.mileage")+"/km",field:"maintenanceMileage",width:100,sortable:true},
 		      {title:message("ov.maintenanceCharge.maintenanceCompany"),field:"maintenanceCompany",width:100,sortable:true},
 

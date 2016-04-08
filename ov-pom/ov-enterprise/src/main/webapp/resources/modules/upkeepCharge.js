@@ -137,7 +137,7 @@ $(function(){
 		      {title:message("ov.upkeepCharge.date"),field:"upkeepDate",width:100,sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format(message("ov.date.China.format.yyyyMMdd"));
 			  }},
-		      {title:message("ov.upkeepCharge.amount")+"/元",field:"upkeepAmount",width:100,sortable:true},
+		      {title:message("ov.upkeepCharge.amount")+message("ov.common.unitPrice"),field:"upkeepAmount",width:100,sortable:true},
 		      {title:message("ov.upkeepCharge.upkeepCompany"),field:"upkeepCompany",width:100,sortable:true},
 
 		      {title:message("ov.common.remark"),field:"remark",width:100,sortable:true}

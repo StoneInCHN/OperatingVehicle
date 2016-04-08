@@ -52,11 +52,12 @@ var messages = {
 		"ov.common.action":"操作",
 		"ov.common.dateFormatChina":"yyyy年MM月dd日",
 		"ov.common.assign":"指派",
+		"ov.common.unitPrice":"/元",
+		"ov.common.unitVolume":"/L",
 		"ov.date.China.format.yyyyMMdd":"yyyy年MM月dd日",
 		"ov.date.China.format.yyyyMM":"yyyy年MM",
 		"ov.date.China.format.yyyy":"yyyy年",
 		
-
 
 		//租户用户
 		"ov.tenantUser.search":"人员查询",
@@ -127,7 +128,6 @@ var messages = {
 		"ov.clearingRecord.failure":"结算失败",
 		"ov.clearingRecord.list":"结算列表",
 		"ov.clearingRecord.add":"新增结算",
-		"ov.clearingRecord.totalDistance":"总路程",
 		
 		//车辆信息
 		"ov.vehicle.motorcade":"车队",
@@ -190,7 +190,6 @@ var messages = {
 		"ov.deviceInfo.bindStatus.binded":"设备已绑定",
 		//车辆信息
 		"ov.vehicle.motorcade":"所属车队",
-		"ov.vehicle.vehicleFullBrand":"车型",
 		"ov.vehicle.plateDate":"上牌日期",
 		"ov.vehicle.produceDate":"生产日期",
 		"ov.vehicle.add":"添加车辆",
@@ -216,7 +215,26 @@ var messages = {
 		"ov.maintenanceCharge.mileage":"保养时公里数",
 		"ov.maintenanceCharge.maintenanceCompany":"保养公司",
 		"ov.maintenanceCharge.list":"保养列表",
-		"ov.maintenanceCharge.add":"添加保养"
+		"ov.maintenanceCharge.add":"添加保养",
+		"ov.upkeepCharge.select.vehicle":"车辆",
+		"ov.upkeepCharge.date":"维修时间",
+		"ov.upkeepCharge.amount":"维修费用",
+		"ov.upkeepCharge.upkeepCompany":"维修公司",
+		"ov.upkeepCharge.list":"维修列表",
+		"ov.upkeepCharge.add":"添加维修",
+		"ov.oilCharge.select.vehicle":"车辆",
+		"ov.oilCharge.date":"加油时间",
+		"ov.oilCharge.amount":"油费合计",
+		"ov.oilCharge.discountAmount":"优惠金额",
+		"ov.oilCharge.finalAmount":"实收金额",
+		"ov.oilCharge.list":"加油列表",
+		"ov.oilCharge.add":"添加加油记录",
+		"ov.oilCharge.not.provideInvoice":"没有提供油票",
+		"ov.oilCharge.oilCount":"加油量L",
+		"ov.oilCharge.oilPrice":"单价/元",
+		"ov.oilCharge.oilLabel":"燃油标号",
+		"ov.oilCharge.invoiceNumber":"发票（油票）号码",
+
 			
 };
 //多语言

@@ -62,7 +62,7 @@ public class OilCharge extends BaseEntity{
    */
   private BigDecimal oilCount;
   /**
-   * 单价/L
+   * 单价/元
    */
   private BigDecimal oilPrice;
   /**
