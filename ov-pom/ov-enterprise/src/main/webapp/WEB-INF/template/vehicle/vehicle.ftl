@@ -9,16 +9,17 @@
 	    <input type="hidden" name="totalRecord" id="totalRecord"/>
 	    	<div class="search-item">
 			    <label> ${message("ov.vehicle.plate")}:</label>
-			    <input type="text" class="easyui-textbox" id="plateSearch" name="plateSearch" validtype="length[0,20]"/>
+			    <input type="text" class="easyui-textbox" name="vehiclePlateSearch" validtype="length[0,20]"/>
 			</div>
 			<div class="search-item">
-			    <label> ${message("ov.vehicle.endUser")}:</label>
-			    <input type="text" class="easyui-textbox" id="userNameSearch" name="userNameSearch" validtype="length[0,20]"/>
+			    <label> ${message("ov.vehicle.vehicleFullBrandSearch")}:</label>
+			    <input type="text" class="easyui-textbox" name="vehicleFullBrandSearch" validtype="length[0,20]"/>
 			</div>
 			<div class="search-item">
-			    <label> ${message("ov.mobile")}:</label>
-			    <input type="text" class="easyui-textbox" id="mobileNumSearch" name="mobileNumSearch" validtype="length[0,20]"/>
+			    <label> ${message('ov.vehicle.motorcade')}:</label>
+			    <input type="text" class="easyui-textbox" name="motorcadeSearch" validtype="length[0,20]"/>
 			</div>
+			
 			<div class="search-item">
 			    <label> 录入时间:</label>
 			    <input type="text" class="Wdate" id="beginDate" name="beginDate"  onclick="WdatePicker({maxDate: '#F{$dp.$D(\'endDate\')}'});" />
@@ -73,7 +74,6 @@
 	    		</td>
 	    		<th >${message('ov.vehicle.vehicleStatus')}:</th>
 	    		<td >
-	    			 <input class="easyui-textbox" name="vehicleStatus" />
 		    			 <input class="easyui-combobox" data-options="
 					     valueField: 'label',
 					     textField: 'value',
@@ -87,7 +87,7 @@
 					      label: 'WORKING',
 					      value: '${message("ov.vehicle.vehicleStatus.WORKING")}'
 					     }],
-					     prompt:'${message("ov.common.please.select")}',panelMaxHeight:60"  name="vehicleStatus" style="width:110px;"/>
+					     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100"  name="vehicleStatus" style="width:110px;"/>
 	    		</td>
 	    	</tr>
 	    	<tr>

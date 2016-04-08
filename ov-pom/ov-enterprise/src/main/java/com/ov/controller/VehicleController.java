@@ -57,13 +57,13 @@ public class VehicleController extends BaseController {
    * @return
    */
   @RequestMapping(value = "/list", method = RequestMethod.POST)
-  public @ResponseBody Page<Vehicle> list(String vehicleBrandSearch, 
+  public @ResponseBody Page<Vehicle> list(String vehicleFullBrandSearch,String motorcadeSearch, 
       String vehiclePlateSearch, Pageable pageable) {
     Page<Vehicle> vehiclePage = null;
-    if (vehicleBrandSearch == null && vehiclePlateSearch == null) {
+    if (vehicleFullBrandSearch == null && vehiclePlateSearch == null) {
       vehiclePage = vehicleService.findPage(pageable, true);
     } else {
-      vehiclePage = vehicleService.searchPageByFilter(vehiclePlateSearch, pageable, true);
+      vehiclePage = vehicleService.searchPageByFilter(vehiclePlateSearch,motorcadeSearch,vehicleFullBrandSearch, pageable);
     }
     return vehiclePage;
   }
@@ -115,7 +115,10 @@ public class VehicleController extends BaseController {
    * @return
    */
   @RequestMapping(value = "/update", method = RequestMethod.POST)
-  public @ResponseBody Message update(Vehicle vehicle, Long elderlyInfoID) {
+  public @ResponseBody Message update(Vehicle vehicle, Long vehicleMotorcadeId) {
+    Motorcade motorcade = motorcadeService.find (vehicleMotorcadeId);
+    vehicle.setMotorcade (motorcade);
+    vehicleService.update (vehicle, "createDate","tenantID","tenantInfo");
     return SUCCESS_MESSAGE;
   }
 
@@ -138,5 +141,15 @@ public class VehicleController extends BaseController {
       }
     }
     return SUCCESS_MESSAGE;
+  }
+  
+  /**
+   * 查询车辆
+   * @param model
+   * @return
+   */
+  @RequestMapping(value = "/commonVehiclesSearch", method = RequestMethod.GET)
+  public String commonVehiclesSearch(ModelMap model) {
+    return "/common/commonVehiclesSearch";
   }
 }

@@ -39,9 +39,14 @@
 		    	/console/maintenanceCharge/** = perms["maintenanceCharge"]
 		    	/console/oilCharge/** = perms["oilCharge"]
 		    	/console/upkeepCharge/** = perms["upkeepCharge"]
+<<<<<<< HEAD
 		    	<!--结算管理  -->
 		    	/console/tenantClearingRecord/** = perms["settleManagement"]
 		    	/console/tenantClearingRecord/** = perms["settleSearch"]
+=======
+		    	/console/vehicle/** = perms["vehicle"]
+		    	/console/deviceInfo/** = perms["device"]
+>>>>>>> 09e815e892558faa0755c6df31b916dcf9ca033d
 			</value>
 		</property>
 		<property name="filters">

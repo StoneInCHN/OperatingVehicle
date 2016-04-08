@@ -92,7 +92,7 @@
     		<li><a href="#" data-url="${base}/console/role/role.jhtml?path=role">角色管理</a></li>
     		[/@shiro.hasPermission]    		    		    		
     	</ul>
-    	<ul title="${message("ov.vehicle.manage")}" id="vehicle">
+    	<ul title="${message("ov.vehicle.manage")}" id="vehicleManagement">
     		[@shiro.hasPermission name="maintenanceCharge"]
     		<li><a href="#" data-url="${base}/console/maintenanceCharge/maintenanceCharge.jhtml">保养信息</a></li>
     		[/@shiro.hasPermission]
@@ -101,6 +101,12 @@
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="upkeepCharge"]
     		<li><a href="#" data-url="${base}/console/upkeepCharge/upkeepCharge.jhtml">维修信息</a></li>
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="vehicle"]
+    		<li><a href="#" data-url="${base}/console/vehicle/vehicle.jhtml">${message("ov.vehicleManagement.vehicle")}</a></li>
+    		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="device"]
+    		<li><a href="#" data-url="${base}/console/deviceInfo/deviceInfo.jhtml">${message("ov.vehicleManagement.device")}</a></li>
     		[/@shiro.hasPermission]
     	</ul>
     	<ul title="${message("ov.business.branch")}" id="businessManagement">
@@ -136,14 +142,6 @@
     		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="settleSearch"]
     		<li><a href="#" data-url="${base}/console/tenantClearingRecord/clearingRecordsView.jhtml">结算查询</a></li>
-    		[/@shiro.hasPermission]
-    	</ul>
-    	<ul title="${message("ov.vehicleManagement.settle")}" id="vehicleManagement">
-    		[@shiro.hasPermission name="vehicle"]
-    		<li><a href="#" data-url="${base}/console/vehicle/vehicle.jhtml">${message("ov.vehicleManagement.vehicle")}</a></li>
-    		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="device"]
-    		<li><a href="#" data-url="${base}/console/deviceInfo/deviceInfo.jhtml">${message("ov.vehicleManagement.device")}</a></li>
     		[/@shiro.hasPermission]
     	</ul>
     </div>

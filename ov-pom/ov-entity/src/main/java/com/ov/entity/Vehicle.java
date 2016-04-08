@@ -2,12 +2,15 @@ package com.ov.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Index;
 import org.hibernate.search.annotations.Analyzer;
@@ -138,8 +141,14 @@ public class Vehicle extends BaseEntity {
    * 状态
    */
   private VehicleStatus vehicleStatus;
-  
-
+  /**
+   * 设备
+   */
+  private DeviceInfo device;
+  /**
+   * 设备号，冗余字段
+   */
+  private String deviceNo;
   @Column(length = 200)
   @JsonProperty
   public String getBrandIcon() {
@@ -191,6 +200,9 @@ public class Vehicle extends BaseEntity {
   }
 
 //  @Transient
+  @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
+      impl = IKAnalyzer.class))
+  @JsonProperty
   public String getVehicleFullBrand() {
 //    VehicleLine vl = vehicleBrandDetail.getVehicleLine();
 //    vehicleFullBrand = vl.getName();
@@ -233,8 +245,7 @@ public class Vehicle extends BaseEntity {
   }
 
   @JsonProperty
-  @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
-      impl = IKAnalyzer.class))
+  @Field(store = Store.NO,index = org.hibernate.search.annotations.Index.UN_TOKENIZED)
   public String getPlate() {
     return plate;
   }
@@ -260,8 +271,9 @@ public class Vehicle extends BaseEntity {
   public void setTenantID(Long tenantID) {
     this.tenantID = tenantID;
   }
-  	@ManyToOne
-  	public TenantInfo getTenantInfo() {
+  
+	@ManyToOne
+	public TenantInfo getTenantInfo() {
 	  return tenantInfo;
 	}
 	
@@ -269,7 +281,7 @@ public class Vehicle extends BaseEntity {
 		this.tenantInfo = tenantInfo;
 	}
 
-@JsonProperty
+	@JsonProperty
   public String getVehicleNo() {
     return vehicleNo;
   }
@@ -305,6 +317,7 @@ public class Vehicle extends BaseEntity {
     this.dashboradOil = dashboradOil;
   }
 
+  @JsonProperty
   public Date getProduceDate() {
     return produceDate;
   }
@@ -313,7 +326,7 @@ public class Vehicle extends BaseEntity {
     this.produceDate = produceDate;
   }
 
-
+  @JsonProperty
   public Date getPlateDate() {
     return plateDate;
   }
@@ -321,8 +334,10 @@ public class Vehicle extends BaseEntity {
   public void setPlateDate(Date plateDate) {
     this.plateDate = plateDate;
   }
-  	@JsonProperty
-  	@ManyToOne(fetch = FetchType.EAGER)
+  
+	@JsonProperty
+	@ManyToOne(fetch = FetchType.EAGER)
+	@IndexedEmbedded
 	public Motorcade getMotorcade() {
 		return motorcade;
 	}
@@ -339,5 +354,27 @@ public class Vehicle extends BaseEntity {
 		this.vehicleStatus = vehicleStatus;
 	}
 
+	@OneToOne(mappedBy = "vehicle", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+  public DeviceInfo getDevice() {
+    return device;
+  }
 
+  public void setDevice(DeviceInfo device) {
+    this.device = device;
+  }
+  
+  @JsonProperty
+  @Transient
+  public String getDeviceNo() {
+    if (device != null) {
+      return device.getDeviceNo();
+    } else {
+      return null;
+    }
+
+  }
+
+  public void setDeviceNo(String deviceNo) {
+    this.deviceNo = deviceNo;
+  }
 }

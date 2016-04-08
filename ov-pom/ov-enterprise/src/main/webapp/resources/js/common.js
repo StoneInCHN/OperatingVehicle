@@ -402,7 +402,7 @@ function searchVehicle(id) {
 						height : 400,
 						modal : true, 
 						cache : false,
-						href : '../maintenanceCharge/commonVehiclesSearch.jhtml',
+						href : '../vehicle/commonVehiclesSearch.jhtml',
 						buttons : [ {
 							text : message("ov.common.cancel"),
 							iconCls : 'icon-cancel',

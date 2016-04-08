@@ -1,62 +1,60 @@
 <form id="vehicleDetail_form" method="post">   
 	 <table class="table table-striped"  border="0">
 	    	<tr>
-	    		<th>车牌号:</th>
+	    		<th>${message('ov.vehicle.plate')}:</th>
 	    		<td >
-	    			 <input  class="easyui-textbox" value="${vehicle.plate}" name="plate" id= "plate"  data-options="required:true" disabled="disabled"/>
+	    			 <input  class="easyui-textbox" disabled="disabled" value="${vehicle.plate}" name="plate" id= "plate"  data-options="required:true"/>
 	    		</td>
-	    		<th>车辆颜色:</th>
+	    		<th>${message('ov.vehicle.color')}:</th>
 	    		<td >
-	    			 <input class="easyui-textbox" value="${vehicle.color}" name="color" id= "color" disabled="disabled"/>
+	    			 <input class="easyui-textbox" disabled="disabled" value="${vehicle.color}" name="color" id= "color" />
 	    		</td>
 	    	</tr>
 	    	<tr>
-	    		<th>绑定设备:</th>
+	    		<th>${message('ov.vehicle.bindedDevice')}:</th>
 	    		<td >
-	    			 <input class="easyui-textbox" value="${vehicle.device.deviceNo}" id="editVehicle_deviceInfo" panelHeight="150px" data-options="required:true,editable:false,prompt:'${message("ov.common.please.select")}'" disabled="disabled"/>
+	    			 <input class="easyui-textbox" disabled="disabled" value="${vehicle.device.deviceNo}" id="editVehicle_deviceInfo" panelHeight="150px"" />
 	    		</td>
-	    		<th>车辆所有者:</th>
+	    		<th>${message('ov.vehicle.motorcade')}:</th>
 	    		<td>
-	    			 <input class="easyui-textbox" value="${vehicle.endUser.userName}"  id="editVehicle_endUser" panelHeight="150px" data-options="required:true,editable:false,prompt:'${message("ov.common.please.select")}'" disabled="disabled"/>
+	    			 <input class="easyui-textbox" disabled="disabled" data-value="${vehicle.motorcade.id}"  id="vehicleMotorcadeDetail" panelHeight="150px" data-options="required:true,editable:false,prompt:'${message("ov.common.please.select")}'" />
 	    		</td>
 	    	</tr>
 	    	<tr >
-	    		<th >车型:</th>
-	    		<td colspan="3">
-	    			 <input class="easyui-combobox" id="vehicleSelectVehicleBrand-detail" data-value="${vehicle.vehicleBrandDetail.vehicleLine.vehicleBrand.id}" disabled="disabled"/>
-	    			 <input class="easyui-combobox" id="vehicleSelectVehicleLine-detail" data-value="${vehicle.vehicleBrandDetail.vehicleLine.id}" disabled="disabled"/>
-	    			 <input class="easyui-combobox" id="vehicleSelectVehicleBrandDetail-detail" name="vehicleBrandDetailId" data-value="${vehicle.vehicleBrandDetail.id}" disabled="disabled"/>
+	    		<th >${message('ov.vehicle.vehicleFullBrand')}:</th>
+	    		<td>
+	    		<input  class="easyui-textbox" disabled="disabled" value="${vehicle.vehicleFullBrand}" name="vehicleFullBrand" id= "vehicleFullBrand" />
 	    		</td>
 	    	</tr>
 	    	
 	    	<tr>
-	    		<th>仪表盘里程（公里）:</th>
+	    		<th>${message('ov.vehicle.dashboardMileage')}:</th>
 	    		<td >
-	    			 <input  class="easyui-textbox" value="${vehicle.dashboardMileage}" name="dashboardMileage" id= "dashboardMileage" disabled="disabled"/>
+	    			 <input  class="easyui-textbox" disabled="disabled" value="${vehicle.dashboardMileage}" name="dashboardMileage" id= "dashboardMileage" />
 	    		</td>
-	    		<th>电瓶电压（V）:</th>
+	    		<th>${message('ov.vehicle.dashboardBV')}:</th>
 	    		<td >
-	    			 <input class="easyui-textbox" value="${vehicle.dashboardBV}" name="dashboardBV" id= "dashboardBV" disabled="disabled"/>
-	    		</td>
-	    	</tr>
-	    	<tr>
-	    		<th>油量(L):</th>
-	    		<td >
-	    			 <input  class="easyui-textbox" value="${vehicle.dashboradOil}" name="dashboradOil" id= "dashboradOil"  disabled="disabled"/>
-	    		</td>
-	    		<th>上牌时间:</th>
-	    		<td >
-	    			 <input type="text" class="easyui-datebox" name="plateDate" data-options="editable:false" value="${vehicle.plateDate}" disabled="disabled"/>
+	    			 <input class="easyui-textbox" disabled="disabled" value="${vehicle.dashboardBV}" name="dashboardBV" id= "dashboardBV" />
 	    		</td>
 	    	</tr>
 	    	<tr>
-	    		<th>车架号:</th>
+	    		<th>${message('ov.vehicle.dashboradOil')}:</th>
 	    		<td >
-	    			 <input  class="easyui-textbox" value="${vehicle.vehicleNo}" name="vehicleNo" id= "vehicleNo"  data-options="required:true" disabled="disabled"/>
+	    			 <input  class="easyui-textbox" value="${vehicle.dashboradOil}" name="dashboradOil" id= "dashboradOil"  />
 	    		</td>
-	    		<th>生产日期:</th>
+	    		<th>${message('ov.vehicle.plateDate')}:</th>
 	    		<td >
-	    			 <input type="text" class="easyui-datebox" name="produceDate" data-options="editable:false" value="${vehicle.produceDate}" disabled="disabled"/>
+	    			 <input type="text" class="easyui-datebox" name="plateDate" data-options="editable:false" value="${vehicle.plateDate}"/>
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<th>${message('ov.vehicle.vehicleNo')}:</th>
+	    		<td >
+	    			 <input  class="easyui-textbox" value="${vehicle.vehicleNo}" name="vehicleNo" id= "vehicleNo"  data-options="required:true"/>
+	    		</td>
+	    		<th>${message('ov.vehicle.produceDate')}:</th>
+	    		<td >
+	    			 <input type="text" class="easyui-datebox" disabled="disabled" name="produceDate" data-options="editable:false" value="${vehicle.produceDate}"/>
 	    		</td>
 	    	</tr>
 	    </table>
