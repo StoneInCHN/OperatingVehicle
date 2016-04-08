@@ -21,7 +21,11 @@
 	<!--[if lt IE 9]>
     <script type="text/javascript" src="${base}/resources/js/respond.1.4.2.min.js"></script>
     <![endif]-->
+   	<!-- 百度地图api -->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ulsOtfMZcNc4D6aQnBwwnOTt6ZKohflO"></script>
+    <!--加载鼠标绘制工具-->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
     
   </head>
 
