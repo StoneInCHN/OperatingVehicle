@@ -88,7 +88,7 @@
     		<li><a href="#" data-url="${base}/console/role/role.jhtml?path=role">角色管理</a></li>
     		[/@shiro.hasPermission]    		    		    		
     	</ul>
-    	<ul title="${message("ov.vehicle.manage")}" id="vehicle">
+    	<ul title="${message("ov.vehicle.manage")}" id="vehicleManagement">
     		[@shiro.hasPermission name="maintenanceCharge"]
     		<li><a href="#" data-url="${base}/console/maintenanceCharge/maintenanceCharge.jhtml">保养信息</a></li>
     		[/@shiro.hasPermission]
