@@ -127,6 +127,7 @@ var messages = {
 		"ov.clearingRecord.failure":"结算失败",
 		"ov.clearingRecord.list":"结算列表",
 		"ov.clearingRecord.add":"新增结算",
+		"ov.clearingRecord.totalDistance":"总路程",
 		
 		//车辆信息
 		"ov.vehicle.motorcade":"车队",
