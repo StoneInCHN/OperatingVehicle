@@ -185,6 +185,7 @@ var messages = {
 		"ov.deviceInfo.bindStatus.binded":"设备已绑定",
 		//车辆信息
 		"ov.vehicle.motorcade":"所属车队",
+		"ov.vehicle.vehicleFullBrand":"车型",
 		"ov.vehicle.plateDate":"上牌日期",
 		"ov.vehicle.produceDate":"生产日期",
 		"ov.vehicle.add":"添加车辆",

@@ -191,6 +191,9 @@ public class Vehicle extends BaseEntity {
   }
 
 //  @Transient
+  @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
+      impl = IKAnalyzer.class))
+  @JsonProperty
   public String getVehicleFullBrand() {
 //    VehicleLine vl = vehicleBrandDetail.getVehicleLine();
 //    vehicleFullBrand = vl.getName();
@@ -233,8 +236,7 @@ public class Vehicle extends BaseEntity {
   }
 
   @JsonProperty
-  @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
-      impl = IKAnalyzer.class))
+  @Field(store = Store.NO,index = org.hibernate.search.annotations.Index.UN_TOKENIZED)
   public String getPlate() {
     return plate;
   }
@@ -260,8 +262,9 @@ public class Vehicle extends BaseEntity {
   public void setTenantID(Long tenantID) {
     this.tenantID = tenantID;
   }
-  	@ManyToOne
-  	public TenantInfo getTenantInfo() {
+  
+	@ManyToOne
+	public TenantInfo getTenantInfo() {
 	  return tenantInfo;
 	}
 	
@@ -269,7 +272,7 @@ public class Vehicle extends BaseEntity {
 		this.tenantInfo = tenantInfo;
 	}
 
-@JsonProperty
+	@JsonProperty
   public String getVehicleNo() {
     return vehicleNo;
   }
@@ -305,6 +308,7 @@ public class Vehicle extends BaseEntity {
     this.dashboradOil = dashboradOil;
   }
 
+  @JsonProperty
   public Date getProduceDate() {
     return produceDate;
   }
@@ -313,7 +317,7 @@ public class Vehicle extends BaseEntity {
     this.produceDate = produceDate;
   }
 
-
+  @JsonProperty
   public Date getPlateDate() {
     return plateDate;
   }
@@ -321,8 +325,10 @@ public class Vehicle extends BaseEntity {
   public void setPlateDate(Date plateDate) {
     this.plateDate = plateDate;
   }
-  	@JsonProperty
-  	@ManyToOne(fetch = FetchType.EAGER)
+  
+	@JsonProperty
+	@ManyToOne(fetch = FetchType.EAGER)
+	@IndexedEmbedded
 	public Motorcade getMotorcade() {
 		return motorcade;
 	}

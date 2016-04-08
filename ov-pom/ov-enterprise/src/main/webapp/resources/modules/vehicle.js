@@ -70,7 +70,7 @@ var vehicle_manager_tool = {
 			    height: 450,    
 			    modal: true,
 			    iconCls:'icon-mini-edit',
-			    href:'../vehicle/edit.jhtml?id='+_edit_row.id,
+			    href:'../vehicle/detail.jhtml?id='+_edit_row.id+'&handle=edit',
 			    buttons:[{
 			    	text:message("ov.common.save"),
 			    	iconCls:'icon-save',
@@ -103,72 +103,17 @@ var vehicle_manager_tool = {
 					}
 			    }],
 			    onLoad:function(){
-			    	$("#vehicleSelectVehicleBrand-edit").combobox({
-			    		url: '../vehicleBrand/findAllVehicleBrand.jhtml',
+			    	$('#editVehicle_form').show();
+			    	$("#editVehicleMotorcade").combobox({
+			    		url:'../motorcade/findAllMotorcadeUnderTenant.jhtml',
 					    valueField:'id',
-					    textField:'name',
-					    editable : false,
-					    required:true,
-					    prompt:message("ov.common.please.select"),
-					    formatter: function(row){
-							var opts = $(this).combobox('options');
-							return row[opts.textField];
-						},
-						onSelect: function(rec){    
-				            var url = '../vehicleLine/findVehicleLineByBrand.jhtml?vehicleBrandId='+rec.id;
-				            $('#vehicleSelectVehicleLine-edit').combobox('clear');
-				            $('#vehicleSelectVehicleLine-edit').combobox('reload', url);    
-				        },
-						onChange:function(newValue, oldValue){
-							var url = '../vehicleLine/findVehicleLineByBrand.jhtml?vehicleBrandId='+newValue;
-				            $('#vehicleSelectVehicleLine-edit').combobox('clear');
-				            $('#vehicleSelectVehicleLine-edit').combobox('reload', url);
-						}
-
-					});
-			    	$("#vehicleSelectVehicleLine-edit").combobox({
-			    		url : '../vehicleLine/findVehicleLineByBrand.jhtml',
-					    valueField:'id',    
-					    textField:'name',
-					    editable : false,
-					    required:true,
-					    prompt:message("ov.common.please.select"),
-					    groupField:'group',
-						loadFilter :function(data) {
-							var newData=new Array()
-							for(var i=0;i<data.length;i++){
-								var newDataItem = null;
-								newData.name = data[i].name;
-								newData.id = data[i].id;
-								newData.group=data[i].parent.name;
-								newData.push(newData)
-							}
-							return newData;
-						},
-						onSelect: function(rec){ 
-				            var url = '../vehicleBrandDetail/findVehicleBrandDetailByLine.jhtml?vehicleLineId='+rec.id;
-				            $('#vehicleSelectVehicleBrandDetail-edit').combobox('clear');
-				            $('#vehicleSelectVehicleBrandDetail-edit').combobox('reload', url);    
-				        },
-				        onChange:function(newValue, oldValue){
-				        	var url = '../vehicleBrandDetail/findVehicleBrandDetailByLine.jhtml?vehicleLineId='+newValue;
-				            $('#vehicleSelectVehicleBrandDetail-edit').combobox('clear');
-				            $('#vehicleSelectVehicleBrandDetail-edit').combobox('reload', url);    
-						}
-
-					});
-			    	$("#vehicleSelectVehicleBrandDetail-edit").combobox({
-			    		url:'../vehicleBrandDetail/findVehicleBrandDetailByLine.jhtml',
-					    valueField:'id',    
-					    textField:'name',
+					    method:"get",
+					    textField:'motorcadeDesc',
 					    editable : false,
 					    required:true,
 					    prompt:message("ov.common.please.select")
 					});
-			    	$('#editVehicle_form').show();
-			    	$("#vehicleSelectVehicleBrand-edit").combobox("setValue",$("#vehicleSelectVehicleBrand-edit").attr("data-value"));
-			    	$("#vehicleSelectVehicleLine-edit").combobox("setValue",$("#vehicleSelectVehicleLine-edit").attr("data-value"));
-			    	$("#vehicleSelectVehicleBrandDetail-edit").combobox("setValue",$("#vehicleSelectVehicleBrandDetail-edit").attr("data-value"));
+			    	$("#editVehicleMotorcade").combobox("setValue",$("#editVehicleMotorcade").attr("data-value"));
 			    }
 			});  
 		},
@@ -193,7 +138,7 @@ $(function(){
 			    height: 450, 
 			    cache: false,
 			    modal: true,
-			    href:'../vehicle/details.jhtml?id='+rowData.id,
+			    href:'../vehicle/detail.jhtml?id='+rowData.id+'&handle=details',
 			    buttons:[{
 					text:message("ov.common.close"),
 					iconCls:'icon-cancel',
@@ -202,34 +147,17 @@ $(function(){
 					}
 			    }],
 			    onLoad:function(){
-			    	$("#vehicleSelectVehicleBrand-detail").combobox({
-			    		url: '../vehicleBrand/findAllVehicleBrand.jhtml',
-					    valueField:'id',
-					    textField:'name',
-					    editable : false,
-					    required:true,
-					    prompt:message("ov.common.please.select"),
-					});
-			    	$("#vehicleSelectVehicleLine-detail").combobox({
-			    		url : '../vehicleLine/findVehicleLineByBrand.jhtml',
-					    valueField:'id',    
-					    textField:'name',
-					    editable : false,
-					    required:true,
-					    prompt:message("ov.common.please.select")
-					});
-			    	$("#vehicleSelectVehicleBrandDetail-detail").combobox({
-			    		url:'../vehicleBrandDetail/findVehicleBrandDetailByLine.jhtml',
-					    valueField:'id',    
-					    textField:'name',
-					    editable : false,
-					    required:true,
-					    prompt:message("ov.common.please.select")
-					});
 			    	$('#editVehicle_form').show();
-			    	$("#vehicleSelectVehicleBrand-detail").combobox("setValue",$("#vehicleSelectVehicleBrand-detail").attr("data-value"));
-			    	$("#vehicleSelectVehicleLine-detail").combobox("setValue",$("#vehicleSelectVehicleLine-detail").attr("data-value"));
-			    	$("#vehicleSelectVehicleBrandDetail-detail").combobox("setValue",$("#vehicleSelectVehicleBrandDetail-detail").attr("data-value"));
+			    	$("#vehicleMotorcadeDetail").combobox({
+			    		url:'../motorcade/findAllMotorcadeUnderTenant.jhtml',
+					    valueField:'id',
+					    method:"get",
+					    textField:'motorcadeDesc',
+					    editable : false,
+					    required:true,
+					    prompt:message("ov.common.please.select")
+					});
+			    	$("#vehicleMotorcadeDetail").combobox("setValue",$("#vehicleMotorcadeDetail").attr("data-value"));
 			    }
 			    
 			});   
@@ -250,20 +178,16 @@ $(function(){
 		     
 		      {title:message("ov.vehicle.vehicleNo"),field:"vehicleNo",sortable:true},
 	      	  {title:message("ov.vehicle.dashboardMileage"),field:"dashboardMileage",sortable:true},
-	      	  {title:message("ov.vehicle.dashboardBV"),field:"dashboardBV",sortable:true},
+	      	  {title:message("ov.vehicle.vehicleFullBrand"),field:"vehicleFullBrand",sortable:true},
 		      {title:message("ov.vehicle.device"),field:"deviceNo",width:100,sortable:false},
 		      {title:message("ov.vehicle.plateDate"),field:"plateDate",width:100,sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format("yyyy-MM-dd:hh:mm:ss");
 				}
 		      },
-		      {title:message("ov.vehicle.produceDate"),field:"createDate",width:100,sortable:true,formatter: function(value,row,index){
+		      {title:message("ov.vehicle.produceDate"),field:"produceDate",width:100,sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format("yyyy-MM-dd:hh:mm:ss");
 				}
-		      },
-		      {title:message("ov.common.createDate"),field:"createDate",width:100,sortable:true,formatter: function(value,row,index){
-					return new Date(value).Format("yyyy-MM-dd:hh:mm:ss");
-				}
-		      },
+		      }
 		   ]
 		]
 	});
