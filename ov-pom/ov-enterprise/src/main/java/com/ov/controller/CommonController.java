@@ -3,6 +3,7 @@ package com.ov.controller;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -194,12 +195,22 @@ public String main(ModelMap model,  HttpSession session) {
    * @param params 参数：deviceId=8801001667&fromDate=2016-4-1&toDate=2016-4-30
    */
   @RequestMapping(value = "/monthlyVehicleStatus", method = RequestMethod.POST)
-  public String monthlyVehicleStatus(String params) {
-    String mileageJson = "";
-    if(org.apache.commons.lang.StringUtils.isNotBlank(params)){
-      mileageJson = ApiUtils.post(CommonAttributes.MONTHLY_VEHICLE_STATUS_URL,params);
-    }
-    return mileageJson;
+  public @ResponseBody String monthlyVehicleStatus(String deviceId, String fromDate, String toDate) {
+    String mileageJson = "{'msg':[{'dailyMileage': 10,'averageFuelConsumption': 17,'fuelConsumption': 16,'cost': null,'averageSpeed': 19,'emergencybrakecount': 2,'suddenturncount': 0,'rapidlyspeedupcount': 4,'createdate': 1459872000000,'day': 6},{'dailyMileage': 23,'averageFuelConsumption': 7,'fuelConsumption': 9,'cost': null,'averageSpeed': 8,'emergencybrakecount': 7,'suddenturncount': 10,'rapidlyspeedupcount': 13,'createdate': 1459958400000,'day': 7}]}";
+    return mileageJson.replaceAll("'", "\"");
+//    if (deviceId != null && fromDate != null && toDate != null) {
+//      StringBuffer params = new StringBuffer();
+//      params.append("deviceId=");
+//      params.append(deviceId);
+//      params.append("&fromDate=");
+//      params.append(fromDate);
+//      params.append("&toDate=");
+//      params.append(toDate);
+//      mileageJson = ApiUtils.post(CommonAttributes.MONTHLY_VEHICLE_STATUS_URL,params.toString());
+//      return mileageJson;
+//    }else {
+//      return "";
+//    }
   }
 //  /**
 //   * 异步判断验证码是否正确
