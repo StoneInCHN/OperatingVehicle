@@ -45,6 +45,7 @@
 
 		    	/console/vehicle/** = perms["vehicleManagement"]
 		    	/console/deviceInfo/** = perms["device"]
+		    	/console/electronicRail/** = perms["electronicRail"]
 
 			</value>
 		</property>

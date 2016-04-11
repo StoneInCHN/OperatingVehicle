@@ -152,6 +152,13 @@ public class Vehicle extends BaseEntity {
    * 设备号，冗余字段
    */
   private String deviceNo;
+  
+  /**
+   * 电子围栏
+   */
+  private ElectronicRail electronicRail;
+  
+  
   @Column(length = 200)
   @JsonProperty
   public String getBrandIcon() {
@@ -382,4 +389,15 @@ public class Vehicle extends BaseEntity {
   public void setDeviceNo(String deviceNo) {
     this.deviceNo = deviceNo;
   }
+
+  	@ManyToOne
+	public ElectronicRail getElectronicRail() {
+		return electronicRail;
+	}
+	
+	public void setElectronicRail(ElectronicRail electronicRail) {
+		this.electronicRail = electronicRail;
+	}
+  
+  
 }

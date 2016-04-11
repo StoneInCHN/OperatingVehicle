@@ -108,6 +108,9 @@
     		[@shiro.hasPermission name="device"]
     		<li><a href="#" data-url="${base}/console/deviceInfo/deviceInfo.jhtml">${message("ov.vehicleManagement.device")}</a></li>
     		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="electronicRail"]
+    		<li><a href="#" data-url="${base}/console/electronicRail/electronicRail.jhtml">电子围栏</a></li>
+    		[/@shiro.hasPermission]
     	</ul>
     	<ul title="${message("ov.business.branch")}" id="businessManagement">
     		[@shiro.hasPermission name="branchBusinessManage"]
