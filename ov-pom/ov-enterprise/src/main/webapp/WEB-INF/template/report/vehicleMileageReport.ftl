@@ -27,7 +27,7 @@
 														,{label:9,value: 9},{label:10,value: 10},{label:11,value: 11},{label:12,value: 12}],
 														prompt:'${message("ov.common.please.select")}',panelMaxHeight:200"  id="vehicleStatusMonthID"  style="width:100px;"/>
 										</div>										
-										<input type="hidden" name="vehicleID" id="vehicleMileage_vehicleID" value="1">
+										<input type="hidden" name="vehicleID" id="vehicleMileage_deviceNo" value="1">
 									</form>
 									<div class="search-item">
 								  	  <button id="vehicleMileageReport_search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>

@@ -237,10 +237,9 @@ var messages = {
 		"ov.oilCharge.oilPrice":"单价/元",
 		"ov.oilCharge.oilLabel":"燃油标号",
 		"ov.oilCharge.invoiceNumber":"发票（油票）号码",
-		
+
 		//百度地图ak
 		"ov.baiduMap.ak" : "ulsOtfMZcNc4D6aQnBwwnOTt6ZKohflO"
-
 			
 };
 //多语言
