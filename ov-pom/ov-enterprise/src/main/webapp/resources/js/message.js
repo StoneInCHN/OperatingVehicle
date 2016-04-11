@@ -199,6 +199,7 @@ var messages = {
 		"ov.vehicle.vehicleBrand":"品牌",
 		"ov.vehicle.vehicleLine":"车系",
 		"ov.vehicle.vehicleBrandDetail":"车辆型号",
+		"ov.vehicle.vehicleFullBrand":"车辆车型",
 		"ov.vehicle.endUser":"车辆所有者",
 		"ov.vehicle.device":"绑定的设备",
 		"ov.vehicle.status":"车辆状态",

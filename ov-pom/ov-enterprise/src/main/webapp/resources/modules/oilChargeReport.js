@@ -87,8 +87,8 @@ $(function(){
 		},
 		columns:[[
 			{field : 'ck',checkbox : true},
-			{title : "车牌号",field : "plate",width :"47%",align : 'center',sortable : true},
-			{title : "车辆车型",field : "vehicleFullBrand",width :"47%",align : 'center',sortable : true},						
+			{title : message("ov.vehicle.plate"),field : "plate",width :"47%",align : 'center',sortable : true},
+			{title : message("ov.vehicle.vehicleFullBrand"),field : "vehicleFullBrand",width :"47%",align : 'center',sortable : true},							
 		]]
 });
 $("#oilCharge_vehicle_search_btn").click(function(){
