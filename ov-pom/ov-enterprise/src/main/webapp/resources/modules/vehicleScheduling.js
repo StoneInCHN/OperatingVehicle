@@ -99,7 +99,7 @@ var useCarRequest_manager_tool = {
 };
 
 $(function(){
-	var map_ip_location = "http://api.map.baidu.com/location/ip?ak=ulsOtfMZcNc4D6aQnBwwnOTt6ZKohflO&coor=bd09ll";
+	var map_ip_location = "http://api.map.baidu.com/location/ip?coor=bd09ll&ak=" + message("ov.baiduMap.ak");
 	var startPoint = "";
 	var endPoint = "";
 	var totalDistance = "0";
@@ -225,7 +225,7 @@ $(function(){
 		map.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件
 		map.addControl(new BMap.OverviewMapControl({ 
 			isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT }));   //右下角，打开
-//		map.addEventListener("click", showInfo);
+		map.addEventListener("click", showInfo);
 		var geoc = new BMap.Geocoder();  //地理编码
 		
 		//获取距离
@@ -359,34 +359,6 @@ $(function(){
 			});
 			local.search(myValue);
 		}
-		
-		//测试绘制圆
-		var styleOptions = {
-	        strokeColor:"red",    //边线颜色。
-	        fillColor:"red",      //填充颜色。当参数为空时，圆形将没有填充效果。
-	        strokeWeight: 1,       //边线的宽度，以像素为单位。
-	        strokeOpacity: 0.5,	   //边线透明度，取值范围0 - 1。
-	        fillOpacity: 0.3,      //填充的透明度，取值范围0 - 1。
-	        strokeStyle: 'solid' //边线的样式，solid或dashed。
-	    }
-		
-		var myDrawingManagerObject = new BMapLib.DrawingManager(map, {
-			isOpen: true, //是否开启绘制模式
-	        enableDrawingTool: false, //是否显示工具栏
-	        drawingToolOptions: {
-	            anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
-	            offset: new BMap.Size(5, 5), //偏离值
-	        },
-	        circleOptions: styleOptions, //圆的样式
-	        polylineOptions: styleOptions, //线的样式
-	        polygonOptions: styleOptions, //多边形的样式
-	        rectangleOptions: styleOptions //矩形的样式
-	    });
-		myDrawingManagerObject.setDrawingMode(BMAP_DRAWING_CIRCLE);
-		myDrawingManagerObject.enableCalculate();
-		myDrawingManagerObject.addEventListener("overlaycomplete", function(e) {
-		    alert(e.calculate);
-		});
 		
 	}
 	

@@ -28,10 +28,9 @@ public class ElectronicRail extends BaseEntity{
 	private Double centerLat;
 	
 	/**
-	 * 半径
+	 * 半径(米)
 	 */
 	private Double radius;
-
 	
 	public Double getCenterLng() {
 		return centerLng;
