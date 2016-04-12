@@ -27,5 +27,7 @@
 		<!-- cookie相关配置 -->
 		<setting name="cookiePath" value="/" />
 		<setting name="cookieDomain" value="" />
+		
+		<setting name="obdServerUrl" value="http://10.50.40.102:8080/ov-obd-data" />
 	</ov>	
 	

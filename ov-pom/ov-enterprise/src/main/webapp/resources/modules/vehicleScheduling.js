@@ -218,7 +218,7 @@ $(function(){
 		
 		var map = new BMap.Map("mapContainer");          // 创建地图实例  
 		var point = new BMap.Point(x, y);  // 创建点坐标  
-		map.centerAndZoom(point, 11);	
+		map.centerAndZoom(point, 12);	
 		map.enableScrollWheelZoom();	//启用滚轮放大缩小，默认禁用
 		map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
 		map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件

@@ -15,7 +15,7 @@
                 <table id="trackVehicleSearch-table-list"></table>
 		</div>
 		<div data-options="region:'center'" >
-				<div class="easyui-panel" style="height:800px;background:#fafafa;" data-options="border:false">
+				<div class="easyui-panel" style="background:#fafafa;" data-options="border:false">
 						  <fieldset>
 								  	<legend>${message("ov.common.condition.search")}</legend>
 								    <form id="track_search_form" class="search-form">
@@ -30,10 +30,8 @@
 								  	  <button id="track_search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
 								    </div>
 								  </fieldset>
-							<div id="vehicleTrack">
-								<div id="vehicleTrackMap" style="height:400px;width:99%;">
+								<div id="vehicleTrackMap" style="height:900px;width:99%;">
 								</div>
-						</div>
 				</div>
 		</div>
 </div>
