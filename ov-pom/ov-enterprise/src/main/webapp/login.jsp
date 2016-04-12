@@ -54,7 +54,7 @@ if (applicationContext != null) {
 %>
 <title><%=SpringUtils.getMessage("ov.login.title")%> </title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link href="<%=base%>/resources/css/loginIn.css" rel="stylesheet" type="text/css" />
+<link href="<%=base%>/resources/css/login.css" rel="stylesheet" type="text/css" />
 	<script src="<%=base%>/resources/js/jquery.min.js" type="text/javascript"></script>   
 	<script type="text/javascript" src="<%=base%>/resources/js/jquery.validate.js"></script>
 	<script type="text/javascript" src="<%=base%>/resources/js/jquery.placeholder.js"></script>
