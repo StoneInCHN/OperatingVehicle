@@ -209,6 +209,8 @@ var messages = {
 		"ov.vehicle.dashboardBV":"电瓶电压",
 		"ov.vehicle.dashboardMileage":"仪表盘里程",
 		"ov.vehicle.vehicleFullBrand":"车型",
+		"ov.vehicle.no.track":"该车辆当日无轨迹情况！",
+		"ov.vehicle.miss.param":"请选择车辆及时间",
 		
 		//企业管理
 		"ov.branchBusiness.add":"添加分公司",
