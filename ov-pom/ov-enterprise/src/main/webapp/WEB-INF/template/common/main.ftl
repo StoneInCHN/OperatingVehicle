@@ -111,6 +111,9 @@
     		[@shiro.hasPermission name="electronicRail"]
     		<li><a href="#" data-url="${base}/console/electronicRail/electronicRail.jhtml">电子围栏</a></li>
     		[/@shiro.hasPermission]
+    		[@shiro.hasPermission name="motorcade"]
+    		<li><a href="#" data-url="${base}/console/motorcade/motorcade.jhtml">车队管理</a></li>
+    		[/@shiro.hasPermission]
     		[@shiro.hasPermission name="vehicleTrack"]
     		<li><a href="#" data-url="${base}/console/vehicleTrack/track.jhtml">${message("ov.vehicleManagement.vehicleTrack")}</a></li>
     		[/@shiro.hasPermission]
