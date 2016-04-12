@@ -19,6 +19,7 @@
 		  	<fieldset>
 			  	<legend></legend>
 				<div class="search-item">
+				  <button id="electronicRail_edit_btn" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">${message("ov.button.update")}</button>
 			  	  <button id="electronicRail_add_btn" class="easyui-linkbutton" data-options="iconCls:'icon-add'">${message("ov.button.add")}</button>
 			  	  <button id="electronicRail_ok_btn" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">${message("ov.button.ok")}</button>
 			    </div>

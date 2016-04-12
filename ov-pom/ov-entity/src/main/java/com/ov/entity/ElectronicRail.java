@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
 
 /**
@@ -32,6 +33,7 @@ public class ElectronicRail extends BaseEntity{
 	 */
 	private Double radius;
 	
+	@JsonProperty
 	public Double getCenterLng() {
 		return centerLng;
 	}
@@ -40,6 +42,7 @@ public class ElectronicRail extends BaseEntity{
 		this.centerLng = centerLng;
 	}
 
+	@JsonProperty
 	public Double getCenterLat() {
 		return centerLat;
 	}
@@ -48,6 +51,7 @@ public class ElectronicRail extends BaseEntity{
 		this.centerLat = centerLat;
 	}
 
+	@JsonProperty
 	public Double getRadius() {
 		return radius;
 	}
