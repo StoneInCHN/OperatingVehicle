@@ -89,10 +89,10 @@
 	margin: 7px 2px;
 }
 #addEvaluating_form .action-button:hover, #addEvaluating_form .action-button:focus {
-	box-shadow: 0 0 0 2px white, 0 0 0 3px #0285b3;
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #008ead;
 }
 #editEvaluating_form .action-button:hover, #editEvaluating_form .action-button:focus {
-	box-shadow: 0 0 0 2px white, 0 0 0 3px #0285b3;
+	box-shadow: 0 0 0 2px white, 0 0 0 3px #008ead;
 }
 /*headings*/
 .fs-title {
@@ -118,7 +118,7 @@
 }
 #progressbar li {
 	list-style-type: none;
-	color: #0285b3;
+	color: #008ead;
 	text-transform: uppercase;
 	font-size: 12px;
 	width: 12.5%;
@@ -155,8 +155,8 @@
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
 #progressbar li.active:before,  #progressbar li.active:after{
-	background: #0285b3;
-	box-shadow: 0 0 0 1px white, 0 0 0 2px #0285b3;
+	background: #008ead;
+	box-shadow: 0 0 0 1px white, 0 0 0 2px #008ead;
 	color: white;
 }
 #progressbar li.negative:before,  #progressbar li.negative:after{
