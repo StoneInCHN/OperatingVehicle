@@ -2,6 +2,7 @@ package com.ov.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,12 +44,21 @@ public class VehicleTrackController extends BaseController {
   }
 
 
-  @RequestMapping(value = "/singleVehicleTrack", method = RequestMethod.POST)
+  @RequestMapping(value = "/drawVehicleTrack", method = RequestMethod.POST)
   public @ResponseBody List<Map<String, Object>> singleVehicleTrack(Model model, Long vehicleID,
       Date searchDate) {
-
+    if (vehicleID == null || searchDate == null) {
+      return null;
+    }
     List<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
-
+    Map<String, Object> map1 = new HashMap<String, Object>();
+    Map<String, Object> map2 = new HashMap<String, Object>();
+    map1.put("lat", "114.928715");
+    map1.put("lng", "27.418907");
+    map1.put("lat", "114.928815");
+    map1.put("lng", "27.418807");
+    maps.add(map1);
+    maps.add(map2);
     return maps;
   }
 

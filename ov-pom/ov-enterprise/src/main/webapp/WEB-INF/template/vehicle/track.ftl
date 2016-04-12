@@ -18,7 +18,7 @@
 				<div class="easyui-panel" style="height:800px;background:#fafafa;" data-options="border:false">
 						  <fieldset>
 								  	<legend>${message("ov.common.condition.search")}</legend>
-								    <form id="oilChargeReport_search_form" class="search-form">
+								    <form id="track_search_form" class="search-form">
 										<div class="search-item">
 										    <label>${message("ov.common.time")}:</label>
 										    <input type="text" class="Wdate" id="trackSearchDate" name="searchDate" readonly="readonly" onclick="WdatePicker({});" />
@@ -31,7 +31,7 @@
 								    </div>
 								  </fieldset>
 							<div id="vehicleTrack">
-								<div id="vehicleTrackDivId" style="height:400px;width:s99%;">
+								<div id="vehicleTrackMap" style="height:400px;width:99%;">
 								</div>
 						</div>
 				</div>
