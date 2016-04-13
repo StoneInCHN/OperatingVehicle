@@ -78,18 +78,18 @@ $(function(){
 	//得到焦点
 	$("#password").focus(function(){
 		$("#left_hand").animate({
-			left: "150",
+			left: "128",
 			top: " -38"
 		},{step: function(){
-			if(parseInt($("#left_hand").css("left"))>140){
+			if(parseInt($("#left_hand").css("left"))>124){
 				$("#left_hand").attr("class","left_hand");
 			}
 		}}, 2000);
 		$("#right_hand").animate({
-			right: "-64",
-			top: "-38px"
+			right: "-85",
+			top: "-38"
 		},{step: function(){
-			if(parseInt($("#right_hand").css("right"))> -70){
+			if(parseInt($("#right_hand").css("right"))> -90){
 				$("#right_hand").attr("class","right_hand");
 			}
 		}}, 2000);
@@ -183,7 +183,7 @@ $(function(){
 <div class="top_div"></div>
 	<div style="background: #fff; margin: -180px auto auto; border: 1px solid #e7e7e7; width: 400px; height: 370px; text-align: center;">
 		<div style="width: 165px; height: 96px; position: absolute;">
-				<div class="tou"></div>
+				<div class="vehicle"></div>
 				<div class="initial_left_hand" id="left_hand"></div>
 				<div class="initial_right_hand" id="right_hand"></div>
 		</div>
