@@ -46,13 +46,13 @@ body{
 a{
 	text-decoration: none;
 }
-.tou{
-	background: url("images/tou.png") no-repeat;
-	width: 97px;
-	height: 92px;
+.vehicle{
+	background: url("images/vehicle.jpg") no-repeat;
+	width: 130px;
+	height: 95px;
 	position: absolute;
-	top: -87px;
-	left: 140px;
+	top: -80px;
+	left: 123px;
 }
 .left_hand{
 	background: url("images/left_hand.png") no-repeat;
