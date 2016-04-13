@@ -67,7 +67,6 @@ public class VehicleTrackController extends BaseController {
       ObjectMapper mapper = new ObjectMapper();
       Map<String, Object> map = mapper.readValue(res, Map.class);
       List<Map<String, Object>> maps = (List<Map<String, Object>>) map.get("msg");
-      System.out.println(maps);
       return maps;
     } catch (Exception e) {
       e.printStackTrace();
