@@ -5,6 +5,9 @@ $(function(){
 	var radius = "";
 	var centerLng = "";
 	var centerLat = "";
+	var timer = null;
+	var map = null;
+	var positionArray = null;
 	
 	$("#electronicRail_add_btn").hide();
 	$("#electronicRail_edit_btn").hide();
@@ -17,6 +20,14 @@ $(function(){
 		striped:true,
 		singleSelect:true,
 		onSelect:function(rowIndex,rowData){
+			if (timer != null){
+				clearInterval(timer);	
+			}
+			if (map != null){
+				map.clearOverlays();
+			}
+			positionArray = new Array();
+			
 			vehicleId = rowData.id;
 			$.ajax({
 				url:"../electronicRail/findElectronicRailByVehicle.jhtml",
@@ -72,7 +83,7 @@ $(function(){
 	var lastOverlay = null;
 	var marker_back = null;
 	var polyline_back = null;
-	var positionArray = new Array();
+	var circle = null;
 	
 	function createMap(){
 		
@@ -89,7 +100,7 @@ $(function(){
 	}
 
 	function drawMap(x, y){
-		var map = new BMap.Map("mapContainer");          // 创建地图实例  
+		map = new BMap.Map("mapContainer");          // 创建地图实例  
 		var point = new BMap.Point(x, y);  // 创建点坐标  
 		map.centerAndZoom(point, 11);	
 		map.enableScrollWheelZoom();	//启用滚轮放大缩小，默认禁用
@@ -142,38 +153,45 @@ $(function(){
 		});
 		
 		$("#electronicRail_edit_btn").click(function(){
-			map.clearOverlays();
+			if (lastOverlay != null){
+		    	map.removeOverlay(lastOverlay);
+		    }
 			myDrawingManagerObject.open();
 		});
 		
 		$("#electronicRail_ok_btn").click(function(){
 			myDrawingManagerObject.close();
-			var saveData = '{"radius":"' + radius + '", "centerLng":"' + centerLng + '", "centerLat":"' + centerLat + '", "vehicleId":"' + vehicleId + '"}';
-			$.ajax({
-				url:"../electronicRail/save.jhtml",
-				type:"post",
-				data: jQuery.parseJSON(saveData),
-				beforeSend:function(){
-					$.messager.progress({
-						text:message("ov.common.saving")
-					});
-				},
-				success:function(result,response,status){
-					$.messager.progress('close');
-					if(response == "success"){
-						showSuccessMsg(result.content);
-					}else{
-						alertErrorMsg();
+			if (radius != "" && centerLng != "" && centerLat != ""){
+				var saveData = '{"radius":"' + radius + '", "centerLng":"' + centerLng + '", "centerLat":"' + centerLat + '", "vehicleId":"' + vehicleId + '"}';
+				$.ajax({
+					url:"../electronicRail/save.jhtml",
+					type:"post",
+					data: jQuery.parseJSON(saveData),
+					beforeSend:function(){
+						$.messager.progress({
+							text:message("ov.common.saving")
+						});
+					},
+					success:function(result,response,status){
+						$.messager.progress('close');
+						if(response == "success"){
+							showSuccessMsg(result.content);
+							var circleCenter = new BMap.Point(centerLng, centerLat);
+							circle = new BMap.Circle(circleCenter, radius, styleOptions);
+						}else{
+							alertErrorMsg();
+						}
 					}
-				}
-			});
+				});
+			}
 		});
 		
 		function drawCircle(){
 			var circleCenter = new BMap.Point(centerLng, centerLat);
-			var circle = new BMap.Circle(circleCenter, radius, styleOptions);
+			circle = new BMap.Circle(circleCenter, radius, styleOptions);
 			map.addOverlay(circle);
-			//清楚当前页面数据，避免对其他页面造成影响
+			lastOverlay = circle;
+			//清除当前数据，避免对其他页面造成影响
 			radius = "";
 			centerLng = "";
 			centerLat = "";
@@ -181,9 +199,9 @@ $(function(){
 		
 		function drawCar(){
 			
-			var i = 968;
+			var i = 2747;
 			
-			setInterval(function(){
+			timer = setInterval(function(){
 				$.ajax({
 					url:"../electronicRail/realTimeVehicleStatus.jhtml",
 					type:"get",
@@ -210,11 +228,22 @@ $(function(){
 							var label = new BMap.Label("车速:" + speed + "km/h");
 							var GPSPoint = new BMap.Point(lon, lat);
 							new BMap.Convertor.translate(GPSPoint, 0, function(position){
+								
+//								console.log(BMapLib.GeoUtils.isPointInCircle(position, circle));
+								if (!BMapLib.GeoUtils.isPointInCircle(position, circle)){
+									$.messager.show({
+										title : message("ov.common.prompt"),
+										msg : "车辆超出围栏范围",
+										timeout : 2000,
+										showType : 'slide'
+									});
+								}
+								
 								label.setPosition(position);
 								label.setStyle({
 									 color : "red",
 									 fontSize : "12px",
-									 width: "60px",
+									 width: "80px",
 									 maxWidth: "90px",
 									 height : "20px",
 									 lineHeight : "20px",
@@ -234,15 +263,13 @@ $(function(){
 								marker.setIcon(icon);
 								marker.setTop(true);
 								marker.show();
-								if (i == 968){
-									map.addOverlay(marker);
-								}else {
-									map.removeOverlay(marker_back);
-									map.addOverlay(marker);
-									
-									map.removeOverlay(polyline_back);
-									map.addOverlay(polyline);
-								}
+								
+								map.removeOverlay(marker_back);
+								map.addOverlay(marker);
+								
+								map.removeOverlay(polyline_back);
+								map.addOverlay(polyline);
+								
 								marker.setLabel(label);
 								//备份覆盖物，为了下次remove此覆盖物
 								marker_back = marker;
@@ -256,7 +283,7 @@ $(function(){
 						}
 					}
 				});
-			}, 2000);
+			}, 4000);
 			
 			
 		}
@@ -360,6 +387,4 @@ $(function(){
 	
 });
 
-
-//添加电子围栏
 

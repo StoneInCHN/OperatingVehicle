@@ -72,6 +72,7 @@ public class ElectronicRailController extends BaseController{
 			String result = "";
 			HttpPost httppost=new HttpPost("http://10.50.40.102:8080/ov-obd-data/tenantVehicleData/realTimeVehicleStatusTest.jhtml");
 	        List<NameValuePair> params=new ArrayList<NameValuePair>();
+//	        params.add(new BasicNameValuePair("deviceId", "8856019607"));
 	        params.add(new BasicNameValuePair("id", String.valueOf(id)));
 	
 	        httppost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
