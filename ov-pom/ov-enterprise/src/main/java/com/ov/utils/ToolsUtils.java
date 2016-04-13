@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.commons.codec.binary.Base64;
+
 public class ToolsUtils implements Serializable {
 
   private static final long serialVersionUID = 7708468758384338657L;
@@ -100,5 +102,16 @@ public class ToolsUtils implements Serializable {
     }
     sb.append("\n}");
     return sb.toString();
+  }
+
+  public static String decodeBase64(String str) {
+    try {
+      byte[] b = Base64.decodeBase64(str);
+      String res = new String(b, "UTF-8");
+      return res;
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }
