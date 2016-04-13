@@ -207,48 +207,50 @@ $(function(){
 							var url =  "../../resources/images/car.png";
 							var size = new BMap.Size(30, 30);
 							var icon = new BMap.Icon(url, size);
-							var position = new BMap.Point(lon, lat);
 							var label = new BMap.Label("车速:" + speed + "km/h");
-							label.setPosition(position);
-							label.setStyle({
-								 color : "red",
-								 fontSize : "12px",
-								 width: "60px",
-								 maxWidth: "90px",
-								 height : "20px",
-								 lineHeight : "20px",
-								 fontFamily:"微软雅黑"
-							 });
-							label.setOffset(new BMap.Size(0, -20));
-							positionArray.push(position);
-							//折线
-							var polyline = new BMap.Polyline(positionArray, {
-								strokeColor:"blue",
-								strokeWeight:"3",
-								strokeOpacity:"0.7"
+							var GPSPoint = new BMap.Point(lon, lat);
+							new BMap.Convertor.translate(GPSPoint, 0, function(position){
+								label.setPosition(position);
+								label.setStyle({
+									 color : "red",
+									 fontSize : "12px",
+									 width: "60px",
+									 maxWidth: "90px",
+									 height : "20px",
+									 lineHeight : "20px",
+									 fontFamily:"微软雅黑"
+								 });
+								label.setOffset(new BMap.Size(0, -20));
+								positionArray.push(position);
+								//折线
+								var polyline = new BMap.Polyline(positionArray, {
+									strokeColor:"blue",
+									strokeWeight:"3",
+									strokeOpacity:"0.7"
+								});
+								//车辆
+								var marker = new BMap.Marker(position);
+								marker.setRotation(azimuth);
+								marker.setIcon(icon);
+								marker.setTop(true);
+								marker.show();
+								if (i == 968){
+									map.addOverlay(marker);
+								}else {
+									map.removeOverlay(marker_back);
+									map.addOverlay(marker);
+									
+									map.removeOverlay(polyline_back);
+									map.addOverlay(polyline);
+								}
+								marker.setLabel(label);
+								//备份覆盖物，为了下次remove此覆盖物
+								marker_back = marker;
+								polyline_back = polyline;
+									
+								i ++;
 							});
-							//车辆
-							var marker = new BMap.Marker(position);
-							marker.setRotation(azimuth);
-							marker.setIcon(icon);
-							marker.setTop(true);
-							marker.show();
-							if (i == 968){
-								map.addOverlay(marker);
-							}else {
-								map.removeOverlay(marker_back);
-								map.addOverlay(marker);
-								
-								map.removeOverlay(polyline_back);
-								map.addOverlay(polyline);
-							}
-							marker.setLabel(label);
-							//备份覆盖物，为了下次remove此覆盖物
-							marker_back = marker;
-							polyline_back = polyline;
-								
-							i ++;
-						
+							
 						}else{
 							alertErrorMsg();
 						}
