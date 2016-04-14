@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ov.beans.Message;
+import com.ov.beans.Setting;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.ElectronicRail;
 import com.ov.entity.Vehicle;
 import com.ov.service.ElectronicRailService;
 import com.ov.service.VehicleService;
+import com.ov.utils.SettingUtils;
 
 @Controller("electronicRailController")
 @RequestMapping("console/electronicRail")
@@ -33,6 +35,8 @@ public class ElectronicRailController extends BaseController{
 	
 	@Autowired
 	private ElectronicRailService electronicRailService;
+	
+	private Setting setting = SettingUtils.get();
 	
 	@RequestMapping(value = "/electronicRail", method = RequestMethod.GET)
 	public String electronicRail(){
@@ -67,13 +71,13 @@ public class ElectronicRailController extends BaseController{
 	}
 	
 	@RequestMapping(value = "/realTimeVehicleStatus", method = RequestMethod.GET)
-	public @ResponseBody Message realTimeVehicleStatus(Long id){
+	public @ResponseBody Message realTimeVehicleStatus(String deviceId){
 		try {
 			String result = "";
-			HttpPost httppost=new HttpPost("http://10.50.40.102:8080/ov-obd-data/tenantVehicleData/realTimeVehicleStatusTest.jhtml");
+			HttpPost httppost=new HttpPost(setting.getObdServerUrl() + "/tenantVehicleData/realTimeVehicleStatusTest.jhtml");
 	        List<NameValuePair> params=new ArrayList<NameValuePair>();
-//	        params.add(new BasicNameValuePair("deviceId", "8856019607"));
-	        params.add(new BasicNameValuePair("id", String.valueOf(id)));
+	        params.add(new BasicNameValuePair("deviceId", deviceId));
+//	        params.add(new BasicNameValuePair("id", String.valueOf(id)));
 	
 	        httppost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
 	        HttpResponse response=new DefaultHttpClient().execute(httppost);

@@ -8,6 +8,7 @@ $(function(){
 	var timer = null;
 	var map = null;
 	var positionArray = null;
+	var deviceId = "";
 	
 	$("#electronicRail_add_btn").hide();
 	$("#electronicRail_edit_btn").hide();
@@ -29,6 +30,7 @@ $(function(){
 			positionArray = new Array();
 			
 			vehicleId = rowData.id;
+			deviceId = rowData.deviceNo;
 			$.ajax({
 				url:"../electronicRail/findElectronicRailByVehicle.jhtml",
 				type:"get",
@@ -199,13 +201,11 @@ $(function(){
 		
 		function drawCar(){
 			
-			var i = 2747;
-			
 			timer = setInterval(function(){
 				$.ajax({
 					url:"../electronicRail/realTimeVehicleStatus.jhtml",
 					type:"get",
-					data: jQuery.parseJSON('{"id":"' + i + '"}'),
+					data: jQuery.parseJSON('{"deviceId":"' + deviceId + '"}'),
 					success:function(result,response,status){
 						if(response == "success"){
 						
@@ -275,7 +275,6 @@ $(function(){
 								marker_back = marker;
 								polyline_back = polyline;
 									
-								i ++;
 							});
 							
 						}else{
@@ -283,7 +282,7 @@ $(function(){
 						}
 					}
 				});
-			}, 4000);
+			}, 10000);
 			
 			
 		}

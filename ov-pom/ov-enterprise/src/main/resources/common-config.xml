@@ -28,6 +28,6 @@
 		<setting name="cookiePath" value="/" />
 		<setting name="cookieDomain" value="" />
 		
-		<setting name="obdServerUrl" value="http://10.50.40.102:8080/ov-obd-data" />
+		<setting name="obdServerUrl" value="http://139.129.5.114:20000/ov-obd-data" />
 	</ov>	
 	
