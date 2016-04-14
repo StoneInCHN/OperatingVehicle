@@ -243,6 +243,7 @@ var messages = {
 		"ov.motorcade.add":"添加车队",
 		"ov.motorcade.list":"车队列表",
 		"ov.motorcade.desc":"车队描述",
+		"ov.vehicle.vehicleDailyReport":"每日车辆数据",
 
 		//百度地图ak
 		"ov.baiduMap.ak" : "ulsOtfMZcNc4D6aQnBwwnOTt6ZKohflO"

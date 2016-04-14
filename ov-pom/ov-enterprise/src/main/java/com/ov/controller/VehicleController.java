@@ -1,6 +1,8 @@
 package com.ov.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,17 +14,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
+import com.ov.entity.DeviceInfo;
 import com.ov.entity.Motorcade;
 import com.ov.entity.Vehicle;
-import com.ov.framework.filter.Filter;
-import com.ov.framework.filter.Filter.Operator;
+import com.ov.entity.commonenum.CommonEnum.VehicleStatus;
 import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
+import com.ov.json.response.VehicleDailyReport;
 import com.ov.service.MotorcadeService;
-import com.ov.service.VehicleService;
 import com.ov.service.TenantAccountService;
+import com.ov.service.VehicleService;
+import com.ov.utils.ApiUtils;
 import com.ov.utils.FieldFilterUtils;
 
 /**
@@ -164,4 +171,27 @@ public class VehicleController extends BaseController {
   public String commonVehiclesSearch(ModelMap model) {
     return "/common/commonVehiclesSearch";
   }
+  
+  /**
+   * 查询车辆实时数据
+   * 
+   * @param model
+   * @param id
+   * @return
+   */
+  @RequestMapping(value = "/vehicleDailyReport", method = RequestMethod.GET)
+  public String getVehicleDailyReport(ModelMap model,Long vehicleId) {
+   VehicleDailyReport report= vehicleService.callVehicleDailyData(new Date (),vehicleId);
+   model.put ("vehicleDailyReport", report);
+    return "vehicle/vehicleDailyReport";
+  }
+  
+  @RequestMapping(value = "/getVehicleDailyData", method = RequestMethod.POST)
+  public @ResponseBody VehicleDailyReport getVehicleDailyData(ModelMap model,Date date, Long vehicleId){
+    
+    return vehicleService.callVehicleDailyData(date,vehicleId);
+   
+  }
+  
+  
 }
