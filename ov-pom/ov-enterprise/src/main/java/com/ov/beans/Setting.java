@@ -95,9 +95,32 @@ public class Setting implements Serializable {
    * obd服务器路径
    */
   private String obdServerUrl;
+  
+  /**
+   * 百度实时油价api
+   */
+  private String vehicleOilAPIHttpUrl;
 
+  private String vehicleOilAPIKey;
+  
 
-  public String getObdServerUrl() {
+	public String getVehicleOilAPIHttpUrl() {
+		return vehicleOilAPIHttpUrl;
+	}
+	
+	public void setVehicleOilAPIHttpUrl(String vehicleOilAPIHttpUrl) {
+		this.vehicleOilAPIHttpUrl = vehicleOilAPIHttpUrl;
+	}
+
+public String getVehicleOilAPIKey() {
+	return vehicleOilAPIKey;
+}
+
+public void setVehicleOilAPIKey(String vehicleOilAPIKey) {
+	this.vehicleOilAPIKey = vehicleOilAPIKey;
+}
+
+public String getObdServerUrl() {
     return obdServerUrl;
   }
 

@@ -24,6 +24,7 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
+import com.ov.entity.commonenum.CommonEnum.OilType;
 import com.ov.entity.commonenum.CommonEnum.VehicleStatus;
 import com.ov.lucene.VehicleDeviceBridgeImpl;
 
@@ -154,12 +155,25 @@ public class Vehicle extends BaseEntity {
   private String deviceNo;
   
   /**
+   * 油品名称 如93#汽油，0#柴油
+   */
+  private OilType oilType;
+  
+  /**
    * 电子围栏
    */
   private ElectronicRail electronicRail;
   
   
-  @Column(length = 200)
+  public OilType getOilType() {
+	return oilType;
+}
+
+public void setOilType(OilType oilType) {
+	this.oilType = oilType;
+}
+
+@Column(length = 200)
   @JsonProperty
   public String getBrandIcon() {
     return brandIcon;

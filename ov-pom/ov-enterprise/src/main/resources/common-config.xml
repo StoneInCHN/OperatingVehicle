@@ -29,5 +29,7 @@
 		<setting name="cookieDomain" value="" />
 		
 		<setting name="obdServerUrl" value="http://139.129.5.114:20000/ov-obd-data" />
+		<setting name="vehicleOilAPIHttpUrl" value="http://apis.baidu.com/showapi_open_bus/oil_price/find" />
+		 <setting name="vehicleOilAPIKey" value="7bb8ed487692b2c2dd290d477d879236" />
 	</ov>	
 	

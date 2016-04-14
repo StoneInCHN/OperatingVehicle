@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
@@ -18,10 +19,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ov.beans.Setting;
 import com.ov.dao.VehicleDao;
 import com.ov.entity.Vehicle;
+import com.ov.entity.commonenum.CommonEnum.OilType;
 import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
 import com.ov.framework.service.impl.BaseServiceImpl;
 import com.ov.json.response.VehicleDailyReport;
+import com.ov.service.VehicleOilService;
 import com.ov.service.VehicleService;
 import com.ov.utils.ApiUtils;
 import com.ov.utils.LuceneUtils;
@@ -37,6 +40,9 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle,Long> implements
       
       @Resource(name = "vehicleDaoImpl")
       private VehicleDao vehicleDao;
+      
+      @Autowired
+      private VehicleOilService vehicleOilService;
       
       private Setting setting = SettingUtils.get();
       
@@ -99,11 +105,10 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle,Long> implements
 //          String response = "{\"msg\":{\"dailyMileage\":10.0,\"averageFuelConsumption\":10.0,\"fuelConsumption\":0.0,\"cost\":null,\"averageSpeed\":0.0,\"emergencybrakecount\":0,\"suddenturncount\":0,\"rapidlyspeedupcount\":0}}";
           if (response != null)
           {
-//            OilType oilType = vehicle.getVehicleBrandDetail ().getOilType ();
+            OilType oilType = vehicle.getOilType ();
             String shortPlate = vehicle.getPlate ().substring (0,1);
             
-//            BigDecimal oilPrice = vehicleOilService.getOidPrice(oilType,shortPlate);
-            BigDecimal oilPrice = new BigDecimal(5);
+            BigDecimal oilPrice = vehicleOilService.getOidPrice(oilType,shortPlate);
             
             ObjectMapper objectMapper = new ObjectMapper();
            

@@ -1499,4 +1499,28 @@ public class CommonEnum {
      */
     DISABLE
   }
+  /**
+   * 油品
+   * @author yezhang
+   *
+   */
+  public enum OilType {
+    /**
+     * 0号油
+     */
+    P0,
+    /**
+     * 90号油
+     */
+    P90,
+    /**
+     * 93号油
+     */
+    P93,
+    /**
+     * 97号油
+     */
+    P97
+  }
+  
 }

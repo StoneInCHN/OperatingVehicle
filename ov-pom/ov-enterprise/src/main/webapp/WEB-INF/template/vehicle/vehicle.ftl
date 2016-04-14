@@ -101,6 +101,28 @@
 	    			 <input type="text" class="Wdate" name="plateDate" onclick="WdatePicker();"/>
 	    		</td>
 	    	</tr>
+	    	<tr>
+	    		<th>${message('ov.vehicle.oilType')}:</th>
+	    		<td >
+	    			 <input class="easyui-combobox" data-options="
+				     valueField: 'label',
+				     textField: 'value',
+				     data: [{
+				      label: 'P0',
+				      value: '${message("ov.vehicle.oilType.P0")}'
+				     },{
+				      label: 'P90',
+				      value: '${message("ov.vehicle.oilType.P90")}'
+				     },{
+				      label: 'P93',
+				      value: '${message("ov.vehicle.oilType.P93")}'
+				     },{
+				      label: 'P97',
+				      value: '${message("ov.vehicle.oilType.P97")}'
+				     }],
+				     prompt:'${message("ov.common.please.select")}',panelMaxHeight:100"  name="oilType" style="width:110px;"/>
+	    		</td>
+	    	</tr>
 	    </table>
 	</form>
 </div>
