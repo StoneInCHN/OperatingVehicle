@@ -101,10 +101,6 @@ public class TenantUser extends BaseEntity {
   /**入职时间*/
   private Date hireDate; 
   
-  /**
-   * 是否参加护理
-   */
-  private Boolean isJoinNurse;
   
   /**
    * 用户登录账号
@@ -292,15 +288,6 @@ public class TenantUser extends BaseEntity {
 
   public void setTenantID(Long tenantID) {
     this.tenantID = tenantID;
-  }
-
-  @Field(index = org.hibernate.search.annotations.Index.UN_TOKENIZED, store = Store.NO, analyzer = @Analyzer(impl = IKAnalyzer.class))
-  public Boolean getIsJoinNurse() {
-    return isJoinNurse;
-  }
-
-  public void setIsJoinNurse(Boolean isJoinNurse) {
-    this.isJoinNurse = isJoinNurse;
   }
 
   @Column(length = 80)

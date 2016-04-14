@@ -87,6 +87,9 @@
     		[@shiro.hasPermission name="departmentManage"]
     		<li><a href="#" data-url="${base}/console/department/department.jhtml">部门管理</a></li>
     		[/@shiro.hasPermission]
+     		[@shiro.hasPermission name="positionManage"]
+    		<li><a href="#" data-url="${base}/console/position/position.jhtml">职位管理</a></li>
+    		[/@shiro.hasPermission]  		
     		[@shiro.hasPermission name="authorityManage"]
     		<li><a href="#" data-url="${base}/console/role/role.jhtml?path=roleAuth">权限管理</a></li>
     		[/@shiro.hasPermission]
@@ -143,7 +146,7 @@
     		[@shiro.hasPermission name="upkeepChargeReport"]
     		<li><a href="#" data-url="${base}/console/upkeepChargeReport/upkeepChargeReport.jhtml">维修费统计</a></li>
     		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="upkeepChargeReport"]
+    		[@shiro.hasPermission name="vehicleMileageReport"]
     		<li><a href="#" data-url="${base}/console/vehicleMileageReport/vehicleMileageReport.jhtml">车辆里程统计</a></li>
     		[/@shiro.hasPermission]	    		    		
     	</ul>

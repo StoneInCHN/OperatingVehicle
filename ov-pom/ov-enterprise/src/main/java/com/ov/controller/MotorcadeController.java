@@ -6,15 +6,12 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.search.TermQuery;
-import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.util.Version;
-import org.bouncycastle.ocsp.Req;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,12 +27,8 @@ import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
-import com.ov.service.DeviceTypeService;
 import com.ov.service.MotorcadeService;
 import com.ov.service.TenantAccountService;
-import com.sun.xml.internal.ws.api.model.wsdl.editable.EditableWSDLBoundFault;
-
-import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 /**
  * 设备管理

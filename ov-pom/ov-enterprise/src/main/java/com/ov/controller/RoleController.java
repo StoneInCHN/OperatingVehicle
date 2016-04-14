@@ -74,7 +74,7 @@ public class RoleController extends BaseController {
   public @ResponseBody Page<Role> list(Model model, String name_roleSearch, 
       Date beginDate_roleSearch, Date endDate_roleSearch, Pageable pageable) {
     if (name_roleSearch != null || beginDate_roleSearch != null || endDate_roleSearch != null) {
-      return roleService.searchByFilter(name_roleSearch, beginDate_roleSearch, endDate_roleSearch, pageable);
+      return roleService.searchByFilter(name_roleSearch, beginDate_roleSearch, endDate_roleSearch, pageable, true);
     }
     return roleService.findPage (pageable, true);
   }

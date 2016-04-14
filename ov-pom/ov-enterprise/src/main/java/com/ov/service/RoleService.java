@@ -14,6 +14,6 @@ import com.ov.entity.*;
 public interface RoleService extends BaseService<Role, Long> {
 
   Page<Role> searchByFilter(String name_roleSearch, Date beginDate_roleSearch,
-      Date endDate_roleSearch, Pageable pageable);
+      Date endDate_roleSearch, Pageable pageable, boolean isTenant);
 
 }

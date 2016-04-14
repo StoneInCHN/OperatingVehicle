@@ -148,10 +148,11 @@ var messages = {
 		"ov.department.list":"部门列表",
 		
 		
-		//position
+		//职位管理
 		"ov.position.add":"添加职位",
 		"ov.position.name":"职位名称",
 		"ov.position.department":"隶属部门",
+		"ov.position.list":"职位列表",
 
 		//权限管理
 		"ov.role.record":"角色管理",

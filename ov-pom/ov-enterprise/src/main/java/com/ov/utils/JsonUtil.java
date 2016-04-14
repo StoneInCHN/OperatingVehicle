@@ -49,7 +49,7 @@ public class JsonUtil {
    */
   public static Map getMap4Json(String jsonString) {
     JSONObject jsonObject = JSONObject.fromObject(jsonString);
-    Iterator keyIter = jsonObject.keys();
+    Iterator<?> keyIter = jsonObject.keys();
     String key;
     Object value;
     Map valueMap = new HashMap();

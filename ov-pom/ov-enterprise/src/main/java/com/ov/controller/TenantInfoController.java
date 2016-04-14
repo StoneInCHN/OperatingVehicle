@@ -212,7 +212,7 @@ public class TenantInfoController extends BaseController{
 	        tenantAccount.setAccoutStatus(AccountStatus.ACTIVED);
 	        //为管理员新创建一个角色
 	        Role role = new Role();
-	        role.setIsSystem(true);
+	        role.setIsSystem(false);
 	        role.setName(CommonAttributes.ADMIN);
 	        role.setTenantID(tenantInfoId);
 	        

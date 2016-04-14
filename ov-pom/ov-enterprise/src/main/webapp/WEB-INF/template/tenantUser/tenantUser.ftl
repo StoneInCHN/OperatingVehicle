@@ -1,4 +1,3 @@
-<script src="${base}/resources/js/common.js"></script>
 <script src="${base}/resources/modules/tenantUser.js"></script>
 <script type="text/javascript" src="${base}/resources/js/datePicker/WdatePicker.js"></script>
 <div>
