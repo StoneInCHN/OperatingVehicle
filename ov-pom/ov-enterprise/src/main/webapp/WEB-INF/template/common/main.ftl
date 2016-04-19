@@ -34,8 +34,8 @@
   <body class="easyui-layout" >   
 	<div class="header" data-options="region:'north',split:true,noheader:true,collapse:'west'">
 		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">车辆运营管理</div>-->
-		<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">后台管理中心</div>
-		<!--<div class="logo">车辆后台管理中心</div>-->
+		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">后台管理中心</div>-->
+		<div class="logo">车辆后台管理中心</div>
 		<div id="nav-wrap" class="nav-wrap"  style="width:700px">
 			<ul class="nav nav-pills">
 				<li><a href="#main"><i class="fa fa-home fa-1x"></i>首页</a></li>
@@ -167,7 +167,7 @@
 		    			<div class="row" style="float:right">
 						<div class="col-md-6" style="width:22%">
 								<div class="reportLabel" style="background:url('${base}/resources/images/tenantUser.jpg')">
-								<font color="#bbbbcc"><h3  style="margin-top: 20px; margin-left: 120px">${tenantUserCount}</h3><p style="margin-left: 110px;font-size:13px">租户用户</p></font>
+								<font color="#bbbbcc"><h3  style="margin-top: 20px; margin-left: 120px">${tenantUserCount}</h3><p style="margin-left: 110px;font-size:13px">当前用户</p></font>
 								</div>
 						</div>
 						<div class="col-md-6" style="width:22%">
@@ -180,11 +180,21 @@
 								<font color="#bbbbcc"><h3  style="margin-top: 20px; margin-left: 120px">${vehicleSchedulingCount}</h3><p style="margin-left: 100px;font-size:13px">用车请求</p></font>
 								</div>
 						</div>
-						<div class="col-md-6" style="width:22%">
+						[#if isParentTenant == true]
+						<div class="col-md-6" style="width:22%" onclick="shortcutNavigation('结算管理','${base}/console/tenantClearingRecord/clearingRecordsManagement.jhtml')">
 								<div class="reportLabel" style="background:url('${base}/resources/images/applySettle.jpg')">
-								<font color="#bbbbcc"><h4 style="margin-top: 20px;margin-left: 100px">申请结算</h4></font>
+								<font color="#bbbbcc"><h4 style="padding-top: 20px;margin-left: 100px">结算管理</h4></font>
 								</div>
 						</div>
+						[#else]
+						<div class="col-md-6" style="width:22%" onclick="shortcutNavigation('结算查询','${base}/console/tenantClearingRecord/clearingRecordsView.jhtml')">
+								<div class="reportLabel" style="background:url('${base}/resources/images/applySettle.jpg')">
+								<font color="#bbbbcc"><h4 style="padding-top: 20px;margin-left: 100px">结算查询</h4></font>
+								</div>
+						</div>
+						[/#if]
+
+						
 				        </div>
 				    </div>
 					<div class="main-content-center">

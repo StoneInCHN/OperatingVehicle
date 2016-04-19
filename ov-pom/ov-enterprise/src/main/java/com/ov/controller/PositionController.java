@@ -43,7 +43,7 @@ public class PositionController extends BaseController{
 
   @RequestMapping (value = "/list", method = RequestMethod.POST)
   public @ResponseBody Page<Position> list (Pageable pageable){
-      return positionService.findPage (pageable);
+      return positionService.findPage (pageable,true);
   }
 
 

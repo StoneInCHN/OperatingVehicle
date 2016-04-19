@@ -183,15 +183,17 @@ public class RoleController extends BaseController {
         List<ConfigMeta> relatedFunctions = configMetaService.findRelationFunction (packagecConfigMeta);
         //是否是总公司
         boolean isParentTenant = isParentTenant();
-        for (ConfigMeta function : relatedFunctions)
+        for(ConfigMeta function : relatedFunctions)
         {
           //功能包 "车辆调度" 下，子公司只能 "用车请求"，总公司只能 "车辆指派"
           if (isParentTenant) {
-            if (function.getConfigKey().equals("useCarRequest")) {
+            if (function.getConfigKey().equals("useCarRequest") ||
+                function.getConfigKey().equals("settleSearch")) {
               continue;
             }
           }else {
-            if (function.getConfigKey().equals("vehicleAssign")) {
+            if (function.getConfigKey().equals("vehicleAssign") ||
+                function.getConfigKey().equals("settleManagement")) {
               continue;
             }
           }
