@@ -31,9 +31,13 @@ import com.ov.beans.CommonAttributes;
 import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.TenantAccount;
+import com.ov.entity.TenantInfo;
+import com.ov.framework.filter.Filter;
+import com.ov.framework.filter.Filter.Operator;
 import com.ov.service.CaptchaService;
 import com.ov.service.RSAService;
 import com.ov.service.TenantAccountService;
+import com.ov.service.TenantInfoService;
 import com.ov.service.TenantUserService;
 import com.ov.service.VehicleSchedulingService;
 import com.ov.service.VehicleService;
@@ -53,6 +57,8 @@ public class CommonController extends BaseController {
   private CaptchaService captchaService;
   @Resource(name = "tenantAccountServiceImpl")
   private TenantAccountService tenantAccountService;
+  @Resource(name = "tenantInfoServiceImpl")
+  private TenantInfoService tenantInfoService;
   @Resource(name = "tenantUserServiceImpl")
   private TenantUserService tenantUserService;
   @Resource(name = "vehicleServiceImpl")
@@ -105,10 +111,13 @@ public class CommonController extends BaseController {
 @RequestMapping(value = "/main", method = RequestMethod.GET)
 public String main(ModelMap model,  HttpSession session) {
     TenantAccount tenantAccount = tenantAccountService.getCurrent();
+    Filter tenantFilter =
+        new Filter("tenantID", Operator.eq, tenantAccountService.getCurrentTenantID());
     model.addAttribute("tenantAccount", tenantAccount);
-    model.addAttribute("tenantUserCount", tenantUserService.count());
-    model.addAttribute("vehicleCount", vehicleService.count());
+    model.addAttribute("tenantUserCount", tenantUserService.count(tenantFilter));
+    model.addAttribute("vehicleCount", vehicleService.count(tenantFilter));
     model.addAttribute("vehicleSchedulingCount", vehicleSchedulingService.count());
+    model.addAttribute("isParentTenant", isParentTenant());
     
   return "/common/main";
 }
@@ -196,21 +205,32 @@ public String main(ModelMap model,  HttpSession session) {
    */
   @RequestMapping(value = "/monthlyVehicleStatus", method = RequestMethod.POST)
   public @ResponseBody String monthlyVehicleStatus(String deviceId, String fromDate, String toDate) {
-    String mileageJson = "{'msg':[{'dailyMileage': 10,'averageFuelConsumption': 17,'fuelConsumption': 16,'cost': null,'averageSpeed': 19,'emergencybrakecount': 2,'suddenturncount': 0,'rapidlyspeedupcount': 4,'createdate': 1459872000000,'day': 6},{'dailyMileage': 23,'averageFuelConsumption': 7,'fuelConsumption': 9,'cost': null,'averageSpeed': 8,'emergencybrakecount': 7,'suddenturncount': 10,'rapidlyspeedupcount': 13,'createdate': 1459958400000,'day': 7}]}";
-    return mileageJson.replaceAll("'", "\"");
-//    if (deviceId != null && fromDate != null && toDate != null) {
-//      StringBuffer params = new StringBuffer();
-//      params.append("deviceId=");
-//      params.append(deviceId);
-//      params.append("&fromDate=");
-//      params.append(fromDate);
-//      params.append("&toDate=");
-//      params.append(toDate);
-//      mileageJson = ApiUtils.post(CommonAttributes.MONTHLY_VEHICLE_STATUS_URL,params.toString());
-//      return mileageJson;
-//    }else {
-//      return "";
-//    }
+//    String mileageJson = "{'msg':[{'dailyMileage': 10,'averageFuelConsumption': 17,'fuelConsumption': 16,'cost': null,'averageSpeed': 19,'emergencybrakecount': 2,'suddenturncount': 0,'rapidlyspeedupcount': 4,'createdate': 1459872000000,'day': 6},{'dailyMileage': 23,'averageFuelConsumption': 7,'fuelConsumption': 9,'cost': null,'averageSpeed': 8,'emergencybrakecount': 7,'suddenturncount': 10,'rapidlyspeedupcount': 13,'createdate': 1459958400000,'day': 7}]}";
+//    return mileageJson.replaceAll("'", "\"");
+    String mileageJson = "";
+    if (deviceId != null && fromDate != null && toDate != null) {
+      StringBuffer params = new StringBuffer();
+      params.append("deviceId=");
+      params.append(deviceId);
+      params.append("&fromDate=");
+      params.append(fromDate);
+      params.append("&toDate=");
+      params.append(toDate);
+      mileageJson = ApiUtils.post(CommonAttributes.MONTHLY_VEHICLE_STATUS_URL,params.toString());
+    }
+    return mileageJson;
+  }
+  /**
+   * 检查是否是总公司，总公司return true， 否者分公司return false
+   * @return
+   */
+  private boolean isParentTenant(){
+    Long currentTenantID = tenantAccountService.getCurrentTenantID();
+    TenantInfo tenantInfo = tenantInfoService.find(currentTenantID);
+    if (tenantInfo.getParent() == null) {
+      return true;
+    }
+    return false;
   }
 //  /**
 //   * 异步判断验证码是否正确

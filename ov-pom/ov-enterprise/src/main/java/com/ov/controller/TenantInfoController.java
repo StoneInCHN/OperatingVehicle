@@ -2,6 +2,7 @@ package com.ov.controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -329,7 +330,10 @@ public class TenantInfoController extends BaseController{
 	  
 	  @RequestMapping(value = "/listVersion", method = RequestMethod.GET)
       public @ResponseBody List<VersionConfig> listVersion() {
-	    List<VersionConfig> versionConfigs = versionConfigService.findAll();
+	    List<com.ov.framework.filter.Filter> filters = new ArrayList<com.ov.framework.filter.Filter>();
+	    com.ov.framework.filter.Filter isSystemFilter = new com.ov.framework.filter.Filter("isSystem", Operator.eq, false);
+	    filters.add(isSystemFilter);
+	    List<VersionConfig> versionConfigs = versionConfigService.findList(null, filters, null);
 	    return versionConfigs;
 	  }
 	

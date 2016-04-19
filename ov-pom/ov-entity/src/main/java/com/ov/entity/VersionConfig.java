@@ -26,6 +26,11 @@ public class VersionConfig extends BaseEntity {
    * 版本名称
    */
   private String versionName;
+  
+  /**
+   * 是否为内置版本（完整版）
+   */
+  private Boolean isSystem;
 
   /**
    * 元数据
@@ -49,7 +54,14 @@ public class VersionConfig extends BaseEntity {
   public void setVersionName(String versionName) {
     this.versionName = versionName;
   }
+  @JsonProperty
+  public Boolean getIsSystem() {
+    return isSystem;
+  }
 
+  public void setIsSystem(Boolean isSystem) {
+    this.isSystem = isSystem;
+  }
   @ManyToMany
   public Set<ConfigMeta> getConfigMeta() {
     return configMeta;
