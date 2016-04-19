@@ -74,7 +74,7 @@ public class ElectronicRailController extends BaseController{
 	public @ResponseBody Message realTimeVehicleStatus(String deviceId){
 		try {
 			String result = "";
-			HttpPost httppost=new HttpPost(setting.getObdServerUrl() + "/tenantVehicleData/realTimeVehicleStatusTest.jhtml");
+			HttpPost httppost=new HttpPost(setting.getObdServerUrl() + "/tenantVehicleData/realTimeVehicleStatus.jhtml");
 	        List<NameValuePair> params=new ArrayList<NameValuePair>();
 	        params.add(new BasicNameValuePair("deviceId", deviceId));
 	
