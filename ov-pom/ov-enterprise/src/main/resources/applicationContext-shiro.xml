@@ -41,8 +41,8 @@
 		    	/console/upkeepCharge/** = perms["upkeepCharge"]
 		    	<!--结算管理  -->
 		    	/console/tenantClearingRecord/** = authc
-		    	/console/tenantClearingRecord/clearingRecordsManagement = perms["settle:Management"]
-		    	/console/tenantClearingRecord/clearingRecordsView = perms["settle:Search"]
+		    	/console/tenantClearingRecord/clearingRecordsManagement = perms["settleManagement"]
+		    	/console/tenantClearingRecord/clearingRecordsView = perms["settleSearch"]
 
 		    	/console/vehicle/** = perms["vehicleManagement"]
 		    	/console/deviceInfo/** = perms["device"]

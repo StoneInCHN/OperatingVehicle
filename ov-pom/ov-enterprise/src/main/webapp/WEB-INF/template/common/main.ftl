@@ -151,10 +151,10 @@
     		[/@shiro.hasPermission]	    		    		
     	</ul>
     	<ul title="${message("ov.vehicleScheduling.settle")}" id="settleCenter">
-    		[@shiro.hasPermission name="settle:Management"]
+    		[@shiro.hasPermission name="settleManagement"]
     		<li><a href="#" data-url="${base}/console/tenantClearingRecord/clearingRecordsManagement.jhtml">结算管理</a></li>
     		[/@shiro.hasPermission]
-    		[@shiro.hasPermission name="settle:Search"]
+    		[@shiro.hasPermission name="settleSearch"]
     		<li><a href="#" data-url="${base}/console/tenantClearingRecord/clearingRecordsView.jhtml">结算查询</a></li>
     		[/@shiro.hasPermission]
     	</ul>
