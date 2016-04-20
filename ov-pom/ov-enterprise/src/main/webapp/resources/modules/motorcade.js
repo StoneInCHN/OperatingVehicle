@@ -2,8 +2,8 @@ var motorcade_manager_tool = {
 		add:function(){
 			$('#addMotorcade').dialog({
 			    title: message("ov.motorcade.add"),    
-			    width: 700,    
-			    height: 300,
+			    width: 350,    
+			    height: 150,
 			    iconCls:'icon-mini-add',
 			    cache: false, 
 			    buttons:[{
@@ -42,7 +42,10 @@ var motorcade_manager_tool = {
 						 $('#addMotorcade').dialog("close");
 						 $("#addMotorcade_form").form("reset");
 					}
-			    }]
+			    }],
+			    onOpen:function(){
+			    	$('#addMotorcade_form').show();
+			    },
 			});  
 		},
 		edit:function(){

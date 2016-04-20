@@ -27,7 +27,7 @@
 	<div class="tool-filter"></div>
 </div>
 <div id="addMotorcade"> 
-	<form id="addMotorcade_form" method="post" >
+	<form id="addMotorcade_form" method="post" class="form-table">
 	    <table class="table table-striped"  border="0">
 	    	<tr>
 	    		<th>${message('ov.motorcade.desc')}:</th>
