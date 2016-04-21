@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ov.beans.CommonAttributes;
 import com.ov.beans.Message;
+import com.ov.beans.Setting;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.TenantAccount;
 import com.ov.entity.TenantInfo;
@@ -42,6 +43,7 @@ import com.ov.service.TenantUserService;
 import com.ov.service.VehicleSchedulingService;
 import com.ov.service.VehicleService;
 import com.ov.utils.ApiUtils;
+import com.ov.utils.SettingUtils;
 
 /**
  * Controller - 共用
@@ -68,7 +70,7 @@ public class CommonController extends BaseController {
 //  @Resource(name = "areaServiceImpl")
 //  private AreaService areaService;
 
-
+  private Setting setting = SettingUtils.get();
   /**
    * 验证码
    */
@@ -216,7 +218,7 @@ public String main(ModelMap model,  HttpSession session) {
       params.append(fromDate);
       params.append("&toDate=");
       params.append(toDate);
-      mileageJson = ApiUtils.post(CommonAttributes.MONTHLY_VEHICLE_STATUS_URL,params.toString());
+      mileageJson = ApiUtils.post(setting.getObdServerUrl() +"/tenantVehicleData/monthlyVehicleStatus.jhtml",params.toString());
     }
     return mileageJson;
   }
