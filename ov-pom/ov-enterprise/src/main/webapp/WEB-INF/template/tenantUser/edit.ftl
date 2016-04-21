@@ -85,12 +85,13 @@
 	    	<tr>
 	    		<th>${message("ov.tenantUser.department")}:</th>
 	    		<td>
-	    			 <input class="easyui-combobox"  id="tenantUserDepartment-edit" name="departmentId" data-options="prompt:'${message("ov.common.please.select")}'" data-value="${tenantUser.department.id}"/>   
+	    			 <input class="easyui-combotree"  id="tenantUserDepartment-edit" name="departmentId" data-options="prompt:'${message("ov.common.please.select")}'" data-value="${tenantUser.department.id}"/>   
 	    		</td>
 	    	
 	    		<th>${message("ov.tenantUser.position")}:</th>
 	    		<td>
-	    			 <input class="easyui-combobox"   type="text" id="tenantUserPosition-edit" name="positionId" data-options="prompt:'${message("ov.common.please.select")}'" data-value="${tenantUser.position.id}"/>
+	    			 <input class="easyui-combobox"   type="text" id="tenantUserPosition-edit" name="positionId" data-options="prompt:'${message("ov.common.please.select")}'"
+	    			 	 data-value="${tenantUser.position.id}" data-Text="${tenantUser.position.name}"/>
 	    		</td>
 	    	</tr>
 	    	<tr>

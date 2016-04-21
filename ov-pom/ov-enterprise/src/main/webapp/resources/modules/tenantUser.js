@@ -103,12 +103,12 @@ var tenantUser_manager_tool = {
 						return node.name;
 					},
 					onLoadSuccess: function(node, department){
-						if(department.length > 0){
-							$("#tenantUser_department").css('visibility','visible');
-						}else{
-							$("#tenantUser_department").css('visibility','hidden');
-							 $('#tenantUserPosition-add').combobox('clear');
-						}
+//						if(department.length > 0){
+//							$("#tenantUser_department").css('visibility','visible');
+//						}else{
+//							$("#tenantUser_department").css('visibility','hidden');
+//							 $('#tenantUserPosition-add').combobox('clear');
+//						}
 					},
 				    onSelect: function(department){    
 			            var url = '../position/findPositions.jhtml?id='+department.id;    
@@ -265,24 +265,65 @@ var tenantUser_manager_tool = {
 					}
 			    }],
 			    onLoad:function(){
-			    	$("#tenantUserDepartment-edit").combobox({    
-					    valueField:'id',    
-					    textField:'name',
-					    cache: true,
-					    url:'../department/findDepartments.jhtml',
-					    	onLoadSuccess:function(){
-						    	$("#tenantUserDepartment-edit").combobox("setValue",$("#tenantUserDepartment-edit").attr("data-value"))
-						    }
+//			    	$("#tenantUserDepartment-edit").combobox({   
+//			    		method:"get",
+//			    		animate:true,
+//					    lines:true,
+//					    prompt:message("ov.common.please.select"),
+//					    cache: true,
+//					    url:'../department/list.jhtml',
+//					    formatter:function(node){
+//					    	node.text = node.name;
+//							return node.name;
+//						},
+//					    	onLoadSuccess:function(){
+//						    	$("#tenantUserDepartment-edit").combobox("setValue",$("#tenantUserDepartment-edit").attr("data-value"))
+////					            var url = '../position/findPositions.jhtml?id='+department.id;    
+////					            $('#tenantUserPosition-edit').combobox('clear');
+////					            $('#tenantUserPosition-edit').combobox('reload', url);    
+//						    }
+//					});
+
+//			    	$("#tenantUserPosition-edit").combobox({    
+//					    valueField:'id',    
+//					    textField:'name',
+//					    cache: true,
+//					    editable : false,
+//					    url:'../position/findPositions.jhtml',
+//					    onLoadSuccess:function(){
+//					    	$("#tenantUserPosition-edit").combobox("setValue",$("#tenantUserPosition-edit").attr("data-value"))
+//					    }
+//					});
+			    	$("#tenantUserDepartment-edit").combotree({    
+					    url: '../department/list.jhtml',    
+					    method:"get",
+					    animate:true,
+					    lines:true,
+					    required:true,
+					    formatter:function(node){
+					    	node.text = node.name;
+							return node.name;
+						},
+						onLoadSuccess: function(node, departments){
+							var departmentId = $("#tenantUserDepartment-edit").attr("data-value");
+							$("#tenantUserDepartment-edit").combotree("setValue",departmentId);
+				            var positionId = $("#tenantUserPosition-edit").attr("data-value");
+				            var positionName = $("#tenantUserPosition-edit").attr("data-Text");
+				            $("#tenantUserPosition-edit").combobox("setValue",positionId);
+				            $("#tenantUserPosition-edit").combobox("setText",positionName);
+						},
+					    onSelect: function(department){    
+				            var url = '../position/findPositions.jhtml?id='+department.id;    
+				            $('#tenantUserPosition-edit').combobox('clear');
+				            $('#tenantUserPosition-edit').combobox('reload', url);    
+				        }
 					});
 			    	$("#tenantUserPosition-edit").combobox({    
 					    valueField:'id',    
 					    textField:'name',
-					    cache: true,
 					    editable : false,
-					    url:'../position/findAllPositions.jhtml',
-					    onLoadSuccess:function(){
-					    	$("#tenantUserPosition-edit").combobox("setValue",$("#tenantUserPosition-edit").attr("data-value"))
-					    }
+					    required:true,
+					    prompt:message("ov.common.please.select"),
 					});
 			    	var editOptions ={
 			     			createOption:{

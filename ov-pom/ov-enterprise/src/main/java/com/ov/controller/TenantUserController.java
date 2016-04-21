@@ -183,7 +183,7 @@ public class TenantUserController extends BaseController
     Position position = positionService.find (positionId);
     tenantUser.setDepartment (department);
     tenantUser.setPosition (position);
-    tenantUserService.update (tenantUser,"photo");
+    tenantUserService.update (tenantUser,"photo","tenantID");
     return SUCCESS_MESSAGE;
   }
   @RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
