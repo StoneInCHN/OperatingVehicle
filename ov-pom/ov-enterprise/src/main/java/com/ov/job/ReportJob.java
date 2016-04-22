@@ -35,7 +35,7 @@ public class ReportJob {
   
   //需要调用的存储过程名称
   private static final String[] procedures = {"report_maintenance_charge_pr","report_oil_charge_pr",
-                      "report_upkeep_charge_pr","report_vehicle_mileage_pr"}; 
+                      "report_upkeep_charge_pr"}; 
   
   //@Scheduled(cron = "${job.monthly.report.cron.test}")//用于测试
   //@Scheduled(cron = "${job.monthly.report.cron}")//每个月最后一天 23:30PM 跑一次
@@ -48,6 +48,7 @@ public class ReportJob {
       String currentDateString = DateTimeUtils.convertDateToString (currentDate, "yyyy-MM-dd");
       for (int j = 0; j < tenantInfos.size(); j++) { //以租户为单位（一个事务）来调用存储过程
         Long tenantId = tenantInfos.get(j).getId();
+        LogUtil.debug(ReportJob.class, "startReportJob", "tenantId: " + tenantId + " currentDateString:"+currentDateString);
         reportProcedureService.callProcedure(procedure,tenantId,currentDateString);
       }
       LogUtil.debug(ReportJob.class, "startReportJob", "call " + procedure + " end!");

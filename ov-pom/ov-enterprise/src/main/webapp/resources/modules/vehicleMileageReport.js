@@ -3,7 +3,7 @@
     var month = (now.getMonth()+1);
     var date = new Date(year, month, 0);  //指定的年月
     var daysCount = date.getDate();            //本月天数 
-    var  deviceId = '8801001667';
+    var  deviceId = '8856019607';
     var  fromDate = year + "-" + month + "-1";
     var  toDate =  year + "-" + month + "-" + daysCount;
 
