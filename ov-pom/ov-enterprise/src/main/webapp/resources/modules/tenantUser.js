@@ -50,47 +50,6 @@ var tenantUser_manager_tool = {
 			    }],
 			    onOpen:function(){
 			    	$('#addTenantUser_form').show();
-//			    	$("#tenantUserTenantInfo-add").combotree({    
-//					    url: '../tenantInfo/list.jhtml',    
-//					    method:"get",
-//					    animate:true,
-//					    lines:true,
-//					    required:true,
-//					    prompt:message("ov.common.please.select"),
-//					    formatter:function(node){
-//					    	node.text = node.tenantName;
-//							return node.tenantName;
-//						},
-//					    onSelect: function(tenantInfo){    
-//					    	if(tenantInfo != null){
-//						    	$("#tenantUserDepartment-add").combotree({    
-//								    url: '../department/listByTenantID.jhtml?tenantID='+tenantInfo.id,    
-//								    method:"get",
-//								    animate:true,
-//								    lines:true,
-//								    required:true,
-//								    prompt:message("ov.common.please.select"),
-//								    formatter:function(node){
-//								    	node.text = node.name;
-//										return node.name;
-//									},
-//									onLoadSuccess: function(node, department){
-//										if(department.length > 0){
-//											$("#tenantUser_department").css('visibility','visible');
-//										}else{
-//											$("#tenantUser_department").css('visibility','hidden');
-//											 $('#tenantUserPosition-add').combobox('clear');
-//										}
-//									},
-//								    onSelect: function(department){    
-//							            var url = '../position/findPositions.jhtml?id='+department.id;    
-//							            $('#tenantUserPosition-add').combobox('clear');
-//							            $('#tenantUserPosition-add').combobox('reload', url);    
-//							        }
-//								});
-//					    	}
-//				        }
-//					});		
 			    	$("#tenantUserDepartment-add").combotree({    
 				    url: '../department/list.jhtml',    
 				    method:"get",
@@ -156,7 +115,7 @@ var tenantUser_manager_tool = {
 					             // swf文件路径
 					             swf: BASE_URL + '/js/Uploader.swf',
 					             disableGlobalDnd: true,
-					             server: '../file/uploadProfilePhoto.jhtml',
+					             server: '../tenantUser/uploadPhoto.jhtml',
 					             fileNumLimit: 1,
 					             fileSizeLimit: 10 * 1024 * 1024,    // 10 M
 					             fileSingleSizeLimit: 10 * 1024 * 1024,    //单个文件上传大小  10 M
@@ -183,7 +142,7 @@ var tenantUser_manager_tool = {
 			     			warp :"addTenantUser_form",
 			     			uploadBeforeSend:function(object, data, headers){
 			     				 //在参数中增加一个员工编号字段 staffID
-			     				 data.staffID =$("#staffID").val();
+			     				 data.staffID =$("#staffID_add").val();
 			     			},
 			     			uploadSuccess:function(file, response){
 			     				//将返回的图片路径放到隐藏的input中，用于表单保存
@@ -265,35 +224,6 @@ var tenantUser_manager_tool = {
 					}
 			    }],
 			    onLoad:function(){
-//			    	$("#tenantUserDepartment-edit").combobox({   
-//			    		method:"get",
-//			    		animate:true,
-//					    lines:true,
-//					    prompt:message("ov.common.please.select"),
-//					    cache: true,
-//					    url:'../department/list.jhtml',
-//					    formatter:function(node){
-//					    	node.text = node.name;
-//							return node.name;
-//						},
-//					    	onLoadSuccess:function(){
-//						    	$("#tenantUserDepartment-edit").combobox("setValue",$("#tenantUserDepartment-edit").attr("data-value"))
-////					            var url = '../position/findPositions.jhtml?id='+department.id;    
-////					            $('#tenantUserPosition-edit').combobox('clear');
-////					            $('#tenantUserPosition-edit').combobox('reload', url);    
-//						    }
-//					});
-
-//			    	$("#tenantUserPosition-edit").combobox({    
-//					    valueField:'id',    
-//					    textField:'name',
-//					    cache: true,
-//					    editable : false,
-//					    url:'../position/findPositions.jhtml',
-//					    onLoadSuccess:function(){
-//					    	$("#tenantUserPosition-edit").combobox("setValue",$("#tenantUserPosition-edit").attr("data-value"))
-//					    }
-//					});
 			    	$("#tenantUserDepartment-edit").combotree({    
 					    url: '../department/list.jhtml',    
 					    method:"get",

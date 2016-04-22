@@ -9,7 +9,7 @@ public class FileInfo {
    */
   public enum FileType {
 
-      /** 图片 */
+      /** 用户头像图片 */
       PROFILE_PICTURE,
       
       /** 相册 */

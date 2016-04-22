@@ -102,7 +102,7 @@
 	    	<tr>
 	    		<th>${message("ov.tenantUser.staffID")}:</th>
 	    		<td>
-	    			 <input class="easyui-textbox" type="text" name="staffID" data-options="required:true" validtype="length[0,30]"/>   
+	    			 <input class="easyui-textbox" type="text" id="staffID_add" name="staffID" data-options="required:true" validtype="length[0,30]"/>   
 	    		</td>
 	    	
 	    		

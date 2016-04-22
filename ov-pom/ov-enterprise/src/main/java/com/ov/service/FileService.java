@@ -10,7 +10,15 @@ import com.ov.beans.FileInfo.FileType;
 import com.ov.beans.FileInfo.OrderType;
 
 public interface FileService {
-
+  /**
+   * 上传图片
+   * @param multiFile 上传文件
+   * @param fileType 文件类型
+   * @param paramMap 替换${}参数
+   * @param async 是否异步
+   * @return
+   */
+  String saveImage(MultipartFile multiFile, FileType fileType, Map<String, Object> paramMap, boolean async);
   /**
    * 文件验证
    * 
@@ -20,37 +28,6 @@ public interface FileService {
    */
   boolean isValid(FileType fileType, MultipartFile multipartFile);
 
-  /**
-   * 文件上传
-   * 
-   * @param fileType 文件类型
-   * @param multipartFile 上传文件
-   * @param async 是否异步
-   * @return 访问URL
-   */
-  // String upload(FileType fileType, MultipartFile multipartFile, String identifier, boolean
-  // async);
-  String upload(FileType fileType, MultipartFile multipartFile, Map<String, String> paramMap,
-      boolean async);
-
-  /**
-   * 文件上传(异步)
-   * 
-   * @param fileType 文件类型
-   * @param multipartFile 上传文件
-   * @return 访问URL
-   */
-  // String upload(FileType fileType, MultipartFile multipartFile, String identifier);
-  String upload(FileType fileType, MultipartFile multipartFile, Map<String, String> paramMap);
-
-  /**
-   * 文件上传至本地
-   * 
-   * @param fileType 文件类型
-   * @param multipartFile 上传文件
-   * @return 路径
-   */
-  String uploadLocal(FileType fileType, MultipartFile multipartFile, String identifier);
 
   /**
    * 文件浏览

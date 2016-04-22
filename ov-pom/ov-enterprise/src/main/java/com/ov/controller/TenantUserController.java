@@ -3,9 +3,11 @@ package com.ov.controller;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
@@ -37,6 +39,7 @@ import com.ov.framework.paging.Pageable;
 import com.ov.service.DepartmentService;
 import com.ov.service.FileService;
 import com.ov.service.PositionService;
+import com.ov.service.TenantAccountService;
 import com.ov.service.TenantUserService;
 import com.ov.utils.DateTimeUtils;
 
@@ -54,10 +57,11 @@ public class TenantUserController extends BaseController
   @Resource(name = "departmentServiceImpl")
   private DepartmentService departmentService;
   @Resource(name = "positionServiceImpl")
-  private PositionService positionService;
-  
+  private PositionService positionService;  
   @Resource(name = "fileServiceImpl")
   private FileService fileService;
+  @Resource(name="tenantAccountServiceImpl")
+  private TenantAccountService tenantAccountService;
   
   @RequestMapping (value = "/tenantUser", method = RequestMethod.GET)
   public String list (ModelMap model)
@@ -189,17 +193,18 @@ public class TenantUserController extends BaseController
   @RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
   public @ResponseBody Message uploadPhoto(@RequestParam("file") MultipartFile file,
       String staffID, Long tenantUserId) {
-    Map<String, String> paramMap = new HashMap<String, String>();
-    paramMap.put("staffID", staffID);
-//    String filePath = fileService.upload(FileType.PROFILE_PICTURE, file, identifier);
-    String filePath = fileService.upload(FileType.PROFILE_PICTURE, file, paramMap);
+    Map<String, Object> paramMap = new HashMap<String, Object>();    
+    paramMap.put("tenantID", tenantAccountService.getCurrentTenantID());
+    paramMap.put("uuid", UUID.randomUUID().toString());
+    paramMap.put("imageExtension", FilenameUtils.getExtension(file.getOriginalFilename()));
+    String filePath = fileService.saveImage(file,FileType.PROFILE_PICTURE, paramMap, false);
     if (filePath != null && tenantUserId != null) {
       TenantUser tenantUser = tenantUserService.find(tenantUserId);
       tenantUser.setPhoto (filePath);
       tenantUserService.update(tenantUser);
       return Message.success(filePath);
     } else {
-      return ERROR_MESSAGE;
+      return Message.success(filePath);
     }
 
   }

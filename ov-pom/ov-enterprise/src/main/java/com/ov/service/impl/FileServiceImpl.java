@@ -2,10 +2,10 @@ package com.ov.service.impl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -18,6 +18,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.CompareToBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.ServletContextAware;
@@ -32,52 +33,140 @@ import com.ov.service.FileService;
 import com.ov.service.PluginService;
 import com.ov.service.TenantAccountService;
 import com.ov.utils.FreemarkerUtils;
+import com.ov.utils.ImageUtils;
 import com.ov.utils.SettingUtils;
 
 /**
  * 文件服务
  * 
- * @author shijun
+ * @author luzhang
  *
  */
 @Service("fileServiceImpl")
 public class FileServiceImpl implements FileService, ServletContextAware {
 
-  /** servletContext */
-  private ServletContext servletContext;
-
+  @Value("${ImageExtension}")
+  private String imageExtension;//剪切后的图片类型
+  @Value("${ImageUploadPath}")
+  private String imageUploadPath;// 照片保存在磁盘的路径（前半部分）
+  @Value("${ProjectUploadPath}")
+  private String projectUploadPath;// 项目访问照片的路径（前半部分）
+  @Resource(name="tenantAccountServiceImpl")
+  private TenantAccountService tenantAccountService;
+  
   @Resource(name = "taskExecutor")
   private TaskExecutor taskExecutor;
   @Resource(name = "pluginServiceImpl")
   private PluginService pluginService;
-  @Resource(name = "tenantAccountServiceImpl")
-  private TenantAccountService tenantAccountService;
-
+  
+  /** servletContext */
+  private ServletContext servletContext;
   public void setServletContext(ServletContext servletContext) {
     this.servletContext = servletContext;
   }
-
   /**
-   * 添加上传任务
-   * 
-   * @param storagePlugin 存储插件
-   * @param path 上传路径
-   * @param tempFile 临时文件
-   * @param contentType 文件类型
+   * 上传图片
+   * @param multiFile 上传文件
+   * @param fileType 文件类型
+   * @param paramMap 替换${}参数
+   * @param async 是否异步
+   * @return
    */
-  private void addTask(final StoragePlugin storagePlugin, final String path, final File tempFile,
-      final String contentType) {
+  @Override
+  public String saveImage(MultipartFile multiFile, FileType fileType, Map<String, Object> paramMap, boolean async) {
+    String imageDestURL = "";// 照片保存在磁盘的路径
+    String projectAccessURL = "";// 项目访问照片的路径
+    try {
+      if (multiFile == null) {
+        return null;
+      }
+      if (fileType == FileType.PROFILE_PICTURE) {
+        String profilePicture_postfix =
+            FreemarkerUtils.process(SettingUtils.get().getProfilePictureUploadPath(), paramMap);
+        imageDestURL = imageUploadPath + profilePicture_postfix;
+        projectAccessURL = projectUploadPath + profilePicture_postfix;
+      }
+      File tempFile =
+          new File(System.getProperty("java.io.tmpdir") + File.separator + "upload_"
+              + UUID.randomUUID() + ".tmp");
+      if (!tempFile.getParentFile().exists()) {
+        tempFile.getParentFile().mkdirs();
+      }
+      multiFile.transferTo(tempFile);
+      if (async) {//异步，启用多线程
+        addTask(tempFile, imageDestURL);
+      }else{
+        proccessImage(tempFile, imageDestURL);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return projectAccessURL;
+  }
+  private void addTask(final File tempFile, final String path) {
     taskExecutor.execute(new Runnable() {
       public void run() {
         try {
-          storagePlugin.upload(path, tempFile, contentType);
+          proccessImage(tempFile, path);
         } finally {
           FileUtils.deleteQuietly(tempFile);
         }
       }
     });
   }
+  /**
+   * 直接保存手机端图片，不处理
+   * @param tempFile
+   * @param sourcePath
+   * @param resizedPath
+   */
+  private void proccessImage(File tempFile, String sourcePath) {
+    try {
+          File destSrcFile = new File(sourcePath);
+          FileUtils.moveFile(tempFile, destSrcFile);
+          FileUtils.deleteQuietly(tempFile);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  } 
+  /**
+   * 处理并保存图片
+   * @param tempFile
+   * @param sourcePath
+   * @param resizedPath
+   * @param width
+   * @param height
+   * @param moveSource
+   */
+  private void proccessImage(File tempFile, String sourcePath, String resizedPath, Integer width,
+      Integer height, boolean moveSource) {
+    String tempPath = System.getProperty("java.io.tmpdir");
+    File resizedFile =
+        new File(tempPath + File.pathSeparator + "upload_" + UUID.randomUUID() + "."
+            + imageExtension);
+    ImageUtils.zoom(tempFile, resizedFile, width, height);
 
+    File destFile = new File(resizedPath);
+    try {
+      if (moveSource) {
+        File destSrcFile = new File(sourcePath);
+        FileUtils.moveFile(tempFile, destSrcFile);
+      }
+      FileUtils.moveFile(resizedFile, destFile);
+      FileUtils.deleteQuietly(tempFile);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+ 
+  /**
+   * 文件验证
+   * 
+   * @param fileType 文件类型
+   * @param multipartFile 上传文件
+   * @return 文件验证是否通过
+   */
+  @Override
   public boolean isValid(FileType fileType, MultipartFile multipartFile) {
     if (multipartFile == null) {
       return false;
@@ -102,109 +191,15 @@ public class FileServiceImpl implements FileService, ServletContextAware {
     }
     return false;
   }
-
-  // public String upload(FileType fileType, MultipartFile multipartFile, String identifier, boolean
-  // async) {
-  public String upload(FileType fileType, MultipartFile multipartFile,
-      Map<String, String> paramMap, boolean async) {
-    if (multipartFile == null) {
-      return null;
-    }
-    Setting setting = SettingUtils.get();
-    String uploadPath = null;
-    if (fileType == FileType.FLASH) {
-      uploadPath = setting.getFlashUploadPath();
-    } else if (fileType == FileType.MEDIA) {
-      uploadPath = setting.getMediaUploadPath();
-    } else if (fileType == FileType.FILE) {
-      uploadPath = setting.getFileUploadPath();
-    } else if (fileType == FileType.PROFILE_PICTURE) {
-      uploadPath = setting.getProfilePictureUploadPath();
-    } else if (fileType == FileType.ALBUM) {
-      uploadPath = setting.getAlbumUploadPath();
-    } else if (fileType == FileType.NOTIFY_PICTURE) {
-      uploadPath = setting.getNotifyPictureUploadPath();
-    }
-    try {
-      Map<String, Object> model = new HashMap<String, Object>();
-      // model.put("uuid", UUID.randomUUID().toString());
-      model.put("orgCode", tenantAccountService.getCurrentTenantOrgCode());
-      // model.put("identifier", identifier);
-      model.put("identifier", paramMap.get("identifier"));
-      model.put("albumName", paramMap.get("albumName"));
-      model.put("tenantUserName", paramMap.get("tenantUserName"));
-      String path = FreemarkerUtils.process(uploadPath, model);
-      String destPath =
-          path + UUID.randomUUID() + "."
-              + FilenameUtils.getExtension(multipartFile.getOriginalFilename());
-
-      for (StoragePlugin storagePlugin : pluginService.getStoragePlugins(true)) {
-        File tempFile =
-            new File(System.getProperty("java.io.tmpdir") + "/upload_" + UUID.randomUUID() + ".tmp");
-        if (!tempFile.getParentFile().exists()) {
-          tempFile.getParentFile().mkdirs();
-        }
-        multipartFile.transferTo(tempFile);
-        if (async) {
-          addTask(storagePlugin, destPath, tempFile, multipartFile.getContentType());
-        } else {
-          try {
-            storagePlugin.upload(destPath, tempFile, multipartFile.getContentType());
-          } finally {
-            FileUtils.deleteQuietly(tempFile);
-          }
-        }
-        return storagePlugin.getUrl(destPath);
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
-
-  // public String upload(FileType fileType, MultipartFile multipartFile , String identifier) {
-  public String upload(FileType fileType, MultipartFile multipartFile, Map<String, String> paramMap) {
-    return upload(fileType, multipartFile, paramMap, false);
-  }
-
-  public String uploadLocal(FileType fileType, MultipartFile multipartFile, String identifier) {
-    if (multipartFile == null) {
-      return null;
-    }
-    Setting setting = SettingUtils.get();
-    String uploadPath = null;
-    if (fileType == FileType.FLASH) {
-      uploadPath = setting.getFlashUploadPath();
-    } else if (fileType == FileType.MEDIA) {
-      uploadPath = setting.getMediaUploadPath();
-    } else if (fileType == FileType.FILE) {
-      uploadPath = setting.getFileUploadPath();
-    } else if (fileType == FileType.PROFILE_PICTURE) {
-      uploadPath = setting.getProfilePictureUploadPath();
-    } else if (fileType == FileType.ALBUM) {
-      uploadPath = setting.getAlbumUploadPath();
-    } else if (fileType == FileType.NOTIFY_PICTURE) {
-      uploadPath = setting.getImageUploadPath();
-    }
-    try {
-      Map<String, Object> model = new HashMap<String, Object>();
-      model.put("uuid", UUID.randomUUID().toString());
-      String path = FreemarkerUtils.process(uploadPath, model);
-      String destPath =
-          path + UUID.randomUUID() + "."
-              + FilenameUtils.getExtension(multipartFile.getOriginalFilename());
-      File destFile = new File(servletContext.getRealPath(destPath));
-      if (!destFile.getParentFile().exists()) {
-        destFile.getParentFile().mkdirs();
-      }
-      multipartFile.transferTo(destFile);
-      return destPath;
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
-
+  /**
+   * 文件浏览
+   * 
+   * @param path 浏览路径
+   * @param fileType 文件类型
+   * @param orderType 排序类型
+   * @return 文件信息
+   */
+  @Override
   public List<FileInfo> browser(String path, FileType fileType, OrderType orderType) {
     if (path != null) {
       if (!path.startsWith("/")) {
@@ -279,6 +274,7 @@ public class FileServiceImpl implements FileService, ServletContextAware {
    * @param realPath 绝对路径
    * @return boolean
    */
+  @Override
   public boolean deletefile(String realPath) throws Exception {
     if (StringUtils.isBlank(realPath))
       return false;
