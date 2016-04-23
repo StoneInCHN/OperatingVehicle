@@ -396,9 +396,9 @@ public String getObdServerUrl() {
       if (!profilePictureUploadPath.startsWith("/")) {
         profilePictureUploadPath = "/" + profilePictureUploadPath;
       }
-      if (!profilePictureUploadPath.endsWith("/")) {
-        profilePictureUploadPath += "/";
-      }
+//      if (!profilePictureUploadPath.endsWith("/")) {
+//        profilePictureUploadPath += "/";
+//      }
     }
     this.profilePictureUploadPath = profilePictureUploadPath;
   }
