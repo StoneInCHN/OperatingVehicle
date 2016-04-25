@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -17,12 +18,12 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,13 +31,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ov.beans.CommonAttributes;
 import com.ov.beans.Message;
 import com.ov.beans.Setting;
+import com.ov.common.log.LogUtil;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.TenantAccount;
 import com.ov.entity.TenantInfo;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
+import com.ov.job.ReportJob;
 import com.ov.service.CaptchaService;
 import com.ov.service.RSAService;
+import com.ov.service.ReportProcedureService;
 import com.ov.service.TenantAccountService;
 import com.ov.service.TenantInfoService;
 import com.ov.service.TenantUserService;
@@ -67,6 +71,8 @@ public class CommonController extends BaseController {
   private VehicleService vehicleService;
   @Resource(name = "vehicleSchedulingServiceImpl")
   private VehicleSchedulingService vehicleSchedulingService;
+  @Resource(name = "reportProcedureServiceImpl")
+  private ReportProcedureService reportProcedureService;
 //  @Resource(name = "areaServiceImpl")
 //  private AreaService areaService;
 
@@ -202,6 +208,35 @@ public String main(ModelMap model,  HttpSession session) {
     tenantAccountService.refreshIndex();
     return SUCCESS_MESSAGE;
   }
+  /**
+   * 手动跑当月报表数据的Job
+   * @param request
+   * @param currentDateString "yyyy-MM-dd"
+   * @return
+   */
+  @RequestMapping(value = "/runReportJob", method = RequestMethod.GET)
+  public @ResponseBody Message runReportJob(HttpServletRequest request, String currentDateString) {
+    if (StringUtils.isBlank(currentDateString)) {
+      return ERROR_MESSAGE;
+    }
+    try {
+      List<TenantInfo> tenantInfos = tenantInfoService.findAll();
+      String[] procedures = ReportJob.procedures;
+      for (int i = 0; i < procedures.length; i++) {
+        String procedure = procedures[i];
+        LogUtil.debug(CommonController.class, "runReportJob", "call " + procedure + " start!");
+        for (int j = 0; j < tenantInfos.size(); j++) { //以租户为单位（一个事务）来调用存储过程
+          Long tenantId = tenantInfos.get(j).getId();
+          LogUtil.debug(CommonController.class, "runReportJob", "tenantId: " + tenantId + " currentDateString:"+currentDateString);
+          reportProcedureService.callProcedure(procedure,tenantId,currentDateString);
+        }
+        LogUtil.debug(CommonController.class, "runReportJob", "call " + procedure + " end!");
+      }
+    } catch (Exception e) {
+      return ERROR_MESSAGE;
+    }
+    return SUCCESS_MESSAGE;
+  }  
   /**
    * @param params 参数：deviceId=8801001667&fromDate=2016-4-1&toDate=2016-4-30
    */
