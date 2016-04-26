@@ -194,7 +194,7 @@ $(function(){
 				<%if (ArrayUtils.contains(setting.getCaptchaTypes(), CaptchaType.LOGIN)) {%>
 						<input type="hidden" name="captchaId" value="<%=captchaId%>" />
 				<%}%>
-				<p style="padding: 50px 0px 15px;position: relative;">
+				<p style="padding: 40px 0px 15px;position: relative;">
 						<span title="机构代码" class="u_logo"></span>         
 						<input class="ipt" type="text" id="orgCode" name="orgCode" placeholder="请输入机构代码" maxlength="30"> 
 				</p>

@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="OV车队管理平台">
+    <meta name="description" content="OV管理系统">
     <meta name="author" content="OV">
     <link rel="icon" href="${base}/resources/images/favicon.ico">
-    <title>OV车队管理平台</title>
+    <title>管理中心</title>
     <link href="${base}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${base}/resources/css/font-awesome.min.css" rel="stylesheet">
  	<link rel="stylesheet" type="text/css" href="${base}/resources/easyui/themes/bootstrap/easyui.css">
@@ -35,7 +35,7 @@
 	<div class="header" data-options="region:'north',split:true,noheader:true,collapse:'west'">
 		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">车辆运营管理</div>-->
 		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">后台管理中心</div>-->
-		<div class="logo">OV车队管理平台</div>
+		<div class="logo">车辆后台管理中心</div>
 		<div id="nav-wrap" class="nav-wrap"  style="width:700px">
 			<ul class="nav nav-pills">
 				<li><a href="#main"><i class="fa fa-home fa-1x"></i>首页</a></li>
@@ -77,7 +77,7 @@
 		    </li>
 		</ul>
 	</div>   
-    <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:110"  style="background-color:#fbfbfb">
+    <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:125"  style="background-color:#fbfbfb">
     	<ul title="${message("ov.system.manage")}" id="systemManage">
     		[@shiro.hasPermission name="userManage"]
     		<li><a href="#" data-url="${base}/console/tenantUser/tenantUser.jhtml">人员管理</a></li>
@@ -164,91 +164,71 @@
      <div class="main-content" data-options="region:'center'">
     	<div id="manager-tabs">   
 		    <div title="起始页" style="background-color:#f3f3f6">
+		    		<div>
+		    			<div class="row" style="float:right">
+						<div class="col-md-6" style="width:22%">
+								<div class="reportLabel" style="background:url('${base}/resources/images/tenantUser.jpg')">
+								<font color="#bbbbcc"><h3  style="margin-top: 20px; margin-left: 120px">${tenantUserCount}</h3><p style="margin-left: 110px;font-size:13px">当前用户</p></font>
+								</div>
+						</div>
+						<div class="col-md-6" style="width:22%">
+								<div class="reportLabel" style="background:url('${base}/resources/images/vehicle.jpg')">
+								<font color="#bbbbcc"><h3  style="margin-top: 20px; margin-left: 120px">${vehicleCount}</h3><p style="margin-left: 100px;font-size:13px">车辆总数</p></font>
+								</div>
+						</div>
+						<div class="col-md-6" style="width:22%">
+								<div class="reportLabel" style="background:url('${base}/resources/images/vehicleRequest.jpg')">
+								<font color="#bbbbcc"><h3  style="margin-top: 20px; margin-left: 120px">${vehicleSchedulingCount}</h3><p style="margin-left: 100px;font-size:13px">用车请求</p></font>
+								</div>
+						</div>
+						[#if isParentTenant == true]
+						<div class="col-md-6" style="width:22%" onclick="shortcutNavigation('结算管理','${base}/console/tenantClearingRecord/clearingRecordsManagement.jhtml')">
+								<div class="reportLabel" style="background:url('${base}/resources/images/applySettle.jpg')">
+								<font color="#bbbbcc"><h4 style="padding-top: 20px;margin-left: 100px">结算管理</h4></font>
+								</div>
+						</div>
+						[#else]
+						<div class="col-md-6" style="width:22%" onclick="shortcutNavigation('结算查询','${base}/console/tenantClearingRecord/clearingRecordsView.jhtml')">
+								<div class="reportLabel" style="background:url('${base}/resources/images/applySettle.jpg')">
+								<font color="#bbbbcc"><h4 style="padding-top: 20px;margin-left: 100px">结算查询</h4></font>
+								</div>
+						</div>
+						[/#if]
+
+						
+				        </div>
+				    </div>
 					<div class="main-content-center">
-						<table>
-							<tr>
-								<td>
-										<div class="reportChart">
-						    				<div id="maintenanceChargeReportDiv" style="height:350px;width:600px;"></div>
-						    			</div>
-						    			<div class="reportChart">
-											<div id="upkeepChargeReportDiv" style="height:320px;width:600px;"></div>
+					
+							<div style="height:800px;width:650px;float:left;padding:0 20px">
+								<div class="reportChart">
+						    			<div id="maintenanceChargeReportDiv" style="height:350px;width:600px;"></div>
+						    		</div>
+						    		<div class="reportChart">
+										<div id="upkeepChargeReportDiv" style="height:360px;width:600px;"></div>
+									</div>
+							</div>
+							<div style="height:820px;width:600px;float:left;padding:0 20px">
+									<div class="row">
+										<div class="col-md-6" style="width:50%">
+												<div class="reportChart" style="padding:20px 0px 5px 0px">
+						    						<div id="oilChargeAmountReportDiv" style="height:300px;width:255px;"></div>
+						    					</div>
 										</div>
-								</td>
-								<td>
-										<table style="margin-top:10px">
-									    	<tr>
-									    		<td onmouseover="this.style.cursor='pointer'" 
-											    		onclick="shortcutNavigation('人员管理','${base}/console/tenantUser/tenantUser.jhtml')">
-											    	<div class="reportLabel" style="background:url('${base}/resources/images/tenantUser.jpg')">
-													<font color="#bbbbcc"><h3  style="margin-left: 120px">${tenantUserCount}</h3><p style="margin-left: 110px;font-size:13px">当前用户</p></font>
-													</div>
-									    		</td>
-									    		<td onmouseover="this.style.cursor='pointer'" 
-											    		onclick="shortcutNavigation('车辆信息','${base}/console/vehicle/vehicle.jhtml')">
-									    			<div class="reportLabel" style="background:url('${base}/resources/images/vehicle.jpg')">
-													<font color="#bbbbcc"><h3  style="margin-left: 120px">${vehicleCount}</h3><p style="margin-left: 100px;font-size:13px">车辆总数</p></font>
-													</div>
-									    		</td>
-									    		<td>
-									    			<div style="height:120px;width:200px;">
-													</div>
-									    		</td>
-									    	</tr>
-									    	<tr>
-									    		<td onmouseover="this.style.cursor='pointer'" 
-											    		onclick="shortcutNavigation('车辆指派','${base}/console/vehicleScheduling/vehicleAssign.jhtml')">
-									    			<div class="reportLabel" style="background:url('${base}/resources/images/vehicleRequest.jpg')">
-													<font color="#bbbbcc"><h3  style="margin-left: 120px">${vehicleSchedulingCount}</h3><p style="margin-left: 100px;font-size:13px">用车请求</p></font>
-													</div>
-									    		</td>
-											    	[#if isParentTenant == true]
-											    <td onmouseover="this.style.cursor='pointer'" 
-											    		onclick="shortcutNavigation('结算管理','${base}/console/tenantClearingRecord/clearingRecordsManagement.jhtml')">
-													<div class="reportLabel" style="background:url('${base}/resources/images/applySettle.jpg')">
-													<font color="#bbbbcc"><h4 style="margin-left: 100px">结算管理</h4></font>
-													</div>
-												</td>
-													[#else]
-												<td onmouseover="this.style.cursor='pointer'" 
-														onclick="shortcutNavigation('结算查询','${base}/console/tenantClearingRecord/clearingRecordsView.jhtml')">
-													<div class="reportLabel" style="background:url('${base}/resources/images/applySettle.jpg')">
-													<font color="#bbbbcc"><h4 style="padding-top: 20px;margin-left: 100px">结算查询</h4></font>
-													</div>
-												</td>
-													[/#if]
-									    		<td>
-									    			<div style="height:120px;width:200px;">
-													</div>
-									    		</td>
-									    	</tr>
-									    	<tr>
-													<td colspan="3">
-														<div style="height:120px;width: 610px;background-color: #fff;border-radius: 6px;">
-														欢迎admin登录!</div>
-													</td>
-											</tr>
-								    	</table>
-								    	<table>
-								    	<tr>
-								    		<td>
-								    			<div class="reportChart" style="margin:10px 10px 10px 0">
-								    				<div id="oilChargeAmountReportDiv" style="height:350px;width:300px;"></div>
-								    			</div>
-								    		</td>
-								    		<td>
-								    			<div class="reportChart" style="margin:10px 10px 10px 0">
-								    				<div id="oilChargeCountReportDiv" style="height:350px;width:300px;"></div>
-								    			</div>
-								    		</td>
-								    	</tr>
-								    </table>
-								</td>
-							</tr>
-						</table>
-									
+										<div class="col-md-6" style="width:50%">
+												<div class="reportChart" style="padding:20px 0px 5px 0px">
+						    						<div id="oilChargeCountReportDiv" style="height:300px;width:255px;"></div>
+						    					</div>	
+										</div>
+									</div>
+									<div class="row">
+						    		<div class="reportChart">
+						    			<div id="vehicleMileageChargeReportDiv" style="height:400px;width:550px;"></div>
+						    		</div>
+						    		</div>
+							</div>
+
 						    
-					</div>						    
 						</div>
 					</div>
 		    </div>    
