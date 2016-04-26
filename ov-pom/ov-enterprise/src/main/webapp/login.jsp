@@ -76,7 +76,7 @@ if (applicationContext != null) {
 <script type="text/javascript">
 $(function(){
 	//得到焦点
-	$("#password").focus(function(){
+/* 	$("#password").focus(function(){
 		$("#left_hand").animate({
 			left: "128",
 			top: " -38"
@@ -100,7 +100,7 @@ $(function(){
 		$("#left_hand").attr("style","left:100px;top:-12px;");
 		$("#right_hand").attr("class","initial_right_hand");
 		$("#right_hand").attr("style","right:-112px;top:-12px");
-	});
+	}); */
 	var $loginBtnID = $("#loginBtnID");
 	var $loginForm = $("#loginForm");
 	var $enPassword = $("#enPassword");
@@ -181,11 +181,12 @@ $(function(){
 </head>
 <body class="login" onload="loadTopWindow()">
 <div class="top_div"></div>
-	<div style="background: #fff; margin: -180px auto auto; border: 1px solid #e7e7e7; width: 400px; height: 370px; text-align: center;">
+	<div style="background: #fff; margin: -180px auto auto; border: 1px solid #e7e7e7; width: 450px; height: 370px; text-align: center;">
 		<div style="width: 165px; height: 96px; position: absolute;">
-				<div class="vehicle"></div>
+				<div class="operatingVehicle"></div>
+				<!--<div class="vehicle"></div>
 				<div class="initial_left_hand" id="left_hand"></div>
-				<div class="initial_right_hand" id="right_hand"></div>
+				<div class="initial_right_hand" id="right_hand"></div>  -->
 		</div>
 		<form id="loginForm" action="login.jsp" method="post">
 				<input type="hidden" id="enPassword" name="enPassword" />
@@ -206,7 +207,7 @@ $(function(){
 						<input class="ipt" type="password" id="password" placeholder="请输入密码">   
 				</p>
 				<p style="padding: 0px 0px 17px;position: relative;">      
-						<input class="ipt" type="text" id="captcha" name="captcha" placeholder="请输入验证码"  style="padding: 10px 0 10px 10px;width: 200px;"> 
+						<input class="ipt" type="text" id="captcha" name="captcha" placeholder="请输入验证码"  style="padding: 10px 0 10px 10px;width: 239px;"> 
 						<img class="captchaImg" id="captchaImage" src="<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>" title="<%=SpringUtils.getMessage("ov.captcha.imageTitle")%>" />
 				</p>
 				<div id="alertError" class="alert alert-error hide">
