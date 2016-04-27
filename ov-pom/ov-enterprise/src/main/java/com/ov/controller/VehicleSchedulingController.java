@@ -71,7 +71,7 @@ public class VehicleSchedulingController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/listRequest", method = RequestMethod.POST)
-	public @ResponseBody Page<VehicleScheduling> listRequest(Pageable pageable, String titlesSearch, String childrenOrParent, 
+	public @ResponseBody Page<VehicleScheduling> listRequest(Pageable pageable, Integer rows,String titlesSearch, String childrenOrParent, 
 			String startPositionDetailsSearch, String endPositionDetailsSearch, VehicleSchedulingStatus statusSearch){
 		
 		IKAnalyzer analyzer = new IKAnalyzer ();
@@ -130,7 +130,9 @@ public class VehicleSchedulingController extends BaseController{
 		}
 		filters.add(filter);
 		pageable.setFilters(filters);
-
+		if (rows != null) {
+		  pageable.setRows(rows);
+        }
 	    if (nameQuery != null || statusQuery != null){
 	      return vehicleSchedulingService.search (query, pageable, analyzer, luceneFilter, false);
 	    }

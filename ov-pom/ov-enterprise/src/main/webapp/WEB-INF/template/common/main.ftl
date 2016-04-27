@@ -70,7 +70,7 @@
 				  		<i class="fa fa-cog"></i>
 				  </a>
 				  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				     	<li><a href="#" id="changePasswordHref">修改密码</a></li>
+				     	<li><a href="#" id="changePasswordHref" onclick="changePassword()">修改密码</a></li>
 				    	<li role="separator" class="divider"></li>
 				    	<li><a href="${base}/console/common/logout.jhtml">退出</a></li>
 				  </ul>
@@ -164,7 +164,8 @@
      <div class="main-content" data-options="region:'center'">
     	<div id="manager-tabs">   
 		    <div title="起始页" style="background-color:#f3f3f6">
-					<div class="main-content-center">
+					[#if isParentTenant == true]
+						<div class="main-content-center">
 						<table>
 							<tr>
 								<td>
@@ -214,21 +215,12 @@
 														</font>
 													</div>
 									    		</td>
-											    	[#if isParentTenant == true]
 											    <td onmouseover="this.style.cursor='pointer'" 
 											    		onclick="shortcutNavigation('结算管理','${base}/console/tenantClearingRecord/clearingRecordsManagement.jhtml')">
 													<div class="reportLabel rightLabel applySettleImg">
 														<h4  style="color:#bbbbcc;margin-left: 100px;margin-top:0px;padding-top:20px">结算管理</h4>
 													</div>
 												</td>
-													[#else]
-												<td onmouseover="this.style.cursor='pointer'" 
-														onclick="shortcutNavigation('结算查询','${base}/console/tenantClearingRecord/clearingRecordsView.jhtml')">
-													<div class="reportLabel rightLabel applySettleImg">
-														<h4  style="color:#bbbbcc;margin-left: 100px;margin-top:0px">结算查询</h4>
-													</div>
-												</td>
-													[/#if]
 									    	</tr>
 									    	</table>
 									    	<table>
@@ -266,6 +258,75 @@
 					</div>						    
 						</div>
 					</div>
+					[#else]
+					  <div class="main-content-center">
+					  		<table style="margin:10px">
+					  			<tr>
+					  					<td onmouseover="this.style.cursor='pointer'" 
+											    		onclick="shortcutNavigation('人员管理','${base}/console/tenantUser/tenantUser.jhtml')">
+											    	<div class="reportLabel leftLabel tenantUserImg">
+													<font color="#bbbbcc"><h3  style="margin-left: 120px;margin-top:0px">${tenantUserCount}</h3><p style="margin-left: 110px;font-size:13px">当前用户</p></font>
+													</div>
+									    </td>
+									    <td onmouseover="this.style.cursor='pointer'" 
+											    		onclick="shortcutNavigation('车辆指派','${base}/console/vehicleScheduling/useCarRequest.jhtml')">
+									    			<div class="reportLabel rightLabel vehicleRequestImg">
+														<font color="#bbbbcc">
+																<h3  style="margin-left: 120px;margin-top:0px">${vehicleSchedulingCount}</h3>
+																<p style="margin-left: 100px;font-size:13px">用车请求总数</p>
+														</font>
+													</div>
+									    </td>
+										<td onmouseover="this.style.cursor='pointer'" 
+														onclick="shortcutNavigation('结算查询','${base}/console/tenantClearingRecord/clearingRecordsView.jhtml')">
+													<div class="reportLabel rightLabel applySettleImg">
+														<h4  style="color:#bbbbcc;margin-left: 100px;margin-top:0px;padding-top:20px">结算查询</h4>
+													</div>
+										</td>
+					  			</tr>
+					  		</table>
+					  		<div id="useCarRequestDiv" style="width:82%">
+					  			<table id="useCarRequestMain-table-list"></table>
+					  		</div>
+					  </div>
+
+    		 <div class="main-content-right">
+						<div id="calendar-panel" class="easyui-panel" title="日历" 
+							style="width:250px;height:250px;padding:10px;"data-options="collapsible:true">
+							<div id="cc" class="easyui-calendar" style="width:96%;height:96%;"></div>  
+						</div>
+						<div id="notify" class="easyui-panel" title="通知"     
+						        style="width:250px;height:180px;padding:15px;pbackground:#fafafa;" data-options="collapsible:true">
+									<p>
+									欢迎 [#if tenantAccount.realName != null] ${tenantAccount.realName} [#else] ${tenantAccount.userName} [/#if]登录！
+									</p>
+									<p>
+									上次登录时间为：${tenantAccount.loginDate}
+									</p>
+									<p>
+									上次登录IP地址为：${tenantAccount.loginIp}
+									</p>
+									<p>
+									若非本人操作，请点击这里<a href="#" onclick="changePassword()"> 修改密码</a>
+									</p>
+					    </div>
+					    <div id="industryInformation" class="easyui-panel" title="车辆调度信息"     
+						        style="width:250px;height:280px;padding:15px;background:#fafafa;" data-options="collapsible:true">
+									 <p style="font-size:13px;color:#bbbbcc">昨日提交了 ${vehicleSchedulingCount} 个用车请求，总公司完成了 ${assignedCountYesterday} 个车辆指派！</p>
+									 <p style="font-size:13px">今日车辆调度信息 >></p>
+									 <p style="font-size:13px">
+									 		已经提交用车请求个数： ${vehicleSchedulingCount}
+									 </p>
+									 <p style="font-size:13px">
+									 		总公司已批准指派个数： ${assignedCountYesterday}
+									 </p>
+									 <p style="font-size:13px">
+									 		剩余未指派的用车请求 ：${vehicleSchedulingCount - assignedCountYesterday}
+									 </p>
+							</ul>
+					    </div> 
+					</div>
+					[/#if]
 		    </div>    
 		</div>  
     </div>    

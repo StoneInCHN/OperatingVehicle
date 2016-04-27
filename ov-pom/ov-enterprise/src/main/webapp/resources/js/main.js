@@ -35,7 +35,55 @@ function shortcutNavigation(title,data_url){
 		}
 	}
 };
-
+function changePassword(){
+	$('#changePassword').dialog({
+	    title: "修改密码",//message("yly.drugsInfo.add"),    
+	    width: 500,    
+	    height: 480,
+	    iconCls:'icon-mini-add',
+	    href:'../common/changePassword.jhtml',
+	    cache: false, 
+	    buttons:[{
+	    	text:message("ov.common.save"),
+	    	iconCls:'icon-save',
+			handler:function(){
+				debugger;
+				var validate = $('#changePassword_form').form('validate');
+				if(validate){
+					$.ajax({
+						url:"../common/savePassword.jhtml",
+						type:"post",
+						data:$("#changePassword_form").serialize(),
+						beforeSend:function(){
+							$.messager.progress({
+								text:message("ov.common.saving")
+							});
+						},
+						success:function(result,response,status){
+							$.messager.progress('close');
+							if(response == "success"){
+								showSuccessMsg(result.content);
+								$('#changePassword').dialog("close");
+							}else{
+								alertErrorMsg();
+							}
+						}
+					});
+				};
+			}
+		},{
+			text:message("ov.common.cancel"),
+			iconCls:'icon-cancel',
+			handler:function(){
+				 $('#changePassword').dialog("close");
+			}
+	    }],
+	    onOpen:function(){
+	    	$('#changePassword').show();
+	    },
+	
+	});
+}
 $(function(){
 	/**
 	 *初始化右侧的选项卡
@@ -57,7 +105,7 @@ $(function(){
 	
 	$("#dropdownMenu1").dropdown();
 	//初始化显示首页，隐藏菜单栏
-	$('.easyui-layout').layout('collapse','west');
+	//$('.easyui-layout').layout('collapse','west');
 	
 	var westLayour = $('.easyui-layout').layout('panel','west');
 	$("#nav-wrap > ul >li >a").click(function(){
@@ -96,58 +144,50 @@ $(function(){
 			}
 		}
 	});
-		/**
-		 * 修改密码事件
-		 */
-		$("#changePasswordHref").click(function(){
-			$('#changePassword').dialog({
-			    title: "修改密码",//message("yly.drugsInfo.add"),    
-			    width: 500,    
-			    height: 480,
-			    iconCls:'icon-mini-add',
-			    href:'../common/changePassword.jhtml',
-			    cache: false, 
-			    buttons:[{
-			    	text:message("ov.common.save"),
-			    	iconCls:'icon-save',
-					handler:function(){
-						debugger;
-						var validate = $('#changePassword_form').form('validate');
-						if(validate){
-							$.ajax({
-								url:"../common/savePassword.jhtml",
-								type:"post",
-								data:$("#changePassword_form").serialize(),
-								beforeSend:function(){
-									$.messager.progress({
-										text:message("ov.common.saving")
-									});
-								},
-								success:function(result,response,status){
-									$.messager.progress('close');
-									if(response == "success"){
-										showSuccessMsg(result.content);
-										$('#changePassword').dialog("close");
-									}else{
-										alertErrorMsg();
-									}
-								}
-							});
-						};
-					}
-				},{
-					text:message("ov.common.cancel"),
-					iconCls:'icon-cancel',
-					handler:function(){
-						 $('#changePassword').dialog("close");
-					}
-			    }],
-			    onOpen:function(){
-			    	$('#changePassword').show();
-			    },
-			
-			});
+
+		if($("#useCarRequestMain-table-list")){
+		$("#useCarRequestMain-table-list").datagrid({
+			title:message("ov.useCarRequest.list"),
+			fitColumns:true,
+			toolbar:"#useCarRequest_manager_tool",
+			url:'../vehicleScheduling/listRequest.jhtml?childrenOrParent=children&rows=20',  
+			pagination:true,
+			loadMsg:message("ov.common.loading"),
+			striped:true,
+			columns:[
+			   [
+			      {field:'ck',checkbox:true},
+			      {title:message("ov.useCarRequest.title"),field:"title",width:80,sortable:true},
+			      {title:message("ov.useCarRequest.startDate"),field:"startDate",width:50,sortable:true, 
+			    	  formatter:function(value,row,index){
+			    		  return new Date(value).Format("yyyy-MM-dd hh:mm:ss");
+			    	  }
+			      },
+			      {title:message("ov.useCarRequest.startPositionDetails"),field:"startPositionDetails",width:100},
+			      {title:message("ov.useCarRequest.endPositionDetails"),field:"endPositionDetails",width:100},
+			      {title:message("ov.useCarRequest.status"),field:"status",width:30,sortable:true,
+			    	  formatter: function(value,row,index){
+				    	  if(value == "TO_CONFIRM"){
+				    		  return  message("ov.useCarRequest.to_confirm");
+				    	  }else if (value == "DISTRIBUTED"){
+				    		  return  message("ov.useCarRequest.distributed");
+				    	  }else if (value == "FINISHED"){
+				    		  return  message("ov.useCarRequest.finished");
+				    	  }else if (value == "CANCELLED"){
+				    		  return  message("ov.useCarRequest.cancelled");
+				    	  }else if (value == "REJECTED"){
+				    		  return  message("ov.useCarRequest.rejected");
+				    	  }else if (value == "BREAK_CONTRACT"){
+				    		  return  message("ov.useCarRequest.break_contract");
+				    	  }else if (value == "CLEARED"){
+				    		  return  message("ov.useCarRequest.cleared");
+				    	  }
+			      	  }  
+			      },
+			   ]
+			]
 		});
+		}
 		
 		//初始化Highcharts
 		function resetHighcharts(){
