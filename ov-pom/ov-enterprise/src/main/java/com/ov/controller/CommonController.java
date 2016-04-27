@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.bcel.generic.NEW;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
@@ -39,6 +40,7 @@ import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.job.ReportJob;
 import com.ov.service.CaptchaService;
+import com.ov.service.DeviceInfoService;
 import com.ov.service.RSAService;
 import com.ov.service.ReportProcedureService;
 import com.ov.service.TenantAccountService;
@@ -69,10 +71,13 @@ public class CommonController extends BaseController {
   private TenantUserService tenantUserService;
   @Resource(name = "vehicleServiceImpl")
   private VehicleService vehicleService;
+  @Resource(name = "deviceInfoServiceImpl")
+  private DeviceInfoService deviceInfoService;
   @Resource(name = "vehicleSchedulingServiceImpl")
   private VehicleSchedulingService vehicleSchedulingService;
   @Resource(name = "reportProcedureServiceImpl")
   private ReportProcedureService reportProcedureService;
+  
 //  @Resource(name = "areaServiceImpl")
 //  private AreaService areaService;
 
@@ -124,7 +129,11 @@ public String main(ModelMap model,  HttpSession session) {
     model.addAttribute("tenantAccount", tenantAccount);
     model.addAttribute("tenantUserCount", tenantUserService.count(tenantFilter));
     model.addAttribute("vehicleCount", vehicleService.count(tenantFilter));
+    model.addAttribute("deviceCount", deviceInfoService.count(tenantFilter));
     model.addAttribute("vehicleSchedulingCount", vehicleSchedulingService.count());
+    //Filter filter = new Filter("requestBusiness", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+    Filter parentfilter = new Filter("parent", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+    model.addAttribute("assignedCountYesterday", vehicleSchedulingService.count(parentfilter));
     model.addAttribute("isParentTenant", isParentTenant());
     
   return "/common/main";

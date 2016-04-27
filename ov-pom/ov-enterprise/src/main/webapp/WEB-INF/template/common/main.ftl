@@ -77,7 +77,7 @@
 		    </li>
 		</ul>
 	</div>   
-    <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:110"  style="background-color:#fbfbfb">
+    <div class="left-content" data-options="region:'west',title:'导航菜单',split:true,width:105"  style="background-color:#fbfbfb">
     	<ul title="${message("ov.system.manage")}" id="systemManage">
     		[@shiro.hasPermission name="userManage"]
     		<li><a href="#" data-url="${base}/console/tenantUser/tenantUser.jhtml">人员管理</a></li>
@@ -169,10 +169,10 @@
 							<tr>
 								<td>
 										<div class="reportChart">
-						    				<div id="maintenanceChargeReportDiv" style="height:350px;width:600px;"></div>
+						    				<div id="maintenanceChargeReportDiv" style="height:330px;width:600px;"></div>
 						    			</div>
 						    			<div class="reportChart">
-											<div id="upkeepChargeReportDiv" style="height:320px;width:600px;"></div>
+											<div id="upkeepChargeReportDiv" style="height:290px;width:600px;"></div>
 										</div>
 								</td>
 								<td>
@@ -180,52 +180,68 @@
 									    	<tr>
 									    		<td onmouseover="this.style.cursor='pointer'" 
 											    		onclick="shortcutNavigation('人员管理','${base}/console/tenantUser/tenantUser.jhtml')">
-											    	<div class="reportLabel" style="background:url('${base}/resources/images/tenantUser.jpg')">
-													<font color="#bbbbcc"><h3  style="margin-left: 120px">${tenantUserCount}</h3><p style="margin-left: 110px;font-size:13px">当前用户</p></font>
+											    	<div class="reportLabel leftLabel tenantUserImg">
+													<font color="#bbbbcc"><h3  style="margin-left: 120px;margin-top:0px">${tenantUserCount}</h3><p style="margin-left: 110px;font-size:13px">当前用户</p></font>
 													</div>
 									    		</td>
 									    		<td onmouseover="this.style.cursor='pointer'" 
 											    		onclick="shortcutNavigation('车辆信息','${base}/console/vehicle/vehicle.jhtml')">
-									    			<div class="reportLabel" style="background:url('${base}/resources/images/vehicle.jpg')">
-													<font color="#bbbbcc"><h3  style="margin-left: 120px">${vehicleCount}</h3><p style="margin-left: 100px;font-size:13px">车辆总数</p></font>
+									    			<div class="reportLabel rightLabel vehicleImg">
+													<font color="#bbbbcc"><h3  style="margin-left: 120px;margin-top:0px">${vehicleCount}</h3><p style="margin-left: 100px;font-size:13px">车辆总数</p></font>
 													</div>
 									    		</td>
-									    		<td>
-									    			<div style="height:120px;width:200px;">
+									    		<td rowspan="2">
+									    			<div style="margin-top:0px;margin-bottom:12px;padding-top:0px;height:60px;width:258px;">
+									    					<div style="height:60px;width:258px;border-radius: 4px 4px 0px 0px;background-color:#f16783;">
+									    							<h4  style="color:#fff;margin-left: 90px;margin-top:0px;padding-top:24px">设备绑定</h4>
+									    					</div>
+									    				    <div style="height:70px;width:258px;border-radius: 0px 0px 4px 4px;background-color:#fff;">
+									    				    		<font color="#bbbbcc">
+									    				    			<span  style="float:left;margin:5px auto 15px 10px;padding-top:10px;padding-bottom:20px;font-size:20px">已绑定：${deviceCount}</span>
+									    				    			<span  style="float:right;margin:5px 10px 15px auto;padding-top:10px;padding-bottom:20px;font-size:20px">未绑定：${vehicleCount-deviceCount}</span>
+									    				    		</font>
+									    				    </div>
 													</div>
 									    		</td>
 									    	</tr>
 									    	<tr>
 									    		<td onmouseover="this.style.cursor='pointer'" 
 											    		onclick="shortcutNavigation('车辆指派','${base}/console/vehicleScheduling/vehicleAssign.jhtml')">
-									    			<div class="reportLabel" style="background:url('${base}/resources/images/vehicleRequest.jpg')">
-													<font color="#bbbbcc"><h3  style="margin-left: 120px">${vehicleSchedulingCount}</h3><p style="margin-left: 100px;font-size:13px">用车请求</p></font>
+									    			<div class="reportLabel leftLabel vehicleRequestImg">
+														<font color="#bbbbcc">
+																<h3  style="margin-left: 120px;margin-top:0px">${vehicleSchedulingCount}</h3>
+																<p style="margin-left: 100px;font-size:13px">用车请求总数</p>
+														</font>
 													</div>
 									    		</td>
 											    	[#if isParentTenant == true]
 											    <td onmouseover="this.style.cursor='pointer'" 
 											    		onclick="shortcutNavigation('结算管理','${base}/console/tenantClearingRecord/clearingRecordsManagement.jhtml')">
-													<div class="reportLabel" style="background:url('${base}/resources/images/applySettle.jpg')">
-													<font color="#bbbbcc"><h4 style="margin-left: 100px">结算管理</h4></font>
+													<div class="reportLabel rightLabel applySettleImg">
+														<h4  style="color:#bbbbcc;margin-left: 100px;margin-top:0px;padding-top:20px">结算管理</h4>
 													</div>
 												</td>
 													[#else]
 												<td onmouseover="this.style.cursor='pointer'" 
 														onclick="shortcutNavigation('结算查询','${base}/console/tenantClearingRecord/clearingRecordsView.jhtml')">
-													<div class="reportLabel" style="background:url('${base}/resources/images/applySettle.jpg')">
-													<font color="#bbbbcc"><h4 style="padding-top: 20px;margin-left: 100px">结算查询</h4></font>
+													<div class="reportLabel rightLabel applySettleImg">
+														<h4  style="color:#bbbbcc;margin-left: 100px;margin-top:0px">结算查询</h4>
 													</div>
 												</td>
 													[/#if]
-									    		<td>
-									    			<div style="height:120px;width:200px;">
-													</div>
-									    		</td>
 									    	</tr>
+									    	</table>
+									    	<table>
 									    	<tr>
-													<td colspan="3">
-														<div style="height:120px;width: 610px;background-color: #fff;border-radius: 6px;">
-														欢迎admin登录!</div>
+													<td>
+														<div style="padding:20px;height:140px;width: 680px;background-color: #fff;border-radius: 6px;">
+															 <p style="font-size:13px;">欢迎您使用 ${tenantAccount.userName} 账号登录!</p>
+															 <p style="font-size:13px;color:#bbbbcc">昨日有 ${vehicleSchedulingCount} 个用车请求，成功完成了 ${assignedCountYesterday} 个车辆指派！</p>
+															 <p style="font-size:13px">今日，目前已有 ${vehicleSchedulingCount} 个用车请求，完成了 ${assignedCountYesterday} 个车辆指派，还剩 ${vehicleSchedulingCount - assignedCountYesterday} 个用车请求未指派，
+															 		<a href="#" onclick="shortcutNavigation('车辆指派','${base}/console/vehicleScheduling/vehicleAssign.jhtml')">马上去看看</a>
+															 </p>
+															 <p></p>
+														</div>
 													</td>
 											</tr>
 								    	</table>
@@ -233,14 +249,13 @@
 								    	<tr>
 								    		<td>
 								    			<div class="reportChart" style="margin:10px 10px 10px 0">
-								    				<div id="oilChargeAmountReportDiv" style="height:350px;width:300px;"></div>
+								    				<div id="oilChargeAmountReportDiv" style="height:350px;width:335px;"></div>
 								    			</div>
 								    		</td>
 								    		<td>
 								    			<div class="reportChart" style="margin:10px 10px 10px 0">
-								    				<div id="oilChargeCountReportDiv" style="height:350px;width:300px;"></div>
+								    				<div id="oilChargeCountReportDiv" style="height:350px;width:335px;"></div>
 								    			</div>
-								    		</td>
 								    	</tr>
 								    </table>
 								</td>

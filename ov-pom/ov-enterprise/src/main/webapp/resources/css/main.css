@@ -499,3 +499,21 @@ ul.room-item>li>div>a, ul.room-item>li>div>a:hover {
 	width:200px;
 	height:60px;
 }
+.leftLabel{
+	margin:0px 0px 10px 0px
+}
+.rightLabel{
+	margin:0px 10px 10px 10px
+}
+.tenantUserImg{
+	background:url('../images/tenantUser.jpg')
+}
+.vehicleImg{
+	background:url('../images/vehicle.jpg')
+}
+.applySettleImg{
+	background:url('../images/applySettle.jpg')
+}
+.vehicleRequestImg{
+	background:url('../images/vehicleRequest.jpg')
+}
