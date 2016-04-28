@@ -517,3 +517,7 @@ ul.room-item>li>div>a, ul.room-item>li>div>a:hover {
 .vehicleRequestImg{
 	background:url('../images/vehicleRequest.jpg')
 }
+.vehicleSchedulingTable tr td{
+	padding:5px 30px 0px 0px;
+	color:#565656
+}

@@ -66,6 +66,12 @@ public class TenantAccount extends BaseEntity {
   /** 姓名 */
   private String realName;
   
+  /** 上次登录日期 */
+  private Date lastLoginDate;
+
+  /** 上次登录IP */
+  private String lastLoginIp;
+  
   /** 最后登录日期 */
   private Date loginDate;
 
@@ -135,6 +141,23 @@ public class TenantAccount extends BaseEntity {
 
   public void setLoginDate(Date loginDate) {
     this.loginDate = loginDate;
+  }
+  @JsonProperty
+  public Date getLastLoginDate() {
+    return lastLoginDate;
+  }
+
+  public void setLastLoginDate(Date lastLoginDate) {
+    this.lastLoginDate = lastLoginDate;
+  }
+  @Column(length=20)
+  @JsonProperty
+  public String getLastLoginIp() {
+    return lastLoginIp;
+  }
+
+  public void setLastLoginIp(String lastLoginIp) {
+    this.lastLoginIp = lastLoginIp;
   }
 
   @Column(length=20)

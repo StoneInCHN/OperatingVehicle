@@ -39,7 +39,7 @@ function changePassword(){
 	$('#changePassword').dialog({
 	    title: "修改密码",//message("yly.drugsInfo.add"),    
 	    width: 500,    
-	    height: 480,
+	    height: 380,
 	    iconCls:'icon-mini-add',
 	    href:'../common/changePassword.jhtml',
 	    cache: false, 
@@ -150,7 +150,7 @@ $(function(){
 			title:message("ov.useCarRequest.list"),
 			fitColumns:true,
 			toolbar:"#useCarRequest_manager_tool",
-			url:'../vehicleScheduling/listRequest.jhtml?childrenOrParent=children&rows=20',  
+			url:'../vehicleScheduling/listRequest.jhtml?childrenOrParent=children',  
 			pagination:true,
 			loadMsg:message("ov.common.loading"),
 			striped:true,

@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
@@ -23,68 +24,66 @@ import com.ov.entity.base.BaseEntity;
 import com.ov.entity.commonenum.CommonEnum.AccountStatus;
 
 /**
- *  租户信息
+ * 租户信息
  * 
- * @author sujinxuan
- *
  */
 @Entity
 @Table(name = "ov_tenant_info")
 @SequenceGenerator(name = "sequenceGenerator", sequenceName = "ov_tenant_info_sequence")
-@Indexed(index="tenantInfo")
+@Indexed(index = "tenantInfo")
 public class TenantInfo extends BaseEntity {
 
-  
+
   private static final long serialVersionUID = 3525183712762376969L;
 
   /**
    * 租户组织机构代码
    */
   private String orgCode;
-  
+
   /**
    * 租户名称
    */
   private String tenantName;
-  
+
   /**
    * 联系电话
    */
   private String contactPhone;
-  
+
   /**
    * 租户地址
    */
   private String address;
-  
+
   /**
    * 联系人
    */
   private String contactPerson;
-  
+
   /** 邮编 */
   private String zipCode;
-  
+
   /** E-mail */
   private String email;
   /**
    * 备注
    */
   private String remark;
-  
+
   /**
    * 租户账号状态
    */
   private AccountStatus accountStatus;
-  
+
   /**
    * 总公司
    */
   private TenantInfo parent;
-  
+
   /** 层次 */
   private Integer grade;
-  
+
   /**
    * 子公司
    */
@@ -94,23 +93,24 @@ public class TenantInfo extends BaseEntity {
    * 版本
    */
   private VersionConfig versionConfig;
-  
+
   /**
    * 车辆调度请求
    */
   private Set<VehicleScheduling> requestScheduling = new HashSet<VehicleScheduling>();
-  
+
   /**
    * 处理车辆调度请求
    */
-  private Set<VehicleScheduling> dealScheduling = new HashSet<VehicleScheduling>(); 
-  
+  private Set<VehicleScheduling> dealScheduling = new HashSet<VehicleScheduling>();
+
   /**
    * 所有车队
+   * 
    * @return
    */
   private Set<Motorcade> motorcades = new HashSet<Motorcade>();
-  
+
   @Column(length = 20)
   public String getOrgCode() {
     return orgCode;
@@ -131,7 +131,8 @@ public class TenantInfo extends BaseEntity {
 
   @Column(length = 30)
   @JsonProperty
-  @Field(index=org.hibernate.search.annotations.Index.TOKENIZED,analyzer = @Analyzer(impl = IKAnalyzer.class))
+  @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
+      impl = IKAnalyzer.class))
   public String getContactPhone() {
     return contactPhone;
   }
@@ -142,7 +143,8 @@ public class TenantInfo extends BaseEntity {
 
   @Column(length = 80)
   @JsonProperty
-  @Field(index=org.hibernate.search.annotations.Index.TOKENIZED,analyzer = @Analyzer(impl = IKAnalyzer.class))
+  @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
+      impl = IKAnalyzer.class))
   public String getTenantName() {
     return tenantName;
   }
@@ -162,7 +164,8 @@ public class TenantInfo extends BaseEntity {
 
   @Column(length = 15)
   @JsonProperty
-  @Field(index=org.hibernate.search.annotations.Index.TOKENIZED,analyzer = @Analyzer(impl = IKAnalyzer.class))
+  @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
+      impl = IKAnalyzer.class))
   public String getContactPerson() {
     return contactPerson;
   }
@@ -190,7 +193,8 @@ public class TenantInfo extends BaseEntity {
   }
 
   @JsonProperty
-  @Field(store = Store.NO, index = org.hibernate.search.annotations.Index.UN_TOKENIZED, analyzer = @Analyzer(impl = IKAnalyzer.class))
+  @Field(store = Store.NO, index = org.hibernate.search.annotations.Index.UN_TOKENIZED,
+      analyzer = @Analyzer(impl = IKAnalyzer.class))
   public AccountStatus getAccountStatus() {
     return accountStatus;
   }
@@ -198,13 +202,12 @@ public class TenantInfo extends BaseEntity {
   public void setAccountStatus(AccountStatus accountStatus) {
     this.accountStatus = accountStatus;
   }
-  
-  @ManyToOne(cascade=CascadeType.ALL)
-  public VersionConfig getVersionConfig ()
-  {
+
+  @ManyToOne(cascade = CascadeType.ALL)
+  public VersionConfig getVersionConfig() {
     return versionConfig;
   }
-  
+
   @JsonProperty
   @Column(length = 10)
   public Integer getGrade() {
@@ -215,55 +218,57 @@ public class TenantInfo extends BaseEntity {
     this.grade = grade;
   }
 
-  public void setVersionConfig (VersionConfig versionConfig)
-  {
+  public void setVersionConfig(VersionConfig versionConfig) {
     this.versionConfig = versionConfig;
   }
-  	@ManyToOne(fetch = FetchType.LAZY)
-  	public TenantInfo getParent() {
-		return parent;
-	}
-	
-	public void setParent(TenantInfo parent) {
-		this.parent = parent;
-	}
-	@JsonProperty
-	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	public Set<TenantInfo> getChildren() {
-		return children;
-	}
 
-	public void setChildren(Set<TenantInfo> children) {
-		this.children = children;
-	}
+  @JsonProperty
+  @ManyToOne(fetch = FetchType.EAGER)
+  public TenantInfo getParent() {
+    return parent;
+  }
 
-	@OneToMany(mappedBy = "requestBusiness", fetch = FetchType.LAZY)
-	public Set<VehicleScheduling> getRequestScheduling() {
-		return requestScheduling;
-	}
+  public void setParent(TenantInfo parent) {
+    this.parent = parent;
+  }
 
-	public void setRequestScheduling(Set<VehicleScheduling> requestScheduling) {
-		this.requestScheduling = requestScheduling;
-	}
+  @JsonProperty
+  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+  public Set<TenantInfo> getChildren() {
+    return children;
+  }
 
-	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-	public Set<VehicleScheduling> getDealScheduling() {
-		return dealScheduling;
-	}
+  public void setChildren(Set<TenantInfo> children) {
+    this.children = children;
+  }
 
-	public void setDealScheduling(Set<VehicleScheduling> dealScheduling) {
-		this.dealScheduling = dealScheduling;
-	}
+  @OneToMany(mappedBy = "requestBusiness", fetch = FetchType.LAZY)
+  public Set<VehicleScheduling> getRequestScheduling() {
+    return requestScheduling;
+  }
 
-	@OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
-	public Set<Motorcade> getMotorcades() {
-		return motorcades;
-	}
+  public void setRequestScheduling(Set<VehicleScheduling> requestScheduling) {
+    this.requestScheduling = requestScheduling;
+  }
 
-	public void setMotorcades(Set<Motorcade> motorcades) {
-		this.motorcades = motorcades;
-	}
-	
+  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+  public Set<VehicleScheduling> getDealScheduling() {
+    return dealScheduling;
+  }
 
-  
+  public void setDealScheduling(Set<VehicleScheduling> dealScheduling) {
+    this.dealScheduling = dealScheduling;
+  }
+
+  @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+  public Set<Motorcade> getMotorcades() {
+    return motorcades;
+  }
+
+  public void setMotorcades(Set<Motorcade> motorcades) {
+    this.motorcades = motorcades;
+  }
+
+
+
 }

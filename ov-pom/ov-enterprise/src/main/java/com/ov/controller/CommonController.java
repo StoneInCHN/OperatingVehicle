@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ch.qos.logback.core.status.Status;
+
 import com.ov.beans.CommonAttributes;
 import com.ov.beans.Message;
 import com.ov.beans.Setting;
@@ -36,6 +38,7 @@ import com.ov.common.log.LogUtil;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.TenantAccount;
 import com.ov.entity.TenantInfo;
+import com.ov.entity.commonenum.CommonEnum.VehicleSchedulingStatus;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.job.ReportJob;
@@ -49,6 +52,7 @@ import com.ov.service.TenantUserService;
 import com.ov.service.VehicleSchedulingService;
 import com.ov.service.VehicleService;
 import com.ov.utils.ApiUtils;
+import com.ov.utils.DateTimeUtils;
 import com.ov.utils.SettingUtils;
 
 /**
@@ -115,31 +119,39 @@ public class CommonController extends BaseController {
     } finally {
       IOUtils.closeQuietly(servletOutputStream);
     }
-  }
-
-  
+  }  
   /**
    * 主页
    */
 @RequestMapping(value = "/main", method = RequestMethod.GET)
 public String main(ModelMap model,  HttpSession session) {
+    Filter tenantFilter = new Filter("tenantID", Operator.eq, tenantAccountService.getCurrentTenantID());
+    Filter parentOrChildFilter = null;
+    boolean isParentTenant = isParentTenant();
+    model.addAttribute("isParentTenant", isParentTenant);
+    if (isParentTenant) {//总公司首页需要呈现的信息
+      model.addAttribute("vehicleCount", vehicleService.count(tenantFilter));
+      model.addAttribute("deviceCount", deviceInfoService.count(tenantFilter));
+      parentOrChildFilter = new Filter("parent", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+      
+    }else {//子公司首页需要呈现的信息
+      TenantInfo tenantInfo = tenantAccountService.getCurrentTenantInfo();
+      TenantInfo parentTenantInfo = tenantInfo.getParent();//所属总公司信息
+      model.addAttribute("parentTenantInfo", parentTenantInfo);
+      parentOrChildFilter = new Filter("requestBusiness", Operator.eq, tenantAccountService.getCurrentTenantInfo());
+    }
     TenantAccount tenantAccount = tenantAccountService.getCurrent();
-    Filter tenantFilter =
-        new Filter("tenantID", Operator.eq, tenantAccountService.getCurrentTenantID());
     model.addAttribute("tenantAccount", tenantAccount);
-    model.addAttribute("tenantUserCount", tenantUserService.count(tenantFilter));
-    model.addAttribute("vehicleCount", vehicleService.count(tenantFilter));
-    model.addAttribute("deviceCount", deviceInfoService.count(tenantFilter));
-    model.addAttribute("vehicleSchedulingCount", vehicleSchedulingService.count());
-    //Filter filter = new Filter("requestBusiness", Operator.eq, tenantAccountService.getCurrentTenantInfo());
-    Filter parentfilter = new Filter("parent", Operator.eq, tenantAccountService.getCurrentTenantInfo());
-    model.addAttribute("assignedCountYesterday", vehicleSchedulingService.count(parentfilter));
-    model.addAttribute("isParentTenant", isParentTenant());
-    
+    model.addAttribute("tenantUserCount", tenantUserService.count(tenantFilter)); 
+    model.addAttribute("carRequestCount", vehicleSchedulingService.count(parentOrChildFilter));
+    VehicleSchedulingStatus[] status = VehicleSchedulingStatus.values();
+    Filter nearlyMonthFilter = new Filter("createDate",Operator.gt,DateTimeUtils.getLastMonth());//近一个月
+    for (int i = 0; i < status.length; i++) {
+      Filter statusFilter = new Filter("status", Operator.eq, status[0]);
+      model.addAttribute("vsCount"+status[0].toString(), vehicleSchedulingService.count(parentOrChildFilter,nearlyMonthFilter,statusFilter));
+    }
   return "/common/main";
 }
-
-
   /**
    * 错误提示
    */

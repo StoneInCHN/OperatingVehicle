@@ -831,7 +831,6 @@ function loadDataPie(option, url, args, xName, yName) {
 		cache : false,
 		data : args,
 		success : function(dataSource) {
-			console.info(dataSource);
 			if (dataSource.length > 0) {
 				for (var i = 0; i < dataSource.length; i++) {
 					var pieData = [];

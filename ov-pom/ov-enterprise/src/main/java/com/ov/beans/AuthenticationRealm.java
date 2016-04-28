@@ -84,7 +84,12 @@ public class AuthenticationRealm extends AuthorizingRealm {
                     throw new IncorrectCredentialsException();
                 }				
 			}
-
+		    if (tenantAccount.getLoginIp() != null) {
+		      tenantAccount.setLastLoginIp(tenantAccount.getLoginIp());
+            }
+		    if (tenantAccount.getLoginDate() != null) {
+		      tenantAccount.setLastLoginDate(tenantAccount.getLoginDate());
+            }
 			tenantAccount.setLoginIp(ip);
 			tenantAccount.setLoginDate(new Date());
 			tenantAccountService.update(tenantAccount);

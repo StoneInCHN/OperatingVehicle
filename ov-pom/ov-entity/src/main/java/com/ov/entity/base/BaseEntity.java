@@ -93,6 +93,7 @@ public class BaseEntity implements Serializable {
   @Column(nullable = false, updatable = false)
   @Field(index = Index.UN_TOKENIZED, store = Store.NO)
   @FieldBridge(impl = DateBridgeImpl.class)
+  @org.hibernate.annotations.Index(name = "create_date")
   public Date getCreateDate() {
     return createDate;
   }

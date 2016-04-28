@@ -62,7 +62,14 @@
 		</div>
 		<div class="welcome pull-right">
 			<marquee scrollamount='2'>欢迎 [#if tenantAccount.realName != null] ${tenantAccount.realName} [#else] ${tenantAccount.userName} [/#if]登录！
-			本次登录时间：${tenantAccount.loginDate}，登录IP：${tenantAccount.loginIp}</marquee>
+			本次登录时间：${tenantAccount.loginDate}，本次登录IP：${tenantAccount.loginIp}
+			[#if tenantAccount.lastLoginDate!=null]
+			 ,上次登录时间：${tenantAccount.lastLoginDate}
+			[/#if]
+			[#if tenantAccount.lastLoginIp!=null]
+			 ,上次登录IP：${tenantAccount.lastLoginIp}
+			[/#if]
+			</marquee>
 		</div>
 		<ul class="user-profile">
 		    <li  class="dropdown" >
@@ -210,7 +217,7 @@
 											    		onclick="shortcutNavigation('车辆指派','${base}/console/vehicleScheduling/vehicleAssign.jhtml')">
 									    			<div class="reportLabel leftLabel vehicleRequestImg">
 														<font color="#bbbbcc">
-																<h3  style="margin-left: 120px;margin-top:0px">${vehicleSchedulingCount}</h3>
+																<h3  style="margin-left: 120px;margin-top:0px">${carRequestCount}</h3>
 																<p style="margin-left: 100px;font-size:13px">用车请求总数</p>
 														</font>
 													</div>
@@ -228,11 +235,22 @@
 													<td>
 														<div style="padding:20px;height:140px;width: 680px;background-color: #fff;border-radius: 6px;">
 															 <p style="font-size:13px;">欢迎您使用 ${tenantAccount.userName} 账号登录!</p>
-															 <p style="font-size:13px;color:#bbbbcc">昨日有 ${vehicleSchedulingCount} 个用车请求，成功完成了 ${assignedCountYesterday} 个车辆指派！</p>
-															 <p style="font-size:13px">今日，目前已有 ${vehicleSchedulingCount} 个用车请求，完成了 ${assignedCountYesterday} 个车辆指派，还剩 ${vehicleSchedulingCount - assignedCountYesterday} 个用车请求未指派，
-															 		<a href="#" onclick="shortcutNavigation('车辆指派','${base}/console/vehicleScheduling/vehicleAssign.jhtml')">马上去看看</a>
-															 </p>
-															 <p></p>
+															 <p>近一个月，共收到 来自子公司的${carRequestCount}个用车请求，其中</p>
+															 <table class="vehicleSchedulingTable">
+															 	<tr>
+															 		<td>待确认个数：[#if vsCountTO_CONFIRM != null]  ${vsCountTO_CONFIRM} [#else] 0 [/#if]</td>
+															 		<td>已分配个数：[#if vsCountDISTRIBUTED != null] ${vsCountDISTRIBUTED} [#else] 0 [/#if]</td>
+															 		<td>已结束个数： [#if vsCountFINISHED != null]${vsCountFINISHED} [#else] 0 [/#if]</td>
+															 		<td>已取消个数：[#if vsCountCANCELLED != null] ${vsCountCANCELLED} [#else] 0 [/#if]</td>
+															 	</tr>
+															 	<tr>
+															 		<td>拒绝/驳回个数：[#if vsCountREJECTED != null] ${vsCountREJECTED} [#else] 0 [/#if]</td>
+															 		<td>违约个数：[#if vsCountBREAK_CONTRACT != null] ${vsCountBREAK_CONTRACT} [#else] 0 [/#if]</td>
+															 		<td>已结算个数：[#if vsCountCLEARED != null] ${vsCountCLEARED} [#else] 0 [/#if]</td>
+															 		<td></td>
+															 	</tr>
+															 </table>
+															 <p style="float:right;"><a href="#" onclick="shortcutNavigation('车辆指派','${base}/console/vehicleScheduling/vehicleAssign.jhtml')">  马上去看看 >></a></p>
 														</div>
 													</td>
 											</tr>
@@ -272,7 +290,7 @@
 											    		onclick="shortcutNavigation('车辆指派','${base}/console/vehicleScheduling/useCarRequest.jhtml')">
 									    			<div class="reportLabel rightLabel vehicleRequestImg">
 														<font color="#bbbbcc">
-																<h3  style="margin-left: 120px;margin-top:0px">${vehicleSchedulingCount}</h3>
+																<h3  style="margin-left: 120px;margin-top:0px">${carRequestCount}</h3>
 																<p style="margin-left: 100px;font-size:13px">用车请求总数</p>
 														</font>
 													</div>
@@ -285,45 +303,40 @@
 										</td>
 					  			</tr>
 					  		</table>
-					  		<div id="useCarRequestDiv" style="width:82%">
+					  		<div id="useCarRequestDiv" style="width:81%">
 					  			<table id="useCarRequestMain-table-list"></table>
 					  		</div>
 					  </div>
 
-    		 <div class="main-content-right">
+    		 <div class="main-content-right" style="margin-right:20px">
 						<div id="calendar-panel" class="easyui-panel" title="日历" 
-							style="width:250px;height:250px;padding:10px;"data-options="collapsible:true">
+							style="width:250px;height:220px;padding:10px;"data-options="collapsible:true">
 							<div id="cc" class="easyui-calendar" style="width:96%;height:96%;"></div>  
 						</div>
 						<div id="notify" class="easyui-panel" title="通知"     
-						        style="width:250px;height:180px;padding:15px;pbackground:#fafafa;" data-options="collapsible:true">
-									<p>
-									欢迎 [#if tenantAccount.realName != null] ${tenantAccount.realName} [#else] ${tenantAccount.userName} [/#if]登录！
-									</p>
-									<p>
-									上次登录时间为：${tenantAccount.loginDate}
-									</p>
-									<p>
-									上次登录IP地址为：${tenantAccount.loginIp}
-									</p>
-									<p>
-									若非本人操作，请点击这里<a href="#" onclick="changePassword()"> 修改密码</a>
-									</p>
+						        style="width:250px;height:165px;padding:15px;pbackground:#fafafa;" data-options="collapsible:true">
+									<p>欢迎 [#if tenantAccount.realName != null] ${tenantAccount.realName} [#else] ${tenantAccount.userName} [/#if]登录！</p>
+									<p>上次登录时间为：${tenantAccount.lastLoginDate}</p>
+									<p>上次登录IP地址为：${tenantAccount.lastLoginIp}</p>
+									<p>若非本人操作，请点击这里<a href="#" onclick="changePassword()"> 修改密码</a></p>
 					    </div>
-					    <div id="industryInformation" class="easyui-panel" title="车辆调度信息"     
+					    <div id="parentTenant" class="easyui-panel" title="总公司信息"     
+						        style="width:250px;height:168px;padding:15px;background:#fafafa;" data-options="collapsible:true">
+									 <p>总公司名称：${parentTenantInfo.tenantName}</p>
+									 <p>联系方式：${parentTenantInfo.contactPhone}</p>
+									 <p>联系人：${parentTenantInfo.contactPerson}</p>
+									 <p>邮箱：${parentTenantInfo.email}</p>
+					    </div> 
+					    <div id="vehicleSchedulingInfo" class="easyui-panel" title="车辆调度信息"     
 						        style="width:250px;height:280px;padding:15px;background:#fafafa;" data-options="collapsible:true">
-									 <p style="font-size:13px;color:#bbbbcc">昨日提交了 ${vehicleSchedulingCount} 个用车请求，总公司完成了 ${assignedCountYesterday} 个车辆指派！</p>
-									 <p style="font-size:13px">今日车辆调度信息 >></p>
-									 <p style="font-size:13px">
-									 		已经提交用车请求个数： ${vehicleSchedulingCount}
-									 </p>
-									 <p style="font-size:13px">
-									 		总公司已批准指派个数： ${assignedCountYesterday}
-									 </p>
-									 <p style="font-size:13px">
-									 		剩余未指派的用车请求 ：${vehicleSchedulingCount - assignedCountYesterday}
-									 </p>
-							</ul>
+									 <p>已经提交用车请求个数： ${carRequestCount}, 其中</p>
+									 [#if vsCountTO_CONFIRM != null]<p>待确认个数： ${vsCountTO_CONFIRM}</p>[/#if]
+									 [#if vsCountDISTRIBUTED != null]<p>已分配个数： ${vsCountDISTRIBUTED}</p>[/#if]
+									 [#if vsCountFINISHED != null]<p>已结束个数： ${vsCountFINISHED}</p>[/#if]
+									 [#if vsCountCANCELLED != null]<p>已取消个数： ${vsCountCANCELLED}</p>[/#if]
+									 [#if vsCountREJECTED != null]<p>拒绝/驳回个数： ${vsCountREJECTED}</p>[/#if]
+									 [#if vsCountBREAK_CONTRACT != null]<p>违约个数： ${vsCountBREAK_CONTRACT}</p>[/#if]
+									 [#if vsCountCLEARED != null]<p>已结算个数： ${vsCountCLEARED}</p>[/#if]
 					    </div> 
 					</div>
 					[/#if]
