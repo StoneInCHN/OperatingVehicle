@@ -8,7 +8,7 @@
     <meta name="description" content="OV车队管理平台">
     <meta name="author" content="OV">
     <link rel="icon" href="${base}/resources/images/favicon.ico">
-    <title>OV车队管理平台</title>
+    <title>车队管理平台</title>
     <link href="${base}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${base}/resources/css/font-awesome.min.css" rel="stylesheet">
  	<link rel="stylesheet" type="text/css" href="${base}/resources/easyui/themes/bootstrap/easyui.css">
@@ -35,7 +35,7 @@
 	<div class="header" data-options="region:'north',split:true,noheader:true,collapse:'west'">
 		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">车辆运营管理</div>-->
 		<!--<div class="logo"><img src="${base}/resources/images/yly_logo_small.png" width="90" height="50">后台管理中心</div>-->
-		<div class="logo">OV车队管理平台</div>
+		<div class="logo">车队管理平台</div>
 		<div id="nav-wrap" class="nav-wrap"  style="width:700px">
 			<ul class="nav nav-pills">
 				<li><a href="#main"><i class="fa fa-home fa-1x"></i>首页</a></li>
