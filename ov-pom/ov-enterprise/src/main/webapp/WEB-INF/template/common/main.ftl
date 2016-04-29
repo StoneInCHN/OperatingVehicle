@@ -205,8 +205,8 @@
 									    					</div>
 									    				    <div style="height:70px;width:258px;border-radius: 0px 0px 4px 4px;background-color:#fff;">
 									    				    		<font color="#bbbbcc">
-									    				    			<span  style="float:left;margin:5px auto 15px 10px;padding-top:10px;padding-bottom:20px;font-size:20px">已绑定：${deviceCount}</span>
-									    				    			<span  style="float:right;margin:5px 10px 15px auto;padding-top:10px;padding-bottom:20px;font-size:20px">未绑定：${vehicleCount-deviceCount}</span>
+									    				    			<span  style="float:left;margin:5px auto 15px 10px;padding-top:10px;padding-bottom:20px;font-size:20px">已绑定：${bindedDevice}</span>
+									    				    			<span  style="float:right;margin:5px 10px 15px auto;padding-top:10px;padding-bottom:20px;font-size:20px">未绑定：${unBindedDevice}</span>
 									    				    		</font>
 									    				    </div>
 													</div>
@@ -306,6 +306,8 @@
 					  		<div id="useCarRequestDiv" style="width:81%">
 					  			<table id="useCarRequestMain-table-list"></table>
 					  		</div>
+					  		<iframe id="useCarRequestDetailIframe" src="${base}/console/vehicleScheduling/detailsRequest.jhtml?id=1" style="width:25%;height:40%">
+					  		</iframe>
 					  </div>
 
     		 <div class="main-content-right" style="margin-right:20px">

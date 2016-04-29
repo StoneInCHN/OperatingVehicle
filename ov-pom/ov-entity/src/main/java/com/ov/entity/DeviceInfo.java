@@ -165,6 +165,7 @@ public class DeviceInfo extends BaseEntity {
 
   @JsonProperty
   @Field(store = Store.NO, index = Index.UN_TOKENIZED)
+  @org.hibernate.annotations.Index(name = "bind_status")
   public BindStatus getBindStatus() {
     return bindStatus;
   }

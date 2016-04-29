@@ -38,6 +38,7 @@ import com.ov.common.log.LogUtil;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.TenantAccount;
 import com.ov.entity.TenantInfo;
+import com.ov.entity.commonenum.CommonEnum.BindStatus;
 import com.ov.entity.commonenum.CommonEnum.VehicleSchedulingStatus;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
@@ -131,7 +132,10 @@ public String main(ModelMap model,  HttpSession session) {
     model.addAttribute("isParentTenant", isParentTenant);
     if (isParentTenant) {//总公司首页需要呈现的信息
       model.addAttribute("vehicleCount", vehicleService.count(tenantFilter));
-      model.addAttribute("deviceCount", deviceInfoService.count(tenantFilter));
+      Filter bindedFilter = new Filter("bindStatus", Operator.eq, BindStatus.BINDED);
+      model.addAttribute("bindedDevice", deviceInfoService.count(tenantFilter,bindedFilter));
+      Filter unBindedFilter = new Filter("bindStatus", Operator.eq, BindStatus.UNBINDED);
+      model.addAttribute("unBindedDevice", deviceInfoService.count(tenantFilter,unBindedFilter));
       parentOrChildFilter = new Filter("parent", Operator.eq, tenantAccountService.getCurrentTenantInfo());
       
     }else {//子公司首页需要呈现的信息
