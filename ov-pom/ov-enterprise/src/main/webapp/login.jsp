@@ -183,8 +183,9 @@ $(function(){
 <div class="top_div"></div>
 	<div style="background: #fff; margin: -180px auto auto; border: 1px solid #e7e7e7; width: 450px; height: 370px; text-align: center;">
 		<div style="width: 165px; height: 96px; position: absolute;">
-				<div class="operatingVehicle"></div>
-				<!--<div class="vehicle"></div>
+				<div class="operatingVehicleTitle">车队管理平台</div>
+				<!--<div class="operatingVehicle"></div>
+				<div class="vehicle"></div>
 				<div class="initial_left_hand" id="left_hand"></div>
 				<div class="initial_right_hand" id="right_hand"></div>  -->
 		</div>

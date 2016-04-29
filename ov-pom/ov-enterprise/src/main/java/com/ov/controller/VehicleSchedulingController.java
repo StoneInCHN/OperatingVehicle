@@ -282,9 +282,9 @@ public class VehicleSchedulingController extends BaseController{
 			VehicleResponse vehicleResponse = new VehicleResponse();
 			vehicleResponse.setId(vehicle.getId());
 			vehicleResponse.setPlate(vehicle.getPlate());
-			vehicleResponse.setVehicleLine(vehicle.getVehicleBrandDetail().getVehicleLine().getName());
+			//vehicleResponse.setVehicleLine(vehicle.getVehicleBrandDetail().getVehicleLine().getName());
 			vehicleResponse.setMotorcade(vehicle.getMotorcade().getMotorcadeDesc());
-			vehicleResponse.setOilPerHundred(vehicle.getVehicleBrandDetail().getOilPerHundred());
+			//vehicleResponse.setOilPerHundred(vehicle.getVehicleBrandDetail().getOilPerHundred());
 			vehicleResponses.add(vehicleResponse);
 		}
 		Page<VehicleResponse> page = new Page<VehicleResponse>(vehicleResponses, total, pageable);
