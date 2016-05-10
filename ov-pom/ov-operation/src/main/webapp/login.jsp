@@ -94,6 +94,7 @@ if (applicationContext != null) {
 	</script>  
 <script type="text/javascript">
 	$().ready( function() {
+		var $loginBtnID = $("#loginBtnID");
 		var $loginForm = $("#loginForm");
 		var $enPassword = $("#enPassword");
 		var $username = $("#username");
@@ -117,7 +118,10 @@ if (applicationContext != null) {
 		$captchaImage.click( function() {
 			$captchaImage.attr("src", "<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>&timestamp=" + (new Date()).valueOf());
 		});
-		
+		//点击登录
+		$loginBtnID.click(function(){
+			$loginForm.submit();
+		});
 		// 表单验证、记住用户名
 		$loginForm.submit( function() {
 			if ($username.val() == "") {
@@ -172,81 +176,47 @@ if (applicationContext != null) {
 <link rel="shortcut icon" type="image/x-icon" href="<%=base%>/resources/images/carlife.ico" media="screen" /> 
 <%}%>
 </head>
-<body class="login" onload="loadTopWindow()">
-	<div class="logo">
-		<img src="<%=base%>/resources/images/logo.png" alt="<%=SpringUtils.getMessage("ov.apply.logo")%>" /> 
-	</div>
-	<div class="content">
-		<form class="form-vertical login-form" id="loginForm" action="login.jsp" method="post">
-			<input type="hidden" id="enPassword" name="enPassword" />
-			<input type="hidden" id="localUrl" />
-			<%if (ArrayUtils.contains(setting.getCaptchaTypes(), CaptchaType.adminLogin)) {%>
+<body  class="login" onload="loadTopWindow()">
+<div class="top_div"></div>
+	<div style="background: #fff; margin: -180px auto auto; border: 1px solid #e7e7e7; width: 450px; height: 340px; text-align: center;">
+		<div style="width: 165px; height: 96px; position: absolute;">
+				<div class="operatingVehicleTitle">车队管理后台</div>
+		</div>
+		<form id="loginForm" action="login.jsp" method="post">
+				<input type="hidden" id="enPassword" name="enPassword" />
+				<input type="hidden" id="localUrl" />
+				<%if (ArrayUtils.contains(setting.getCaptchaTypes(), CaptchaType.adminLogin)) {%>
 						<input type="hidden" name="captchaId" value="<%=captchaId%>" />
-			<%}%>
-			<h3 class="form-title">用户登陆</h3>
-			<div id="alertError" class="alert alert-error hide">
-				<button class="close" data-dismiss="alert"></button>
-				<span>Enter any username and password.</span>
-			</div>
-			<div  class="control-group">
-				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-				<label class="control-label visible-ie8 visible-ie9"><%=SpringUtils.getMessage("ov.login.username")%></label>
-				<div class="controls">
-					<div class="input-icon left">
-						<i class="fa fa-user"></i>
-						<input type="text" id="username" name="username" class="m-wrap placeholder-no-fix" maxlength="30"  placeholder ="<%=SpringUtils.getMessage("ov.login.username")%>"/>
-					</div>
+				<%}%>
+				<p style="padding: 40px 0px 15px;; position: relative;">
+						<span title="用户名" class="u_logo"></span>        
+						<input class="ipt" type="text" id="username" name="username" placeholder="请输入用户名" maxlength="30"> 
+				</p>
+				<p style="padding: 0px 0px 17px;position: relative;">
+						<span title="密码" class="p_logo"></span>         
+						<input class="ipt" type="password" id="password" placeholder="请输入密码">   
+				</p>
+				<p style="padding: 0px 0px 17px;position: relative;">      
+						<input class="ipt" type="text" id="captcha" name="captcha" placeholder="请输入验证码"  style="padding: 10px 0 10px 10px;width: 239px;"> 
+						<img class="captchaImg" id="captchaImage" src="<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>" title="<%=SpringUtils.getMessage("ov.captcha.imageTitle")%>" />
+				</p>
+				<div id="alertError" class="alert alert-error hide">
+					<button class="close" data-dismiss="alert"></button>
+					<span>Enter any username and password.</span>
 				</div>
-			</div>
-			<div  class="control-group">
-				<label class="control-label visible-ie8 visible-ie9"><%=SpringUtils.getMessage("ov.login.password")%></label>
-				<div class="controls">
-					<div class="input-icon left">
-						<i class="fa fa-lock"></i>
-						<input type="password" id="password" name="password" class="m-wrap placeholder-no-fix" maxlength="20" autocomplete="off" placeholder="<%=SpringUtils.getMessage("ov.login.password")%>"/>
-					</div>
+				<div style="height: 45px; line-height: 50px; margin-top: 15px; border-top-color: #e7e7e7; border-top-width: 1px; border-top-style: solid;">
+					<p style="margin: 0px 35px 20px 45px;">
+							<span style="float: left;">
+									<input type="checkbox" style="margin: 3px 3px" class="checkbox" id="isRememberUsername" value="true" /><font style="color: #969696;"> <%=SpringUtils.getMessage("ov.login.rememberUsername")%></font></span>
+							<span style="float: right;">
+				     				<a class="loginBtn" id="loginBtnID" href="#">登 录</a> 
+				     		</span>
+					</p>
 				</div>
-			</div>
-			<%if (ArrayUtils.contains(setting.getCaptchaTypes(), CaptchaType.adminLogin)) {%>
-			<div  class="control-group">
-				<label class="control-label visible-ie8 visible-ie9">验证码</label>
-				<div class="controls">
-					<div class="input-icon left">
-						<i class="fa fa-lock"></i>
-						<input type="text" id="captcha" name="captcha" class="m-wrap placeholder-no-fix captcha" maxlength="4" autocomplete="off" placeholder="<%=SpringUtils.getMessage("ov.captcha.imageTitle")%>"/>
-						<img id="captchaImage" src="<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>" title="<%=SpringUtils.getMessage("ov.captcha.imageTitle")%>" />
-					</div>
-				</div>
-			</div>	
-			<%}%>
-			<div class="form-actions">
-					<input type="checkbox" class="checkbox" id="isRememberUsername" value="true" /><%=SpringUtils.getMessage("ov.login.rememberUsername")%>
-				<input type="submit" class="btn blue pull-right" value="<%=SpringUtils.getMessage("ov.login.login")%>"/>        
-			</div>
 		</form>
-	</div>
+	</div>	
 	<div class="copyright">
 		2015 &copy; rights reserved.
 	</div>
-	<script type="text/javascript">
-    $(function(){
-    	//背景图片滚动显示
-    	  $.backstretch([
-    	 		        "resources/images/login/bg/1.jpg",
-    	 		        "resources/images/login/bg/2.jpg",
-    	 		        "resources/images/login/bg/3.jpg",
-    	 		        "resources/images/login/bg/4.jpg"
-    	 		        ], {
-    	 		          fade: 1000,
-    	 		          duration: 8000
-    	 });
-        //解决IE下不支持placeholder
-       /*  if($.browser.msie) {
-            $(":input[placeholder]").each(function(){
-                $(this).placeholder();
-            });
-        } */
-    })
-</script>
 </body>
 </html>

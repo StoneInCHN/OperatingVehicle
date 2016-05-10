@@ -161,3 +161,11 @@ a{
 .hide {
     display: none;
 }
+.copyright {
+    color: #545454;
+    font-size: 12px;
+    margin: 0 auto;
+    padding: 10px 10px 0;
+    text-align: center;
+    width: 270px;
+}

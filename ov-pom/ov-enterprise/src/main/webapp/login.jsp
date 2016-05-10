@@ -226,5 +226,8 @@ $(function(){
 				</div>
 		</form>
 </div>
+	<div class="copyright">
+		2015 &copy; rights reserved.
+	</div>
 </body>
 </html>
