@@ -23,7 +23,7 @@
 	      <div class="row">
 	        <div class="col-xs-4 col-md-4 col-lg-4">
 	          <div class="logo">
-	            <h1><a href="#">ov<span class="bold"></span></a></h1>
+	            <h1><a href="#">车队平台<span class="bold"></span></a></h1>
 	            <p class="meta">后台管理系统</p>
 	          </div>
 	        </div>
@@ -62,11 +62,6 @@
 									<a href="../role/list.jhtml" target="iframe"><i class="fa fa-male"></i>${message("ov.main.role")}</a>
 								</li>
 							   [/@shiro.hasPermission]
-							   [@shiro.hasPermission name="admin:apply"]
-								<li>
-									<a href="../apply/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.apply")}</a>
-								</li>
-							 	[/@shiro.hasPermission]
 							   [@shiro.hasPermission name="admin:account"]
 								<li>
 									<a href="../account/accountInfo.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.account.settingGroup")}</a>
