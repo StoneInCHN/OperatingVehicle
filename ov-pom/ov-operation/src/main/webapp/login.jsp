@@ -198,7 +198,7 @@ if (applicationContext != null) {
 				</p>
 				<p style="padding: 0px 0px 17px;position: relative;">      
 						<input class="ipt" type="text" id="captcha" name="captcha" placeholder="请输入验证码"  style="padding: 10px 0 10px 10px;width: 239px;"> 
-						<img class="captchaImg" id="captchaImage" src="<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>" title="<%=SpringUtils.getMessage("ov.captcha.imageTitle")%>" />
+						<img class="captchaImg" id="captchaImage" src="<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>" title="<%=SpringUtils.getMessage("admin.captcha.imageTitle")%>" />
 				</p>
 				<div id="alertError" class="alert alert-error hide">
 					<button class="close" data-dismiss="alert"></button>
@@ -207,7 +207,7 @@ if (applicationContext != null) {
 				<div style="height: 45px; line-height: 50px; margin-top: 15px; border-top-color: #e7e7e7; border-top-width: 1px; border-top-style: solid;">
 					<p style="margin: 0px 35px 20px 45px;">
 							<span style="float: left;">
-									<input type="checkbox" style="margin: 3px 3px" class="checkbox" id="isRememberUsername" value="true" /><font style="color: #969696;"> <%=SpringUtils.getMessage("ov.login.rememberUsername")%></font></span>
+									<input type="checkbox" style="margin: 3px 3px" class="checkbox" id="isRememberUsername" value="true" /><font style="color: #969696;"> <%=SpringUtils.getMessage("admin.login.rememberUsername")%></font></span>
 							<span style="float: right;">
 				     				<a class="loginBtn" id="loginBtnID" href="#">登 录</a> 
 				     		</span>
