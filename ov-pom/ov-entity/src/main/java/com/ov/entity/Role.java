@@ -1,10 +1,14 @@
 package com.ov.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -53,6 +57,30 @@ public class Role extends BaseEntity {
    * 租户ID
    */
   private Long tenantID;
+  
+  /** 后台管理系统权限 */
+  private List<String> authorities = new ArrayList<String>();
+  
+  /**
+   * 获取权限
+   * 
+   * @return 权限
+   */
+  @ElementCollection(fetch = FetchType.EAGER)
+  @CollectionTable(name = "ov_role_authority")
+  public List<String> getAuthorities() {
+      return authorities;
+  }
+
+  /**
+   * 设置权限
+   * 
+   * @param authorities
+   *            权限
+   */
+  public void setAuthorities(List<String> authorities) {
+      this.authorities = authorities;
+  }
   
   @Index(name="role_tenantid")
   @Field(index = org.hibernate.search.annotations.Index.UN_TOKENIZED, store = Store.NO)
