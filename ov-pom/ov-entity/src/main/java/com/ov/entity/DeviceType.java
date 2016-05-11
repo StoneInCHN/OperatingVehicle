@@ -9,13 +9,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.FieldBridge;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Store;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
 import com.ov.entity.commonenum.CommonEnum.Status;
+import com.ov.lucene.LowCaseBridgeImpl;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * 设备类型
@@ -41,6 +45,7 @@ public class DeviceType extends BaseEntity
   private Set<DeviceInfo> deviceInfos = new HashSet<DeviceInfo> ();
   @JsonProperty
   @Field(store=Store.NO,index=Index.UN_TOKENIZED)
+  @FieldBridge(impl = LowCaseBridgeImpl.class)
   @Column(length=20)
   public String getName ()
   {

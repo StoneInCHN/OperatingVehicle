@@ -2,12 +2,15 @@ package com.ov.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.Field;
@@ -15,11 +18,13 @@ import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
 import org.hibernate.search.annotations.Store;
+import org.springframework.web.multipart.MultipartFile;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
 import com.ov.entity.commonenum.CommonEnum.BindStatus;
+import com.ov.entity.commonenum.CommonEnum.DeviceStatus;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 /**
@@ -49,15 +54,16 @@ public class DeviceInfo extends BaseEntity {
    */
   private String deviceNo;
 
-//  /**
-//   * 设备状态
-//   */
-//  private DeviceStatus deviceStatus;
+  /**
+   * 设备状态
+   */
+  private DeviceStatus deviceStatus;
 
   /**
    * 绑定状态
    */
   private BindStatus bindStatus;
+  
 
   /**
    * sim 卡号
@@ -78,12 +84,9 @@ public class DeviceInfo extends BaseEntity {
    * 租户ID
    */
   private Long tenantID;
-
-  /**
-   * 所属代理商
-   */
-  private Long distributorId;
   
+  /** 文件 */
+  private MultipartFile file;
   
   @JsonProperty
   public Date getBindTime() {
@@ -104,6 +107,7 @@ public class DeviceInfo extends BaseEntity {
   }
 
   @JsonProperty
+  @Column(unique = true,nullable=false,length=10)
   @Field(store = Store.NO, index = Index.TOKENIZED, analyzer = @Analyzer(impl = IKAnalyzer.class))
   public String getDeviceNo() {
     return deviceNo;
@@ -113,17 +117,18 @@ public class DeviceInfo extends BaseEntity {
     this.deviceNo = deviceNo;
   }
 
-//  @JsonProperty
-//  @Field(store = Store.NO, index = Index.UN_TOKENIZED)
-//  public DeviceStatus getDeviceStatus() {
-//    return deviceStatus;
-//  }
-//
-//  public void setDeviceStatus(DeviceStatus deviceStatus) {
-//    this.deviceStatus = deviceStatus;
-//  }
+  @JsonProperty
+  @Field(store = Store.NO, index = Index.UN_TOKENIZED)
+  public DeviceStatus getDeviceStatus() {
+    return deviceStatus;
+  }
+
+  public void setDeviceStatus(DeviceStatus deviceStatus) {
+    this.deviceStatus = deviceStatus;
+  }
 
   @JsonProperty
+  @Column(nullable=false,length=15)
   public String getSimNo() {
     return simNo;
   }
@@ -154,7 +159,6 @@ public class DeviceInfo extends BaseEntity {
   }
 
   @Field(store = Store.NO, index = Index.UN_TOKENIZED)
-  @org.hibernate.annotations.Index(name="deviceInfo_tenantid")
   public Long getTenantID() {
     return tenantID;
   }
@@ -165,7 +169,6 @@ public class DeviceInfo extends BaseEntity {
 
   @JsonProperty
   @Field(store = Store.NO, index = Index.UN_TOKENIZED)
-  @org.hibernate.annotations.Index(name = "bind_status")
   public BindStatus getBindStatus() {
     return bindStatus;
   }
@@ -174,15 +177,13 @@ public class DeviceInfo extends BaseEntity {
     this.bindStatus = bindStatus;
   }
 
-  @Field(store = Store.NO, index = Index.UN_TOKENIZED)
-  public Long getDistributorId() {
-    return distributorId;
+  @Transient
+  public MultipartFile getFile() {
+    return file;
   }
 
-  public void setDistributorId(Long distributorId) {
-    this.distributorId = distributorId;
+  public void setFile(MultipartFile file) {
+    this.file = file;
   }
-
-  
   
 }

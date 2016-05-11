@@ -17,7 +17,36 @@ public class CommonEnum {
   public enum MetaDataType {
     SHORT, INT, LONG, DOUBLE, DECIMAL, STRING
   }
+  /**
+   * 设备状态
+   * 
+   * @author huyong
+   *
+   */
+  public enum DeviceStatus {
+    /**
+     * 初始状态
+     */
+    INITED,
+    /**
+     * 下发
+     */
+    SENDOUT,
+    /**
+     * 已出库
+     */
+    STORAGEOUT,
+    /**
+     * 已售出
+     */
+    SALEOUT,
 
+    /**
+     * 退还
+     */
+    REFUNDED
+
+  }
   /**
    * 配置元之间关系
    */

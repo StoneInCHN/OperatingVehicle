@@ -49,8 +49,8 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
   @Resource(name = "roleDaoImpl")
   private RoleDao roleDao;
 
-  @Resource(name = "mailServiceImpl")
-  private MailService mailService;
+//  @Resource(name = "mailServiceImpl")
+//  private MailService mailService;
 
   // @Resource(name = "versionConfigDaoImpl")
   // private VersionConfigDao versionConfigDao;
@@ -121,7 +121,7 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
         SpringUtils.getMessage("csh.tenantAccount.password.message", tenantAccount.getUserName(),
             password,tenantInfo.getOrgCode());
 
-    mailService.send(tenantInfo.getEmail(), subject, message);
+//    mailService.send(tenantInfo.getEmail(), subject, message);
   //  mailService.send("676397876@qq.com", subject, message);
 //    tenantInfo.setIsHaveAccount(true);
      tenantInfoDao.merge(tenantInfo);
