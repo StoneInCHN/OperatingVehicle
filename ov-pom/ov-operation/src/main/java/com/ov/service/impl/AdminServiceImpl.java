@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
+import com.ov.beans.Principal;
 //import com.ov.beans.Principal;
 import com.ov.dao.AdminDao;
 import com.ov.entity.Admin;
@@ -83,29 +85,30 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Long> implements Ad
     return false;
   }
 
-//  @Transactional(readOnly = true)
-//  public Admin getCurrent() {
-//    Subject subject = SecurityUtils.getSubject();
-//    if (subject != null) {
-//      Principal principal = (Principal) subject.getPrincipal();
-//      if (principal != null) {
-//        return adminDao.find(principal.getId());
-//      }
-//    }
-//    return null;
-//  }
+  @Transactional(readOnly = true)
+  public Admin getCurrent() {
+    Subject subject = SecurityUtils.getSubject();
+    if (subject != null) {
+      Principal principal = (Principal) subject.getPrincipal();
+      if (principal != null) {
+    	  Admin admin = adminDao.find(principal.getId());
+        return admin;
+      }
+    }
+    return null;
+  }
 
-//  @Transactional(readOnly = true)
-//  public String getCurrentUsername() {
-//    Subject subject = SecurityUtils.getSubject();
-//    if (subject != null) {
-//      Principal principal = (Principal) subject.getPrincipal();
-//      if (principal != null) {
-//        return principal.getUsername();
-//      }
-//    }
-//    return null;
-//  }
+  @Transactional(readOnly = true)
+  public String getCurrentUsername() {
+    Subject subject = SecurityUtils.getSubject();
+    if (subject != null) {
+      Principal principal = (Principal) subject.getPrincipal();
+      if (principal != null) {
+        return principal.getUsername();
+      }
+    }
+    return null;
+  }
 
   @Override
   @Transactional
@@ -161,18 +164,6 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin, Long> implements Ad
       }
     }
     return false;
-  }
-
-  @Override
-  public Admin getCurrent() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public String getCurrentUsername() {
-    // TODO Auto-generated method stub
-    return null;
   }
 
 }
