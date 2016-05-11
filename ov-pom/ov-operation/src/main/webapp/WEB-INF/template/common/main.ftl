@@ -72,6 +72,96 @@
 					[#break /]
 			[/@shiro.hasPermission]
 		[/#list]
+		[#list ["admin:apply", "admin:tenantAccount","admin:tenantInfo","admin:tenantInfo4distributor"] as permission]
+					[@shiro.hasPermission name = permission]
+						<li class="has_sub" >
+							<a href="#tenant" ><i class="fa fa-cog"></i>&nbsp;&nbsp;${message("ov.main.tenant")}<span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
+							<ul class="sub_ul">
+							   [@shiro.hasPermission name="admin:apply"]
+								<li>
+									<a href="../apply/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.apply")}</a>
+								</li>
+							 	[/@shiro.hasPermission]
+							 	[@shiro.hasPermission name="admin:tenantAccount"]
+								<li>
+									<a href="../tenantAccount/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.tenantAccount")}</a>
+								</li>
+							 	[/@shiro.hasPermission]
+							 	[@shiro.hasPermission name="admin:tenantInfo"]
+								<li>
+									<a href="../tenantInfo/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.tenantInfo")}</a>
+								</li>
+							 	[/@shiro.hasPermission]
+							 	[@shiro.hasPermission name="admin:tenantInfo4distributor"]
+								<li>
+									<a href="../tenantInfo/list4distributor.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.tenantInfo")}</a>
+								</li>
+							 	[/@shiro.hasPermission]
+				            </ul>
+						</li>
+					[#break /]
+			[/@shiro.hasPermission]
+		[/#list]
+		[#list ["admin:deviceType", "admin:deviceInfo" ,"admin:deviceProvide4distributor"] as permission]
+					[@shiro.hasPermission name = permission]
+						<li class="has_sub" >
+							<a href="#tenant" ><i class="fa fa-cog"></i>&nbsp;&nbsp;${message("ov.main.device")}<span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
+							<ul class="sub_ul">
+							   [@shiro.hasPermission name="admin:deviceType"]
+								<li>
+									<a href="../deviceType/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.deviceType")}</a>
+								</li>
+							 	[/@shiro.hasPermission]
+							 	[@shiro.hasPermission name="admin:deviceInfo"]
+								<li>
+									<a href="../deviceInfo/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.deviceInfo")}</a>
+								</li>
+							 	[/@shiro.hasPermission]
+							 	[@shiro.hasPermission name="admin:deviceProvide4distributor"]
+								<li>
+									<a href="../deviceInfo/list4distributor.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.deviceInfo.list4distributor")}</a>
+								</li>
+							 	[/@shiro.hasPermission]
+				            </ul>
+						</li>
+					[#break /]
+			[/@shiro.hasPermission]
+		[/#list]
+		[#list ["admin:vehicle"] as permission]
+			[@shiro.hasPermission name = permission]
+				<li class="has_sub" >
+					<a href="#tenant" ><i class="fa fa-cog"></i>&nbsp;&nbsp;${message("ov.main.vehicle")}<span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
+						<ul class="sub_ul">
+							 [@shiro.hasPermission name="admin:vehicle"]
+								<li>
+									<a href="../vehicle/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.vehicle")}</a>
+								</li>
+							 [/@shiro.hasPermission]
+				       </ul>
+				</li>
+				[#break /]
+			[/@shiro.hasPermission]
+		[/#list]
+		[#list ["admin:reportUserReg","admin:reportDeviceBind"] as permission]
+			[@shiro.hasPermission name = permission]
+				<li class="has_sub" >
+					<a href="#tenant" ><i class="fa fa-cog"></i>&nbsp;&nbsp;${message("ov.main.report")}<span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
+						<ul class="sub_ul">
+							 [@shiro.hasPermission name="admin:reportUserReg"]
+								<li>
+									<a href="../reportUserReg/reportUserReg.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.report.reportUserReg")}</a>
+								</li>
+							 [/@shiro.hasPermission]
+							 [@shiro.hasPermission name="admin:reportDeviceBind"]
+								<li>
+									<a href="../reportDeviceBind/reportDeviceBind.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.report.reportDeviceBind")}</a>
+								</li>
+							 [/@shiro.hasPermission]
+				       </ul>
+				</li>
+				[#break /]
+			[/@shiro.hasPermission]
+		[/#list]
        </ul>
       </div>
       <div class="mainbar">

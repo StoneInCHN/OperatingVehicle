@@ -23,6 +23,7 @@ import com.ov.entity.Role;
 import com.ov.entity.base.BaseEntity.Save;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
+import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
 import com.ov.service.AdminService;
 import com.ov.service.RoleService;
@@ -140,7 +141,8 @@ public class AdminController extends BaseController {
    */
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public String list(Pageable pageable, ModelMap model) {
-    model.addAttribute("page", adminService.findPage(pageable));
+    Page<Admin> adminPage = adminService.findPage(pageable);
+    model.addAttribute("page", adminPage);
     model.addAttribute("adminStatusTypes", AdminStatus.values());
     return "/admin/list";
   }

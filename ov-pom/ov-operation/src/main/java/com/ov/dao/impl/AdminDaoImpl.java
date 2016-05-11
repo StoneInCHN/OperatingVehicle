@@ -5,12 +5,17 @@ import java.util.List;
 import javax.persistence.FlushModeType;
 import javax.persistence.NoResultException;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.search.Filter;
+import org.apache.lucene.search.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ov.dao.AdminDao;
 import com.ov.entity.Admin;
 import com.ov.framework.dao.impl.BaseDaoImpl;
+import com.ov.framework.paging.Page;
+import com.ov.framework.paging.Pageable;
 
 /**
  * Dao - 管理员
@@ -79,6 +84,36 @@ public class AdminDaoImpl extends BaseDaoImpl<Admin, Long> implements AdminDao {
       return null;
     }
 
+  }
+
+  @Override
+  public Page<Admin> search(Query query, Pageable pageable, Analyzer analyzer, Filter filter) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void refreshIndex() {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public int count(Query query, Analyzer analyzer, Filter filter) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  @Override
+  public List<Admin> searchList(Query query, Analyzer analyzer, Filter filter) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public void callProcedure(String procName, Object... args) {
+    // TODO Auto-generated method stub
+    
   }
 
 }
