@@ -305,6 +305,161 @@ function message(code) {
 		}
 		return $dialog;
 	}
+	// 确认对话框
+	$.confirm = function(options) {
+		var settings = {
+			width: 320,
+			height: "auto",
+			top:null,
+			left:null,
+			modal: true,
+			ok: message("admin.dialog.ok"),
+			onShow: null,
+			onClose: null,
+			onOk: null,
+			onCancel: null,
+			close:true
+		};
+		$.extend(settings, options);
+		
+		if (settings.content == null) {
+			return false;
+		}
+		
+		var $dialog = $('<div class="modal-dialog xxDialog"><\/div>');
+		var $dialogWrap = $('<div class="modal-content"><\/div>');
+		var $dialogHeader = $('<div class="modal-header"><\/div>');
+		var $dialogTitle;
+		var $dialogClose ;
+		var $dialogContent;
+		var $dialogBottom;
+		var $dialogOk;
+		var $dialogCancel;
+		var $dialogOverlay;
+		$dialogWrap.appendTo($dialog);
+		$dialogHeader.appendTo($dialogWrap);
+		if(settings.close){
+			$dialogClose = $('<button data-dismiss="modal" class="close" type="button"><span aria-hidden="true"><i class="fa fa-times"></i></span><span class="sr-only">Close</span><\/button>').appendTo($dialogHeader);
+		}
+		if (settings.title != null) {
+			$dialogTitle = $('<h4 class="modal-title"></h4>').appendTo($dialogHeader);
+		}
+		if (settings.type != null) {
+			$dialogContent = $('<div class="modal-body dialog' + settings.type + 'Icon"><\/div>').appendTo($dialogWrap);
+		} else {
+			$dialogContent = $('<div class="modal-body"><\/div>').appendTo($dialogWrap);
+		}
+		if (settings.ok != null || settings.cancel != null) {
+			$dialogBottom = $('<div class="modal-footer"><\/div>').appendTo($dialogWrap);
+		}
+		if (settings.ok != null) {
+			$dialogOk = $('<button  class="btn btn-default" type="button" >' + settings.ok + '<\/button>').appendTo($dialogBottom);
+		}
+		if (settings.cancel != null) {
+			$dialogCancel = $('<button type="button" data-dismiss="modal" class="btn btn-default">' + settings.cancel + '<\/button>').appendTo($dialogBottom);
+		}
+		if (!window.XMLHttpRequest) {
+			$dialog.append('<iframe class="dialogIframe"><\/iframe>');
+		}
+		$dialog.appendTo("body");
+		if (settings.modal) {
+			$dialogOverlay = $('<div class="dialogOverlay"><\/div>').insertAfter($dialog);
+		}
+		
+		var dialogX;
+		var dialogY;
+		if (settings.title != null) {
+			$dialogTitle.text(settings.title);
+		}
+		$dialogContent.html(settings.content);
+		$dialog.css({"width": settings.width, "height": "auto", "margin-left": - (parseInt(settings.width / 2)), "z-index": zIndex ++});
+		$(".modal-body").css({"height": settings.height});
+		if(settings.top!=null){
+			$dialog.css({"top": settings.top});
+		}
+		if(settings.left!=null){
+			$dialog.css({ "left": settings.left});
+		}
+		dialogShow();
+		
+		if ($dialogTitle != null) {
+			$dialogTitle.mousedown(function(event) {
+				$dialog.css({"z-index": zIndex ++});
+				var offset = $(this).offset();
+				if (!window.XMLHttpRequest) {
+					dialogX = event.clientX - offset.left;
+					dialogY = event.clientY - offset.top;
+				} else {
+					dialogX = event.pageX - offset.left;
+					dialogY = event.pageY - offset.top;
+				}
+				$("body").bind("mousemove", function(event) {
+					$dialog.css({"top": event.clientY - dialogY, "left": event.clientX - dialogX, "margin": 0});
+				});
+				return false;
+			}).mouseup(function() {
+				$("body").unbind("mousemove");
+				return false;
+			});
+		}
+		
+		if ($dialogClose != null) {
+			$dialogClose.click(function() {
+				dialogClose();
+				return false;
+			});
+		}
+		
+		if ($dialogOk != null) {
+			$dialogOk.click(function() {
+				if (settings.onOk && typeof settings.onOk == "function") {
+					if (settings.onOk($dialog) != false) {
+						dialogClose();
+					}
+				} else {
+					dialogClose();
+				}
+				return false;
+			});
+		}
+		
+		if ($dialogCancel != null) {
+			$dialogCancel.click(function() {
+				if (settings.onCancel && typeof settings.onCancel == "function") {
+					if (settings.onCancel($dialog) != false) {
+						dialogClose();
+					}
+				} else {
+					dialogClose();
+				}
+				return false;
+			});
+		}
+		
+		function dialogShow() {
+			if (settings.onShow && typeof settings.onShow == "function") {
+				if (settings.onShow($dialog) != false) {
+					$dialog.show();
+					$dialogOverlay.show();
+				}
+			} else {
+				$dialog.show();
+				$dialogOverlay.show();
+			}
+		}
+		function dialogClose() {
+			if (settings.onClose && typeof settings.onClose == "function") {
+				if (settings.onClose($dialog) != false) {
+					$dialogOverlay.remove();
+					$dialog.remove();
+				}
+			} else {
+				$dialogOverlay.remove();
+				$dialog.remove();
+			}
+		}
+		return $dialog;
+	}
 
 	
 

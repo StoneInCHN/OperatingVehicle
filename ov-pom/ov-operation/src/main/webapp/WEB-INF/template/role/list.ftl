@@ -10,6 +10,11 @@
 <link href="${base}/resources/style/style.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/style/dialog.css" rel="stylesheet" type="text/css" />
 <link href="${base}/resources/style/list.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/bootstrap.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+<script type="text/javascript" src="${base}/resources/js/list.js"></script>
+<script type="text/javascript" src="${base}/resources/js/custom.js"></script>
   <!-- HTML5 Support for IE -->
   <!--[if lt IE 9]>
   <script src="${base}/resources/js/html5shim.js"></script>
@@ -154,10 +159,5 @@
 				</div>
 			</form>
 </div>
-<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
-<script type="text/javascript" src="${base}/resources/js/bootstrap.js"></script>
-<script type="text/javascript" src="${base}/resources/js/common.js"></script>
-<script type="text/javascript" src="${base}/resources/js/list.js"></script>
-<script type="text/javascript" src="${base}/resources/js/custom.js"></script>
 </body>
 </html>

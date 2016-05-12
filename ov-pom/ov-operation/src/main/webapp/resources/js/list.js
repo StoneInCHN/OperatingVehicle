@@ -1,4 +1,3 @@
-
 $().ready( function() {
 
 	var $listForm = $("#listForm");
@@ -124,6 +123,7 @@ $().ready( function() {
 					success: function(message) {
 						$.message(message);
 						if (message.type == "success") {
+							$.message(message);
 							$pageTotal.text(parseInt($pageTotal.text()) - $checkedIds.size());
 							$checkedIds.closest("tr").remove();
 							if ($listTable.find("tr").size() <= 1) {
@@ -131,6 +131,10 @@ $().ready( function() {
 									location.reload(true);
 								}, 3000);
 							}
+						}else if(message.type == "error"){
+							$.confirm({
+								type: "warn",
+								content: message.content});
 						}
 						$deleteButton.addClass("disabled");
 						$selectAll.prop("checked", false);
@@ -325,7 +329,7 @@ $().ready( function() {
 				$deleteButton.removeClass("disabled");
 				$deleteButtonFirst.removeClass("disabled");
 			//	$deleteSpecialButton.removeClass("disabled");
-				$sendSelectedButton.removeClass("disabled");
+			//	$sendSelectedButton.removeClass("disabled");
 				$promptButton.removeClass("disabled");
 				$marketButton.removeClass("disabled");
 				$promotionButton.removeClass("disabled");
@@ -336,13 +340,13 @@ $().ready( function() {
 				$deleteButton.addClass("disabled");
 				$deleteButtonFirst.addClass("disabled");
 			//	$deleteSpecialButton.addClass("disabled");
-				$sendSelectedButton.addClass("disabled");
+			//	$sendSelectedButton.addClass("disabled");
 			}
 		} else {
 			$enabledIds.prop("checked", false);
 			$deleteButton.addClass("disabled");
 		//	$deleteSpecialButton.addClass("disabled");
-			$sendSelectedButton.addClass("disabled");
+		//	$sendSelectedButton.addClass("disabled");
 			$promptButton.addClass("disabled");
 			$marketButton.addClass("disabled");
 			$promotionButton.addClass("disabled");
@@ -360,7 +364,7 @@ $().ready( function() {
 			$deleteButton.removeClass("disabled");
 			$deleteButtonFirst.removeClass("disabled");
 		//	$deleteSpecialButton.removeClass("disabled");
-			$sendSelectedButton.removeClass("disabled");
+		//	$sendSelectedButton.removeClass("disabled");
 			$marketButton.removeClass("disabled");
 			$promotionButton.removeClass("disabled");
 			$unmarketButton.removeClass("disabled");
@@ -372,7 +376,7 @@ $().ready( function() {
 				$deleteButton.removeClass("disabled");
 				$deleteButtonFirst.removeClass("disabled");
 			//	$deleteSpecialButton.removeClass("disabled");
-				$sendSelectedButton.removeClass("disabled");
+			//	$sendSelectedButton.removeClass("disabled");
 				$marketButton.removeClass("disabled");
 				$promotionButton.removeClass("disabled");
 				$unmarketButton.removeClass("disabled");
@@ -382,7 +386,7 @@ $().ready( function() {
 				$deleteButton.addClass("disabled");
 			//	$deleteSpecialButton.addClass("disabled");
 				$deleteButtonFirst.addClass("disabled");
-				$sendSelectedButton.addClass("disabled");
+			//	$sendSelectedButton.addClass("disabled");
 				$marketButton.addClass("disabled");
 				$promotionButton.addClass("disabled");
 				$unmarketButton.removeClass("disabled");

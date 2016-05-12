@@ -95,10 +95,10 @@ public class RoleController extends BaseController {
         if (role != null && role.getIsSystem()) {
           return Message.error("admin.role.deleteExistNotAllowed", role.getName());
         }
-//        //角色下有用户存在，不允许删除
-//        if (role.getAdmins().size() > 0) {
-//          return Message.error("admin.role.containAdminNotAllowed", role.getName(), role.getAdmins().size());
-//        }
+        //角色下有用户存在，不允许删除
+        if (role.getAdmins().size() > 0) {
+          return Message.error("admin.role.containAdminNotAllowed", role.getName(), role.getAdmins().size());
+        }
       }
       roleService.delete(ids);
     }
