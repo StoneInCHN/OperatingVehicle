@@ -1551,5 +1551,19 @@ public class CommonEnum {
      */
     P97
   }
+  public enum SystemType {
+    /**
+     * 运营管理系统
+     */
+    OPERATION,
+    /**
+     * 多租户系统
+     */
+    ENTERPRISE,
+//    /**
+//     * 接口系统
+//     */
+//    INTERFACE
+  }
   
 }

@@ -24,6 +24,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
+import com.ov.entity.commonenum.CommonEnum.SystemType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ov.entity.base.BaseEntity;
 
@@ -46,12 +47,21 @@ public class Role extends BaseEntity {
 
   /** 描述 */
   private String description;
+  
+  /**
+   * 所属系统
+   */
+  private SystemType systemType;
 
   /** 权限 */
   private Set<ConfigMeta> configMetas = new HashSet<ConfigMeta>();
 
   /** 租户账号 */
   private Set<TenantAccount> tenantAccounts = new HashSet<TenantAccount>();
+
+  /**运营管理员账号*/
+  private Set<Admin> admins = new HashSet<Admin>();
+  
 
   /**
    * 租户ID
@@ -181,5 +191,22 @@ public class Role extends BaseEntity {
   public void setTenantAccounts(Set<TenantAccount> tenantAccounts) {
     this.tenantAccounts = tenantAccounts;
   }
+  
+  @ManyToMany(mappedBy = "roles")
+  public Set<Admin> getAdmins() {
+    return admins;
+  }
 
+  public void setAdmins(Set<Admin> admins) {
+    this.admins = admins;
+  }
+  
+  @Column(length=2)
+  public SystemType getSystemType() {
+    return systemType;
+  }
+
+  public void setSystemType(SystemType systemType) {
+    this.systemType = systemType;
+  }
 }

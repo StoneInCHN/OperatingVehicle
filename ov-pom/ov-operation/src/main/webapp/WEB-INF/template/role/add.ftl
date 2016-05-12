@@ -32,9 +32,18 @@ $().ready(function() {
 
 	var $inputForm = $("#inputForm");
 	var $selectAll = $("#inputForm .selectAll");
-	
-	
 	$selectAll.click(function() {
+		var $this = $(this);
+		var $thisCheckbox = $this.closest("table").find(":checkbox");
+		if ($thisCheckbox.filter(":checked").size() > 0) {
+			$thisCheckbox.prop("checked", false);
+		} else {
+			$thisCheckbox.prop("checked", true);
+		}
+		return false;
+	});
+	var $selectRow = $("#inputForm .selectRow");		
+	$selectRow.click(function() {
 		var $this = $(this);
 		var $thisCheckbox = $this.closest("tr").find(":checkbox");
 		if ($thisCheckbox.filter(":checked").size() > 0) {
@@ -50,10 +59,10 @@ $().ready(function() {
 		rules: {
 			name:{
 				required: true,
-				remote: {
-					url: "checkName.jhtml",
-					cache: false
-				}
+				//remote: {
+					//url: "checkName.jhtml",
+					//cache: false
+				//}
 			},
 			authorities: "required",
 			description:{
@@ -104,7 +113,7 @@ $().ready(function() {
 										<span class="requiredField">*</span>${message("ov.role.name")}:
 									</th>
 									<td>
-										<input type="text" name="name" class="text" maxlength="200" />
+										<input type="text" name="name" class="text" maxlength="20" />
 									</td>
 								</tr>
 								<tr>
@@ -115,25 +124,89 @@ $().ready(function() {
 										<textarea  name="description" class="text" maxlength="200"></textarea>
 									</td>
 								</tr>
-								<tr>
-									<td colspan="2">
-										&nbsp;
+								<tr class="authorities">
+									<th>
+										&nbsp;&nbsp;<a href="javascript:;" class="selectAll" title="${message("ov.role.selectAll")}">${message("ov.role.selectAll")}</a>
+									</th>
+									<td>
+									<span class="fieldSet">
+										<label>
+										
+										</label>
+									</span>
 									</td>
 								</tr>
 								<tr class="authorities">
 									<th>
-										<a href="javascript:;" class="selectAll" title="${message("ov.role.selectAll")}">${message("ov.main.systemNav")}</a>
+										<a href="javascript:;" class="selectRow" title="${message("ov.main.systemNav")}">${message("ov.main.systemNav")}</a>
 									</th>
 									<td>
 										<span class="fieldSet">
 											<label>
-												<input type="checkbox" name="authorities" value="admin:admin" /><span>${message("ov.role.admin")}</span>
+												<input type="checkbox" name="authorities" value="admin:admin" /><span>${message("ov.main.admin")}</span>
 											</label>
 											<label>
-												<input type="checkbox" name="authorities" value="admin:role" /><span>${message("ov.role.role")}</span>
+												<input type="checkbox" name="authorities" value="admin:role" /><span>${message("ov.main.role")}</span>
 											</label>
 											<label>
 												<input type="checkbox" name="authorities" value="admin:account" /><span>${message("ov.account.settingGroup")}</span>
+											</label>
+										</span>
+									</td>
+								</tr>
+								<tr class="authorities">
+									<th>
+										<a href="javascript:;" class="selectRow" title="${message("ov.main.tenant")}">${message("ov.main.tenant")}</a>
+									</th>
+									<td>
+										<span class="fieldSet">
+											<label>
+												<input type="checkbox" name="authorities" value="admin:tenantAccount" /><span>${message("ov.main.tenantAccount")}</span>
+											</label>
+											<label>
+												<input type="checkbox" name="authorities" value="admin:tenantInfo" /><span>${message("ov.main.tenantInfo")}</span>
+											</label>
+										</span>
+									</td>
+								</tr>
+								<tr class="authorities">
+									<th>
+										<a href="javascript:;" class="selectRow" title="${message("ov.main.tenant")}">${message("ov.main.device")}</a>
+									</th>
+									<td>
+										<span class="fieldSet">
+											<label>
+												<input type="checkbox" name="authorities" value="admin:deviceType" /><span>${message("ov.main.deviceType")}</span>
+											</label>
+											<label>
+												<input type="checkbox" name="authorities" value="admin:deviceInfo" /><span>${message("ov.main.deviceInfo")}</span>
+											</label>
+										</span>
+									</td>
+								</tr>
+								<tr class="authorities">
+									<th>
+										<a href="javascript:;" class="selectRow" title="${message("ov.main.vehicle")}">${message("ov.main.vehicle")}</a>
+									</th>
+									<td>
+										<span class="fieldSet">
+											<label>
+												<input type="checkbox" name="authorities" value="admin:vehicle" /><span>${message("ov.main.vehicle")}</span>
+											</label>
+										</span>
+									</td>
+								</tr>
+								<tr class="authorities">
+									<th>
+										<a href="javascript:;" class="selectRow" title="${message("ov.main.report")}">${message("ov.main.report")}</a>
+									</th>
+									<td>
+										<span class="fieldSet">
+											<label>
+												<input type="checkbox" name="authorities" value="admin:reportUserReg" /><span>${message("ov.report.reportUserReg")}</span>
+											</label>
+											<label>
+												<input type="checkbox" name="authorities" value="admin:reportDeviceBind" /><span>${message("ov.report.reportDeviceBind")}</span>
 											</label>
 										</span>
 									</td>

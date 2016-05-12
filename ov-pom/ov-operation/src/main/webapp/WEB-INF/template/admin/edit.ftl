@@ -115,12 +115,22 @@ $().ready(function() {
 							</tr>
 						</table>
 						<table class="input">
+							 [#if admin.isSystem]
+									<tr>
+										<th>
+											&nbsp;
+										</th>
+										<td>
+											<span class="tips">${message("ov.admin.editSystemNotAllowed")}</span>
+										</td>
+									</tr>
+								[/#if]
 							<tr>
 								<th>
 									&nbsp;
 								</th>
 								<td>
-									<input type="submit" class="button" value="${message("ov.common.submit")}" />
+									<input type="submit" class="button" value="${message("ov.common.submit")}" [#if admin.isSystem] disabled="disabled"[/#if]/>
 									<input type="button" class="button" value="${message("ov.common.back")}" onclick="location.href='list.jhtml'" />
 								</td>
 							</tr>

@@ -33,9 +33,18 @@ $().ready(function() {
 
 	var $inputForm = $("#inputForm");
 	var $selectAll = $("#inputForm .selectAll");
-	
-	
 	$selectAll.click(function() {
+		var $this = $(this);
+		var $thisCheckbox = $this.closest("table").find(":checkbox");
+		if ($thisCheckbox.filter(":checked").size() > 0) {
+			$thisCheckbox.prop("checked", false);
+		} else {
+			$thisCheckbox.prop("checked", true);
+		}
+		return false;
+	});
+	var $selectRow = $("#inputForm .selectRow");		
+	$selectRow.click(function() {
 		var $this = $(this);
 		var $thisCheckbox = $this.closest("tr").find(":checkbox");
 		if ($thisCheckbox.filter(":checked").size() > 0) {
@@ -51,13 +60,13 @@ $().ready(function() {
 		rules: {
 			name:{
 				required: true,
-				remote: {
-					url: "checkName.jhtml",
-					cache: false,
-					data:{
-						id:${role.id}
-					}
-				}
+				//remote: {
+					//url: "checkName.jhtml",
+					//cache: false,
+					//data:{
+						//id:${role.id}
+					//}
+				//}
 			},
 			authorities: "required",
 			description:{
@@ -120,27 +129,90 @@ $().ready(function() {
 										<textarea  name="description" class="text" maxlength="200">${role.description}</textarea>
 									</td>
 								</tr>
-								<tr>
-									<td colspan="2">
-										&nbsp;
+								<tr class="authorities">
+									<th>
+										&nbsp;&nbsp;<a href="javascript:;" class="selectAll" title="${message("ov.role.selectAll")}">${message("ov.role.selectAll")}</a>
+									</th>
+									<td>
+									<span class="fieldSet">
+										<label>
+										
+										</label>
+									</span>
 									</td>
 								</tr>
 								<tr class="authorities">
 									<th>
-										<a href="javascript:;" class="selectAll" title="${message("ov.role.selectAll")}">${message("ov.role.systemGroup")}</a>
+										<a href="javascript:;" class="selectRow" title="${message("ov.main.systemNav")}">${message("ov.main.systemNav")}</a>
 									</th>
 									<td>
 										<span class="fieldSet">
 											<label>
-												<input type="checkbox" name="authorities" value="admin:admin"[#if role.authorities?seq_contains("admin:admin")] checked="checked"[/#if] /><span>${message("ov.role.admin")}</span>
+												<input type="checkbox" name="authorities" value="admin:admin" [#if role.authorities?seq_contains("admin:admin")] checked="checked"[/#if]/><span>${message("ov.main.admin")}</span>
 											</label>
 											<label>
-												<input type="checkbox" name="authorities" value="admin:role"[#if role.authorities?seq_contains("admin:role")] checked="checked"[/#if] /><span>${message("ov.role.role")}</span>
+												<input type="checkbox" name="authorities" value="admin:role" [#if role.authorities?seq_contains("admin:role")] checked="checked"[/#if]/><span>${message("ov.main.role")}</span>
 											</label>
 											<label>
 												<input type="checkbox" name="authorities" value="admin:account" [#if role.authorities?seq_contains("admin:account")] checked="checked"[/#if]/><span>${message("ov.account.settingGroup")}</span>
 											</label>
-											
+										</span>
+									</td>
+								</tr>
+								<tr class="authorities">
+									<th>
+										<a href="javascript:;" class="selectRow" title="${message("ov.main.tenant")}">${message("ov.main.tenant")}</a>
+									</th>
+									<td>
+										<span class="fieldSet">
+											<label>
+												<input type="checkbox" name="authorities" value="admin:tenantAccount" [#if role.authorities?seq_contains("admin:tenantAccount")] checked="checked"[/#if]/><span>${message("ov.main.tenantAccount")}</span>
+											</label>
+											<label>
+												<input type="checkbox" name="authorities" value="admin:tenantInfo" [#if role.authorities?seq_contains("admin:tenantInfo")] checked="checked"[/#if]/><span>${message("ov.main.tenantInfo")}</span>
+											</label>
+										</span>
+									</td>
+								</tr>
+								<tr class="authorities">
+									<th>
+										<a href="javascript:;" class="selectRow" title="${message("ov.main.tenant")}">${message("ov.main.device")}</a>
+									</th>
+									<td>
+										<span class="fieldSet">
+											<label>
+												<input type="checkbox" name="authorities" value="admin:deviceType" [#if role.authorities?seq_contains("admin:deviceType")] checked="checked"[/#if]/><span>${message("ov.main.deviceType")}</span>
+											</label>
+											<label>
+												<input type="checkbox" name="authorities" value="admin:deviceInfo" [#if role.authorities?seq_contains("admin:deviceInfo")] checked="checked"[/#if]/><span>${message("ov.main.deviceInfo")}</span>
+											</label>
+										</span>
+									</td>
+								</tr>
+								<tr class="authorities">
+									<th>
+										<a href="javascript:;" class="selectRow" title="${message("ov.main.vehicle")}">${message("ov.main.vehicle")}</a>
+									</th>
+									<td>
+										<span class="fieldSet">
+											<label>
+												<input type="checkbox" name="authorities" value="admin:vehicle" [#if role.authorities?seq_contains("admin:vehicle")] checked="checked"[/#if]/><span>${message("ov.main.vehicle")}</span>
+											</label>
+										</span>
+									</td>
+								</tr>
+								<tr class="authorities">
+									<th>
+										<a href="javascript:;" class="selectRow" title="${message("ov.main.report")}">${message("ov.main.report")}</a>
+									</th>
+									<td>
+										<span class="fieldSet">
+											<label>
+												<input type="checkbox" name="authorities" value="admin:reportUserReg" [#if role.authorities?seq_contains("admin:reportUserReg")] checked="checked"[/#if]/><span>${message("ov.report.reportUserReg")}</span>
+											</label>
+											<label>
+												<input type="checkbox" name="authorities" value="admin:reportDeviceBind" [#if role.authorities?seq_contains("admin:reportDeviceBind")] checked="checked"[/#if]/><span>${message("ov.report.reportDeviceBind")}</span>
+											</label>
 										</span>
 									</td>
 								</tr>

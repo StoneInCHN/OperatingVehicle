@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ov.beans.Message;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.Role;
+import com.ov.entity.commonenum.CommonEnum.SystemType;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.paging.Pageable;
@@ -44,7 +45,7 @@ public class RoleController extends BaseController {
   @RequestMapping(value = "/save", method = RequestMethod.POST)
   public String save(Role role) {
     role.setIsSystem(false);
-//    role.setSystemType(SystemType.OPERATION);
+    role.setSystemType(SystemType.OPERATION);
     roleService.save(role);
     return "redirect:list.jhtml";
   }
@@ -77,11 +78,7 @@ public class RoleController extends BaseController {
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public String list(Pageable pageable, ModelMap model) {
     List<Filter> filters = new ArrayList<Filter>();
-    Filter filter = new Filter();
-    filter.setProperty("systemType");
-//    filter.setValue(SystemType.OPERATION);
-    filter.setOperator(Operator.eq);
-    filters.add(filter);
+    filters.add(Filter.eq("systemType", SystemType.OPERATION));
     pageable.setFilters(filters);
     model.addAttribute("page", roleService.findPage(pageable));
     return "/role/list";
@@ -98,6 +95,10 @@ public class RoleController extends BaseController {
         if (role != null && role.getIsSystem()) {
           return Message.error("admin.role.deleteExistNotAllowed", role.getName());
         }
+//        //角色下有用户存在，不允许删除
+//        if (role.getAdmins().size() > 0) {
+//          return Message.error("admin.role.containAdminNotAllowed", role.getName(), role.getAdmins().size());
+//        }
       }
       roleService.delete(ids);
     }

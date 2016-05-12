@@ -21,6 +21,7 @@ import com.ov.entity.Admin;
 import com.ov.entity.Admin.AdminStatus;
 import com.ov.entity.Role;
 import com.ov.entity.base.BaseEntity.Save;
+import com.ov.entity.commonenum.CommonEnum.SystemType;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.paging.Page;
@@ -64,11 +65,7 @@ public class AdminController extends BaseController {
   @RequestMapping(value = "/add", method = RequestMethod.GET)
   public String add(ModelMap model) {
     List<Filter> filters = new ArrayList<Filter>();
-    Filter filter = new Filter();
-    filter.setProperty("systemType");
-//    filter.setValue(SystemType.OPERATION);
-    filter.setOperator(Operator.eq);
-    filters.add(filter);
+    filters.add(Filter.eq("systemType", SystemType.OPERATION));
     model.addAttribute("roles", roleService.findList(null, filters, null));
     model.addAttribute("adminStatusTypes", AdminStatus.values());
     return "/admin/add";
@@ -101,11 +98,7 @@ public class AdminController extends BaseController {
   @RequestMapping(value = "/edit", method = RequestMethod.GET)
   public String edit(Long id, ModelMap model) {
     List<Filter> filters = new ArrayList<Filter>();
-    Filter filter = new Filter();
-    filter.setProperty("systemType");
-//    filter.setValue(SystemType.OPERATION);
-    filter.setOperator(Operator.eq);
-    filters.add(filter);
+    filters.add(Filter.eq("systemType", SystemType.OPERATION));
     model.addAttribute("roles", roleService.findList(null, filters, null));
     model.addAttribute("admin", adminService.find(id));
     model.addAttribute("adminStatusTypes", AdminStatus.values());
@@ -143,6 +136,7 @@ public class AdminController extends BaseController {
   public String list(Pageable pageable, ModelMap model) {
     Page<Admin> adminPage = adminService.findPage(pageable);
     model.addAttribute("page", adminPage);
+    model.addAttribute("currentAdmin", adminService.getCurrent());
     model.addAttribute("adminStatusTypes", AdminStatus.values());
     return "/admin/list";
   }

@@ -77,11 +77,6 @@
 						<li class="has_sub" >
 							<a href="#tenant" ><i class="fa fa-cog"></i>&nbsp;&nbsp;${message("ov.main.tenant")}<span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
 							<ul class="sub_ul">
-							   [@shiro.hasPermission name="admin:apply"]
-								<li>
-									<a href="../apply/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.apply")}</a>
-								</li>
-							 	[/@shiro.hasPermission]
 							 	[@shiro.hasPermission name="admin:tenantAccount"]
 								<li>
 									<a href="../tenantAccount/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.tenantAccount")}</a>
@@ -90,11 +85,6 @@
 							 	[@shiro.hasPermission name="admin:tenantInfo"]
 								<li>
 									<a href="../tenantInfo/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.tenantInfo")}</a>
-								</li>
-							 	[/@shiro.hasPermission]
-							 	[@shiro.hasPermission name="admin:tenantInfo4distributor"]
-								<li>
-									<a href="../tenantInfo/list4distributor.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.tenantInfo")}</a>
 								</li>
 							 	[/@shiro.hasPermission]
 				            </ul>
@@ -115,11 +105,6 @@
 							 	[@shiro.hasPermission name="admin:deviceInfo"]
 								<li>
 									<a href="../deviceInfo/list.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.deviceInfo")}</a>
-								</li>
-							 	[/@shiro.hasPermission]
-							 	[@shiro.hasPermission name="admin:deviceProvide4distributor"]
-								<li>
-									<a href="../deviceInfo/list4distributor.jhtml" target="iframe"><i class="fa fa-cog"></i>${message("ov.main.deviceInfo.list4distributor")}</a>
 								</li>
 							 	[/@shiro.hasPermission]
 				            </ul>

@@ -129,7 +129,12 @@
 												[#list page.content as admin]
 												<tr>
 													<td>
-														<input type="checkbox"  name="ids" value="${admin.id}" />
+														<input type="checkbox"  name="ids" 
+														[#if admin.isSystem] 
+															title="${message("ov.admin.deleteSystemNotAllowed")}" disabled="disabled"
+														[#elseif admin.id = currentAdmin.id]
+															title="${message("admin.common.deleteOwnerError")}" disabled="disabled"
+														[#else] value="${admin.id}"[/#if]  />
 													</td>
 													<td>
 														${admin.username}

@@ -207,7 +207,7 @@ if (applicationContext != null) {
 				<div style="height: 45px; line-height: 50px; margin-top: 15px; border-top-color: #e7e7e7; border-top-width: 1px; border-top-style: solid;">
 					<p style="margin: 0px 35px 20px 45px;">
 							<span style="float: left;">
-									<input type="checkbox" style="margin: 3px 3px" class="checkbox" id="isRememberUsername" value="true" /><font style="color: #969696;"> <%=SpringUtils.getMessage("admin.login.rememberUsername")%></font></span>
+									<input type="checkbox" style="margin: 3px 3px" class="checkbox" id="isRememberUsername" value="true" /><font style="color: #969696;"> <%=SpringUtils.getMessage("ov.login.rememberUsername")%></font></span>
 							<span style="float: right;">
 				     				<a class="loginBtn" id="loginBtnID" href="#">登 录</a> 
 				     		</span>
@@ -216,7 +216,7 @@ if (applicationContext != null) {
 		</form>
 	</div>	
 	<div class="copyright">
-		2015 &copy; rights reserved.
+		2016 &copy; rights reserved.
 	</div>
 </body>
 </html>
