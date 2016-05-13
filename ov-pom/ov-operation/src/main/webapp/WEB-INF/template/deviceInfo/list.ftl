@@ -148,9 +148,6 @@
 														<a href="javascript:;" class="sort" name="bindStatus">${message("ov.deviceInfo.bindStatus")}</a>
 													</th>
 													<th>
-														<a href="javascript:;" class="sort" name="distributor">${message("ov.deviceInfo.distributorId")}</a>
-													</th>
-													<th>
 														<span>${message("ov.common.handle")}</span>
 													</th>
 												</tr>
@@ -196,13 +193,6 @@
 													<td>
 														[#if deviceInfo.bindStatus??]
 														   ${message("ov.deviceInfo.bindStatus."+deviceInfo.bindStatus)}
-														[/#if]
-													</td>
-													<td>
-														[#if deviceInfo.distributor ??]
-															${deviceInfo.distributor.distributorName}
-														[#else]
-															--
 														[/#if]
 													</td>
 													<td>
