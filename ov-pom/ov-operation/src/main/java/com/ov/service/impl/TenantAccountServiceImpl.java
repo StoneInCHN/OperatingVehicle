@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ov.beans.Setting;
+import com.ov.utils.SettingUtils;
 import com.ov.dao.ConfigMetaDao;
 import com.ov.dao.MetaRelationDao;
 import com.ov.dao.RoleDao;
@@ -50,8 +52,8 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
   @Resource(name = "roleDaoImpl")
   private RoleDao roleDao;
 
-//  @Resource(name = "mailServiceImpl")
-//  private MailService mailService;
+  @Resource(name = "mailServiceImpl")
+  private MailService mailService;
 
   // @Resource(name = "versionConfigDaoImpl")
   // private VersionConfigDao versionConfigDao;
@@ -83,8 +85,9 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
     Role role = new Role();
     role.setIsSystem(false);
     role.setTenantID(tenantAccount.getTenantID());
-    role.setDescription("租户管理员");
-    role.setName("租户管理员");
+    String roleName = SpringUtils.getMessage("admin.role.name");
+    role.setName(roleName);
+    role.setDescription(roleName);
     role.setSystemType(SystemType.ENTERPRISE);
     VersionConfig versionConfig = tenantInfo.getVersionConfig();
     Set<ConfigMeta> configMetas = versionConfig.getConfigMeta();
@@ -117,15 +120,19 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
    //  UcpaasUtil.SendAccountBySms(tenantInfo.getContactPhone(), tenantInfo.getOrgCode(), tenantAccount.getUserName(), password);
     
      // 邮件
-    String subject = SpringUtils.getMessage("csh.tenantAccount.password.subject");
+    String subject = SpringUtils.getMessage("ov.tenantAccount.password.subject");
+//    String message =
+//        SpringUtils.getMessage("ov.tenantAccount.password.message", tenantAccount.getRealName(),tenantAccount.getUserName(),
+//            password,tenantInfo.getOrgCode());
+    Setting setting = SettingUtils.get();
     String message =
-        SpringUtils.getMessage("csh.tenantAccount.password.message", tenantAccount.getUserName(),
-            password,tenantInfo.getOrgCode());
-
-//    mailService.send(tenantInfo.getEmail(), subject, message);
-  //  mailService.send("676397876@qq.com", subject, message);
+        SpringUtils.getMessage("ov.tenantAccount.password.message",tenantInfo.getTenantName() ,tenantAccount.getUserName(),
+            password,tenantInfo.getOrgCode(),setting.getTenantLoginUrl());
+    
+    mailService.send(tenantInfo.getEmail(), subject, message);
     tenantInfo.setIsHaveAccount(true);
-     tenantInfoDao.merge(tenantInfo);
+    
+    tenantInfoDao.merge(tenantInfo);
   }
 
 

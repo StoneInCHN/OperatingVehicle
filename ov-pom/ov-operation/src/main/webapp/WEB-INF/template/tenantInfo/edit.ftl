@@ -120,7 +120,7 @@ $().ready(function() {
 									<span class="requiredField">*</span>${message("ov.tenantInfo.address")}:
 								</th>
 								<td>
-									<input type="text" name="address" class="text" maxlength="20" value="${tenantInfo.address}"/>
+									<input type="text" name="address" class="text" maxlength="100" value="${tenantInfo.address}"/>
 								</td>
 							</tr>
 							<tr>
@@ -128,12 +128,12 @@ $().ready(function() {
 									<span class="requiredField">*</span>${message("ov.tenantInfo.email")}:
 								</th>
 								<td>
-									<input type="text" name="email" class="text" maxlength="20" value="${tenantInfo.email}"/>
+									<input type="text" name="email" class="text" maxlength="60" value="${tenantInfo.email}"/>
 								</td>
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.tenantInfo.description")}:
+									&nbsp;${message("ov.tenantInfo.description")}:
 								</th>
 								<td>
 									<input type="text" name="description" class="text" maxlength="20" value="${tenantInfo.description}"/>
@@ -141,7 +141,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.tenantInfo.ownerName")}:
+									&nbsp;${message("ov.tenantInfo.ownerName")}:
 								</th>
 								<td>
 									<input type="text" name="ownerName" class="text" maxlength="20" value="${tenantInfo.ownerName}"/>
@@ -161,7 +161,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.tenantInfo.remark")}:
+									&nbsp;${message("ov.tenantInfo.remark")}:
 								</th>
 								<td>
 									<input type="text" name="remark" class="text" maxlength="200" value="${tenantInfo.remark}"/>

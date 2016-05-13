@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -70,6 +71,12 @@ public class TenantInfo extends BaseEntity {
    * 备注
    */
   private String remark;
+  
+  /**
+   * 描述
+   */
+  private String description;
+  
 
   /**
    * 租户账号状态
@@ -281,5 +288,12 @@ public class TenantInfo extends BaseEntity {
   public void setIsHaveAccount(Boolean isHaveAccount) {
 	this.isHaveAccount = isHaveAccount;
   }
+  @Lob
+  public String getDescription() {
+    return description;
+  }
 
+  public void setDescription(String description) {
+    this.description = description;
+  }
 }

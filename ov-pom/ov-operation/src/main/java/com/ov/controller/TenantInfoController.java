@@ -63,6 +63,7 @@ public class TenantInfoController extends BaseController {
     tenantInfo.setOrgCode(identifierService.getLatestOrgCode());
     tenantInfo.setIsHaveAccount(false);
     tenantInfo.setVersionConfig(versionConfigService.find(versionConfigId));
+    tenantInfo.setGrade(0);
     tenantInfoService.save(tenantInfo);
     return "redirect:list.jhtml";
   }
@@ -84,6 +85,7 @@ public class TenantInfoController extends BaseController {
     if (!isValid(tenantInfo)) {
       return ERROR_VIEW;
     }
+    tenantInfoService.update(tenantInfo,"createDate","grade","parent","orgCode","versionConfig","isHaveAccount");
     return "redirect:list.jhtml";
   }
 
@@ -92,6 +94,9 @@ public class TenantInfoController extends BaseController {
    */
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public String list(Pageable pageable, ModelMap model) {
+    List<Filter> filters = new ArrayList<Filter>();
+    filters.add(Filter.eq("parent", null));
+    pageable.setFilters(filters);
     model.addAttribute("page", tenantInfoService.findPage(pageable));
     return "/tenantInfo/list";
   }

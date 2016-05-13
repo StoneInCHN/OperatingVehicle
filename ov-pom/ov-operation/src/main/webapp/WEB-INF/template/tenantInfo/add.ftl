@@ -124,7 +124,7 @@ $().ready(function() {
 									<span class="requiredField">*</span>${message("ov.tenantInfo.address")}:
 								</th>
 								<td>
-									<input type="text" name="address" class="text" maxlength="20" />
+									<input type="text" name="address" class="text" maxlength="100" />
 								</td>
 							</tr>
 							
@@ -133,13 +133,13 @@ $().ready(function() {
 									<span class="requiredField">*</span>${message("ov.tenantInfo.email")}:
 								</th>
 								<td>
-									<input type="text" name="email" class="text" maxlength="20" />
+									<input type="text" name="email" class="text" maxlength="60" />
 								</td>
 							</tr>
 							
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.tenantInfo.description")}:
+									&nbsp;${message("ov.tenantInfo.description")}:
 								</th>
 								<td>
 									<input type="text" name="description" class="text" maxlength="20" />
@@ -147,7 +147,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.tenantInfo.ownerName")}:
+									&nbsp;${message("ov.tenantInfo.ownerName")}:
 								</th>
 								<td>
 									<input type="text" name="ownerName" class="text" maxlength="20" />
@@ -155,7 +155,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									${message("ov.apply.versionConfig")}:
+									<span class="requiredField">*</span>${message("ov.apply.versionConfig")}:
 								</th>
 								<td>
 									<select name="versionConfigId">
@@ -181,7 +181,7 @@ $().ready(function() {
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.tenantInfo.remark")}:
+									&nbsp;${message("ov.tenantInfo.remark")}:
 								</th>
 								<td>
 									<input type="text" name="remark" class="text" maxlength="200" />
