@@ -20,6 +20,7 @@ import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.paging.Pageable;
 import com.ov.service.AdminService;
 import com.ov.service.AreaService;
+import com.ov.service.IdentifierService;
 import com.ov.service.TenantInfoService;
 import com.ov.service.VersionConfigService;
 
@@ -30,8 +31,8 @@ public class TenantInfoController extends BaseController {
   @Resource(name = "tenantInfoServiceImpl")
   private TenantInfoService tenantInfoService;
 
-//  @Resource(name = "identifierServiceImpl")
-//  private IdentifierService identifierService;
+  @Resource(name = "identifierServiceImpl")
+  private IdentifierService identifierService;
   
   @Resource(name = "areaServiceImpl")
   private AreaService areaService;
@@ -59,9 +60,8 @@ public class TenantInfoController extends BaseController {
     if (!isValid(tenantInfo)) {
       return ERROR_VIEW;
     }
-//    tenantInfo.setOrgCode(identifierService.getLatestOrgCode());
-//    tenantInfo.setIsHaveAccount(false);
-//    tenantInfo.setArea(areaService.find(areaId));
+    tenantInfo.setOrgCode(identifierService.getLatestOrgCode());
+    tenantInfo.setIsHaveAccount(false);
     tenantInfo.setVersionConfig(versionConfigService.find(versionConfigId));
     tenantInfoService.save(tenantInfo);
     return "redirect:list.jhtml";

@@ -374,13 +374,19 @@ public class CommonEnum {
   /**
    * 帐号状态
    */
+  /**
+   * 帐号状态
+   */
   public enum AccountStatus {
 
     /** 帐号正常 */
     ACTIVED,
 
-    /** 帐号锁定 */
-    LOCKED
+    /** 帐号禁用 */
+    LOCKED,
+
+    /** 帐号删除 */
+    DELETE
   }
 
   /**
@@ -1281,16 +1287,6 @@ public class CommonEnum {
   }
 
   /**
-   * 人员编号
-   */
-  public enum IdentifierType {
-    /**
-     * 老人编号
-     */
-    ELDERLYINFO_IDENTIFIER
-  }
-
-  /**
    * 树节点展开状态
    * 
    * @author tanbiao
@@ -1565,5 +1561,14 @@ public class CommonEnum {
 //     */
 //    INTERFACE
   }
-  
+  /**
+   * 自增类型
+   */
+  public enum IdentifierType {
+    /**
+     * 租户机构代码自增
+     */
+    ORGCODE
+  }
+
 }

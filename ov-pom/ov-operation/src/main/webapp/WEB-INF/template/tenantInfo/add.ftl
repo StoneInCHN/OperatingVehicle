@@ -47,7 +47,7 @@ $().ready(function() {
 			},
 			contactPhone:{
 				required :true,
-				isMobile:true
+				//isMobile:true
 			},
 			versionConfigId:{
 				required :true
@@ -118,14 +118,7 @@ $().ready(function() {
 									<input type="text" name="contactPhone" class="text" maxlength="20" />
 								</td>
 							</tr>
-							<tr>
-								<th>
-									<span class="requiredField">*</span>${message("ov.tenantInfo.area")}:
-								</th>
-								<td>
-									<input type="hidden" id="areaId"  name="areaId"/>
-								</td>
-							</tr>
+							
 							<tr>
 								<th>
 									<span class="requiredField">*</span>${message("ov.tenantInfo.address")}:
@@ -134,16 +127,7 @@ $().ready(function() {
 									<input type="text" name="address" class="text" maxlength="20" />
 								</td>
 							</tr>
-							<tr>
-								<th><span class="requiredField">*</span>${message("ov.apply.pisotion.point")}:</th>
-								<td>
-									<input type="text" class="text" style="width:100px" readonly id="longitude" name="longitude" />
-									<input type="text" class="text" style="width:100px" readonly  id="latitude" name="latitude" />
-									<button type="button" class="btn btn-info " id="selectPositionPoint">
-									  ${message("ov.apply.select.pisotion.point")}
-									</button>
-								</td>
-							</tr>
+							
 							<tr>
 								<th>
 									<span class="requiredField">*</span>${message("ov.tenantInfo.email")}:
@@ -152,14 +136,7 @@ $().ready(function() {
 									<input type="text" name="email" class="text" maxlength="20" />
 								</td>
 							</tr>
-							<tr>
-								<th>
-									<span class="requiredField">*</span>${message("ov.tenantInfo.businessTime")}:
-								</th>
-								<td>
-									<input type="text" name="businessTime" class="text" maxlength="20" />
-								</td>
-							</tr>
+							
 							<tr>
 								<th>
 									<span class="requiredField">*</span>${message("ov.tenantInfo.description")}:

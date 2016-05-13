@@ -88,6 +88,11 @@ public class TenantInfo extends BaseEntity {
    * 子公司
    */
   private Set<TenantInfo> children = new HashSet<TenantInfo>();
+  
+  /**
+   * 是否已开管理员账号
+   */
+  private Boolean isHaveAccount;
 
   /**
    * 版本
@@ -269,6 +274,12 @@ public class TenantInfo extends BaseEntity {
     this.motorcades = motorcades;
   }
 
+  public Boolean getIsHaveAccount() {
+	return isHaveAccount;
+  }
 
+  public void setIsHaveAccount(Boolean isHaveAccount) {
+	this.isHaveAccount = isHaveAccount;
+  }
 
 }

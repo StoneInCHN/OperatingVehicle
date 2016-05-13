@@ -113,12 +113,6 @@
 														<a href="javascript:;" class="sort" name="isHaveAccount">${message("ov.tenantInfo.isHaveAccount")}</a>
 													</th>
 													<th>
-														<a href="javascript:;" class="sort" name="businessTime">${message("ov.tenantInfo.businessTime")}</a>
-													</th>
-													<th>
-														<a href="javascript:;" class="sort" name="area">${message("ov.tenantInfo.area")}</a>
-													</th>
-													<th>
 														<a href="javascript:;" class="sort" name="accountStatus">${message("ov.tenantInfo.accountStatus")}</a>
 													</th>
 													<th>
@@ -148,12 +142,6 @@
 														[#if tenantInfo.isHaveAccount??]
 															${message("ov.tenantInfo.isHaveAccount."+tenantInfo.isHaveAccount?string('yes','no'))} 
 														[/#if]
-													</td>
-													<td>
-														${tenantInfo.businessTime}
-													</td>
-													<td>
-														${tenantInfo.area}
 													</td>
 													<td>
 														[#if tenantInfo.accountStatus??]
