@@ -23,6 +23,7 @@ import com.ov.entity.Role;
 import com.ov.entity.TenantAccount;
 import com.ov.entity.TenantInfo;
 import com.ov.entity.VersionConfig;
+import com.ov.entity.commonenum.CommonEnum.SystemType;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.service.impl.BaseServiceImpl;
@@ -82,9 +83,9 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
     Role role = new Role();
     role.setIsSystem(false);
     role.setTenantID(tenantAccount.getTenantID());
-    role.setDescription("超级管理员");
-    role.setName("管理员");
-//    role.setSystemType(SystemType.ENTERPRISE);
+    role.setDescription("租户管理员");
+    role.setName("租户管理员");
+    role.setSystemType(SystemType.ENTERPRISE);
     VersionConfig versionConfig = tenantInfo.getVersionConfig();
     Set<ConfigMeta> configMetas = versionConfig.getConfigMeta();
     Set<ConfigMeta> configMetatemps = new HashSet<ConfigMeta>();
@@ -123,7 +124,7 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
 
 //    mailService.send(tenantInfo.getEmail(), subject, message);
   //  mailService.send("676397876@qq.com", subject, message);
-//    tenantInfo.setIsHaveAccount(true);
+    tenantInfo.setIsHaveAccount(true);
      tenantInfoDao.merge(tenantInfo);
   }
 

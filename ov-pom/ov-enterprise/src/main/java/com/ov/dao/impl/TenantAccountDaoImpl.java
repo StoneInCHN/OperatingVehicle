@@ -61,10 +61,9 @@ public class TenantAccountDaoImpl extends BaseDaoImpl<TenantAccount, Long> imple
   public TenantAccount findByNameAndOrgCode(String username, String orgCode) {
     try {
       String jpql =
-          "select tenantAccount from TenantAccount tenantAccount,TenantInfo tenantInfo where tenantAccount.tenantID = tenantInfo.id and tenantInfo.orgCode = :orgCode and tenantAccount.userName = :username";
+          "select tenantAccount from TenantAccount tenantAccount,TenantInfo tenantInfo where tenantAccount.tenantID = tenantInfo.id and tenantAccount.userName = :username";
       return entityManager.createQuery(jpql, TenantAccount.class)
-          .setFlushMode(FlushModeType.COMMIT).setParameter("username", username)
-          .setParameter("orgCode", orgCode).getSingleResult();
+          .setFlushMode(FlushModeType.COMMIT).setParameter("username", username).getSingleResult();
     } catch (NoResultException e) {
       return null;
     }
