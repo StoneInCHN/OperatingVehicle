@@ -51,9 +51,6 @@ $().ready(function() {
 			form.submit();
 		}
 	});
-	[#if resMessage.content??]
-		alert("${message("${resMessage.content}")}");
-	[/#if]
 	
 });
 </script>

@@ -175,6 +175,9 @@
 <script type="text/javascript" src="${base}/resources/js/custom.js"></script>
 <script type="text/javascript" src="${base}/resources/js/resize.js"></script>
 <script type="text/javascript">
+	function iframeRefresh(src){
+		$('#iframe').attr('src',src);
+	}
 	$(function(){
 		var $sub_li = $(".sub_ul li");
 		$sub_li.click(function(){

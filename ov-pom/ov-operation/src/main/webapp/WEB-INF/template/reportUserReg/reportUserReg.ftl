@@ -81,7 +81,7 @@
 		            x: -20 //center
 		        },
 		        subtitle: {
-		            text: '来源: 车生活',
+		            text: '来源: 车队',
 		            x: -20
 		        },
 		        xAxis: {

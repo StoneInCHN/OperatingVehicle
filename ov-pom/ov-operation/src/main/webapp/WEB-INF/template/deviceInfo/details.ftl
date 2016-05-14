@@ -136,6 +136,16 @@
 								</td>
 							</tr>
 						</table>
+						<table class="input">
+							<tr>
+								<th>
+									&nbsp;
+								</th>
+								<td>
+									<input type="button" class="button" value="${message("ov.common.back")}" onclick="location.href='list.jhtml'" />
+								</td>
+							</tr>
+						</table>
                   </div>
                 </div>
               </div>  

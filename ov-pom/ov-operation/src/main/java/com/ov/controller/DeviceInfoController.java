@@ -31,7 +31,7 @@ import com.ov.service.DeviceInfoService;
 import com.ov.service.DeviceTypeService;
 //import com.ov.service.DistributorService;
 import com.ov.service.TenantInfoService;
-//import com.ov.utils.ExcelUtils;
+import com.ov.utils.ExcelUtils;
 
 @RequestMapping("console/deviceInfo")
 @Controller("deviceInfoController")
@@ -239,11 +239,11 @@ public class DeviceInfoController extends BaseController {
       String fileSuffix = device.getFile().getOriginalFilename().split("\\.")[1];
       List<DeviceInfo> devices = null;
 
-//      if (fileSuffix.toUpperCase().equals("XLS")) {
-//        devices = ExcelUtils.processingExcel_XLS(device.getFile().getInputStream());
-//      } else if (fileSuffix.toUpperCase().equals("XLSX")) {
-//        devices = ExcelUtils.processingExcel_XLSX(device.getFile().getInputStream());
-//      }
+      if (fileSuffix.toUpperCase().equals("XLS")) {
+        devices = ExcelUtils.processingExcel_XLS(device.getFile().getInputStream());
+      } else if (fileSuffix.toUpperCase().equals("XLSX")) {
+        devices = ExcelUtils.processingExcel_XLSX(device.getFile().getInputStream());
+      }
 
       model.addAttribute("device", device);
 
