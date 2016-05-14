@@ -28,10 +28,10 @@ public class CommonEnum {
      * 初始状态
      */
     INITED,
-    /**
-     * 下发
-     */
-    SENDOUT,
+//    /**
+//     * 下发
+//     */
+//    SENDOUT,
     /**
      * 已出库
      */

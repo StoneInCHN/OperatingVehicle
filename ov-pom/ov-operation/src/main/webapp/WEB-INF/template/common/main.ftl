@@ -153,6 +153,23 @@
 		  <iframe  id="iframe" name="iframe" marginheight="0" marginwidth="0" frameborder="0" style="width:100%"scrolling="no" src="../account/accountInfo.jhtml" "></iframe>
 	 </div>
 </div>
+<div class="modal fade" id="operationModal" tabindex="-1" role="dialog" aria-labelledby="operationModalLabel" >
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title"></h4>
+	      </div>
+	      <div class="modal-body" style="margin:0;padding:0">
+	      	 <iframe  id="operationModalIframe" marginheight="0" marginwidth="0" frameborder="0" style="width:100%"scrolling="no"></iframe>
+	      </div>
+	      <div class="modal-footer">
+	        <button id="operationModalCancle" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button id="operationModalOK" type="button" class="btn btn-primary" data-dismiss="modal">确定</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 <script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
 <script type="text/javascript" src="${base}/resources/js/bootstrap.js"></script>
 <script type="text/javascript" src="${base}/resources/js/custom.js"></script>

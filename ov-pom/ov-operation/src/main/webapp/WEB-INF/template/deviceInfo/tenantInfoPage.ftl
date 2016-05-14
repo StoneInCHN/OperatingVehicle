@@ -115,7 +115,7 @@
 			}
 		});
 		
-	  $operationModalOK .click(function(){
+	  $operationModalOK.click(function(){
 	  	var $checkedIds = $("#listTable input[name='tenantInfoIds']:checked");
 	  	if($checkedIds.length <1){
 	  		return ;
@@ -126,13 +126,12 @@
 	  		"tenantInfoIds":tenantInfoIds,
 	  		"ids":$deviceIds
 	  	};
-	  	$.post("provide4distributor.jhtml", datas,
+	  	$.post("provideDevice.jhtml", datas,
 		   function(result){
-		    	alert(result.content)
 		    	if(result.type != "success"){
 		    		return false;
 		    	}
-		    	parent.iframeRefresh("../deviceInfo/list4distributor.jhtml");
+		    	parent.iframeRefresh("../deviceInfo/list.jhtml");
 		   });
 	  })
 	})

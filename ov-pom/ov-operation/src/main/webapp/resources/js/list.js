@@ -35,6 +35,7 @@ $().ready( function() {
 	var $promotionButton = $("#promotionButton");
 	var $backButton = $("#backButton");
 	var $batchAuditButton = $("#batchAuditButton");
+	var $deviceProvide = $("#deviceProvide");
 	
 	
 	
@@ -330,6 +331,7 @@ $().ready( function() {
 				$deleteButtonFirst.removeClass("disabled");
 			//	$deleteSpecialButton.removeClass("disabled");
 			//	$sendSelectedButton.removeClass("disabled");
+				$deviceProvide.removeClass("disabled");
 				$promptButton.removeClass("disabled");
 				$marketButton.removeClass("disabled");
 				$promotionButton.removeClass("disabled");
@@ -339,12 +341,14 @@ $().ready( function() {
 			} else {
 				$deleteButton.addClass("disabled");
 				$deleteButtonFirst.addClass("disabled");
+				$deviceProvide.addClass("disabled");
 			//	$deleteSpecialButton.addClass("disabled");
 			//	$sendSelectedButton.addClass("disabled");
 			}
 		} else {
 			$enabledIds.prop("checked", false);
 			$deleteButton.addClass("disabled");
+			$deviceProvide.addClass("disabled");
 		//	$deleteSpecialButton.addClass("disabled");
 		//	$sendSelectedButton.addClass("disabled");
 			$promptButton.addClass("disabled");
@@ -363,6 +367,7 @@ $().ready( function() {
 			$this.closest("tr").addClass("selected");
 			$deleteButton.removeClass("disabled");
 			$deleteButtonFirst.removeClass("disabled");
+			$deviceProvide.removeClass("disabled");
 		//	$deleteSpecialButton.removeClass("disabled");
 		//	$sendSelectedButton.removeClass("disabled");
 			$marketButton.removeClass("disabled");
@@ -375,6 +380,7 @@ $().ready( function() {
 			if ($("#listTable input[name='ids']:enabled:checked").size() > 0) {
 				$deleteButton.removeClass("disabled");
 				$deleteButtonFirst.removeClass("disabled");
+				$deviceProvide.removeClass("disabled");
 			//	$deleteSpecialButton.removeClass("disabled");
 			//	$sendSelectedButton.removeClass("disabled");
 				$marketButton.removeClass("disabled");
@@ -386,6 +392,7 @@ $().ready( function() {
 				$deleteButton.addClass("disabled");
 			//	$deleteSpecialButton.addClass("disabled");
 				$deleteButtonFirst.addClass("disabled");
+				$deviceProvide.addClass("disabled");
 			//	$sendSelectedButton.addClass("disabled");
 				$marketButton.addClass("disabled");
 				$promotionButton.addClass("disabled");
@@ -455,10 +462,10 @@ $().ready( function() {
 	}
 	
 	// 列表查询
-	if (location.search != "") {
-		addCookie("listQuery", location.search);
-	} else {
-		removeCookie("listQuery");
-	}
+//	if (location.search != "") {
+//		addCookie("listQuery", location.search);
+//	} else {
+//		removeCookie("listQuery");
+//	}
 
 });

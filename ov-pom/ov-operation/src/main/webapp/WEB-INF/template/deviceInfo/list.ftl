@@ -14,6 +14,63 @@
   <!--[if lt IE 9]>
   <script src="${base}/resources/js/html5shim.js"></script>
   <![endif]-->
+  <script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
+<script type="text/javascript" src="${base}/resources/js/bootstrap.js"></script>
+<script type="text/javascript" src="${base}/resources/js/common.js"></script>
+<script type="text/javascript" src="${base}/resources/js/list.js"></script>
+<script type="text/javascript" src="${base}/resources/js/custom.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+
+	var $listForm = $("#listForm");
+	var $filterSelect = $("#filterSelect");
+	var $filterOption = $("#filterOption a");
+	var $deviceProvide = $("#deviceProvide");
+	var $deviceStatus = $("#deviceStatus");
+	var $batchdAddButton = $("#batchdAddButton");
+	
+	$batchdAddButton.click(function(){
+		location.href="batchAdd.jhtml";
+	})
+	
+	$deviceProvide.click(function(){
+		var $deviceBinding = window.parent.$('#operationModal');
+		var $operationModalIframe= window.parent.$('#operationModalIframe');
+		$deviceBinding.find(".modal-title").text("设备发放");
+		$deviceBinding.modal("show");
+		$deviceBinding.attr("data-ids","&"+$("#listTable input[name='ids']:checked").serialize());
+		$operationModalIframe.attr("src","${base}/console/deviceInfo/tenantInfoPage.jhtml");
+		$operationModalIframe.css("height",380);
+	
+	})
+	
+	// 筛选
+	$filterSelect.mouseover(function() {
+		var $this = $(this);
+		var offset = $this.offset();
+		var $menuWrap = $this.closest("div.menuWrap");
+		var $popupMenu = $menuWrap.children("div.popupMenu");
+		$popupMenu.css({left: offset.left - 20, top: offset.top + $this.height() + 2}).show();
+		$menuWrap.mouseleave(function() {
+			$popupMenu.hide();
+		});
+	});
+	
+	// 筛选选项
+	$filterOption.click(function() {
+		var $this = $(this);
+		var $dest = $("#" + $this.attr("name"));
+		if ($this.hasClass("checked")) {
+			$dest.val("");
+		} else {
+			$dest.val($this.attr("val"));
+		}
+		$listForm.submit();
+		return false;
+	});
+
+});
+</script>
 </head>
 <body>
 <div class="mainbar">
@@ -157,9 +214,9 @@
 												<tr>
 													<td>
 														[#if deviceInfo.deviceStatus?? && deviceInfo.deviceStatus == "INITED"]
-														  <input type="checkbox"  name="ids"  title="${message("ov.role.deleteSystemNotAllowed")}"  value="${deviceInfo.id}" />
+														  <input type="checkbox"  name="ids" value="${deviceInfo.id}" />
 														[#else]
-															<input type="checkbox"  name="ids"  title="${message("ov.role.deleteSystemNotAllowed")}" disabled="disabled" value="${deviceInfo.id}" />
+															<input type="checkbox"  name="ids"  title="${message("ov.deviceInfo.deleteNotAllowed")}" disabled="disabled" value="${deviceInfo.id}" />
 														[/#if]
 													</td>
 													<td>
@@ -216,63 +273,5 @@
 				</div>
 			</form>
 </div>
-
-<script type="text/javascript" src="${base}/resources/js/jquery.js"></script>
-<script type="text/javascript" src="${base}/resources/js/bootstrap.js"></script>
-<script type="text/javascript" src="${base}/resources/js/common.js"></script>
-<script type="text/javascript" src="${base}/resources/js/list.js"></script>
-<script type="text/javascript" src="${base}/resources/js/custom.js"></script>
-<script type="text/javascript">
-$().ready(function() {
-
-	var $listForm = $("#listForm");
-	var $filterSelect = $("#filterSelect");
-	var $filterOption = $("#filterOption a");
-	var $deviceProvide = $("#deviceProvide");
-	var $deviceStatus = $("#deviceStatus");
-	var $batchdAddButton = $("#batchdAddButton");
-	
-	$batchdAddButton.click(function(){
-		location.href="batchAdd.jhtml";
-	})
-	
-	$deviceProvide.click(function(){
-		var $deviceBinding = window.parent.$('#operationModal');
-		var $operationModalIframe= window.parent.$('#operationModalIframe');
-		$deviceBinding.find(".modal-title").text("设备发放");
-		$deviceBinding.modal("show");
-		$deviceBinding.attr("data-ids","&"+$("#listTable input[name='ids']:checked").serialize());
-		$operationModalIframe.attr("src","${base}/console/deviceInfo/deviceProvide.jhtml");
-		$operationModalIframe.css("height",380);
-	
-	})
-	
-	// 筛选
-	$filterSelect.mouseover(function() {
-		var $this = $(this);
-		var offset = $this.offset();
-		var $menuWrap = $this.closest("div.menuWrap");
-		var $popupMenu = $menuWrap.children("div.popupMenu");
-		$popupMenu.css({left: offset.left - 20, top: offset.top + $this.height() + 2}).show();
-		$menuWrap.mouseleave(function() {
-			$popupMenu.hide();
-		});
-	});
-	
-	// 筛选选项
-	$filterOption.click(function() {
-		var $this = $(this);
-		var $dest = $("#" + $this.attr("name"));
-		if ($this.hasClass("checked")) {
-			$dest.val("");
-		} else {
-			$dest.val($this.attr("val"));
-		}
-		$listForm.submit();
-		return false;
-	});
-
-});
-</script>
 </body>
 </html>
