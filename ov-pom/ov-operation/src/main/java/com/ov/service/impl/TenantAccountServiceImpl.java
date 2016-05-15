@@ -33,6 +33,7 @@ import com.ov.service.MailService;
 import com.ov.service.TenantAccountService;
 import com.ov.utils.CommonUtils;
 import com.ov.utils.SpringUtils;
+import com.ov.utils.UcpaasUtil;
 
 @Service("tenantAccountServiceImpl")
 public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Long> implements
@@ -117,7 +118,7 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
      tenantAccountDao.persist(tenantAccount);
     // send password
      //短信
-   //  UcpaasUtil.SendAccountBySms(tenantInfo.getContactPhone(), tenantInfo.getOrgCode(), tenantAccount.getUserName(), password);
+     UcpaasUtil.SendAccountBySms(tenantInfo.getContactPhone(), tenantInfo.getOrgCode(), tenantAccount.getUserName(), password);
     
      // 邮件
     String subject = SpringUtils.getMessage("ov.tenantAccount.password.subject");

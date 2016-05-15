@@ -9,7 +9,7 @@
 	<setting name="identifierLength4OrgCode" value="6" />
 		<!-- 分销商角色默认id -->
 	<setting name="defaultDistributorRoleId" value="20" />
-	<setting name="siteName" value="车生活" />
+	<setting name="siteName" value="车队" />
 	<setting name="smtpFromMail" value="dalu_zhanglu@163.com" />
 	<setting name="smtpHost" value="smtp.163.com" />
 	<setting name="smtpPort" value="25" />
@@ -17,5 +17,17 @@
 	<setting name="smtpPassword" value="password" />
 		<!-- 商家登陆地址(多租户系统地址) -->
 	<setting name="tenantLoginUrl" value="http://ov.chcws.com/login.jsp" />	
+		<!-- 短信平台AccountId -->
+	<setting name="ucpaasSid" value="0f6224e13d9e6db1b6865597d882110c" />
+		<!-- 短信平台Token -->
+	<setting name="ucpaasToken" value="e345eb6f22e3dfbb159af16ffd76a98d" />
+		<!-- 短信平台发送商家账户信息短信模板ID -->
+	<setting name="ucpaasAccountTemplate" value="23350" />
+		<!-- 短信平台URL -->
+	<setting name="ucpaasUrl" value="https://api.ucpaas.com" />
+		<!-- 短信平台AppId -->
+	<setting name="ucpaasAppId" value="df85e93baacd4ae4aba1f55e9acb5130" />
+		<!-- 短信平台SoftVersion -->
+	<setting name="ucpaasVersion" value="2014-06-30" />
 </ov>	
 	
