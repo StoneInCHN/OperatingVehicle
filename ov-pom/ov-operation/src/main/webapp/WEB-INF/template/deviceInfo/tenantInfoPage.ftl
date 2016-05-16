@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="mainbar">
-			<form id="listForm" action="tenantInfoList4distributor.jhtml" method="get">
+			<form id="listForm" action="tenantInfoPage.jhtml" method="get">
 				  <div class="container operation">
 					<div class="row">
 						  <div class="col-xs-12 col-md-12 col-lg-12">
