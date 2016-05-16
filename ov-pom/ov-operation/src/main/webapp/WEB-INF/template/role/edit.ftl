@@ -60,13 +60,13 @@ $().ready(function() {
 		rules: {
 			name:{
 				required: true,
-				//remote: {
-					//url: "checkName.jhtml",
-					//cache: false,
-					//data:{
-						//id:${role.id}
-					//}
-				//}
+				remote: {
+					url: "check_roleName.jhtml",
+					cache: false,
+					data:{
+						id:${role.id}
+					}
+				}
 			},
 			authorities: "required",
 			description:{
