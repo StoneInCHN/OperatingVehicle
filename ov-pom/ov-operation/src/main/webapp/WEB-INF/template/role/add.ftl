@@ -59,10 +59,10 @@ $().ready(function() {
 		rules: {
 			name:{
 				required: true,
-				//remote: {
-					//url: "checkName.jhtml",
-					//cache: false
-				//}
+				remote: {
+					url: "check_roleName.jhtml",
+					cache: false
+				}
 			},
 			authorities: "required",
 			description:{

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ov.entity.Role;
 import com.ov.dao.RoleDao;
+import com.ov.dao.TenantAccountDao;
 import com.ov.service.RoleService;
 import com.ov.framework.service.impl.BaseServiceImpl;
 
@@ -16,4 +17,11 @@ public class RoleServiceImpl extends BaseServiceImpl<Role,Long> implements RoleS
       public void setBaseDao(RoleDao roleDao) {
          super.setBaseDao(roleDao);
   }
+      @Resource(name = "roleDaoImpl")
+      private RoleDao roleDao;
+      
+      @Override
+      public boolean roleNameExists(String name) {
+        return roleDao.roleNameExists(name);
+      }
 }

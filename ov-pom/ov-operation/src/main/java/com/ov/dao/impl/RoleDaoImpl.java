@@ -1,20 +1,24 @@
 package com.ov.dao.impl; 
 
-import java.util.List;
+import javax.persistence.FlushModeType;
 
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.search.Filter;
-import org.apache.lucene.search.Query;
 import org.springframework.stereotype.Repository; 
 
 import com.ov.entity.Role;
 import com.ov.framework.dao.impl.BaseDaoImpl;
-import com.ov.framework.paging.Page;
-import com.ov.framework.paging.Pageable;
 import com.ov.dao.RoleDao;
 @Repository("roleDaoImpl")
 public class RoleDaoImpl extends  BaseDaoImpl<Role,Long> implements RoleDao {
 
- 
-
+  @Override
+  public boolean roleNameExists(String name) {
+    if (name == null) {
+      return false;
+    }
+    String jpql = "select count(*) from Role role where lower(role.name) = lower(:name)";
+    Long count =
+        entityManager.createQuery(jpql, Long.class).setFlushMode(FlushModeType.COMMIT)
+            .setParameter("name", name).getSingleResult();
+    return count > 0;
+  }
 }

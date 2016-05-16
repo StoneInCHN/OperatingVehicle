@@ -27,8 +27,9 @@ $().ready(function() {
 				required: true,
 				email: true
 			},
-			roleIds: "required",
-			adminStatus: "required"
+			accoutStatus: {
+				required: true
+			}
 		}
 	});
 

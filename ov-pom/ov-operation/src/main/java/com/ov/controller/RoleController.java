@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -104,5 +105,18 @@ public class RoleController extends BaseController {
     }
     return SUCCESS_MESSAGE;
   }
-
+  /**
+   * 检查角色名是否存在
+   */
+  @RequestMapping(value = "/check_roleName", method = RequestMethod.GET)
+  public @ResponseBody boolean checkRoleName(String name) {
+    if (StringUtils.isEmpty(name)) {
+      return false;
+    }
+    if (roleService.roleNameExists(name)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

@@ -5,4 +5,6 @@ import com.ov.framework.service.BaseService;
 
 public interface RoleService extends BaseService<Role,Long>{
 
+  boolean roleNameExists(String name);
+
 }
