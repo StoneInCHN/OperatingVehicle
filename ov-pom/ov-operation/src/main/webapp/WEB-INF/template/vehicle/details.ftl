@@ -44,7 +44,7 @@
 						<table class="input tabContent">
                      		<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.vehicleNo")}:
+									${message("ov.vehicle.vehicleNo")}:
 								</th>
 								<td>
 									${vehicle.vehicleNo}
@@ -52,7 +52,7 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.color")}:
+									${message("ov.vehicle.color")}:
 								</th>
 								<td>
 									${vehicle.color}
@@ -60,31 +60,16 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.device")}:
+									${message("ov.vehicle.device")}:
 								</th>
 								<td>
-									${vehicle.device}
+									[${message("ov.deviceInfo.deviceNo")}:${vehicle.device.deviceNo}]
+									[${message("ov.deviceInfo.simNo")}:${vehicle.device.simNo}]
 								</td>
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.drivingLicense")}:
-								</th>
-								<td>
-									${vehicle.drivingLicense}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.isDefault")}:
-								</th>
-								<td>
-									${vehicle.isDefault}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.plate")}:
+									${message("ov.vehicle.plate")}:
 								</th>
 								<td>
 									${vehicle.plate}
@@ -92,15 +77,7 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.vin")}:
-								</th>
-								<td>
-									${vehicle.vin}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.dashboardMileage")}:
+									${message("ov.vehicle.dashboardMileage")}:
 								</th>
 								<td>
 									${vehicle.dashboardMileage}
@@ -108,7 +85,7 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.dashboardBV")}:
+									${message("ov.vehicle.dashboardBV")}:
 								</th>
 								<td>
 									${vehicle.dashboardBV}
@@ -116,7 +93,7 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.dashboradOil")}:
+									${message("ov.vehicle.dashboradOil")}:
 								</th>
 								<td>
 									${vehicle.dashboradOil}
@@ -124,7 +101,7 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.vehicleFullBrand")}:
+									${message("ov.vehicle.vehicleFullBrand")}:
 								</th>
 								<td>
 									[#if vehicle.vehicleFullBrand??]
@@ -134,7 +111,7 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.trafficInsuranceExpiration")}:
+									${message("ov.vehicle.trafficInsuranceExpiration")}:
 								</th>
 								<td>
 									[#if vehicle.trafficInsuranceExpiration??]
@@ -144,7 +121,7 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.commercialInsuranceExpiration")}:
+									${message("ov.vehicle.commercialInsuranceExpiration")}:
 								</th>
 								<td>
 									[#if vehicle.commercialInsuranceExpiration??]
@@ -155,7 +132,7 @@
 							
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.produceDate")}:
+									${message("ov.vehicle.produceDate")}:
 								</th>
 								<td>
 									${vehicle.produceDate}
@@ -163,11 +140,11 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>${message("ov.vehicle.endUser")}:
+									${message("ov.vehicle.tenantName")}:
 								</th>
 								<td>
-									[#if vehicle.endUser??]
-										<a href="../endUser/details.jhtml?id=${vehicle.endUser.id}" target="3">${vehicle.endUser.userName}</a>
+									[#if vehicle.tenantInfo??]
+										${vehicle.tenantInfo.tenantName}</a>
 									[/#if]
 								</td>
 							</tr>

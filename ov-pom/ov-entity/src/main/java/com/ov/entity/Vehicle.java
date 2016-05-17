@@ -1,6 +1,5 @@
 package com.ov.entity;
 
-import java.awt.Image;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -29,7 +28,7 @@ import com.ov.entity.commonenum.CommonEnum.VehicleStatus;
 import com.ov.lucene.VehicleDeviceBridgeImpl;
 
 /**
- * The persistent class for the csh_vehicle database table.
+ * The persistent class for the ov_vehicle database table.
  * 
  */
 @Indexed(index = "vehicle")
@@ -59,18 +58,11 @@ public class Vehicle extends BaseEntity {
    */
   private String color;
 
-  /**
-   * 是否默认显示
-   */
-  private Boolean isDefault;
 
   /**
    * 车牌号
    */
   private String plate;
-
-
-  private String vin;
 
   /**
    * 仪表盘里程
@@ -228,12 +220,6 @@ public void setOilType(OilType oilType) {
       impl = IKAnalyzer.class))
   @JsonProperty
   public String getVehicleFullBrand() {
-//    VehicleLine vl = vehicleBrandDetail.getVehicleLine();
-//    vehicleFullBrand = vl.getName();
-//    if (vl.getParent() != null) {
-//      VehicleLine vl_parent = vl.getParent();
-//      vehicleFullBrand = vl_parent.getName() + "-" + vehicleFullBrand;
-//    }
     return vehicleFullBrand;
   }
 
@@ -260,14 +246,6 @@ public void setOilType(OilType oilType) {
     this.color = color;
   }
 
-  public Boolean getIsDefault() {
-    return isDefault;
-  }
-
-  public void setIsDefault(Boolean isDefault) {
-    this.isDefault = isDefault;
-  }
-
   @JsonProperty
   @Field(store = Store.NO,index = org.hibernate.search.annotations.Index.UN_TOKENIZED)
   public String getPlate() {
@@ -276,14 +254,6 @@ public void setOilType(OilType oilType) {
 
   public void setPlate(String plate) {
     this.plate = plate;
-  }
-
-  public String getVin() {
-    return vin;
-  }
-
-  public void setVin(String vin) {
-    this.vin = vin;
   }
   
   @Index(name = "index_vehicle_tenantid")
