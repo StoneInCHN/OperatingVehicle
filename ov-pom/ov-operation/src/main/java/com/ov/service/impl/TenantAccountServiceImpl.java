@@ -116,19 +116,15 @@ public class TenantAccountServiceImpl extends BaseServiceImpl<TenantAccount, Lon
     tenantAccount.setRoles(roles);
 
      tenantAccountDao.persist(tenantAccount);
-    // send password
-     //短信
-     UcpaasUtil.SendAccountBySms(tenantInfo.getContactPhone(), tenantInfo.getOrgCode(), tenantAccount.getUserName(), password);
+
+    //发送短信通知
+    UcpaasUtil.SendAccountBySms(tenantInfo.getContactPhone(), tenantInfo.getOrgCode(), tenantAccount.getUserName(), password);
     
-     // 邮件
+    //发送邮件通知
     String subject = SpringUtils.getMessage("ov.tenantAccount.password.subject");
-//    String message =
-//        SpringUtils.getMessage("ov.tenantAccount.password.message", tenantAccount.getRealName(),tenantAccount.getUserName(),
-//            password,tenantInfo.getOrgCode());
-    Setting setting = SettingUtils.get();
     String message =
         SpringUtils.getMessage("ov.tenantAccount.password.message",tenantInfo.getTenantName() ,tenantAccount.getUserName(),
-            password,tenantInfo.getOrgCode(),setting.getTenantLoginUrl());
+            password,tenantInfo.getOrgCode(),UcpaasUtil.setting.getTenantLoginUrl());
     
     mailService.send(tenantInfo.getEmail(), subject, message);
     tenantInfo.setIsHaveAccount(true);
