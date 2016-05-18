@@ -251,11 +251,11 @@ $(function(){
 	      	  {title:message("ov.vehicle.vehicleFullBrand"),field:"vehicleFullBrand",sortable:true},
 		      {title:message("ov.vehicle.device"),field:"deviceNo",width:100,sortable:false},
 		      {title:message("ov.vehicle.plateDate"),field:"plateDate",width:100,sortable:true,formatter: function(value,row,index){
-					return new Date(value).Format("yyyy-MM-dd:hh:mm:ss");
+					return new Date(value).Format("yyyy-MM-dd");
 				}
 		      },
 		      {title:message("ov.vehicle.produceDate"),field:"produceDate",width:100,sortable:true,formatter: function(value,row,index){
-					return new Date(value).Format("yyyy-MM-dd:hh:mm:ss");
+					return new Date(value).Format("yyyy-MM-dd");
 				}
 		      }
 		   ]

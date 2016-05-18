@@ -63,8 +63,7 @@
 								        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">${message("ov.common.choose")} <span class="caret"></span></button>
 								        <ul class="dropdown-menu menuWrap" id="searchPropertyOption" role="menu">
 								          <li [#if page.searchProperty == "plate" ] selected="selected" class="active" [/#if] title="plate"><a href="#">${message("ov.vehicle.plate")}</a></li>
-										  <li [#if page.searchProperty == "tenant" ] selected="selected" class="active" [/#if] title="plate"><a href="#">${message("ov.vehicle.tenant")}</a></li>
-										   <li [#if page.searchProperty == "mobileNum" ] selected="selected" class="active" [/#if] title="mobileNum"><a href="#">${message("ov.vehicle.mobileNum")}</a></li>
+										   <li [#if page.searchProperty == "vehicleNo" ] selected="selected" class="active" [/#if] title="vehicleNo"><a href="#">${message("ov.vehicle.vehicleNo")}</a></li>
 								        </ul>
 								      </div>
 								      <input type="text" class="form-control" id="searchValue" name="searchValue" value="${page.searchValue}" maxlength="200" />

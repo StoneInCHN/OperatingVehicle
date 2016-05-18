@@ -88,7 +88,7 @@
 									${message("ov.vehicle.dashboardMileage")}:
 								</th>
 								<td>
-									${vehicle.dashboardMileage}
+									${vehicle.dashboardMileage?string(',###.##')}
 								</td>
 							</tr>
 							<tr>
@@ -96,7 +96,7 @@
 									${message("ov.vehicle.dashboardBV")}:
 								</th>
 								<td>
-									${vehicle.dashboardBV}
+									${vehicle.dashboardBV?string(',###.##')}
 								</td>
 							</tr>
 							<tr>
@@ -104,7 +104,7 @@
 									${message("ov.vehicle.dashboradOil")}:
 								</th>
 								<td>
-									${vehicle.dashboradOil}
+									${vehicle.dashboradOil?string(',###.##')}
 								</td>
 							</tr>
 							<tr>

@@ -19,6 +19,7 @@ import com.ov.controller.base.BaseController;
 import com.ov.entity.Admin;
 import com.ov.entity.DeviceInfo;
 import com.ov.entity.DeviceType;
+import com.ov.entity.TenantInfo;
 //import com.ov.entity.Distributor;
 import com.ov.entity.commonenum.CommonEnum.BindStatus;
 import com.ov.entity.commonenum.CommonEnum.DeviceStatus;
@@ -104,11 +105,12 @@ public class DeviceInfoController extends BaseController {
    */
   @RequestMapping(value = "/update", method = RequestMethod.POST)
   public String update(DeviceInfo deviceInfo, Long typeId) {
-    DeviceInfo info = deviceInfoService.find(deviceInfo.getId());
+    DeviceInfo deviceInfoDB = deviceInfoService.find(deviceInfo.getId());
     DeviceType type = deviceTypeService.find(typeId);
-    info.setType(type);
-    info.setSimNo(deviceInfo.getSimNo());
-    deviceInfoService.update(info);
+    deviceInfoDB.setType(type);
+    deviceInfoDB.setDeviceNo(deviceInfo.getDeviceNo());
+    deviceInfoDB.setSimNo(deviceInfo.getSimNo());
+    deviceInfoService.update(deviceInfoDB);
     return "redirect:list.jhtml";
   }
 
@@ -207,7 +209,14 @@ public class DeviceInfoController extends BaseController {
    */
   @RequestMapping(value = "/details", method = RequestMethod.GET)
   public String details(Long id, ModelMap model) {
-    model.addAttribute("deviceInfo", deviceInfoService.find(id));
+    DeviceInfo deviceInfo = deviceInfoService.find(id);
+    model.addAttribute("deviceInfo", deviceInfo);
+    if (deviceInfo.getTenantID() != null) {
+      TenantInfo tenantInfo = tenantInfoService.find(deviceInfo.getTenantID());
+      if (tenantInfo != null) {
+        model.addAttribute("tenantName", tenantInfo.getTenantName());
+      }
+    }
     return "/deviceInfo/details";
   }
 

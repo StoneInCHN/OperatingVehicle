@@ -25,8 +25,11 @@
 	    		<td>
 	    		<input  class="easyui-textbox"  value="${vehicle.vehicleFullBrand}"/>
 	    		</td>
+	    		<th >${message('ov.vehicle.oilType')}:</th>
+	    		<td>
+	    		<input  class="easyui-textbox"  value="${message("ov.vehicle.oilType."+vehicle.oilType)}"/>
+	    		</td>
 	    	</tr>
-	    	
 	    	<tr>
 	    		<th>${message('ov.vehicle.dashboardMileage')}:</th>
 	    		<td >
@@ -57,6 +60,12 @@
 	    			 <input class="easyui-datebox"  value="${vehicle.produceDate}"/>
 	    		</td>
 	    	</tr>
+	    	<tr>
+	    		<th>${message('ov.vehicle.vehicleStatus')}:</th>
+				<td>
+					<input class="easyui-textbox"  value="${message('ov.vehicle.status.'+vehicle.vehicleStatus)}"/>
+				</td>
+			</tr>
 	    </table>
 </form>
 

@@ -112,27 +112,17 @@
 								</th>
 								<td>
 									[#if deviceInfo.vehicle ??]
-										<a href="">${deviceInfo.vehicle.plate}</a>
+										${deviceInfo.vehicle.plate}
 									[/#if]
 									
 								</td>
 							</tr>
 							<tr>
 								<th>
-									${message("ov.deviceInfo.tenantID")}:
+									${message("ov.vehicle.tenantName")}:
 								</th>
 								<td>
-									${deviceInfo.tenantID}
-								</td>
-							</tr>
-							<tr>
-								<th>
-									${message("ov.deviceInfo.distributorId")}:
-								</th>
-								<td>	
-									[#if deviceInfo.distributor ??]
-										${deviceInfo.distributor.distributorName}
-									[/#if]
+										${tenantName}
 								</td>
 							</tr>
 						</table>
