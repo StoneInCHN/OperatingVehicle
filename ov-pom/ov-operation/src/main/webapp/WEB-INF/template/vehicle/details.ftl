@@ -77,6 +77,14 @@
 							</tr>
 							<tr>
 								<th>
+									${message('ov.vehicle.vehicleStatus')}:
+								</th>
+								<td>
+									${message('ov.vehicle.status.'+vehicle.vehicleStatus)}
+								</td>
+							</tr>							
+							<tr>
+								<th>
 									${message("ov.vehicle.dashboardMileage")}:
 								</th>
 								<td>
@@ -104,9 +112,15 @@
 									${message("ov.vehicle.vehicleFullBrand")}:
 								</th>
 								<td>
-									[#if vehicle.vehicleFullBrand??]
-										<a href="../vehicleBrandDetail/details.jhtml?id=${vehicle.vehicleBrandDetail.id}" target="2">${vehicle.vehicleFullBrand}</a>
-									[/#if]
+										${vehicle.vehicleFullBrand}
+								</td>
+							</tr>
+							<tr>
+								<th>
+									${message('ov.vehicle.motorcade')}:
+								</th>
+								<td>
+										${vehicle.motorcade.motorcadeDesc}
 								</td>
 							</tr>
 							<tr>
@@ -129,7 +143,6 @@
 									[/#if]
 								</td>
 							</tr>
-							
 							<tr>
 								<th>
 									${message("ov.vehicle.produceDate")}:
@@ -138,6 +151,22 @@
 									${vehicle.produceDate}
 								</td>
 							</tr>
+							<tr>
+								<th>
+									${message("ov.vehicle.plateDate")}:
+								</th>
+								<td>
+									${vehicle.plateDate}
+								</td>
+							</tr>	
+							<tr>
+								<th>
+									${message("ov.vehicle.oilType")}:
+								</th>
+								<td>
+									${message("ov.vehicle.oilType."+vehicle.oilType)}
+								</td>
+							</tr>							
 							<tr>
 								<th>
 									${message("ov.vehicle.tenantName")}:
