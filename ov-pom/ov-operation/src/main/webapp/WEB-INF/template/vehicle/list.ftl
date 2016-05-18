@@ -100,7 +100,7 @@
 														<a href="javascript:;" class="sort" name="color">${message("ov.vehicle.color")}</a>
 													</th>
 													<th>
-														${message("ov.endUser.mobileNum")}
+														${message("ov.vehicle.tenantName")}
 													</th>
 													<th>
 														${message("ov.vehicle.device")}
@@ -126,8 +126,8 @@
 														${vehicle.color}
 													</td>
 													<td>
-														[#if vehicle.endUser??]
-															${vehicle.endUser.mobileNum}
+														[#if vehicle.tenantInfo??]
+															${vehicle.tenantInfo.tenantName}</a>
 														[#else]
 															-
 														[/#if]

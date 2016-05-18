@@ -216,8 +216,8 @@ $(function(){
 						 $('#vehicleDetail').dialog("close");
 					}
 			    }],
-			    onLoad:function(){
-			    	$('#editVehicle_form').show();
+			    onLoad:function(){		
+			    	$("#vehicleDetail_form").find("input").attr("disabled","disabled");
 			    	$("#vehicleMotorcadeDetail").combobox({
 			    		url:'../motorcade/findAllMotorcadeUnderTenant.jhtml',
 					    valueField:'id',

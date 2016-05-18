@@ -125,26 +125,6 @@
 							</tr>
 							<tr>
 								<th>
-									${message("ov.vehicle.trafficInsuranceExpiration")}:
-								</th>
-								<td>
-									[#if vehicle.trafficInsuranceExpiration??]
-										${vehicle.trafficInsuranceExpiration}
-									[/#if]
-								</td>
-							</tr>
-							<tr>
-								<th>
-									${message("ov.vehicle.commercialInsuranceExpiration")}:
-								</th>
-								<td>
-									[#if vehicle.commercialInsuranceExpiration??]
-										${vehicle.commercialInsuranceExpiration}
-									[/#if]
-								</td>
-							</tr>
-							<tr>
-								<th>
 									${message("ov.vehicle.produceDate")}:
 								</th>
 								<td>

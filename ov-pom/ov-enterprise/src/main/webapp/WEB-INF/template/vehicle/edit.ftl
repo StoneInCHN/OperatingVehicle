@@ -12,7 +12,7 @@
 	    		</td>
 	    	</tr>
 	    	<tr>
-	    		<th>${message('ov.vehicle.bindedDevice')}:</th>
+	    		<th>${message('ov.deviceInfo.deviceNO')}:</th>
 	    		<td >
 	    			 <input class="easyui-textbox" disabled="disabled" value="${vehicle.device.deviceNo}" id="editVehicle_deviceInfo" panelHeight="150px"" />
 	    		</td>
@@ -31,17 +31,17 @@
 	    	<tr>
 	    		<th>${message('ov.vehicle.dashboardMileage')}:</th>
 	    		<td >
-	    			 <input  class="easyui-textbox" value="${vehicle.dashboardMileage}" name="dashboardMileage" id= "dashboardMileage" />
+	    			 <input  class="easyui-numberbox" value="${vehicle.dashboardMileage}" name="dashboardMileage" id= "dashboardMileage" data-options="min:0,precision:1"/>
 	    		</td>
 	    		<th>${message('ov.vehicle.dashboardBV')}:</th>
 	    		<td >
-	    			 <input class="easyui-textbox" value="${vehicle.dashboardBV}" name="dashboardBV" id= "dashboardBV" />
+	    			 <input class="easyui-numberbox" value="${vehicle.dashboardBV}" name="dashboardBV" id= "dashboardBV" data-options="min:0,precision:1"/>
 	    		</td>
 	    	</tr>
 	    	<tr>
 	    		<th>${message('ov.vehicle.dashboradOil')}:</th>
 	    		<td >
-	    			 <input  class="easyui-textbox" value="${vehicle.dashboradOil}" name="dashboradOil" id= "dashboradOil"  />
+	    			 <input  class="easyui-numberbox" value="${vehicle.dashboradOil}" name="dashboradOil" id= "dashboradOil" data-options="min:0,precision:1" />
 	    		</td>
 	    		<th>${message('ov.vehicle.plateDate')}:</th>
 	    		<td >
