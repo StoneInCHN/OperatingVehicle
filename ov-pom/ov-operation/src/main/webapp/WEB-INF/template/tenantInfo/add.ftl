@@ -47,7 +47,7 @@ $().ready(function() {
 			},
 			contactPhone:{
 				required :true,
-				//isMobile:true
+				isMobile:true
 			},
 			versionConfigId:{
 				required :true
