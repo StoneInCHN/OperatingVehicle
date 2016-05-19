@@ -109,6 +109,7 @@ public class DeviceInfo extends BaseEntity {
   @JsonProperty
   @Column(unique = true,nullable=false,length=10)
   @Field(store = Store.NO, index = Index.TOKENIZED, analyzer = @Analyzer(impl = IKAnalyzer.class))
+  @org.hibernate.annotations.Index(name="deviceinfo_deviceno")
   public String getDeviceNo() {
     return deviceNo;
   }
@@ -129,6 +130,7 @@ public class DeviceInfo extends BaseEntity {
 
   @JsonProperty
   @Column(nullable=false,length=15)
+  @org.hibernate.annotations.Index(name="deviceinfo_simno")
   public String getSimNo() {
     return simNo;
   }

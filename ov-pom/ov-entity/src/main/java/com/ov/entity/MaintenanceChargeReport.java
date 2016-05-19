@@ -88,6 +88,7 @@ public class MaintenanceChargeReport extends BaseEntity{
   
   @JsonProperty
   @Temporal(TemporalType.DATE)
+  @Index(name="maintenancechargestatisticsdate")
   public Date getMaintenanceChargeStatisticsDate() {
 		return maintenanceChargeStatisticsDate;
   }

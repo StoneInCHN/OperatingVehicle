@@ -113,6 +113,7 @@ public class Role extends BaseEntity {
   @Column(nullable = false)
   @Field(store = Store.NO, index = org.hibernate.search.annotations.Index.TOKENIZED,
       analyzer = @Analyzer(impl = IKAnalyzer.class))
+  @Index(name="role_name")
   public String getName() {
     return name;
   }

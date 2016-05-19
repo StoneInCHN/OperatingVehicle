@@ -102,6 +102,7 @@ public class OilChargeReport extends BaseEntity {
 
   @JsonProperty
   @Temporal(TemporalType.DATE)
+  @Index(name="oilchargereport_oilchargereportstatisticsdate")
   public Date getOilChargeReportStatisticsDate() {
     return oilChargeReportStatisticsDate;
   }

@@ -43,10 +43,12 @@ public class DeviceType extends BaseEntity
   private Status status;
 
   private Set<DeviceInfo> deviceInfos = new HashSet<DeviceInfo> ();
+  
   @JsonProperty
   @Field(store=Store.NO,index=Index.UN_TOKENIZED)
   @FieldBridge(impl = LowCaseBridgeImpl.class)
   @Column(length=20)
+  @org.hibernate.annotations.Index(name="devicetype_name")
   public String getName ()
   {
     return name;

@@ -83,6 +83,7 @@ public class UpkeepChargeReport extends BaseEntity{
   
   @JsonProperty
   @Temporal(TemporalType.DATE)
+  @Index(name="upkeepchargereport_upkeepchargestatisticsdate")
   public Date getUpkeepChargeStatisticsDate() {
 	return upkeepChargeStatisticsDate;
   }

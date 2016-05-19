@@ -8,6 +8,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Index;
+
 import com.ov.entity.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -48,6 +50,7 @@ public class ReportDeviceBindStatistics extends BaseEntity {
 
   @JsonProperty
   @Temporal(TemporalType.DATE)
+  @Index(name="reportdevicebindstatistics_statisticsdate")
   public Date getStatisticsDate() {
     return statisticsDate;
   }

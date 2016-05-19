@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.annotations.Index;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -79,6 +80,7 @@ public class Admin extends BaseEntity {
   @NotEmpty(groups = Save.class)
   @Length(min = 2, max = 20)
   @Column(nullable = false, updatable = false, unique = true, length = 100)
+  @Index(name="admin_username")
   public String getUsername() {
     return username;
   }
@@ -123,6 +125,7 @@ public class Admin extends BaseEntity {
   @Email
   @Length(max = 200)
   @Column(nullable = false)
+  @Index(name="admin_email")
   public String getEmail() {
     return email;
   }
@@ -142,6 +145,7 @@ public class Admin extends BaseEntity {
    * @return 姓名
    */
   @Length(max = 200)
+  @Index(name="admin_name")
   public String getName() {
     return name;
   }

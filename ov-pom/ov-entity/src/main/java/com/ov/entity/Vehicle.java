@@ -248,6 +248,7 @@ public void setOilType(OilType oilType) {
 
   @JsonProperty
   @Field(store = Store.NO,index = org.hibernate.search.annotations.Index.UN_TOKENIZED)
+  @Index(name="vehicle_plate")
   public String getPlate() {
     return plate;
   }
@@ -276,6 +277,7 @@ public void setOilType(OilType oilType) {
 	}
 
 	@JsonProperty
+	@Index(name="vehicle_vehicleno")
   public String getVehicleNo() {
     return vehicleNo;
   }

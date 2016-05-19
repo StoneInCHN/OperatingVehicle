@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Index;
 import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
@@ -124,6 +125,7 @@ public class TenantInfo extends BaseEntity {
   private Set<Motorcade> motorcades = new HashSet<Motorcade>();
 
   @Column(length = 20)
+  @Index(name="tenantinfo_orgcode")
   public String getOrgCode() {
     return orgCode;
   }
@@ -145,6 +147,7 @@ public class TenantInfo extends BaseEntity {
   @JsonProperty
   @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
       impl = IKAnalyzer.class))
+  @Index(name="tenantinfo_contactphone")
   public String getContactPhone() {
     return contactPhone;
   }
@@ -157,6 +160,7 @@ public class TenantInfo extends BaseEntity {
   @JsonProperty
   @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
       impl = IKAnalyzer.class))
+  @Index(name="tenantinfo_tenantname")
   public String getTenantName() {
     return tenantName;
   }
@@ -178,6 +182,7 @@ public class TenantInfo extends BaseEntity {
   @JsonProperty
   @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
       impl = IKAnalyzer.class))
+  @Index(name="tenantinfo_contactperson")
   public String getContactPerson() {
     return contactPerson;
   }

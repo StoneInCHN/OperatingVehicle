@@ -69,6 +69,7 @@ public class VehicleMileageTotalReport extends BaseEntity {
 
   @JsonProperty
   @Temporal(TemporalType.DATE)
+  @Index(name="vehiclemileagetotalreport_vehiclemileagestatisticsdate")
   public Date getVehicleMileageStatisticsDate() {
     return vehicleMileageStatisticsDate;
   }
