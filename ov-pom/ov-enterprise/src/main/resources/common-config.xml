@@ -28,9 +28,9 @@
 		<setting name="cookiePath" value="/" />
 		<setting name="cookieDomain" value="" />
 		<!-- 内网，部署到服务器的值 -->
-		<!--<setting name="obdServerUrl" value="http://10.45.135.26:20001/ov-obd-data" />-->
+		<!--<setting name="obdServerUrl" value="http://10.45.226.135:20001/ov-obd-data" />-->
 		<!-- 外网，仅仅用于本地测试 -->
-		<setting name="obdServerUrl" value="http://139.129.5.114:20001/ov-obd-data" />
+		<setting name="obdServerUrl" value="http://120.27.24.198:20001/ov-obd-data" />
 		<setting name="vehicleOilAPIHttpUrl" value="http://apis.baidu.com/showapi_open_bus/oil_price/find" />
 		 <setting name="vehicleOilAPIKey" value="7bb8ed487692b2c2dd290d477d879236" />
 	</ov>	
