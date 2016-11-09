@@ -1,6 +1,7 @@
 <script src="${base}/resources/js/common.js"></script>
 <script src="${base}/resources/modules/vehicle.js"></script>
 <script type="text/javascript" src="${base}/resources/js/datePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="${base}/resources/js/LuShu.js"/>
 
 <div>
 	  <fieldset>
@@ -41,6 +42,7 @@
 		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain=true onclick="vehicle_manager_tool.edit();">修改</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain=true onclick="vehicle_manager_tool.remove();">删除</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain=true onclick="vehicle_manager_tool.vehicleDailyReport();">每日数据</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain=true onclick="vehicle_manager_tool.showAllVehicle();">全地图</a>
 		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-redo',plain:true" onclick="exportExcel('vehicle','vehicle-search-form','totalRecord');">导出</a>
 	</div>
 	<div class="tool-filter"></div>
@@ -129,6 +131,7 @@
 <div id="editVehicle"></div>
 <div id="vehicleDetail"></div>
 <div id="vehicleDailyReport"></div>
+<div id="allVehicleStatus"></div>
 
 
 

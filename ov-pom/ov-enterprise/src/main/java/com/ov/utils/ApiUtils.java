@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import com.ov.beans.Setting;
+import com.ov.common.log.LogUtil;
 
 
 
@@ -101,6 +102,47 @@ public final class ApiUtils {
    */
   public static String post(String url, String p_charset, String r_charset, String params) {
     return post(url, p_charset, r_charset, params.getBytes());
+  }
+
+
+  /**
+   * 按照charset格式编码读取
+   * 
+   * @param url
+   * @param p_charset 发送编码
+   * @param r_charset 接收编码
+   * @param data
+   * @return
+   */
+  public static String postJson(String url, String p_charset, String r_charset, String params) {
+    LogUtil.debug(ApiUtils.class, "post", "url:%s", url);
+    LogUtil.debug(ApiUtils.class, "post", "params:%s", params);
+    String target = "";
+    try {
+      URL add = new URL(url);
+      HttpURLConnection connection = (HttpURLConnection) add.openConnection();
+      connection.setDoOutput(true);// 设置长连接
+      connection.setDoInput(true);
+      connection.setUseCaches(false);// 设置非缓存 避免多次请求不能取到最新数据
+      connection.setRequestMethod("POST");// 请求方式
+      connection.setRequestProperty("Charset", p_charset);// 请求编码
+      connection.setConnectTimeout(TIME_OUT);// 响应超时时长
+      connection.setRequestProperty("Content-Type", "application/json");
+      connection.getOutputStream().write(params.getBytes());// 发送字节流的请求
+      connection.getOutputStream().flush();// 清空字节流
+      connection.getOutputStream().close();// 关闭请求流
+      // 获取响应字节流
+      InputStream stream = connection.getInputStream();
+      // 将流转换成reader
+      BufferedReader reader = new BufferedReader(new InputStreamReader(stream, r_charset));
+      String temp = null;
+      while ((temp = reader.readLine()) != null) {
+        target += temp;
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return target;
   }
 
   /**

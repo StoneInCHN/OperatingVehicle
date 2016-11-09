@@ -129,6 +129,7 @@ var messages = {
 		"ov.clearingRecord.list":"结算列表",
 		"ov.clearingRecord.add":"新增结算",
 		"ov.clearingRecord.totalDistance":"总路程(公里)",
+		"ov.vehicle.allVehicleStatus":"全地图车况",
 
 		//车辆轨迹
 		"ov.vehicle.track":"车辆轨迹",

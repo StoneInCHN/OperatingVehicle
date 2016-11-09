@@ -1,6 +1,8 @@
 package com.ov.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -88,7 +90,7 @@ public class Vehicle extends BaseEntity {
    * 上牌日期
    */
   private Date plateDate;
-  
+
   private Long tenantID;
 
   /**
@@ -127,12 +129,12 @@ public class Vehicle extends BaseEntity {
    * 上次保养里程
    */
   private Long lastMaintainMileage;
-  
+
   /**
    * 所属车队
    */
   private Motorcade motorcade;
-  
+
   /**
    * 状态
    */
@@ -145,27 +147,97 @@ public class Vehicle extends BaseEntity {
    * 设备号，冗余字段
    */
   private String deviceNo;
-  
+
   /**
    * 油品名称 如93#汽油，0#柴油
    */
   private OilType oilType;
-  
+
   /**
    * 电子围栏
    */
   private ElectronicRail electronicRail;
-  
-  
+
+  /**
+   * 当前车辆纬度
+   */
+  private Float lat;
+  /**
+   * 当前车辆经度
+   */
+  private Float lon;
+
+  /**
+   * 设备信息上传时间
+   */
+  private Date obdStatusTime;
+
+  /**
+   * 绑定的设备是否在线
+   */
+  private Boolean isOnline;
+
+  private Set<String> faultCodeSet = new HashSet<String>();
+
+  @Transient
+  @JsonProperty
+  public Set<String> getFaultCodeSet() {
+    return faultCodeSet;
+  }
+
+  public void setFaultCodeSet(Set<String> faultCodeSet) {
+    this.faultCodeSet = faultCodeSet;
+  }
+
+  @Transient
+  @JsonProperty
+  public Boolean getIsOnline() {
+    return isOnline;
+  }
+
+  public void setIsOnline(Boolean isOnline) {
+    this.isOnline = isOnline;
+  }
+
+  @Transient
+  @JsonProperty
+  public Date getObdStatusTime() {
+    return obdStatusTime;
+  }
+
+  public void setObdStatusTime(Date obdStatusTime) {
+    this.obdStatusTime = obdStatusTime;
+  }
+
+  @Transient
+  @JsonProperty
+  public Float getLon() {
+    return lon;
+  }
+
+  public void setLon(Float lon) {
+    this.lon = lon;
+  }
+
+  @Transient
+  @JsonProperty
+  public Float getLat() {
+    return lat;
+  }
+
+  public void setLat(Float lat) {
+    this.lat = lat;
+  }
+
   public OilType getOilType() {
-	return oilType;
-}
+    return oilType;
+  }
 
-public void setOilType(OilType oilType) {
-	this.oilType = oilType;
-}
+  public void setOilType(OilType oilType) {
+    this.oilType = oilType;
+  }
 
-@Column(length = 200)
+  @Column(length = 200)
   @JsonProperty
   public String getBrandIcon() {
     return brandIcon;
@@ -215,7 +287,7 @@ public void setOilType(OilType oilType) {
     this.lastMaintainMileage = lastMaintainMileage;
   }
 
-//  @Transient
+  // @Transient
   @Field(index = org.hibernate.search.annotations.Index.TOKENIZED, analyzer = @Analyzer(
       impl = IKAnalyzer.class))
   @JsonProperty
@@ -247,8 +319,8 @@ public void setOilType(OilType oilType) {
   }
 
   @JsonProperty
-  @Field(store = Store.NO,index = org.hibernate.search.annotations.Index.UN_TOKENIZED)
-  @Index(name="vehicle_plate")
+  @Field(store = Store.NO, index = org.hibernate.search.annotations.Index.UN_TOKENIZED)
+  @Index(name = "vehicle_plate")
   public String getPlate() {
     return plate;
   }
@@ -256,7 +328,7 @@ public void setOilType(OilType oilType) {
   public void setPlate(String plate) {
     this.plate = plate;
   }
-  
+
   @Index(name = "index_vehicle_tenantid")
   @Field(index = org.hibernate.search.annotations.Index.UN_TOKENIZED, store = Store.NO)
   public Long getTenantID() {
@@ -266,18 +338,18 @@ public void setOilType(OilType oilType) {
   public void setTenantID(Long tenantID) {
     this.tenantID = tenantID;
   }
-  
-	@ManyToOne
-	public TenantInfo getTenantInfo() {
-	  return tenantInfo;
-	}
-	
-	public void setTenantInfo(TenantInfo tenantInfo) {
-		this.tenantInfo = tenantInfo;
-	}
 
-	@JsonProperty
-	@Index(name="vehicle_vehicleno")
+  @ManyToOne
+  public TenantInfo getTenantInfo() {
+    return tenantInfo;
+  }
+
+  public void setTenantInfo(TenantInfo tenantInfo) {
+    this.tenantInfo = tenantInfo;
+  }
+
+  @JsonProperty
+  @Index(name = "vehicle_vehicleno")
   public String getVehicleNo() {
     return vehicleNo;
   }
@@ -330,37 +402,37 @@ public void setOilType(OilType oilType) {
   public void setPlateDate(Date plateDate) {
     this.plateDate = plateDate;
   }
-  
-	@JsonProperty
-	@ManyToOne(fetch = FetchType.EAGER)
-	@IndexedEmbedded
-	public Motorcade getMotorcade() {
-		return motorcade;
-	}
-	
-	public void setMotorcade(Motorcade motorcade) {
-		this.motorcade = motorcade;
-	}
-	
-	public VehicleStatus getVehicleStatus() {
-		return vehicleStatus;
-	}
 
-	public void setVehicleStatus(VehicleStatus vehicleStatus) {
-		this.vehicleStatus = vehicleStatus;
-	}
+  @JsonProperty
+  @ManyToOne(fetch = FetchType.EAGER)
+  @IndexedEmbedded
+  public Motorcade getMotorcade() {
+    return motorcade;
+  }
 
-	@OneToOne(mappedBy = "vehicle", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@Field(store = Store.NO,index=org.hibernate.search.annotations.Index.UN_TOKENIZED)
-	@FieldBridge(impl= VehicleDeviceBridgeImpl.class)
-	public DeviceInfo getDevice() {
+  public void setMotorcade(Motorcade motorcade) {
+    this.motorcade = motorcade;
+  }
+
+  public VehicleStatus getVehicleStatus() {
+    return vehicleStatus;
+  }
+
+  public void setVehicleStatus(VehicleStatus vehicleStatus) {
+    this.vehicleStatus = vehicleStatus;
+  }
+
+  @OneToOne(mappedBy = "vehicle", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+  @Field(store = Store.NO, index = org.hibernate.search.annotations.Index.UN_TOKENIZED)
+  @FieldBridge(impl = VehicleDeviceBridgeImpl.class)
+  public DeviceInfo getDevice() {
     return device;
   }
 
   public void setDevice(DeviceInfo device) {
     this.device = device;
   }
-  
+
   @JsonProperty
   @Transient
   public String getDeviceNo() {
@@ -376,14 +448,14 @@ public void setOilType(OilType oilType) {
     this.deviceNo = deviceNo;
   }
 
-  	@ManyToOne
-	public ElectronicRail getElectronicRail() {
-		return electronicRail;
-	}
-	
-	public void setElectronicRail(ElectronicRail electronicRail) {
-		this.electronicRail = electronicRail;
-	}
-  
-  
+  @ManyToOne
+  public ElectronicRail getElectronicRail() {
+    return electronicRail;
+  }
+
+  public void setElectronicRail(ElectronicRail electronicRail) {
+    this.electronicRail = electronicRail;
+  }
+
+
 }
