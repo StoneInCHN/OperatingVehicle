@@ -30,7 +30,9 @@
 								  	  <button id="track_search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
 								    </div>
 								  </fieldset>
-								<div id="vehicleTrackMap" style="height:900px;width:99%;">
+								<div id="vehicleTrack" style="height:900px;width:99%;">
+									<table id="track-table-list"></table>
+									<div id="vehicleTrackMap"/>
 								</div>
 				</div>
 		</div>

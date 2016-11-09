@@ -30,8 +30,16 @@
 		<!-- 内网，部署到服务器的值 -->
 		<!--<setting name="obdServerUrl" value="http://10.45.226.135:20001/ov-obd-data" />-->
 		<!-- 外网，仅仅用于本地测试 -->
-		<setting name="obdServerUrl" value="http://120.27.24.198:20001/ov-obd-data" />
+		<setting name="obdServerUrl" value="http://139.129.5.114:20002/ov-obd-data" />
+		<!-- <setting name="obdServerUrl" value="http://120.27.24.198:20001/ov-obd-data" /> -->
 		<setting name="vehicleOilAPIHttpUrl" value="http://apis.baidu.com/showapi_open_bus/oil_price/find" />
-		 <setting name="vehicleOilAPIKey" value="7bb8ed487692b2c2dd290d477d879236" />
+		<setting name="vehicleOilAPIKey" value="7bb8ed487692b2c2dd290d477d879236" />
+		 
+		<!-- 百度API:GPS坐标转百度坐标 -->
+		<setting name="convertMutipleMapUrl" value="http://api.map.baidu.com/geoconv/v1/"/>
+		<!-- 百度API:地址转坐标 -->
+		<setting name="convertAddressUrl" value="http://api.map.baidu.com/geocoder/v2/"/>
+		<!-- 百度API ak -->
+		<setting name="mapAk" value="ulsOtfMZcNc4D6aQnBwwnOTt6ZKohflO"/>
 	</ov>	
 	

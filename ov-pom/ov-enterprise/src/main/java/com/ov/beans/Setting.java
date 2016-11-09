@@ -95,32 +95,67 @@ public class Setting implements Serializable {
    * obd服务器路径
    */
   private String obdServerUrl;
-  
+
   /**
    * 百度实时油价api
    */
   private String vehicleOilAPIHttpUrl;
 
   private String vehicleOilAPIKey;
-  
 
-	public String getVehicleOilAPIHttpUrl() {
-		return vehicleOilAPIHttpUrl;
-	}
-	
-	public void setVehicleOilAPIHttpUrl(String vehicleOilAPIHttpUrl) {
-		this.vehicleOilAPIHttpUrl = vehicleOilAPIHttpUrl;
-	}
+  /**
+   * 百度API地址转坐标
+   */
+  private String convertAddressUrl;
 
-public String getVehicleOilAPIKey() {
-	return vehicleOilAPIKey;
-}
+  /**
+   * 百度地图api key
+   */
+  private String mapAk;
 
-public void setVehicleOilAPIKey(String vehicleOilAPIKey) {
-	this.vehicleOilAPIKey = vehicleOilAPIKey;
-}
+  private String convertMutipleMapUrl;
 
-public String getObdServerUrl() {
+  public String getConvertMutipleMapUrl() {
+    return convertMutipleMapUrl;
+  }
+
+  public void setConvertMutipleMapUrl(String convertMutipleMapUrl) {
+    this.convertMutipleMapUrl = convertMutipleMapUrl;
+  }
+
+  public String getConvertAddressUrl() {
+    return convertAddressUrl;
+  }
+
+  public void setConvertAddressUrl(String convertAddressUrl) {
+    this.convertAddressUrl = convertAddressUrl;
+  }
+
+  public String getMapAk() {
+    return mapAk;
+  }
+
+  public void setMapAk(String mapAk) {
+    this.mapAk = mapAk;
+  }
+
+  public String getVehicleOilAPIHttpUrl() {
+    return vehicleOilAPIHttpUrl;
+  }
+
+  public void setVehicleOilAPIHttpUrl(String vehicleOilAPIHttpUrl) {
+    this.vehicleOilAPIHttpUrl = vehicleOilAPIHttpUrl;
+  }
+
+  public String getVehicleOilAPIKey() {
+    return vehicleOilAPIKey;
+  }
+
+  public void setVehicleOilAPIKey(String vehicleOilAPIKey) {
+    this.vehicleOilAPIKey = vehicleOilAPIKey;
+  }
+
+  public String getObdServerUrl() {
     return obdServerUrl;
   }
 
@@ -396,9 +431,9 @@ public String getObdServerUrl() {
       if (!profilePictureUploadPath.startsWith("/")) {
         profilePictureUploadPath = "/" + profilePictureUploadPath;
       }
-//      if (!profilePictureUploadPath.endsWith("/")) {
-//        profilePictureUploadPath += "/";
-//      }
+      // if (!profilePictureUploadPath.endsWith("/")) {
+      // profilePictureUploadPath += "/";
+      // }
     }
     this.profilePictureUploadPath = profilePictureUploadPath;
   }

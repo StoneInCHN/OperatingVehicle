@@ -130,6 +130,14 @@ var messages = {
 		"ov.clearingRecord.add":"新增结算",
 		"ov.clearingRecord.totalDistance":"总路程(公里)",
 
+		//车辆轨迹
+		"ov.vehicle.track":"车辆轨迹",
+		"ov.vehicleTrack.startTime":"起始时间",
+		"ov.vehicleTrack.endTime":"结束时间",
+		"ov.vehicleTrack.time":"行驶时间",
+		"ov.vehicleTrack.startPoint":"起始地点",
+		"ov.vehicleTrack.endPoint":"结束地点",
+		"ov.vehicleTrack.mile":"里程(km)",
 		
 		//车辆信息
 		"ov.vehicle.motorcade":"车队",

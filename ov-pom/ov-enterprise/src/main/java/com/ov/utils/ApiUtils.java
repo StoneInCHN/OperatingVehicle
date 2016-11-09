@@ -198,5 +198,66 @@ public final class ApiUtils {
     return target;
   }
 
+  /**
+   * 默认按照UTF-8读取
+   * 
+   * @param url
+   * @return
+   */
+  public static String get(String url) {
+    return get(url, "UTF-8", "UTF-8", "");
+  }
+
+  /**
+   * 按照charset格式编码读取
+   * 
+   * @param url
+   * @param p_charset 发送编码
+   * @param r_charset 接收编码
+   * @param params 参数：id=1&type=0
+   * @return
+   */
+  public static String get(String url, String p_charset, String r_charset, String params) {
+    return get(url, p_charset, r_charset, params.getBytes());
+  }
+
+  /**
+   * 按照charset格式编码读取
+   * 
+   * @param url
+   * @param p_charset 发送编码
+   * @param r_charset 接收编码
+   * @param data get数据
+   * @param reqsProperty RequestProperty包头设置参数
+   * @return
+   */
+  public static String get(String url, String p_charset, String r_charset, byte[] data) {
+    String target = "";
+    try {
+      URL add = new URL(url);
+      HttpURLConnection connection = (HttpURLConnection) add.openConnection();
+      connection.setDoOutput(true);// 设置长连接
+      connection.setDoInput(true);
+      connection.setUseCaches(false);// 设置非缓存 避免多次请求不能取到最新数据
+      connection.setRequestMethod("GET");// 请求方式
+      connection.setRequestProperty("Charset", p_charset);// 请求编码
+      connection.setConnectTimeout(TIME_OUT);// 响应超时时长
+      connection.getOutputStream().write(data);// 发送字节流的请求
+      connection.getOutputStream().flush();// 清空字节流
+      connection.getOutputStream().close();// 关闭请求流
+      // 获取响应字节流
+      InputStream stream = connection.getInputStream();
+      // 将流转换成reder
+      BufferedReader reader = new BufferedReader(new InputStreamReader(stream, r_charset));
+      String temp = null;
+      while ((temp = reader.readLine()) != null) {
+        target += temp;
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return target;
+  }
+
 
 }
