@@ -71,6 +71,8 @@ function drawMutPoint(map,allVehicleListStatus){
 }
 var index = 0;
 function loadAllVehicleStatus(map){
+	var count=0;
+	var local = new Object();
 	$.ajax({
 		url:"../vehicle/allVehicleStatus.jhtml",
 		type:"post",
@@ -84,6 +86,13 @@ function loadAllVehicleStatus(map){
 					vehicleStatus.lon = result[i].lon;
 					vehicleStatus.plate = result[i].plate;
 					allVehicleListStatus.push(vehicleStatus);
+					if(i==0 && count==0){
+						local.lat = result[0].lat; 
+						local.lon = result[0].lon;
+						var point = new BMap.Point(local.lon,local.lat);
+				    	map.centerAndZoom(point,13);
+						count++;
+					}
 				}
 			}else{
 				
@@ -306,9 +315,9 @@ var vehicle_manager_tool = {
 			    	$('#allVehicleStatus_form').show();
 			    	
 			    	var map = new BMap.Map("allVehicleStatusMap"); 
-			    	
+			    	debugger;
 			    	var local = new BMap.Point($('#tenantInfoLon').val(),$('#tenantInfoLat').val())
-			    	map.centerAndZoom(local,13);// 初始化地图,设置中心点坐标和地图级别。
+			    	//map.centerAndZoom(local,13);// 初始化地图,设置中心点坐标和地图级别。
 			    	map.enableScrollWheelZoom();//启用滚轮放大缩小
 			    	map.addControl(new BMap.NavigationControl()); // 添加平移缩放控件
 			    	map.addControl(new BMap.ScaleControl()); // 添加比例尺控件
