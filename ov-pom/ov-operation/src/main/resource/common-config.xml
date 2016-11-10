@@ -16,7 +16,7 @@
 	<setting name="smtpUsername" value="microctrllife@163.com" />
 	<setting name="smtpPassword" value="o123456" />
 		<!-- 商家登陆地址(多租户系统地址) -->
-	<setting name="tenantLoginUrl" value="http://ov.chcws.com/login.jsp" />	
+	<setting name="tenantLoginUrl" value="http://118.178.86.66:8080/" />	
 		<!-- 短信平台AccountId -->
 	<setting name="ucpaasSid" value="0f6224e13d9e6db1b6865597d882110c" />
 		<!-- 短信平台Token -->
