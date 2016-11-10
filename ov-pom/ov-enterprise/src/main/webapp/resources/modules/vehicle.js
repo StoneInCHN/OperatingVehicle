@@ -71,7 +71,6 @@ function drawMutPoint(map,allVehicleListStatus){
 }
 var index = 0;
 function loadAllVehicleStatus(map){
-	var count=0;
 	var local = new Object();
 	$.ajax({
 		url:"../vehicle/allVehicleStatus.jhtml",
@@ -86,12 +85,11 @@ function loadAllVehicleStatus(map){
 					vehicleStatus.lon = result[i].lon;
 					vehicleStatus.plate = result[i].plate;
 					allVehicleListStatus.push(vehicleStatus);
-					if(i==0 && count==0){
+					if(i==0){
 						local.lat = result[0].lat; 
 						local.lon = result[0].lon;
 						var point = new BMap.Point(local.lon,local.lat);
 				    	map.centerAndZoom(point,13);
-						count++;
 					}
 				}
 			}else{
