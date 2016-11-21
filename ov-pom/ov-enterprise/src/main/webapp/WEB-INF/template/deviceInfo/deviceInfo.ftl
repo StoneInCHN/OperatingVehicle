@@ -51,6 +51,7 @@
 </div>
 <div id = "bindDevice">
 	<form id="bindDevice_form" method="post" class="form-table">
+		<input type="hidden" name="deviceId" id="bindDevice_ID"/>
 	 	<input type="hidden" name="vehicleId" id="bindDevice_vehicleID"/>    
 		    <table class="table table-striped"  border="0">
 		    	<tr>

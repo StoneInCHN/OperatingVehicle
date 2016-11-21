@@ -61,8 +61,8 @@ var deviceInfo_manager_tool = {
 							var validate = $('#bindDevice_form').form('validate');
 							var _edit_row = $('#deviceInfo-table-list').datagrid('getSelected');
 							
-							
-							$('#bindDevice_form').append('<input type="hidden" name="deviceId" value="'+_edit_row.id+'"/>')
+							//$('#bindDevice_form').append('<input type="hidden" name="deviceId" value="'+_edit_row.id+'"/>')
+							$('#bindDevice_ID').val(_edit_row.id);
 							if(validate){
 									$.ajax({
 										url:"../deviceInfo/bind.jhtml",
