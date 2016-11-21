@@ -278,8 +278,13 @@ public class VehicleController extends BaseController {
               if (vehicleStatus.getMileage() != null && vehicleStatus.getMileage() != 0) {
                 vehicle.setDashboardMileage(vehicleStatus.getMileage());
               } else {
-                vehicle.setDashboardMileage(vehicleStatus.getGpsMileage()
-                    + vehicle.getDriveMileage());
+                if (vehicle.getDriveMileage() != null) {
+                  vehicle.setDashboardMileage(vehicleStatus.getGpsMileage()
+                      + vehicle.getDriveMileage());
+                } else {
+                  vehicle.setDashboardMileage(vehicleStatus.getGpsMileage());
+                }
+
               }
               vehicle.setDashboradOil(vehicleStatus.getRemaininggas());
               vehicle.setIsOnline(vehicleStatus.getOnline());

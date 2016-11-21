@@ -80,17 +80,19 @@ function loadAllVehicleStatus(map){
 				oldVehicleListStatus = allVehicleListStatus;
 				allVehicleListStatus = new Array();
 				for(var i = 0;i<result.length;i++){
-					var vehicleStatus = new Object();
-					vehicleStatus.lat = result[i].lat; 
-					vehicleStatus.lon = result[i].lon;
-					vehicleStatus.plate = result[i].plate;
-					allVehicleListStatus.push(vehicleStatus);
-					if(i==0){
-						local.lat = result[0].lat; 
-						local.lon = result[0].lon;
-						var point = new BMap.Point(local.lon,local.lat);
-				    	map.centerAndZoom(point,13);
+					if(result[i].lat != null && result[i].lon != null){
+						var vehicleStatus = new Object();
+						vehicleStatus.lat = result[i].lat; 
+						vehicleStatus.lon = result[i].lon;
+						vehicleStatus.plate = result[i].plate;
+						allVehicleListStatus.push(vehicleStatus);
 					}
+				}
+				if(allVehicleListStatus.length>0){
+					local.lat = allVehicleListStatus[0].lat; 
+					local.lon = allVehicleListStatus[0].lon;
+					var point = new BMap.Point(local.lon,local.lat);
+			    	map.centerAndZoom(point,13);
 				}
 			}else{
 				
