@@ -215,12 +215,14 @@ public String main(ModelMap model,  HttpSession session) {
   @RequestMapping(value ="/savePassword",method = RequestMethod.POST)
   public @ResponseBody Message savePassword(String oldPassword, String newPassword){
     TenantAccount tenantAccount = tenantAccountService.getCurrent();
-    String newEnPassword = DigestUtils.md5Hex(newPassword);
-    if (!newEnPassword.equals (tenantAccount.getPassword ()))
+    String encryptNewEnPassword = DigestUtils.md5Hex(newPassword);
+    String encryptOldPassword = DigestUtils.md5Hex(oldPassword);
+    
+    if (!encryptOldPassword.equals (tenantAccount.getPassword ()))
     {
-      return Message.error ("yly.tenantAccount.oldPasswordError");
+      return Message.error ("ov.changepwd.oldPasswordError");
     }
-    tenantAccount.setPassword (newEnPassword);
+    tenantAccount.setPassword (encryptNewEnPassword);
     tenantAccountService.update (tenantAccount);
     return SUCCESS_MESSAGE;
   }
