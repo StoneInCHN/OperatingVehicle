@@ -266,5 +266,8 @@ public class BaseServiceImpl<T, ID extends Serializable> implements BaseService<
   public void callProcedure(String procName, Object... args) {
     baseDao.callProcedure(procName, args);
   }
-
+  @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+  public void update(List<T> entities) {
+    baseDao.merge(entities);
+  }
 }

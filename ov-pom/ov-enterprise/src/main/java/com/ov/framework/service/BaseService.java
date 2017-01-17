@@ -163,6 +163,12 @@ public interface BaseService<T, ID extends Serializable>
    * @return 实体对象
    */
   T update (T entity, String... ignoreProperties);
+  /**
+   * 更新多个实体对象
+   * 
+   * @param entities 实体对象集合
+   */
+  void update(List<T> entities);
 
   /**
    * 删除实体对象

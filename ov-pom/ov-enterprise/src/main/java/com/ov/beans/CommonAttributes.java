@@ -18,6 +18,7 @@ public final class CommonAttributes {
 	
 	/**管理员*/
 	public static final String ADMIN = "admin";
+	
 	/**管理员配置元*/
 	public static final String SYSTEM_MANAGE = "systemManage";
 	public static final String USER_MANAGE = "userManage";
@@ -25,6 +26,12 @@ public final class CommonAttributes {
 	public static final String DEPARTMENT_MANAGE= "departmentManage";
 	public static final String AUTHORITY_MANAGE= "authorityManage";
 	public static final String ROLE_MANAGE= "roleManage";
+	
+    /** 请求成功 */
+    public static final String SUCCESS = "0000";// 请求成功
+    
+    /** 操作失败 */
+    public static final String FAIL_COMMON = "1000"; // 操作失败
 	/**
 	 * 不可实例化
 	 */

@@ -73,6 +73,12 @@ public interface BaseDao<T, ID extends Serializable> {
    * @return 实体对象
    */
   T merge(T entity);
+  /**
+   * 合并多个实体对象
+   * 
+   * @param entities 实体对象集合
+   */
+  void merge(List<T> entities);
 
   /**
    * 移除实体对象

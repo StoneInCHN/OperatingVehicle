@@ -461,7 +461,7 @@ public class Vehicle extends BaseEntity {
     this.electronicRail = electronicRail;
   }
   @JsonProperty
-  @OneToMany(mappedBy = "vehicle")
+  @OneToMany(mappedBy = "vehicle",cascade = CascadeType.MERGE)
   public Set<VehicleOffLineLog> getVehicleOffLineLogs() {
     return vehicleOffLineLogs;
   }

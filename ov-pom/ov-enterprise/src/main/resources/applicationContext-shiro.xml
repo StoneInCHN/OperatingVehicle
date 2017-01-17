@@ -19,6 +19,7 @@
 				/console/common/logout = logout
 				/console/common/captcha.jhtml = anon
 				/console/common/captchaCheck.jhtml = anon
+				/console/vehicle/pushVehicleStatus.jhtml = anon
 				<!--系统管理  -->
 				/console/tenantAccount/** = perms["accountManage"]
 				/console/tenantUser/** = perms["accountManage"]

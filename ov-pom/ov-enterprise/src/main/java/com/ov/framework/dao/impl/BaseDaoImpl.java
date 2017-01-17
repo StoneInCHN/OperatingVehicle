@@ -729,5 +729,10 @@ public abstract class BaseDaoImpl<T, ID extends Serializable> implements BaseDao
     }
     query.executeUpdate();
   }
-
+  public void merge(List<T> entities) {
+    Assert.notNull(entities);
+    for (T entity : entities) {
+      entityManager.merge(entity);
+    }
+  }
 }

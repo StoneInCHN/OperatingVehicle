@@ -12,23 +12,30 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ov.beans.CommonAttributes;
+import com.ov.json.BaseResponse;
+import com.ov.service.DeviceInfoService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ov.beans.Message;
 import com.ov.beans.Setting;
+import com.ov.common.log.LogUtil;
 import com.ov.controller.base.BaseController;
 import com.ov.entity.DeviceInfo;
 import com.ov.entity.Motorcade;
 import com.ov.entity.Vehicle;
+import com.ov.entity.VehicleOffLineLog;
 import com.ov.framework.filter.Filter;
 import com.ov.framework.filter.Filter.Operator;
 import com.ov.framework.paging.Page;
 import com.ov.framework.paging.Pageable;
+import com.ov.json.request.VehicleStatusRequest;
 import com.ov.json.response.VehicleDailyReport;
 import com.ov.json.response.VehicleStatus;
 import com.ov.service.MotorcadeService;
@@ -55,6 +62,8 @@ public class VehicleController extends BaseController {
   private MotorcadeService motorcadeService;
   @Resource(name = "tenantAccountServiceImpl")
   private TenantAccountService tenantAccountService;
+  @Resource(name = "deviceInfoServiceImpl")
+  private DeviceInfoService deviceInfoService;
 
   private Setting setting = SettingUtils.get();
 
@@ -332,5 +341,49 @@ public class VehicleController extends BaseController {
     }
     return vehicleList;
   }
-
+  /**
+   * 推送车辆状态
+   * 
+   * @param id
+   * @param model
+   * @return
+   */
+  @RequestMapping(value = "/pushVehicleStatus", method = RequestMethod.POST)
+  public @ResponseBody BaseResponse pushVehicleStatus(
+      @RequestBody List<VehicleStatusRequest> vehicleStatusList) {
+    BaseResponse response = new BaseResponse();
+    List<Vehicle> vehicles = new ArrayList<>();
+    for (VehicleStatusRequest vehicleStatus : vehicleStatusList) {
+      if (LogUtil.isDebugEnabled(VehicleController.class)) {
+        LogUtil
+            .debug(
+                VehicleController.class,
+                "pushVehicleStatus",
+                "get push vehicle status from obd server. deviceNo: %s,isOnline: %s",
+                vehicleStatus.getDeviceNo(), vehicleStatus.getIsOnline());
+      }
+      DeviceInfo deviceInfo = deviceInfoService.findByDeviceNo(vehicleStatus.getDeviceNo());
+      if (deviceInfo != null && deviceInfo.getVehicle() != null) {
+        Vehicle vehicle = deviceInfo.getVehicle();
+        if ("1".equals(vehicleStatus.getIsOnline())) {
+          vehicle.setIsOnline(true);
+        } else {
+          vehicle.setIsOnline(false);
+          //更新车辆离线历史记录
+          VehicleOffLineLog log = new VehicleOffLineLog();
+          log.setDeviceNo(vehicleStatus.getDeviceNo());
+          log.setVehicle(vehicle);
+          log.setOfflineDate(new Date());
+          vehicle.getVehicleOffLineLogs().add(log);
+        }
+        vehicles.add(vehicle);
+      }
+    }
+    if (vehicles.size() > 0) {
+      vehicleService.update(vehicles);
+    }
+    response.setCode(CommonAttributes.SUCCESS);
+    response.setDesc("success");
+    return response;
+  }
 }
