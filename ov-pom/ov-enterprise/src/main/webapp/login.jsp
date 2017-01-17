@@ -110,7 +110,7 @@ $(function(){
 	var $captchaImage = $("#captchaImage");	
 	var $isRememberUsername = $("#isRememberUsername");
 	var $alertError = $("#alertError");
-	
+	$captchaImage.attr("src", "<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>&timestamp=" + (new Date()).valueOf()+"&clientSessionId=<%=session.getId()%>");
 	// 记住用户名
 	if(getCookie("adminUsername") != null) {
 		$isRememberUsername.prop("checked", true);
@@ -123,7 +123,7 @@ $(function(){
 	
 	// 更换验证码
 	$captchaImage.click( function() {
-		$captchaImage.attr("src", "<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>&timestamp=" + (new Date()).valueOf());
+		$captchaImage.attr("src", "<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>&timestamp=" + (new Date()).valueOf()+"&clientSessionId=<%=session.getId()%>");
 	});	
 	//点击登录
 	$loginBtnID.click(function(){
@@ -209,7 +209,7 @@ $(function(){
 				</p>
 				<p style="padding: 0px 0px 17px;position: relative;">      
 						<input class="ipt" type="text" id="captcha" name="captcha" placeholder="请输入验证码"  style="padding: 10px 0 10px 10px;width: 239px;"> 
-						<img class="captchaImg" id="captchaImage" src="<%=base%>/console/common/captcha.jhtml?captchaId=<%=captchaId%>" title="<%=SpringUtils.getMessage("ov.captcha.imageTitle")%>" />
+						<img class="captchaImg" id="captchaImage"   title="<%=SpringUtils.getMessage("ov.captcha.imageTitle")%>" />
 				</p>
 				<div id="alertError" class="alert alert-error hide">
 					<button class="close" data-dismiss="alert"></button>

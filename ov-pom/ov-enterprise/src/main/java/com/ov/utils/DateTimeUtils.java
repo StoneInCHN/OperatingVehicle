@@ -12,7 +12,7 @@ public class DateTimeUtils implements Serializable {
 
   private static final long serialVersionUID = 7708468758384338657L;
 
-  private static final SimpleDateFormat longDateFormat =
+  public static final SimpleDateFormat longDateFormat =
       new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
   public static final SimpleDateFormat shortDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -280,6 +280,15 @@ public class DateTimeUtils implements Serializable {
     }
 
     return (date.getTime() - mydate.getTime()) / (24 * 60 * 60 * 1000);
+  }
+  /**
+   * 两个时间之间的天数,不取绝对值，返回正负关系
+   */
+  public static long getDaysNotAbs(Date fromDate, Date toDate) {
+    if (fromDate == null || toDate == null) {
+      return 0;
+    }
+    return (toDate.getTime() - fromDate.getTime()) / (24 * 60 * 60 * 1000);
   }
 
 

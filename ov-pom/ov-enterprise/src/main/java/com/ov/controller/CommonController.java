@@ -91,8 +91,17 @@ public class CommonController extends BaseController {
    * 验证码
    */
   @RequestMapping(value = "/captcha", method = RequestMethod.GET)
-  public void image(String captchaId, HttpServletRequest request, HttpServletResponse response)
-      throws Exception {
+  public void image(String captchaId, String timestamp, String clientSessionId,HttpServletRequest request,
+      HttpSession session, HttpServletResponse response) throws Exception {
+    if (LogUtil.isDebugEnabled(getClass())) {
+      LogUtil.debug(getClass(), "image", "Parameter captchaId=%s, "
+          + "session Id=%s, clientSessionId=%s, timestamp=%s",
+          captchaId, session.getId(), clientSessionId, timestamp);
+    }
+    if (!session.getId().equals(clientSessionId)) {
+      //如果客户端session Id不等于后台代码 session Id,则返回
+      return;
+    }
     if (StringUtils.isEmpty(captchaId)) {
       captchaId = request.getSession().getId();
     }

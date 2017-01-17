@@ -39,7 +39,7 @@ fieldset label{
 }
 
 fieldset .combo{
-	width:100px !important;
+	width:100px;
 }
 fieldset .search-form{
 	display: inline-block !important;
@@ -143,5 +143,26 @@ fieldset .search-item button{
   color: #0789b4;
   cursor: pointer;
 }
-
-
+.linkbtn_green{
+	padding:5px;
+	margin:5px;
+	background-color:green;
+	color:#fff;
+	border-radius:3px;
+	width:60px;
+	cursor:pointer;
+	float:left;
+}
+.linkbtn_orange{
+	padding:5px;
+	margin:5px;
+	background-color:#cc9933;
+	color:#fff;
+	border-radius:3px;
+	width:60px;
+	cursor:pointer;
+	float:left;
+}
+.tr-center tr{
+	text-align:center
+}

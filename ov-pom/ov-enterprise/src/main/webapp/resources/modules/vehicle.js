@@ -381,26 +381,40 @@ $(function(){
 		columns:[
 		   [
 		      {field:'ck',checkbox:true},
-		      {title:message("ov.vehicle.motorcade"),field:"motorcade",sortable:true,
+		      {title:message("ov.vehicle.motorcade"),field:"motorcade",width:50,align:'center',sortable:true,
 		    	  formatter: function(value,row,index){
 			    	  if(value != null){
 			    		  return  value.motorcadeDesc;
 			    	  }
 		      	  }},
-		      {title:message("ov.vehicle.plate"),field:"plate",sortable:true},
+		      {title:message("ov.vehicle.plate"),field:"plate",width:50,align:'center',sortable:true},
 		     
-		      {title:message("ov.vehicle.vehicleNo"),field:"vehicleNo",sortable:true},
-	      	  {title:message("ov.vehicle.dashboardMileage"),field:"dashboardMileage",sortable:true},
-	      	  {title:message("ov.vehicle.vehicleFullBrand"),field:"vehicleFullBrand",sortable:true},
-		      {title:message("ov.vehicle.device"),field:"deviceNo",width:100,sortable:false},
-		      {title:message("ov.vehicle.plateDate"),field:"plateDate",width:100,sortable:true,formatter: function(value,row,index){
+		      {title:message("ov.vehicle.vehicleNo"),field:"vehicleNo",width:50,align:'center',sortable:true},
+	      	  {title:message("ov.vehicle.dashboardMileage"),field:"dashboardMileage",width:50,align:'center',sortable:true},
+	      	  {title:message("ov.vehicle.vehicleFullBrand"),field:"vehicleFullBrand",width:50,align:'center',sortable:true},
+		      {title:message("ov.vehicle.device"),field:"deviceNo",width:50,align:'center',sortable:false},
+		      {title:message("ov.vehicle.plateDate"),field:"plateDate",width:50,align:'center',sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format("yyyy-MM-dd");
 				}
 		      },
-		      {title:message("ov.vehicle.produceDate"),field:"produceDate",width:100,sortable:true,formatter: function(value,row,index){
+		      {title:message("ov.vehicle.produceDate"),field:"produceDate",width:50,align:'center',sortable:true,formatter: function(value,row,index){
 					return new Date(value).Format("yyyy-MM-dd");
 				}
-		      }
+		      },
+		      {title:"是否在线",field:"isOnline",width:40,align:'center',sortable:false,formatter: function(value,row,index){
+					if(value){
+						return  '是';
+					}else{
+						return  '否';
+					}
+				}
+		      },
+		      {title:'操作',field:'opt',width:30,align:'center',  
+		            formatter:function(value,row,index){
+		            	var btn =  '<div class="linkbtn_orange"  onclick="showOfflineLog(\''+ row.id +'\');" href="javascript:void(0)">离线记录</div>';  
+		                return btn;  
+		            }  
+		       } 
 		   ]
 		]
 	});
@@ -412,3 +426,22 @@ $(function(){
 	  $("#vehicle-table-list").datagrid('reload');
 	})
 })
+function showOfflineLog(id){
+	$('#offlineLogDiv').dialog({    
+		title: '车辆离线记录',     
+	    width: 700,    
+	    height: 450,    
+	    modal: true,
+	    href:'../vehicle/offlineLog.jhtml?id='+id,
+	    buttons:[{
+			text:message("ov.common.close"),
+			iconCls:'icon-cancel',
+			handler:function(){
+				 $('#offlineLogDiv').dialog("close");
+			}
+	    }],
+	    onLoad:function(){
+	    	$('#offlineLog_form').show();
+	    }
+	});  
+}

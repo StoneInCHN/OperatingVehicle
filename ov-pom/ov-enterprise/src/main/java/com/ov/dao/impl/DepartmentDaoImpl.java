@@ -17,7 +17,6 @@ import com.ov.framework.dao.impl.BaseDaoImpl;
 /**
  * 部门
  * 
- * @author huyong
  *
  */
 @Repository("departmentDaoImpl")

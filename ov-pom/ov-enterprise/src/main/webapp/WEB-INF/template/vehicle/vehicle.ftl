@@ -132,6 +132,7 @@
 <div id="vehicleDetail"></div>
 <div id="vehicleDailyReport"></div>
 <div id="allVehicleStatus"></div>
+<div id="offlineLogDiv"></div>
 
 
 

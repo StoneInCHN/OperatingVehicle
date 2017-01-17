@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -176,6 +177,10 @@ public class Vehicle extends BaseEntity {
    * 绑定的设备是否在线
    */
   private Boolean isOnline;
+  /**
+   * 绑定的设备历史离线记录
+   */
+  private Set<VehicleOffLineLog> vehicleOffLineLogs = new HashSet<VehicleOffLineLog>();
 
   private Set<String> faultCodeSet = new HashSet<String>();
 
@@ -189,7 +194,6 @@ public class Vehicle extends BaseEntity {
     this.faultCodeSet = faultCodeSet;
   }
 
-  @Transient
   @JsonProperty
   public Boolean getIsOnline() {
     return isOnline;
@@ -455,6 +459,15 @@ public class Vehicle extends BaseEntity {
 
   public void setElectronicRail(ElectronicRail electronicRail) {
     this.electronicRail = electronicRail;
+  }
+  @JsonProperty
+  @OneToMany(mappedBy = "vehicle")
+  public Set<VehicleOffLineLog> getVehicleOffLineLogs() {
+    return vehicleOffLineLogs;
+  }
+
+  public void setVehicleOffLineLogs(Set<VehicleOffLineLog> vehicleOffLineLogs) {
+    this.vehicleOffLineLogs = vehicleOffLineLogs;
   }
 
 

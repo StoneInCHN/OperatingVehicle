@@ -119,7 +119,24 @@ public class VehicleController extends BaseController {
     }
     return "";
   }
-
+  /**
+   * 车辆离线记录
+   * @param model
+   * @param id
+   * @return
+   */
+  @RequestMapping(value = "/offlineLog", method = RequestMethod.GET)
+  public String offlineLog(ModelMap model, Long id) {
+    if (id != null) {
+      Vehicle vehicle = vehicleService.find(id);
+      if (vehicle != null) {
+        model.addAttribute("offlineLog", vehicle.getVehicleOffLineLogs());
+      }
+      return "vehicle/offlineLog";
+    }
+    return "";
+  }
+  
   /**
    * 添加
    * 

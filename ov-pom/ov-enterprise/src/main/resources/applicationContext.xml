@@ -34,7 +34,7 @@
 		<property name="persistenceUnitName" value="persistenceUnit" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="showSql" value="true" />
+				<property name="showSql" value="false" />
 				<property name="generateDdl" value="true" />
 			</bean>
 		</property>
@@ -52,7 +52,7 @@
 				<prop key="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</prop>
     			<!-- localhost config -->
 				<prop key="hibernate.search.default.indexBase">D:\index\localhost\ov_site</prop> 
-				<!-- linux 120.27.38.49 config -->
+				<!-- linux 118.178.86.66 config -->
 				<!-- <prop key="hibernate.search.default.indexBase">/mnt/ov/index</prop>-->
 			</props>
 		</property>

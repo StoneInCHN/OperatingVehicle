@@ -15,25 +15,51 @@
                 <table id="trackVehicleSearch-table-list"></table>
 		</div>
 		<div data-options="region:'center'" >
-				<div class="easyui-panel" style="background:#fafafa;" data-options="border:false">
-						  <fieldset>
+				<!-- 按天查询车辆轨迹分段 模块start-->
+				<div class="easyui-panel" title="按天查询" style="height:50%;background:#fafafa;" data-options="border:false">
+						        <fieldset>
 								  	<legend>${message("ov.common.condition.search")}</legend>
 								    <form id="track_search_form" class="search-form">
 										<div class="search-item">
-										    <label>${message("ov.common.time")}:</label>
+											<label> 选择日期(天):</label>
 										    <input type="text" class="Wdate" id="trackSearchDate" name="searchDate" readonly="readonly" onclick="WdatePicker({});" />
 										</div>
-										
 										<input type="hidden" name="vehicleID" id="track_vehicleID">
 									</form>
 									<div class="search-item">
 								  	  <button id="track_search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
 								    </div>
 								  </fieldset>
-								<div id="vehicleTrack" style="height:900px;width:99%;">
+								<div id="vehicleTrack" style="height:50%">
 									<table id="track-table-list"></table>
 									<div id="vehicleTrackMap"/>
 								</div>
 				</div>
+				<!-- 按天查询车辆轨迹分段 模块end-->
+				<!-- 按时间段查询车辆轨迹 模块start-->
+				<div  class="easyui-panel" title="按时间段查询"  style="height:50%;background:#fafafa;"  data-options="border:false">
+								<fieldset>
+								  	<legend>${message("ov.common.condition.search")}</legend>
+								    <form id="track_byTime_search_form" class="search-form">
+										<div class="search-item">
+											<label> 开始时间:</label>
+										    <input type="text" class="easyui-datetimebox" name="startDate"  data-options="required:true" style="width:150px"></input>
+										</div>
+										<div class="search-item">
+											<label> 结束时间:</label>
+										    <input type="text" class="easyui-datetimebox" name="endDate"  data-options="required:true" style="width:150px"></input>
+										</div>
+										<input type="hidden" name="vehicleID" id="track_byTime_vehicleID">
+									</form>
+									<div class="search-item">
+								  	  <button id="track_byTime_search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'">${message("ov.search")}</button>
+								    </div>
+								  </fieldset>
+								<div id="vehicleTrackByTime" style="height:50%">
+									<table id="track-byTime-table-list"></table>
+									<div id="vehicleTrackByTimeMap"/>
+								</div>
+				</div>
+				<!-- 按时间段查询车辆轨迹 模块end-->
 		</div>
 </div>
