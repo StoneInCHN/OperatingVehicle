@@ -295,7 +295,7 @@ $(function(){
 		columns:[[
 			{field : 'ck',checkbox : true},
 			{title : message("ov.vehicle.plate"),field : "plate",width :"47%",align : 'center',sortable : true},
-			{title : "品牌图标",field : "brandIcon",width :"47%",align : 'center',sortable : true},					
+			{title : "绑定设备",field : "deviceNo",width :"47%",align : 'center',sortable : true},				
 		]]
 });
 $("#track_vehicle_search_btn").click(function(){

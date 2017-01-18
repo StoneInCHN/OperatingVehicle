@@ -12,11 +12,14 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ov.beans.Message.Type;
+import com.ov.utils.SpringUtils;
 import com.ov.beans.Message;
 import com.ov.beans.Setting;
 import com.ov.controller.base.BaseController;
@@ -79,7 +82,7 @@ public class ElectronicRailController extends BaseController{
 	        params.add(new BasicNameValuePair("deviceId", deviceId));
 	
 	        httppost.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
-	        HttpResponse response=new DefaultHttpClient().execute(httppost);
+	        HttpResponse response = new DefaultHttpClient().execute(httppost);
 	        if(response.getStatusLine().getStatusCode() == 200) {
 	            result = EntityUtils.toString(response.getEntity(), HTTP.UTF_8);
 //	            System.out.println(result);
@@ -96,5 +99,20 @@ public class ElectronicRailController extends BaseController{
 		}
 		
 	}
+	  /**
+	   * 删除车辆电子围栏
+	   */
+	  @RequestMapping (value = "/delete", method = RequestMethod.POST)
+	  public @ResponseBody Message delete (Long vehicleId) {
+	    if (vehicleId != null) {
+	        Vehicle vehicle = vehicleService.find(vehicleId);
+	        Long electronicRailID = vehicle.getElectronicRail().getId();
+	        vehicle.setElectronicRail(null);
+	        vehicleService.update(vehicle);
+	        electronicRailService.delete(electronicRailID);
+	        return SUCCESS_MESSAGE;
+	    }
+	    return ERROR_MESSAGE;
+	  }
 	
 }

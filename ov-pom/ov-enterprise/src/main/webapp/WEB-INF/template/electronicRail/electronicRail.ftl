@@ -15,16 +15,20 @@
         <table id="electronicRailVehicleSearch-table-list"></table>
 	</div>
 	<div data-options="region:'center'" >
-		<div class="easyui-panel" style="height:700px;background:#fafafa;" data-options="border:false">
-		  	<fieldset>
-			  	<legend></legend>
-				<div class="search-item">
-				  <button id="electronicRail_edit_btn" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">${message("ov.button.update")}</button>
-			  	  <button id="electronicRail_add_btn" class="easyui-linkbutton" data-options="iconCls:'icon-add'">${message("ov.button.add")}</button>
-			  	  <button id="electronicRail_ok_btn" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">${message("ov.button.ok")}</button>
-			    </div>
+		<div class="easyui-panel" style="height:100%;background:#fafafa;" data-options="border:false">
+		  	<fieldset style="height:8%;">
+			  	<legend>电子围栏操作</legend>
+			  	<div>
+						<div class="tool-button">
+							<button id="electronicRail_edit_btn" class="easyui-linkbutton"  style="margin:0 5px;padding:0 5px" data-options="iconCls:'icon-edit'"> ${message("ov.button.update")} </button>
+							<button id="electronicRail_add_btn" class="easyui-linkbutton"  style="margin:0 5px;padding:0 5px"  data-options="iconCls:'icon-add'"> ${message("ov.button.add")} </button>
+							<button id="electronicRail_ok_btn" class="easyui-linkbutton"  style="margin:0 5px;padding:0 5px"  data-options="iconCls:'icon-ok'"> ${message("ov.button.ok")}</button>
+							<button id="electronicRail_remove_btn" class="easyui-linkbutton"  style="margin:0 5px;padding:0 5px"  data-options="iconCls:'icon-remove'"> ${message("ov.button.delete")} </button>
+						</div>
+					<div class="tool-filter"></div>
+				</div>
 			  </fieldset>
-			<div id="mapContainer" style="height:660px; width:100%;"></div>
+			<div id="mapContainer" style="height:90%; width:100%;"></div>
 		</div>
 	</div>
 </div>

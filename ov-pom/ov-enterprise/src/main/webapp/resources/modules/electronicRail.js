@@ -9,10 +9,28 @@ $(function(){
 	var map = null;
 	var positionArray = null;
 	var deviceId = "";
+	//百度地图电子围栏
+	var map_ip_location = "http://api.map.baidu.com/location/ip?coor=bd09ll&ak=" + message("ov.baiduMap.ak");
+	var lastOverlay = null;
+	var marker_back = null;
+	var polyline_back = null;
+	var circle = null;
 	
 	$("#electronicRail_add_btn").hide();
 	$("#electronicRail_edit_btn").hide();
 	$("#electronicRail_ok_btn").hide();
+	$("#electronicRail_remove_btn").hide();
+	
+	//测试绘制圆
+	var styleOptions = {
+        strokeColor:"red",    //边线颜色。
+        fillColor:"red",      //填充颜色。当参数为空时，圆形将没有填充效果。
+        strokeWeight: 1,       //边线的宽度，以像素为单位。
+        strokeOpacity: 0.5,	   //边线透明度，取值范围0 - 1。
+        fillOpacity: 0.1,      //填充的透明度，取值范围0 - 1。
+        strokeStyle: 'solid' //边线的样式，solid或dashed。
+    }
+	
 	
 	$("#electronicRailVehicleSearch-table-list").datagrid({
 		url:'../vehicle/list.jhtml',  
@@ -21,16 +39,28 @@ $(function(){
 		striped:true,
 		singleSelect:true,
 		onSelect:function(rowIndex,rowData){
+			//初始化
 			if (timer != null){
 				clearInterval(timer);	
 			}
 			if (map != null){
 				map.clearOverlays();
 			}
+			circle=null;
 			positionArray = new Array();
+		    if (lastOverlay != null){
+		    	map.removeOverlay(lastOverlay);
+		    }
+		    
+			$('#electronicRail_edit_btn').unbind("click");
+			$('#electronicRail_add_btn').unbind("click");
+			$('#electronicRail_ok_btn').unbind("click");
+			$('#electronicRail_remove_btn').unbind("click");
 			
 			vehicleId = rowData.id;
 			deviceId = rowData.deviceNo;
+			
+			//查询该车辆的电子围栏
 			$.ajax({
 				url:"../electronicRail/findElectronicRailByVehicle.jhtml",
 				type:"get",
@@ -43,19 +73,37 @@ $(function(){
 				success:function(result,response,status){
 					$.messager.progress('close');
 					if(response == "success"){
-						if (result == null || result == ""){
+						if (result == null || result == ""){//车辆暂时没有设置电子围栏
 							$("#electronicRail_edit_btn").hide();
 							$("#electronicRail_add_btn").show();
 							$("#electronicRail_ok_btn").show();
-						}else {
+							$.ajax({
+								url:"../electronicRail/realTimeVehicleStatus.jhtml",
+								type:"get",
+								data: jQuery.parseJSON('{"deviceId":"' + deviceId + '"}'),
+								success:function(result,response,status){
+									if(response == "success"){
+										content = jQuery.parseJSON(result.content);
+										var lon = content.msg.lon;
+										var lat = content.msg.lat;
+										drawMap(lon,lat);//以车辆当前位置为地图中心
+									}else{
+										alertErrorMsg();
+									}
+								}
+							});
+						}else {//车辆已设置了电子围栏
 							$("#electronicRail_add_btn").hide();
 							$("#electronicRail_edit_btn").show();
 							$("#electronicRail_ok_btn").show();
+							$("#electronicRail_remove_btn").show();
 							radius = result.radius;
 							centerLng = result.centerLng;
 							centerLat = result.centerLat;
+							var circleCenter = new BMap.Point(centerLng, centerLat);
+							circle = new BMap.Circle(circleCenter, radius, styleOptions);
+							drawMap(centerLng,centerLat);//以电子围栏中心点为地图中心
 						}
-						createMap();
 					}else{
 						alertErrorMsg();
 					}
@@ -63,13 +111,10 @@ $(function(){
 			});
 			
 		},
-		onDblClickRow : function (rowIndex, rowData){
-			
-		},
 		columns:[[
 			{field : 'ck',checkbox : true},
 			{title : "车牌号",field : "plate",width :"47%",align : 'center',sortable : true},
-			{title : "品牌图标",field : "brandIcon",width :"47%",align : 'center',sortable : true},					
+			{title : "绑定设备",field : "deviceNo",width :"47%",align : 'center',sortable : true},					
 		]]
 		
 	});
@@ -80,26 +125,6 @@ $(function(){
 		$("#electronicRailVehicleSearch-table-list").datagrid('reload');			
 	});
 	
-	//百度地图电子围栏
-	var map_ip_location = "http://api.map.baidu.com/location/ip?coor=bd09ll&ak=" + message("ov.baiduMap.ak");
-	var lastOverlay = null;
-	var marker_back = null;
-	var polyline_back = null;
-	var circle = null;
-	
-	function createMap(){
-		
-		$.ajax({
-			url:map_ip_location,
-			type:"get",
-			dataType: 'JSONP',
-			data: "",
-			success:function(result){
-				drawMap(result.content.point.x, result.content.point.y);
-			}
-		});
-
-	}
 
 	function drawMap(x, y){
 		map = new BMap.Map("mapContainer");          // 创建地图实例  
@@ -108,16 +133,9 @@ $(function(){
 		map.enableScrollWheelZoom();	//启用滚轮放大缩小，默认禁用
 		map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
 		map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+		map.addControl(new BMap.ScaleControl()); // 添加比例尺控件
+		map.addControl(new BMap.OverviewMapControl()); //添加缩略地图控件
 		
-		//测试绘制圆
-		var styleOptions = {
-	        strokeColor:"red",    //边线颜色。
-	        fillColor:"red",      //填充颜色。当参数为空时，圆形将没有填充效果。
-	        strokeWeight: 1,       //边线的宽度，以像素为单位。
-	        strokeOpacity: 0.5,	   //边线透明度，取值范围0 - 1。
-	        fillOpacity: 0.1,      //填充的透明度，取值范围0 - 1。
-	        strokeStyle: 'solid' //边线的样式，solid或dashed。
-	    }
 		
 		var myDrawingManagerObject = new BMapLib.DrawingManager(map, {
 			isOpen: false, //是否开启绘制模式
@@ -137,19 +155,17 @@ $(function(){
 			radius = overlay.getRadius();
 			centerLng = overlay.getCenter().lng;
 			centerLat = overlay.getCenter().lat;
-			var temp = "半径：" + overlay.getRadius() + "; 圆心经度：" + overlay.getCenter().lng + "; 纬度：" + overlay.getCenter().lat;
-			console.log(temp);
+			
 		    if (lastOverlay != null){
 		    	map.removeOverlay(lastOverlay);
 		    }
 		    lastOverlay = overlay;
 		});
 		
-		if (radius != "" && centerLng != "" && centerLat != ""){
-			drawCircle();
-			drawCar();
+		if (circle != null &&radius != "" && centerLng != "" && centerLat != ""){
+			drawCircle();//画电子围栏
 		}
-		
+		drawCar(radius,centerLng,centerLat);//画车辆
 		$("#electronicRail_add_btn").click(function(){
 			myDrawingManagerObject.open();
 		});
@@ -180,12 +196,51 @@ $(function(){
 							showSuccessMsg(result.content);
 							var circleCenter = new BMap.Point(centerLng, centerLat);
 							circle = new BMap.Circle(circleCenter, radius, styleOptions);
+							$("#electronicRail_remove_btn").show();
+							$("#electronicRail_edit_btn").show();
+							$("#electronicRail_add_btn").hide();
 						}else{
 							alertErrorMsg();
 						}
 					}
 				});
 			}
+		});
+		$("#electronicRail_remove_btn").click(function(){
+			$.messager.confirm(
+					message("ov.common.confirm"),
+					'移除当前电子围栏？', function(r) {
+						if (r) {
+							$.ajax({
+								url:"../electronicRail/delete.jhtml",
+								type:"post",
+								data: {"vehicleId":vehicleId},
+								beforeSend:function(){
+									$.messager.progress({
+										text:message("ov.common.progress")
+									});
+								},
+								success:function(result,response,status){
+									$.messager.progress('close');
+									if(response == "success"){
+										showSuccessMsg(result.content);
+										//去掉地图上已经画的电子围栏
+										if (lastOverlay != null){
+									    	map.removeOverlay(lastOverlay);
+									    }
+										circle=null;
+										//显示添加按钮，隐藏编辑按钮
+										$("#electronicRail_add_btn").show();
+										$("#electronicRail_edit_btn").hide();
+										$("#electronicRail_remove_btn").hide();
+										
+									}else{
+										alertErrorMsg();
+									}
+								}
+							});
+						}
+			});
 		});
 		
 		function drawCircle(){
@@ -199,7 +254,7 @@ $(function(){
 			centerLat = "";
 		}
 		
-		function drawCar(){
+		function drawCar(radius,centerLng,centerLat){
 			
 			timer = setInterval(function(){
 				$.ajax({
@@ -210,8 +265,6 @@ $(function(){
 						if(response == "success"){
 						
 							content = jQuery.parseJSON(result.content);
-							
-							console.log(result.content);
 							var acc = content.msg.acc;
 							var lon = content.msg.lon;
 							var lat = content.msg.lat;
@@ -223,33 +276,33 @@ $(function(){
 							}
 								
 							var url =  "../../resources/images/car.png";
-							var size = new BMap.Size(30, 30);
+							var size = new BMap.Size(50, 50);
 							var icon = new BMap.Icon(url, size);
-							var label = new BMap.Label("车速:" + speed + "km/h");
+							var label = new BMap.Label("当前车速:" + speed + "km/h");
 							var GPSPoint = new BMap.Point(lon, lat);
 							new BMap.Convertor.translate(GPSPoint, 0, function(position){
-								
-//								console.log(BMapLib.GeoUtils.isPointInCircle(position, circle));
-								if (!BMapLib.GeoUtils.isPointInCircle(position, circle)){
-									$.messager.show({
-										title : message("ov.common.prompt"),
-										msg : "车辆超出围栏范围",
-										timeout : 2000,
-										showType : 'slide'
-									});
+								if(circle != null){
+									if (!BMapLib.GeoUtils.isPointInCircle(position, circle)){
+										$.messager.show({
+											title : "警告",
+											msg : "车辆已超出电子围栏范围!",
+											timeout : 2000,
+											showType : 'slide'
+										});
+									}
 								}
 								
 								label.setPosition(position);
 								label.setStyle({
 									 color : "red",
 									 fontSize : "12px",
-									 width: "80px",
-									 maxWidth: "90px",
+									 width: "95px",
+									 maxWidth: "100px",
 									 height : "20px",
-									 lineHeight : "20px",
+									 //lineHeight : "20px",
 									 fontFamily:"微软雅黑"
 								 });
-								label.setOffset(new BMap.Size(0, -20));
+								label.setOffset(new BMap.Size(-33, -25));
 								positionArray.push(position);
 								//折线
 								var polyline = new BMap.Polyline(positionArray, {
@@ -282,7 +335,7 @@ $(function(){
 						}
 					}
 				});
-			}, 10000);
+			}, 5000);
 			
 			
 		}
@@ -291,7 +344,7 @@ $(function(){
 		function InputControl(){
 		  // 默认停靠位置和偏移量
 		  this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
-		  this.defaultOffset = new BMap.Size(80, 15);
+		  this.defaultOffset = new BMap.Size(80, 10);
 		}
 
 		InputControl.prototype = new BMap.Control();
@@ -321,7 +374,7 @@ $(function(){
 		  var div = document.createElement("div");
 		  div.id = "searchResultPanel";
 		  div.style.border = "1px solid #C0C0C0";
-		  div.style.width = "150px";
+		  div.style.width = "200px";
 		  div.style.height = "25px";
 		  div.style.display = "none";
 		  div.style.position = "relative";
@@ -369,7 +422,6 @@ $(function(){
 		});
 
 		function setPlace(){
-			//map.clearOverlays();    //清除地图上所有覆盖物
 			function myFun(){
 				var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
 				map.centerAndZoom(pp, 18);
@@ -380,9 +432,7 @@ $(function(){
 			});
 			local.search(myValue);
 		}
-		
 	}
-	
 	
 });
 
