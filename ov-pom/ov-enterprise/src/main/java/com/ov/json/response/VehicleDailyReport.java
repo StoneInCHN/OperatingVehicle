@@ -15,7 +15,7 @@ public class VehicleDailyReport {
   private Float averageFuelConsumption;
 
   /**
-   * 当日油耗
+   * 当日油耗s
    */
   private Float fuelConsumption;
 
@@ -28,7 +28,7 @@ public class VehicleDailyReport {
    * 平均速度
    */
   private Float averageSpeed;
-  
+
   /**
    * 急刹车次数
    */
@@ -38,20 +38,25 @@ public class VehicleDailyReport {
    * 急转弯次数
    */
   private Integer suddenturncount;
-  
-  
+
+
   /**
    * 急加速次数
    */
   private Integer rapidlyspeedupcount;
 
   /**
-   * 时间
+   * 创建时间
    */
-  private Date reportDate;
+  private Date createdate;
   
-  private Long deviceId;
+  /**
+   * 日期顺序
+   */
+  private Integer day;
   
+  private String deviceId;
+
   public Float getDailyMileage() {
     return dailyMileage;
   }
@@ -132,28 +137,32 @@ public class VehicleDailyReport {
   }
 
 
-  public Date getReportDate ()
-  {
-    return reportDate;
+  public Date getCreatedate() {
+    return createdate;
   }
 
 
-  public void setReportDate (Date reportDate)
-  {
-    this.reportDate = reportDate;
+  public void setCreatedate(Date createdate) {
+    this.createdate = createdate;
   }
 
 
-  public Long getDeviceId ()
-  {
+  public Integer getDay() {
+    return day;
+  }
+
+
+  public void setDay(Integer day) {
+    this.day = day;
+  }
+
+
+  public String getDeviceId() {
     return deviceId;
   }
 
-
-  public void setDeviceId (Long deviceId)
-  {
+  public void setDeviceId(String deviceId) {
     this.deviceId = deviceId;
   }
-  
   
 }

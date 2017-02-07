@@ -238,7 +238,7 @@ var vehicle_manager_tool = {
 			}
 			$('#vehicleDailyReport').dialog({
 			    title: message("ov.vehicle.vehicleDailyReport"),    
-			    width: 600,    
+			    width: 700,    
 			    height: 350,
 			    href:'../vehicle/vehicleDailyReport.jhtml?vehicleId='+_select_row.id,
 			    method:"get",
@@ -262,24 +262,24 @@ var vehicle_manager_tool = {
 								type:"post",
 								data:{
 									vehicleId:$('#reportVehicleId').val(),
-									date:date
+									date:new Date(date).Format("yyyy-MM-dd")
 								},
 								beforeSend:function(){
 									$.messager.progress({
-										text:message("ov.common.saving")
+										text:'查询中...'
 									});
 								},
 								success:function(result,response,status){
 									$.messager.progress('close');
 									if(response == "success"){
-										$('reportDailyMileage').textbox('setValue',result.dailyMileage);
-										$('reportAverageFuelConsumption').textbox('setValue',result.averageFuelConsumption);
-										$('reportFuelConsumption').textbox('setValue',result.fuelConsumption);
-										$('reportCost').textbox('setValue',result.cost);
-										$('reportAverageSpeed').textbox('setValue',result.averageSpeed);
-										$('reportEmergencybrakecount').textbox('setValue',result.emergencybrakecount);
-										$('reportSuddenturncount').textbox('setValue',result.suddenturncount);
-										$('reportRapidlyspeedupcount').textbox('setValue',result.rapidlyspeedupcount);
+										$('#reportDailyMileage').textbox('setValue',result.dailyMileage);
+										$('#reportAverageFuelConsumption').textbox('setValue',result.averageFuelConsumption);
+										$('#reportFuelConsumption').textbox('setValue',result.fuelConsumption);
+										$('#reportCost').textbox('setValue',result.cost);
+										$('#reportAverageSpeed').textbox('setValue',result.averageSpeed);
+										$('#reportEmergencybrakecount').textbox('setValue',result.emergencybrakecount);
+										$('#reportSuddenturncount').textbox('setValue',result.suddenturncount);
+										$('#reportRapidlyspeedupcount').textbox('setValue',result.rapidlyspeedupcount);
 									}else{
 										alertErrorMsg();
 									}

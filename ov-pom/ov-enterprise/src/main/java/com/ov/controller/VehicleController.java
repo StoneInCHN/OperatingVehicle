@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ov.beans.CommonAttributes;
 import com.ov.json.BaseResponse;
 import com.ov.service.DeviceInfoService;
+import com.ov.utils.DateTimeUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -220,7 +221,11 @@ public class VehicleController extends BaseController {
   @RequestMapping(value = "/vehicleDailyReport", method = RequestMethod.GET)
   public String getVehicleDailyReport(ModelMap model, Long vehicleId) {
     VehicleDailyReport report = vehicleService.callVehicleDailyData(new Date(), vehicleId);
-    model.put("vehicleDailyReport", report);
+    if (report != null) {
+      model.put("vehicleDailyReport", report);
+      model.put("vehicleReportDate",
+          DateTimeUtils.convertDateToString(report.getCreatedate(), "yyyy-MM-dd"));
+    }
     return "vehicle/vehicleDailyReport";
   }
 

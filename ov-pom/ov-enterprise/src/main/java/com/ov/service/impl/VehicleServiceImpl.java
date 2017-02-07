@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
+import com.ov.utils.DateTimeUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ov.beans.Setting;
@@ -95,14 +96,14 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle,Long> implements
       {
         Vehicle vehicle = vehicleDao.find (vehicleId);
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put ("date", date);
-        params.put ("deviceId", vehicle.getDevice ().getId ());
+        params.put ("date", DateTimeUtils.getSimpleFormatString(DateTimeUtils.shortDateFormat, date));
+        params.put ("deviceId", vehicle.getDevice ().getDeviceNo());
         VehicleDailyReport vehicleDailyReport = new VehicleDailyReport ();
         try
         {
           String response = ApiUtils.post (setting.getObdServerUrl() + "/tenantVehicleData/dailyVehicleStatus.jhtml", params);
           
-//          String response = "{\"msg\":{\"dailyMileage\":10.0,\"averageFuelConsumption\":10.0,\"fuelConsumption\":0.0,\"cost\":null,\"averageSpeed\":0.0,\"emergencybrakecount\":0,\"suddenturncount\":0,\"rapidlyspeedupcount\":0}}";
+          //String response = "{\"msg\":{\"dailyMileage\":0.0,\"averageFuelConsumption\":0.0,\"fuelConsumption\":0.0,\"cost\":null,\"averageSpeed\":0.0,\"emergencybrakecount\":0,\"suddenturncount\":0,\"rapidlyspeedupcount\":0,\"createdate\":1486396800000,\"day\":7}}";
           if (response != null)
           {
             OilType oilType = vehicle.getOilType ();
@@ -119,8 +120,7 @@ public class VehicleServiceImpl extends BaseServiceImpl<Vehicle,Long> implements
             
             BigDecimal dailMile = new BigDecimal(vehicleDailyReport.getDailyMileage ().toString ());
             
-            vehicleDailyReport.setDeviceId (vehicle.getDevice ().getId ());
-            vehicleDailyReport.setReportDate (date);
+            vehicleDailyReport.setDeviceId (vehicle.getDevice ().getDeviceNo());
             vehicleDailyReport.setCost (oilPrice.multiply (dailMile).doubleValue ());
           }
         }
