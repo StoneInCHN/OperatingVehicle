@@ -80,7 +80,9 @@
 									${message('ov.vehicle.vehicleStatus')}:
 								</th>
 								<td>
+								[#if vehicle.vehicleStatus??]
 									${message('ov.vehicle.status.'+vehicle.vehicleStatus)}
+								[/#if]	
 								</td>
 							</tr>							
 							<tr>
@@ -88,7 +90,9 @@
 									${message("ov.vehicle.dashboardMileage")}:
 								</th>
 								<td>
+								[#if vehicle.dashboardMileage??]
 									${vehicle.dashboardMileage?string(',###.##')}
+								[/#if]
 								</td>
 							</tr>
 							<tr>
@@ -96,7 +100,9 @@
 									${message("ov.vehicle.dashboardBV")}:
 								</th>
 								<td>
+								[#if vehicle.dashboardBV??]
 									${vehicle.dashboardBV?string(',###.##')}
+								[/#if]
 								</td>
 							</tr>
 							<tr>
@@ -104,7 +110,9 @@
 									${message("ov.vehicle.dashboradOil")}:
 								</th>
 								<td>
+									[#if vehicle.dashboradOil != null]
 									${vehicle.dashboradOil?string(',###.##')}
+									[/#if]
 								</td>
 							</tr>
 							<tr>
@@ -144,7 +152,9 @@
 									${message("ov.vehicle.oilType")}:
 								</th>
 								<td>
+								[#if vehicle.oilType??]
 									${message("ov.vehicle.oilType."+vehicle.oilType)}
+								[/#if]	
 								</td>
 							</tr>							
 							<tr>

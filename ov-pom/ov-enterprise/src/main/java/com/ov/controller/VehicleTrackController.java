@@ -101,8 +101,6 @@ public class VehicleTrackController extends BaseController {
     String url =
         set.getObdServerUrl() + "/tenantVehicleData/vehicleTrackFragment.jhtml?date=" + date
             + "&deviceId=" + deviceNo;
-    // String url =
-    // "http://139.129.5.114:20001/obd-data/appVehicleData/vehicleTrack.jhtml?deviceId=8856017290&date=2016-07-11";
     String res = ApiUtils.post(url);
 
     try {
