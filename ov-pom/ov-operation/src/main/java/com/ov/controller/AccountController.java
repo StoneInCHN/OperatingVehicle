@@ -36,7 +36,7 @@ public class AccountController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/accountInfo", method = RequestMethod.GET)
-	public String edit(ModelMap model) {
+	public String edit(ModelMap model) { 
 		model.addAttribute("admin",adminService.getCurrent());
 		return "/account/edit";
 	}
